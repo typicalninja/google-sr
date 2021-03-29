@@ -11,12 +11,12 @@ const TitleSelector = 'div.ZINbbc > div:nth-child(1) > a > h3'
 
 
 async function search(query, options = {}) {
+    console.log(options.safe)
     const Poptions = {
         query: query,
-        safeMode: options.safe && options.safe !== 'active' ? options.safe : 'active'
+        safeMode: options.safe ? options.safe !== 'active' ? false : 'active' : options.safe !== false ? 'active' : 'false'
     }
      let URL = PrepareUrl(Poptions)
-     console.log(URL)
     const resp = await fetch(URL).then(r => r.text())
     const $ = cheerio.load(resp);
     const response = {

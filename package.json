@@ -2,6 +2,7 @@
   "name": "google-sr",
   "version": "1.0.0",
   "description": "Yet another library to do google a search, easy and simple",
+  "repository": "typicalninja493/google-sr",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",

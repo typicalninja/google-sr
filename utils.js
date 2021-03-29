@@ -12,7 +12,7 @@ function PrepareUrl(options) {
 const optionsForQueryString = {
     q: options.query,
 }
-if(options.safeMode && options.safeMode == 'active') optionsForQueryString.safe = 'active'
+if(options.safeMode == 'active') optionsForQueryString.safe = 'active'
 
 const url = URL + '?' + querystring.stringify(optionsForQueryString)
 
