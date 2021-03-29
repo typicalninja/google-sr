@@ -5,7 +5,10 @@ function parseUrl(url) {
         return undefined;
       }
      url = url.replace('/url?q=', '')
-      return url;
+    const queryResults = querystring.parse(url);
+    const key = Object.keys(queryResults)[0];
+
+    return key;
 }
 
 function PrepareUrl(options) {
@@ -30,8 +33,9 @@ function getDescription(elem) {
       return elem.children && elem.children.length > 0 ? elem.children.map((child) => Array(findData(child)).join('')).join('') : '';
 }
 
+
 module.exports = {
     parseUrl,
     getDescription,
-    PrepareUrl
+    PrepareUrl,
 }
