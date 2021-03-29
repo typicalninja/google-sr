@@ -11,7 +11,6 @@ const TitleSelector = 'div.ZINbbc > div:nth-child(1) > a > h3'
 
 
 async function search(query, options = {}) {
-    console.log(options.safe)
     const Poptions = {
         query: query,
         safeMode: options.safe ? options.safe !== 'active' ? false : 'active' : options.safe !== false ? 'active' : 'false'
@@ -61,16 +60,3 @@ async function search(query, options = {}) {
 
 module.exports = search;
 
-/*
-$(linkSel).each((index, elem) => {
-        const EscapedLink = elem.attribs.href.replace('/url?q=', "")
-        var titleElem = $(elem).find(titlesel)
-        const item = {
-            title: $(titleElem).contents(),
-            link: EscapedLink,
-            elem: elem,
-            atr: elem.attribs
-        }
-    res.searchResults.push(item)
-      });
-    */

@@ -1,6 +1,6 @@
 {
   "name": "google-sr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet another library to do google a search, easy and simple",
   "repository": "typicalninja493/google-sr",
   "main": "index.js",
