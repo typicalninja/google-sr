@@ -34,6 +34,19 @@ const res = await search('node.js')
 console.log(res)
 ```
 
+### Available options
+
+* Page - default:- **1**
+* Selectors - `DescriptionSelector`, `linkSelector`, `TitleSelector`
+* safe - default:- `true`
+
+selectors default -
+* DescriptionSelector - `#main > div > div > div > div:not(.v9i61e) > div.AP7Wnd`
+* linkSelector - `div.ZINbbc > div:nth-child(1) > a`
+* TitleSelector - `div.ZINbbc > div:nth-child(1) > a > h3`
+
+* selectors **MUST** be in the object options.selectors
+ ex- options.selectors.DescriptionSelector = 'some-selector'
 # Support
 
 Join my discord server for support: [discord](https://discord.gg/9s52pz6nWX)
