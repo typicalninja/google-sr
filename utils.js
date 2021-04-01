@@ -15,7 +15,8 @@ function PrepareUrl(options) {
 const optionsForQueryString = {
     q: options.query,
 }
-if(options.safeMode == 'active') optionsForQueryString.safe = 'active'
+if(options.safeMode == 'active') optionsForQueryString.safe = 'active';
+if(options.page !== false) optionsForQueryString.start = options.page;
 
 const url = URL + '?' + querystring.stringify(optionsForQueryString)
 

@@ -4,25 +4,30 @@ const querystring = require('querystring')
 const { getDescription, parseUrl, PrepareUrl } = require('./utils.js');
 
 
-const DescriptionSelector = '#main > div > div > div > div:not(.v9i61e) > div.AP7Wnd'
-const linkSelector = 'div.ZINbbc > div:nth-child(1) > a'
-const TitleSelector = 'div.ZINbbc > div:nth-child(1) > a > h3'
+let DescriptionSelector = '#main > div > div > div > div:not(.v9i61e) > div.AP7Wnd'
+let linkSelector = 'div.ZINbbc > div:nth-child(1) > a'
+let TitleSelector = 'div.ZINbbc > div:nth-child(1) > a > h3'
 
 
 
 async function search(query, options = {}) {
     const Poptions = {
         query: query,
-        safeMode: options.safe ? options.safe !== 'active' ? false : 'active' : options.safe !== false ? 'active' : 'false'
+        safeMode: options.safe ? options.safe !== 'active' ? false : 'active' : options.safe !== false ? 'active' : 'false',
+        page: options.page ? options.page : false
     }
      let URL = PrepareUrl(Poptions)
+     if(options.selectors){
+       if(options.selectors.linkSelector) linkSelector = options.selectors.linkSelector
+       if(options.selectors.DescriptionSelector) DescriptionSelector = options.selectors.DescriptionSelector
+       if(options.selectors.TitleSelector) linkSelector = options.selectors.TitleSelector
+     }
     const resp = await fetch(URL).then(r => r.text())
     const $ = cheerio.load(resp);
     const response = {
         url: URL,
         searchResults: [],
         raw: resp,
-
     }
 
 
