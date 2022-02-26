@@ -53,7 +53,7 @@ interface SearchOptions {
 }
 
 
-function search(query: string, options: SearchOptions = defaultOptions) {
+function search(query: string, options: SearchOptions = defaultOptions): Promise<{ Description: string; Link: string | undefined; Title: string}[]> {
 	if(!query || typeof query !== "string") throw new Error(`Query must be a string received ${typeof query}`);
 	if(options && typeof options !== "object") throw new Error(`Options must be an object received ${typeof options}`);
 	const MergedOptions = { ...defaultOptions, ...options };
