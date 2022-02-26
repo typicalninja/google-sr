@@ -53,3 +53,6 @@ selectors default -
 # Support
 
 Join my discord server for support: [discord](https://discord.gg/9s52pz6nWX)
+
+# License
+This repository and the code inside it is licensed under the MIT License. Read [LICENSE](/LICENSE) for more information.
