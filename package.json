@@ -1,9 +1,10 @@
 {
   "name": "google-sr",
   "version": "1.0.4",
-  "description": "Yet another library to do google a search, easy and simple",
+  "description": "Yet another library to do google searches, easy and simple",
   "repository": "typicalninja493/google-sr",
   "main": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "axios": "^0.26.0",
     "cheerio": "^1.0.0-rc.10"
@@ -19,5 +20,5 @@
     "simple"
   ],
   "author": "typicalninja493",
-  "license": "ISC"
+  "license": "MIT"
 }

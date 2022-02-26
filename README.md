@@ -4,6 +4,14 @@ Yet another library to do google searches.
 
 Below is a simple example of using this package
 
+## Install
+
+```
+npm install google-sr
+```
+
+* Typescript and Javascript compatible
+
 ## Usage
 
 #### with `.then`
@@ -55,4 +63,4 @@ selectors default -
 Join my discord server for support: [discord](https://discord.gg/9s52pz6nWX)
 
 # License
-This repository and the code inside it is licensed under the MIT License. Read [LICENSE](/LICENSE) for more information.
+This repository and the code inside it is licensed under the MIT License. Read [LICENSE](https://github.com/typicalninja493/google-sr/blob/master/LICENSE) for more information.
