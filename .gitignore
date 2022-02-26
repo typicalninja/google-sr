@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 /node_modules
 .npmignore
 index.js
-=======
-<<<<<<< HEAD
-/node_modules
-=======
-/node_modules
-/.gitignore
->>>>>>> 177d5b64b530df36c47743da1ea86b103c45e835
->>>>>>> origin/master
+tsconfig.json
