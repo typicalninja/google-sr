@@ -6,9 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.26.0",
-    "cheerio": "^1.0.0-rc.10",
-    "node-fetch": "^2.6.1",
-    "querystring": "^0.2.1"
+    "cheerio": "^1.0.0-rc.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +14,9 @@
   "keywords": [
     "google-sr",
     "google",
-    "search"
+    "search",
+    "google-search",
+    "simple"
   ],
   "author": "typicalninja493",
   "license": "ISC"
