@@ -2,3 +2,4 @@
 .npmignore
 index.js
 tsconfig.json
+index.d.ts
