@@ -1,0 +1,23 @@
+{
+  "name": "google-sr",
+  "version": "1.0.4",
+  "description": "Yet another library to do google a search, easy and simple",
+  "repository": "typicalninja493/google-sr",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "cheerio": "^1.0.0-rc.10",
+    "node-fetch": "^2.6.1",
+    "querystring": "^0.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "google-sr",
+    "google",
+    "search"
+  ],
+  "author": "typicalninja493",
+  "license": "ISC"
+}
