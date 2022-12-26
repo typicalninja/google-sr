@@ -3,6 +3,17 @@ import { load } from "cheerio";
 
 export const REQUEST_URL = "https://www.google.com/search";
 
+export interface SearchOptions {
+    requestOptions?: AxiosRequestConfig;
+    safeMode?: boolean;
+    page?: number | string;
+    selectors?: {
+        DescriptionSelector?: string;
+        LinkSelector?: string;
+        TitleSelector?: string;
+    };
+}
+
 // UTILITY: Get the url to scrape
 function getURL(query: string, options: SearchOptions = {}) {
 	const params = new URLSearchParams();
@@ -39,17 +50,6 @@ const defaultOptions: SearchOptions = {
 	requestOptions: {},
 	safeMode: true,
 	selectors: defaultSelectors,
-}
-
-interface SearchOptions {
-	requestOptions?: AxiosRequestConfig;
-	safeMode?: boolean;
-	page?: number | string;
-	selectors?: { 
-		DescriptionSelector?: string,
-		LinkSelector?: string,
-		TitleSelector?: string,
-	},
 }
 
 
