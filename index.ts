@@ -4,18 +4,24 @@ import { load } from "cheerio";
 export const REQUEST_URL = "https://www.google.com/search";
 
 export interface SearchOptions {
-    requestOptions?: AxiosRequestConfig;
-    safeMode?: boolean;
-    page?: number | string;
-    selectors?: {
-        DescriptionSelector?: string;
-        LinkSelector?: string;
-        TitleSelector?: string;
+    requestOptions: AxiosRequestConfig;
+    safeMode: boolean;
+    page: number | string;
+    selectors: {
+        DescriptionSelector: string;
+        LinkSelector: string;
+        TitleSelector: string;
     };
 }
 
+export interface Result { 
+	description: string; 
+	link: string; 
+	title: string
+}
+
 // UTILITY: Get the url to scrape
-function getURL(query: string, options: SearchOptions = {}) {
+function getURL(query: string, options: Partial<SearchOptions> = {}) {
 	const params = new URLSearchParams();
 	params.append("q", query);
 	// if safe mode is enabled, we need to add the safe mode parameter
@@ -40,7 +46,7 @@ function parseLink(link: string) {
 
 
 // html selectors for google.com search results
-let defaultSelectors = {
+export const defaultSelectors = {
 	DescriptionSelector: '#main > div > div > div > div:not(.v9i61e) > div.AP7Wnd',
 	LinkSelector: 'div.ZINbbc > div:nth-child(1) > a',
 	TitleSelector: 'div.ZINbbc > div:nth-child(1) > a > h3'
@@ -50,10 +56,16 @@ const defaultOptions: SearchOptions = {
 	requestOptions: {},
 	safeMode: true,
 	selectors: defaultSelectors,
+	page: 0
 }
 
-
-function search(query: string, options: SearchOptions = defaultOptions): Promise<{ Description: string; Link: string | undefined; Title: string}[]> {
+/**
+ * 
+ * @param query query to search for
+ * @param options 
+ * @returns Array of Results
+ */
+export function search(query: string, options: Partial<SearchOptions> = {}): Promise<Partial<Result>[]> {
 	if(!query || typeof query !== "string") throw new Error(`Query must be a string received ${typeof query}`);
 	if(options && typeof options !== "object") throw new Error(`Options must be an object received ${typeof options}`);
 	const MergedOptions = { ...defaultOptions, ...options };
@@ -63,29 +75,26 @@ function search(query: string, options: SearchOptions = defaultOptions): Promise
 			.then(response => {
 				const selectors = MergedOptions.selectors || defaultSelectors;
 				const $ = load(response.data);
-				const Parsed: any[] = [];
+				const Parsed: Partial<Result>[] = [];
+				const addResult = (at: number, result: Partial<Result>) => Parsed[at] = Object.assign((Parsed[at] || {}), result)
+				
 				$(selectors.DescriptionSelector).each((i, elem) => {
-					const Description = $(elem).text();
-					Parsed.push({ Description });
+					addResult(i, { description: $(elem).text() });
+					return true;
 				});
 				$(selectors.LinkSelector).each((i, elem) => {
-					if(Parsed[i]) {
-						const Link = $(elem).attr("href");
-						if(Link) {
-							Parsed[i].Link = parseLink(Link);
-						}
-						else {
-							Parsed[i].Link = undefined;
-						}
+					let Link: string | null = $(elem).attr("href") || null;
+					Link = Link ? parseLink(Link) : null;
+					if(Link) {
+						addResult(i, { link: Link })
 					}
+					return true;
 				});
 				$(selectors.TitleSelector).each((i, elem) => {
-					if(Parsed[i]) {
-						const Title = $(elem).text();
-						Parsed[i].Title = Title;
-					}
+					addResult(i, { title: $(elem).text() })
+					return true;
 				});
-				resolve(Parsed);
+				resolve(Parsed.filter(p => p));
 			})
 			.catch(error => {
 				reject(error);
@@ -94,5 +103,12 @@ function search(query: string, options: SearchOptions = defaultOptions): Promise
 }
 
 
-export default search
-export { defaultSelectors, search }
+/**
+ * Search multiple pages
+ * @param query 
+ * @param pages 
+ * @param options 
+ */
+export function searchPages(query: string, pages: number, options: Partial<SearchOptions> = {}) {
+
+}	

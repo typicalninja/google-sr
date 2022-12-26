@@ -38,6 +38,8 @@ import search from 'google-sr'
 })()
 ```
 
+### Multiple pages
+
 ### Available options
 
 * Page - default:- **1**
