@@ -1,6 +1,4 @@
 /node_modules
 .npmignore
-index.js
-tsconfig.json
-index.d.ts
-package-lock.json
+dist
+pnpm-lock.yaml
