@@ -1,67 +1,89 @@
-## Google-sr
+# google-sr 🔍
 
-Yet another library to do Google Searches.
+Fast and efficient Package for scraping Google search results without the need for an API key. 🚀
 
-Below is a simple example of using this package
+## Features ✨
 
-## Install
+* Lightweight ⚡️
+* Fast and efficient ⏱️
+* Regularly updated 🔄
+* Highly customizable 🛠️
+* TypeScript compatibility 🧑‍💻
 
-```
+## Install 📦
+
+To get started, you can install **google-sr** using your preferred package manager:
+
+```bash
+
+# npm
+
 npm install google-sr
+
+# pnpm 
+
+pnpm add google-sr
+
+# yarn
+
+yarn add google-sr
+
 ```
 
-* Typescript and Javascript compatible
+# Usage
 
-## Usage
+> All examples use typescript
 
-### with `.then`
-```ts
-import search from 'google-sr'
+### Single page
 
-search('node.js').then(r => console.log(r))
-
-// add "{ safeMode: false }" for turning off safe mode
-// ex search('node.js', { safeMode: false }).then(r => console.log(r))
-```
-
-### With async/await
+You can easily perform a single-page search like this:
 
 ```ts
-import search from 'google-sr'
+import { search } from 'google-sr';
 
-// use an iife to use await
-(async () => {
-  const result = await search('node.js')
-  console.log(result)
-  // add "{ safeMode: false }" for turning off safe mode
-  // ex await search('node.js', { safeMode: false })
-})()
+search({ query: 'nodejs' }).then(console.log);
+
+// or if using await/async
+const searchResults = await search({ query: 'nodejs' });
+console.log(searchResults);
 ```
 
 ### Multiple pages
 
-### Available options
+For more comprehensive results, you can search across multiple pages:
 
-* Page - default:- **1**
+```ts
+import { searchWithPages } from 'google-sr';
 
-* Selectors - {
-	 `DescriptionSelector`, 
-	 `linkSelector`, 
-	 `TitleSelector`
-} - default: `DefaultSelectors`
+searchWithPages({ query: 'nodejs', pages: 5 }).then(console.log);
 
-* safeMode - default :- `true`
+// or if using await/async
+const searchResults = await searchWithPages({ query: 'nodejs', pages: 5 });
+console.log(searchResults);
+```
 
-* Selectors are the respective elements of the returned WebPage (google.com search page)
+**Or alternatively** You can also specify the exact pages you want to fetch:
 
-Selectors default -
-* DescriptionSelector - `#main > div > div > div > div:not(.v9i61e) > div.AP7Wnd`
-* linkSelector - `div.ZINbbc > div:nth-child(1) > a`
-* TitleSelector - `div.ZINbbc > div:nth-child(1) > a > h3`
+```ts
+import { searchWithPages } from 'google-sr';
 
-# Support
+searchWithPages({ query: 'nodejs', pages: [1, 2, 5, 10] }).then(console.log);
 
-Join my discord server for support: [discord](https://discord.gg/9s52pz6nWX)
+// or if using await/async
+const searchResults = await searchWithPages({ query: 'nodejs', pages: [1, 2, 5, 10] });
+console.log(searchResults);
+```
+
+## Important Notes 🚨
+
+* google-sr scrapes the HTML of Google search results. This means it relies on Google's predefined HTML structure. If Google changes this structure, the package might seem to behave unexpectedly. To avoid this, it's best to keep your package updated to the latest version. (Note: we may take time to update it to any new structure)
+
+* Make sure you are on the latest version before creating bug reports
+
+# Support & Bug Reporting 🛠️🐞
+
+Support and bugs reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
 
 # License
-This repository and the code inside it is licensed under the MIT License. Read [LICENSE](https://github.com/typicalninja493/google-sr/blob/master/LICENSE) for more information.
+
+This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
