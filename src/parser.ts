@@ -13,9 +13,17 @@ export interface ResultNode {
 
 /**
  * Search for a individual page
- * @param query query to search for
- * @param options
+ * @param options Options for this search
+ * @param options.query Search query
  * @returns Array of Results
+ * 
+ * @example
+ * ```ts
+ * search({ query: 'nodejs' }).then(console.log);
+ * // or if using await/async
+ * const searchResults = await search({ query: 'nodejs' });
+ * console.log(searchResults);
+ * ```
  */
 export function search({ query, ...options }: Partial<SearchOptions>): Promise<ResultNode[]> {
   if (!query || typeof query !== "string") throw new TypeError(`Search query must be a string, received ${typeof query}`);
@@ -69,6 +77,27 @@ export function search({ query, ...options }: Partial<SearchOptions>): Promise<R
  * @param query
  * @param pages no of pages or array of pages numbers to retrieve
  * @param options
+ * @returns Array of arrays representing pages containing search results
+ * 
+ * @example
+ * Specify amount of pages to fetch
+ * 
+ * ```ts
+ * 
+ * searchWithPages({ query: 'nodejs', pages: 5 }).then(console.log);
+ * // or if using await/async
+ * const searchResults = await searchWithPages({ query: 'nodejs', pages: 5 });
+ * console.log(searchResults);
+ * ```
+ * 
+ * @example 
+ * Specifying specific pages to fetch
+ * ```ts
+ * searchWithPages({ query: 'nodejs', pages: [1, 2, 5, 10] }).then(console.log);
+ * // or if using await/async
+ * const searchResults = await searchWithPages({ query: 'nodejs', pages: [1, 2, 5, 10] });
+ * console.log(searchResults);
+ * ```
  */
 export async function searchWithPages({ pages, ...options }: Omit<SearchOptions, 'page'> & { pages: number | number[] }) {
     const queryPages = Array.isArray(pages) ? pages : generateArrayOfNumbers(pages)
