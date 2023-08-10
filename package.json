@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
   "repository": "typicalninja493/google-sr",
+  "homepage": "https://typicalninja493.github.io/google-sr/",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
