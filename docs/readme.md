@@ -2,6 +2,8 @@
 
 Fast and efficient Package for scraping Google search results without the need for an API key. 🚀
 
+> API documentation can be found [here](https://paka.dev/npm/google-sr/api) and api overview [here](./overview.md)
+
 ## Features ✨
 
 * Lightweight 💨

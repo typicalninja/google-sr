@@ -2,7 +2,7 @@
 
 This sections covers some useful options provided by the package.
 
-> For a comprehensive list of available options, you can refer to the unofficial Typedoc [here](https://paka.dev/npm/google-sr).
+> For a comprehensive list of available options, you can refer to the unofficial Typedoc [here](https://paka.dev/npm/google-sr/api).
 
 In this section, we'll cover the fundamental options that you can use with **google-sr**.
 
