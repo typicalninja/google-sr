@@ -29,3 +29,10 @@ pnpm add google-sr
 yarn add google-sr
 
 ```
+# Usage
+
+
+> All Usage examples are written in typescript (compiled to common js)
+
+* [Searching one page](/onepage)
+    * [Searching the first page](/onepage#searching-the-first-page)
