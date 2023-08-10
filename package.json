@@ -1,7 +1,7 @@
 {
   "name": "google-sr",
-  "version": "2.0.0",
-  "description": "Yet another library to do google searches, easy and simple",
+  "version": "3.0.0",
+  "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
   "repository": "typicalninja493/google-sr",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
