@@ -18,7 +18,7 @@ Simple & Fast Package for scraping Google search results without the need for an
 * Well tested 🔄
 * TypeScript compatible 🧑‍💻
 
-> \* depends on amount of pages fetched (avg of 1s per page in testing)
+> \* depends on amount of pages fetched and host internet speed (avg of 500ms per page in testing )
 
 ## Install 📦
 
