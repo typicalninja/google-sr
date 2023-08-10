@@ -4,8 +4,8 @@
 ![npm](https://img.shields.io/npm/dw/google-sr)
 ![GitHub issues](https://img.shields.io/github/issues/typicalninja493/google-sr)
 ![NPM](https://img.shields.io/npm/l/google-sr)
-
-
+![npm version](https://img.shields.io/npm/v/google-sr)
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja493/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja493/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
