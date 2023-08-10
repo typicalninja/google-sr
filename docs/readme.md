@@ -7,7 +7,7 @@ Fast and efficient Package for scraping Google search results without the need f
 * Lightweight 💨
 * Fast and efficient ⚡️ *
 * Well tested 🔄
-* TypeScript compatibility 🧑‍💻
+* TypeScript compatible 🧑‍💻
 
 > \* depends on amount of pages fetched (avg of 1s per page in testing)
 
