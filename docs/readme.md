@@ -1,5 +1,12 @@
 # google-sr 🔍
 
+![testing workflow](https://github.com/typicalninja493/google-sr/actions/workflows/tests.yml/badge.svg)
+![npm](https://img.shields.io/npm/dw/google-sr)
+![GitHub issues](https://img.shields.io/github/issues/typicalninja493/google-sr)
+![NPM](https://img.shields.io/npm/l/google-sr)
+
+
+
 Fast and efficient Package for scraping Google search results without the need for an API key. 🚀
 
 > API documentation can be found [here](https://paka.dev/npm/google-sr/api) and api overview [here](./overview.md)
