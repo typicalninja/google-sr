@@ -82,7 +82,7 @@ export function search({ query, ...options }: Partial<SearchOptions>): Promise<R
  * @example
  * Specify amount of pages to fetch
  * 
- * ```ts
+ *```ts
  * 
  * searchWithPages({ query: 'nodejs', pages: 5 }).then(console.log);
  * // or if using await/async
@@ -92,6 +92,7 @@ export function search({ query, ...options }: Partial<SearchOptions>): Promise<R
  * 
  * @example 
  * Specifying specific pages to fetch
+ * 
  * ```ts
  * searchWithPages({ query: 'nodejs', pages: [1, 2, 5, 10] }).then(console.log);
  * // or if using await/async
