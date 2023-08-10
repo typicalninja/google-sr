@@ -82,9 +82,9 @@ yarn run test
 
 # Support & Bug Reporting 🛠️🐞
 
-* Make sure you are on the latest version before creating bug reports
+> Make sure you are on the latest version before creating bug reports
 
-Support and bugs reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
+Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
 
 # License
 
