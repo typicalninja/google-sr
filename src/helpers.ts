@@ -30,6 +30,11 @@ export function constructSearchQuery(query: string, options: SearchOptions): Axi
     if (options.safeMode) {
       params.append("safe", "active");
     }
+
+    if(!options.omitUnrelated) {
+      params.append('filter', '0')
+    }
+
     // if options defined a page number, we need to add it to the query as the start parameter
     if (options.page) {
       params.append("start", options.page.toString());

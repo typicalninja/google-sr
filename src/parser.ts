@@ -99,7 +99,7 @@ export function search({ query, ...options }: Partial<SearchOptions>): Promise<R
  * console.log(searchResults);
  * ```
  */
-export async function searchWithPages({ pages, ...options }: Omit<SearchOptions, 'page'> & { pages: number | number[] }) {
+export async function searchWithPages({ pages, ...options }: Partial<Omit<SearchOptions, 'page'>> & { pages: number | number[] }) {
     const queryPages = Array.isArray(pages) ? pages : generateArrayOfNumbers(pages)
     const pagesResults: ResultNode[][] = []
 

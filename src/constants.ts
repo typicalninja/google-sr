@@ -27,6 +27,10 @@ export interface SearchOptions {
    */
   page: number;
   /**
+   * Sets the filter parameter in search query, filtering unrelated data
+   */
+  omitUnrelated: boolean;
+  /**
    * Base url of the service by default google.com/search
    */
   baseUrl: string;
@@ -61,6 +65,7 @@ export const defaultOptions: SearchOptions = {
   },
   // by default only the first page is resolved
   page: 0,
+  omitUnrelated: true,
   query: "",
   baseUrl: "https://www.google.com/search",
   ignoreIfPartial: true,

@@ -104,6 +104,28 @@ selectors: {
 
 * Make sure you are on the latest version before creating bug reports
 
+* Fetching multiple pages can be slow, we recommended either fetching only small amount (i.e 5 max) or fetching pages in chunks as needed using specific page control of `searchWithPages` function 
+
+# Tests
+
+Tests are written using [mocha](https://mochajs.org/) and can be run by using `test` script
+
+```bash
+
+# npm
+
+npm run test
+
+# pnpm 
+
+pnpm run test
+
+# yarn
+
+yarn run test
+
+```
+
 # Support & Bug Reporting 🛠️🐞
 
 Support and bugs reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
