@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - master
-
+  schedule:
+      - cron: "0 0 * * SUN"  # Run every 00:00 on Sunday
   workflow_dispatch:
 
 
 jobs:
-  deploy:
+  test:
     name: Test Package
     runs-on: ubuntu-latest
     permissions:
