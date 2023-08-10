@@ -34,5 +34,5 @@ yarn add google-sr
 
 > All Usage examples are written in typescript (compiled to common js)
 
-* [Searching one page](/onepage)
-    * [Searching the first page](/onepage#searching-the-first-page)
+* [Searching one page](./onepage)
+    * [Searching the first page](./onepage#searching-the-first-page)
