@@ -5,14 +5,14 @@
 ![GitHub issues](https://img.shields.io/github/issues/typicalninja493/google-sr)
 ![NPM](https://img.shields.io/npm/l/google-sr)
 
-Fast and efficient Package for scraping Google search results without the need for an API key. 🚀
+Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
 > View documentation [here](https://typicalninja493.github.io/google-sr/)
 
 ## Features ✨
 
 * Lightweight 💨
-* Fast and efficient ⚡️ *
+* Simple & Fast ⚡️ *
 * Well tested 🔄
 * TypeScript compatible 🧑‍💻
 
