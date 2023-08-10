@@ -1,4 +1,4 @@
-name: Build & Test the package
+name: Test module state
 
 on:
   push:
