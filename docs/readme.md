@@ -1,11 +1,11 @@
 # google-sr 🔍
 
-![testing workflow](https://github.com/typicalninja493/google-sr/actions/workflows/tests.yml/badge.svg)
+![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)
 ![npm](https://img.shields.io/npm/dw/google-sr)
-![GitHub issues](https://img.shields.io/github/issues/typicalninja493/google-sr)
+![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)
 ![NPM](https://img.shields.io/npm/l/google-sr)
 ![npm version](https://img.shields.io/npm/v/google-sr)
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja493/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja493/google-sr)
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
@@ -83,7 +83,7 @@ yarn run test
 
 > Make sure you are on the latest version before creating bug reports
 
-Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
+Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja/google-sr/issues)
 
 
 # License

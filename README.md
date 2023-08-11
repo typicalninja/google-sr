@@ -1,15 +1,15 @@
 # google-sr 🔍
 
-![testing workflow](https://github.com/typicalninja493/google-sr/actions/workflows/tests.yml/badge.svg)
+![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)
 ![npm](https://img.shields.io/npm/dw/google-sr)
-![GitHub issues](https://img.shields.io/github/issues/typicalninja493/google-sr)
+![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)
 ![NPM](https://img.shields.io/npm/l/google-sr)
 ![npm version](https://img.shields.io/npm/v/google-sr)
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja493/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja493/google-sr)
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-> View documentation [here](https://typicalninja493.github.io/google-sr/)
+> View documentation [here](https://typicalninja.github.io/google-sr/)
 
 ## Features ✨
 
@@ -55,7 +55,7 @@ const searchResults = await search({ query: 'nodejs' });
 console.log(searchResults);
 ```
 
-> More detailed examples & usage can be found [here](https://typicalninja493.github.io/google-sr#usage)
+> More detailed examples & usage can be found [here](https://typicalninja.github.io/google-sr#usage)
 
 
 ## Important Notes 🚨
@@ -63,7 +63,7 @@ console.log(searchResults);
 * google-sr scrapes the HTML of Google search results. This means it relies on Google's predefined HTML structure. If Google changes this structure, the package might seem to behave unexpectedly. To avoid this, it's best to keep your package updated to the latest version. (Note: we may take time to update it to any new structure)
 
 
-> View current selectors [here](https://typicalninja493.github.io/google-sr/selectors)
+> View current selectors [here](https://typicalninja.github.io/google-sr/selectors)
 
 * Fetching multiple pages can be slow, we recommended either fetching only small amount (i.e 5 max) or fetching pages in chunks as needed using specific page control of `searchWithPages` function 
 
@@ -91,7 +91,7 @@ yarn run test
 
 > Make sure you are on the latest version before creating bug reports
 
-Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja493/google-sr/issues)
+Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja/google-sr/issues)
 
 # License
 

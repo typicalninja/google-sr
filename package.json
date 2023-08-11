@@ -2,8 +2,8 @@
   "name": "google-sr",
   "version": "3.0.0",
   "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
-  "repository": "typicalninja493/google-sr",
-  "homepage": "https://typicalninja493.github.io/google-sr/",
+  "repository": "typicalninja/google-sr",
+  "homepage": "https://typicalninja.github.io/google-sr/",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -17,7 +17,7 @@
     "google-search",
     "simple"
   ],
-  "author": "typicalninja493",
+  "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "^1.4.0",
