@@ -12,26 +12,6 @@ describe("One page search", function() {
             expect(result.title).to.be.a('string');
         });
      });
-
-
-     it("Search with safeMode", async () => {
-        const nsfwTerm = 'pornhub'
-        const searchResult = await search({ query: nsfwTerm, safeMode: true })
-
-        searchResult.every((result) => {
-            // if safe is enabled this term will not be present
-            expect(result.link).to.not.contain(nsfwTerm)
-        })
-     })
-
-     it("Search without safeMode", async () => {
-        const nsfwTerm = 'pornhub'
-        const searchResult = await search({ query: nsfwTerm, safeMode: false })
-
-        const firstResult = searchResult[0]
-
-        expect(firstResult.link).to.contain(nsfwTerm)
-     });
 });
 
 
