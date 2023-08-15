@@ -5,6 +5,8 @@ import {
   ResultTypes,
   TranslateSelectors,
   TranslateResultNode,
+  DictionaryResultNode,
+  DictionarySelectors,
 } from "./constants";
 import { extractUrlFromGoogleLink } from "./helpers";
 
@@ -48,28 +50,78 @@ export function loadTranslateNodes(
   $: CheerioAPI,
   selectors: TranslateSelectors
 ): TranslateResultNode[] {
-  const sourceLanguage = $(selectors.sourceLanguage);
-  const targetLanguage = $(selectors.targetLanguage);
+  const sourceLanguage = $(selectors.sourceLanguage).text().trim();
+  const targetLanguage = $(selectors.targetLanguage).text().trim();
 
-  const translation = $(selectors.translationText);
-  const source = $(selectors.sourceText);
-  const pronunciation = $(selectors.pronunciation);
+  const translation = $(selectors.translationText).text().trim();
+  const source = $(selectors.sourceText).val();
+  const pronunciation = $(selectors.pronunciation).text().trim();
+
+  // validate these exist
+  if (
+    [translation, source, sourceLanguage, targetLanguage].some(
+      (value) => value === ""
+    )
+  )
+    return [];
 
   const result = {
     type: ResultTypes.TranslateResult,
     source: {
-      language: sourceLanguage.text(),
+      language: sourceLanguage,
       // expect this to be always a string
-      text: source.val() as string,
+      text: source as string,
     },
     translation: {
-      language: targetLanguage.text(),
-      text: translation.text(),
-      pronunciation: pronunciation.text(),
+      language: targetLanguage,
+      text: translation,
+      pronunciation: pronunciation,
     },
   } satisfies TranslateResultNode;
 
   return [result];
 }
 
+/**
+ * Loader for dictionary blocks
+ */
+export function loadDictionaryNodes(
+  $: CheerioAPI,
+  selectors: DictionarySelectors
+): DictionaryResultNode[] {
+  const audio = $(selectors.audio).attr("src");
+  const phonetic = $(selectors.phonetic).text().trim();
+  const word = $(selectors.word).text().trim();
 
+  if([audio, phonetic, word].some(val => val === '')) return [];
+
+  const definitions: [string, string][] = [];
+
+  $("div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))").each(
+    (index, el) => {
+      definitions[index] = ["", ""];
+      definitions[index][0] = $(el).text().trim();
+    }
+  );
+
+  $("div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod").each((index, el) => {
+    if (definitions[index]) {
+      let example = $(el).text().trim();
+
+      if (example.startsWith(`"`)) example = example.slice(1);
+      if (example.endsWith(`"`)) example = example.slice(0, example.length - 1);
+
+      definitions[index][1] = example;
+    }
+  });
+
+  const result = {
+    type: ResultTypes.DictionaryResult,
+    audio,
+    phonetic,
+    word,
+    definitions,
+  } satisfies DictionaryResultNode;
+
+  return [result];
+}
