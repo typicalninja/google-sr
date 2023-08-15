@@ -1,18 +1,31 @@
 import { AxiosRequestConfig } from "axios";
 
+/**
+ * Selectors used for organic search
+ */
 export interface SearchSelectors {
   block: string;
   link: string;
   title: string;
   description: string;
 }
-
+/**
+ * Selectors used for Translations
+ */
 export interface TranslateSelectors {
   sourceLanguage: string;
   targetLanguage: string;
   translationText: string;
   sourceText: string;
   pronunciation: string;
+}
+
+export interface DictionarySelectors {
+  audio: string;
+  phonetic: string;
+  word: string;
+  examples: string;
+  definitions: string;
 }
 
 /**
@@ -27,13 +40,14 @@ export interface SearchOptions {
    * Toggle to enable google safe mode
    */
   safeMode: boolean;
-  /** 
+  /**
    * jquery selectors (cheerio) to extract data from scraped data
-  */
+   */
   selectors: {
     SearchNodes: SearchSelectors;
     TranslateNodes: TranslateSelectors;
-  }
+    DictionaryNode: DictionarySelectors;
+  };
   /**
    * Page number to fetch. Google page numbers are different that what you might expect
    * we suggest you to use searchWithPages instead
@@ -53,16 +67,18 @@ export interface SearchOptions {
   query: string;
 }
 
-
 export const defaultOptions: SearchOptions = {
   requestOptions: {
     responseType: "text",
-    responseEncoding: 'utf-8',
+    responseEncoding: "utf-8",
     headers: {
-      // mimic a real user agent
+      Accept: "text/html",
+      "accept-encoding": "gzip, deflate",
+      "Accept-language": "en-US,en",
+      referer: "https://www.google.com/",
+      "upgrade-insecure-requests": 1,
       "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 OPR/100.0.0.0",
-      Accept: "text/plain",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
     },
   },
   safeMode: true,
@@ -76,12 +92,20 @@ export const defaultOptions: SearchOptions = {
       description: ".BNeawe.s3v9rd.AP7Wnd",
     },
     TranslateNodes: {
-      sourceLanguage: '#tsuid_2 option:selected',
-      targetLanguage: '#tsuid_4 option:selected',
+      sourceLanguage: "#tsuid_2 option:selected",
+      targetLanguage: "#tsuid_4 option:selected",
       translationText: '[id="lrtl-translation-text"]',
       sourceText: '#lrtl-source-text input[name="tlitetxt"]',
-      pronunciation: '[id="lrtl-transliteration-text"]'
-    }
+      pronunciation: '[id="lrtl-transliteration-text"]',
+    },
+    DictionaryNode: {
+      audio: "audio:first",
+      phonetic: "span > div.BNeawe.tAd8D.AP7Wnd",
+      word: "h3 > div.BNeawe.deIvCb.AP7Wnd",
+      examples: "div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod",
+      definitions:
+        "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
+    },
   },
   // by default only the first page is resolved
   page: 0,
@@ -92,10 +116,9 @@ export const defaultOptions: SearchOptions = {
 
 export enum ResultTypes {
   SearchResult = "SEARCH",
-  TranslateResult = "TRANSLATE"
+  TranslateResult = "TRANSLATE",
+  DictionaryResult = "DICTIONARY",
 }
-
-
 
 export interface SearchResultNode {
   /** Type of this result node */
@@ -108,6 +131,9 @@ export interface SearchResultNode {
   title: string;
 }
 
+/**
+ * Translation result
+ */
 export interface TranslateResultNode {
   /** Type of this result node */
   type: ResultTypes.TranslateResult;
@@ -138,9 +164,39 @@ export interface TranslateResultNode {
     text: string;
     /**
      * Pronunciation of the translation in english
+     * Only available in certain cases
      */
-    pronunciation: string;
+    pronunciation?: string;
   };
 }
 
-export type ResultNode = SearchResultNode | TranslateResultNode;
+export interface DictionaryResultNode {
+  /** Type of this result node */
+  type: ResultTypes.DictionaryResult;
+  word: string;
+  phonetic: string;
+  /**
+   * Audio pronunciation of this word
+   */
+  audio?: string;
+  /**
+   * Array of array containing definitions and their respective examples
+   * @example
+   *
+   * ```ts
+   * [
+   *  [
+   *    'causing great surprise or wonder; astonishing.',
+   *    'an amazing number of people registered'
+   *  ]
+   * ]
+   *
+   * ```
+   */
+  definitions: [string, string][];
+}
+
+export type ResultNode =
+  | SearchResultNode
+  | TranslateResultNode
+  | DictionaryResultNode;

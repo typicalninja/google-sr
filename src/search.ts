@@ -7,7 +7,7 @@ import axios from "axios";
 import { load } from "cheerio";
 import { constructSearchQuery, generateArrayOfNumbers, pageToGoogleQueryPage } from "./helpers";
 import { deepmerge } from "deepmerge-ts";
-import { loadSearchNodes, loadTranslateNodes } from "./loaders";
+import { loadDictionaryNodes, loadSearchNodes, loadTranslateNodes } from "./loaders";
 
 
 /**
@@ -46,7 +46,10 @@ export async function search(searchOptions: Partial<SearchOptions>) {
   // TYPE: Translations
   const translateResults = loadTranslateNodes($, selectors.TranslateNodes);
 
-  return result.concat(translateResults, searchResults);
+  // TYPE: Dictionary
+  const dictionaryResults = loadDictionaryNodes($, selectors.DictionaryNode)
+
+  return result.concat(translateResults, searchResults, dictionaryResults);
 }
 
 
