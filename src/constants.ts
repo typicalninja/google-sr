@@ -1,5 +1,20 @@
 import { AxiosRequestConfig } from "axios";
 
+export interface SearchSelectors {
+  block: string;
+  link: string;
+  title: string;
+  description: string;
+}
+
+export interface TranslateSelectors {
+  sourceLanguage: string;
+  targetLanguage: string;
+  translationText: string;
+  sourceText: string;
+  pronunciation: string;
+}
+
 /**
  * Search options supported by the parser
  */
@@ -16,11 +31,9 @@ export interface SearchOptions {
    * jquery selectors (cheerio) to extract data from scraped data
   */
   selectors: {
-    block: string;
-    title: string;
-    description: string;
-    link: string;
-  };
+    SearchNodes: SearchSelectors;
+    TranslateNodes: TranslateSelectors;
+  }
   /**
    * Page number to fetch. Google page numbers are different that what you might expect
    * we suggest you to use searchWithPages instead
@@ -38,15 +51,13 @@ export interface SearchOptions {
    * Search query
    */
   query: string;
-  /**
-   * Sometimes the parsed block may not contains a description if this happens should we that block
-   */
-  ignoreIfPartial: boolean;
 }
+
 
 export const defaultOptions: SearchOptions = {
   requestOptions: {
-    responseType: "arraybuffer",
+    responseType: "text",
+    responseEncoding: 'utf-8',
     headers: {
       // mimic a real user agent
       "User-Agent":
@@ -56,17 +67,80 @@ export const defaultOptions: SearchOptions = {
   },
   safeMode: true,
   // these selectors must be updated when necessary
-  // last selector update was on 8/9/2023
+  // last selector update was on 8/15/2023
   selectors: {
-    block: ".Gx5Zad.fP1Qef.xpd.EtOod.pkphOe",
-    link: "[jsname][data-ved]",
-    title: "h3.zBAuLc",
-    description: ".BNeawe.s3v9rd.AP7Wnd",
+    SearchNodes: {
+      block: ".Gx5Zad.fP1Qef.xpd.EtOod.pkphOe",
+      link: "[jsname][data-ved]",
+      title: "h3.zBAuLc",
+      description: ".BNeawe.s3v9rd.AP7Wnd",
+    },
+    TranslateNodes: {
+      sourceLanguage: '#tsuid_2 option:selected',
+      targetLanguage: '#tsuid_4 option:selected',
+      translationText: '[id="lrtl-translation-text"]',
+      sourceText: '#lrtl-source-text input[name="tlitetxt"]',
+      pronunciation: '[id="lrtl-transliteration-text"]'
+    }
   },
   // by default only the first page is resolved
   page: 0,
   omitUnrelated: true,
   query: "",
   baseUrl: "https://www.google.com/search",
-  ignoreIfPartial: true,
 };
+
+export enum ResultTypes {
+  SearchResult = "SEARCH",
+  TranslateResult = "TRANSLATE"
+}
+
+
+
+export interface SearchResultNode {
+  /** Type of this result node */
+  type: ResultTypes.SearchResult;
+  /**
+   * Link or url of this search result
+   */
+  link: string;
+  description: string;
+  title: string;
+}
+
+export interface TranslateResultNode {
+  /** Type of this result node */
+  type: ResultTypes.TranslateResult;
+  /**
+   * Source for translation
+   */
+  source: {
+    /**
+     * Language of the source text
+     */
+    language: string;
+    /**
+     * Source text
+     */
+    text: string;
+  };
+  /**
+   * Translated content
+   */
+  translation: {
+    /**
+     * Language of the translated text
+     */
+    language: string;
+    /**
+     * translated text
+     */
+    text: string;
+    /**
+     * Pronunciation of the translation in english
+     */
+    pronunciation: string;
+  };
+}
+
+export type ResultNode = SearchResultNode | TranslateResultNode;

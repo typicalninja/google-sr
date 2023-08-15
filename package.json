@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "mocha --require ts-node/register tests/*.ts",
-    "build": "tsup"
+    "build": "tsup",
+    "dev": "ts-node"
   },
   "keywords": [
     "google-sr",
