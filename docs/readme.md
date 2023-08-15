@@ -2,9 +2,9 @@
 
 ![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)
 ![npm](https://img.shields.io/npm/dw/google-sr)
-![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)
-![NPM](https://img.shields.io/npm/l/google-sr)
-![npm version](https://img.shields.io/npm/v/google-sr)
+[![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
+[![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
+[![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
@@ -15,8 +15,10 @@ Simple & Fast Package for scraping Google search results without the need for an
 
 * Lightweight 💨
 * Simple & Fast ⚡️ *
-* Well tested 🔄
+* [Well tested 🔄](./testing.md)
 * TypeScript compatible 🧑‍💻
+* [Ability to view retrieve multiple types of search results](./types.md)
+
 
 > \* depends on amount of pages fetched and host internet speed (avg of 500ms per page in testing )
 
@@ -54,10 +56,9 @@ yarn add google-sr
 
 More examples can be found in [/tests](../tests/) directory
 
-
 # Html selectors
 
-For scraping we use jquery like selectors view current selectors [here](./selectors.md). This document will be update when a update for google occurs
+For scraping we use jquery like selectors, view current selectors [here](./selectors.md). This document will be update when a update for google occurs
 
 # Testing
 

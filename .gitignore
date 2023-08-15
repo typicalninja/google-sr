@@ -1,8 +1,7 @@
 /node_modules
 .npmignore
 dist
-downloader.js
 
-# test files
+scraper/downloaded*
+# temp test files
 quicktest.ts
-downloaded.html

@@ -9,7 +9,8 @@
   "scripts": {
     "test": "mocha --require ts-node/register tests/*.ts",
     "build": "tsup",
-    "dev": "ts-node"
+    "dev": "ts-node",
+    "pre:scrape": "node scraper/prescrape.js"
   },
   "keywords": [
     "google-sr",
