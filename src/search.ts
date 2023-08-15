@@ -5,7 +5,7 @@ import {
 } from "./constants";
 import axios from "axios";
 import { load } from "cheerio";
-import { constructSearchQuery, extractUrlFromGoogleLink, generateArrayOfNumbers, pageToGoogleQueryPage } from "./helpers";
+import { constructSearchQuery, generateArrayOfNumbers, pageToGoogleQueryPage } from "./helpers";
 import { deepmerge } from "deepmerge-ts";
 import { loadSearchNodes, loadTranslateNodes } from "./loaders";
 
