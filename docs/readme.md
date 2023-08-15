@@ -17,7 +17,8 @@ Simple & Fast Package for scraping Google search results without the need for an
 * Simple & Fast ⚡️ *
 * [Well tested 🔄](./testing.md)
 * TypeScript compatible 🧑‍💻
-* [Ability to view retrieve multiple types of search results](./types.md)
+* No API key is needed 🔑
+* [Ability to retrieve multiple types of search results](./types.md)
 
 
 > \* depends on amount of pages fetched and host internet speed (avg of 500ms per page in testing )
@@ -58,11 +59,13 @@ More examples can be found in [/tests](../tests/) directory
 
 # Html selectors
 
-For scraping we use jquery like selectors, view current selectors [here](./selectors.md). This document will be update when a update for google occurs
+For scraping we use jquery like selectors, view current selectors [here](./selectors.md). This document will be updated when a update for google occurs
 
-# Testing
+# Tests
 
-Test are written to the [/tests](../tests/) folder. Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script
+Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.
+
+> Tests are also executed on a schedule every week to make sure all selectors are updated
 
 ```bash
 

@@ -15,8 +15,9 @@ Simple & Fast Package for scraping Google search results without the need for an
 
 * Lightweight 💨
 * Simple & Fast ⚡️ *
-* Well tested 🔄
+* [Well tested 🔄](#tests)
 * TypeScript compatible 🧑‍💻
+* [Ability to retrieve multiple types of search results](https://typicalninja.github.io/google-sr/types)
 
 > \* depends on amount of pages fetched and host internet speed (avg of 500ms per page in testing )
 ## Install 📦
@@ -58,18 +59,11 @@ console.log(searchResults);
 > More detailed examples & usage can be found [here](https://typicalninja.github.io/google-sr#usage)
 
 
-## Important Notes 🚨
-
-* google-sr scrapes the HTML of Google search results. This means it relies on Google's predefined HTML structure. If Google changes this structure, the package might seem to behave unexpectedly. To avoid this, it's best to keep your package updated to the latest version. (Note: we may take time to update it to any new structure)
-
-
-> View current selectors [here](https://typicalninja.github.io/google-sr/selectors)
-
-* Fetching multiple pages can be slow, we recommended either fetching only small amount (i.e 5 max) or fetching pages in chunks as needed using specific page control of `searchWithPages` function 
-
 # Tests
 
-Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script
+Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.
+
+> Tests are also executed on a schedule every week to make sure all selectors are updated
 
 ```bash
 
