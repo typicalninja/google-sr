@@ -10,5 +10,5 @@ export default defineConfig({
   skipNodeModulesBundle: true,
   keepNames: true,
   dts: true,
-  sourcemap: true
+  minify: true
 })
