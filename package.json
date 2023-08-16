@@ -1,6 +1,6 @@
 {
   "name": "google-sr",
-  "version": "3.0.1",
+  "version": "3.2.0",
   "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
   "repository": "typicalninja/google-sr",
   "homepage": "https://typicalninja.github.io/google-sr/",
@@ -14,9 +14,13 @@
   },
   "keywords": [
     "google-sr",
+    "gsr",
     "google",
+    "googlesr",
     "search",
     "google-search",
+    "googlesearch",
+    "scraping",
     "simple"
   ],
   "author": "typicalninja",
