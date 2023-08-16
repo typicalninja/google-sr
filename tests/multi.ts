@@ -1,4 +1,4 @@
-import { ResultTypes, searchWithPages } from "../src";
+import { searchWithPages } from "../src";
 import { expect } from "chai";
 
 describe("#searchWithPages", () => {
