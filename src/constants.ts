@@ -53,7 +53,7 @@ export interface SearchOptions {
     SearchNodes: SearchSelectors;
     TranslateNodes: TranslateSelectors;
     DictionaryNode: DictionarySelectors;
-    TimeNode: TimeSelectors
+    TimeNode: TimeSelectors;
   };
   /**
    * Page number to fetch. Google page numbers are different that what you might expect
@@ -114,10 +114,10 @@ export const defaultOptions: SearchOptions = {
         "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
     },
     TimeNode: {
-      location: 'span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod',
-      time: 'div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd',
-      timeInWords: 'div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd'
-    }
+      location: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
+      time: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
+      timeInWords: "div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd",
+    },
   },
   // by default only the first page is resolved
   page: 0,
@@ -130,6 +130,7 @@ export enum ResultTypes {
   SearchResult = "SEARCH",
   TranslateResult = "TRANSLATE",
   DictionaryResult = "DICTIONARY",
+  TimeResult = 'TIME'
 }
 
 export interface SearchResultNode {
@@ -142,10 +143,6 @@ export interface SearchResultNode {
   description: string;
   title: string;
 }
-
-/**
- * Translation result
- */
 export interface TranslateResultNode {
   /** Type of this result node */
   type: ResultTypes.TranslateResult;
@@ -208,7 +205,16 @@ export interface DictionaryResultNode {
   definitions: [string, string][];
 }
 
+export interface TimeResultNode {
+  /** Type of this result node */
+  type: ResultTypes.TimeResult;
+  location: string;
+  time: string;
+  timeInWords: string;
+}
+
 export type ResultNode =
   | SearchResultNode
   | TranslateResultNode
-  | DictionaryResultNode;
+  | DictionaryResultNode
+  | TimeResultNode;
