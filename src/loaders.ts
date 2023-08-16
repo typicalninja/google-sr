@@ -60,7 +60,7 @@ export function loadSearchNodes(
 export function loadTranslateNodes(
   $: CheerioAPI,
   selectors: TranslateSelectors
-): TranslateResultNode[] {
+): TranslateResultNode | null {
   const sourceLanguage = $(selectors.sourceLanguage).text().trim();
   const targetLanguage = $(selectors.targetLanguage).text().trim();
 
@@ -74,7 +74,7 @@ export function loadTranslateNodes(
       (value) => value === ""
     )
   )
-    return [];
+    return null;
 
   const result = {
     type: ResultTypes.TranslateResult,
@@ -90,7 +90,7 @@ export function loadTranslateNodes(
     },
   } satisfies TranslateResultNode;
 
-  return [result];
+  return result;
 }
 
 /**
@@ -99,12 +99,12 @@ export function loadTranslateNodes(
 export function loadDictionaryNodes(
   $: CheerioAPI,
   selectors: DictionarySelectors
-): DictionaryResultNode[] {
+): DictionaryResultNode | null {
   const audio = $(selectors.audio).attr("src");
   const phonetic = $(selectors.phonetic).text().trim();
   const word = $(selectors.word).text().trim();
 
-  if([audio, phonetic, word].some(val => val === '')) return [];
+  if([audio, phonetic, word].some(val => val === '')) return null;
 
   const definitions: [string, string][] = [];
 
@@ -134,19 +134,19 @@ export function loadDictionaryNodes(
     definitions,
   } satisfies DictionaryResultNode;
 
-  return [result];
+  return result;
 }
 
 
 export function loadTimeNode(
   $: CheerioAPI,
   selectors: TimeSelectors
-): TimeResultNode[] {
+): TimeResultNode | null {
   const location = $(selectors.location).text().trim();
   const time = $(selectors.time).text().trim()
   const timeInWords = $(selectors.timeInWords).text().trim();
 
-  if([location, time, timeInWords].some(val => val === '')) return [];
+  if([location, time, timeInWords].some(val => val === '')) return null;
 
   const result = {
     type: ResultTypes.TimeResult,
@@ -155,19 +155,19 @@ export function loadTimeNode(
     timeInWords
   } satisfies TimeResultNode;
 
-  return [result]
+  return result
 }
 
 export function loadCurrencyNode(
   $: CheerioAPI,
   selectors: CurrencySelectors
-): CurrencyResultNode[] {
+): CurrencyResultNode | null {
   const from = $(selectors.from).text().trim();
   const to = $(selectors.to).text().trim();
 
   const formula = `${from} ${to}`;
 
-  if([to ,from].some(val => val === '')) return [];
+  if([to ,from].some(val => val === '')) return null;
 
   const result = {
     type: ResultTypes.CurrencyResult,
@@ -176,5 +176,5 @@ export function loadCurrencyNode(
     to
   } satisfies CurrencyResultNode;
 
-  return [result]
+  return result
 }

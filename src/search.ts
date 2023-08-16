@@ -44,19 +44,23 @@ export async function search(searchOptions: Partial<SearchOptions>) {
   const searchResults = loadSearchNodes($, selectors.SearchNodes);
 
   // TYPE: Translations
-  const translateResults = loadTranslateNodes($, selectors.TranslateNodes);
+  const translateResult = loadTranslateNodes($, selectors.TranslateNodes);
+  if(translateResult) result.push(translateResult)
 
   // TYPE: Dictionary
-  const dictionaryResults = loadDictionaryNodes($, selectors.DictionaryNode)
+  const dictionaryResult = loadDictionaryNodes($, selectors.DictionaryNode)
+  if(dictionaryResult) result.push(dictionaryResult);
 
   // TYPE: Time
-  const timeResults = loadTimeNode($, selectors.TimeNode)
+  const timeResult = loadTimeNode($, selectors.TimeNode)
+  if(timeResult) result.push(timeResult)
 
   // TYPE: Currency
-  const CurrencyResults = loadCurrencyNode($, selectors.CurrencyNode)
+  const CurrencyResult = loadCurrencyNode($, selectors.CurrencyNode)
+  if(CurrencyResult) result.push(CurrencyResult);
 
   // will be present in the order they appear in a real query
-  return result.concat(CurrencyResults, translateResults, dictionaryResults, timeResults, searchResults);
+  return result.concat(searchResults);
 }
 
 
