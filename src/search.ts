@@ -5,7 +5,7 @@ import {
 } from "./constants";
 import axios from "axios";
 import { load } from "cheerio";
-import { constructSearchQuery, generateArrayOfNumbers, pageToGoogleQueryPage } from "./helpers";
+import { constructSearchConfig, generateArrayOfNumbers, pageToGoogleQueryPage } from "./helpers";
 import { deepmerge } from "deepmerge-ts";
 import { loadCurrencyNode, loadDictionaryNodes, loadSearchNodes, loadTimeNode, loadTranslateNodes } from "./loaders";
 
@@ -31,7 +31,8 @@ export async function search(searchOptions: Partial<SearchOptions>) {
       `Search query must be a string, received ${typeof searchOptions.query}`
     );
   const options = deepmerge(defaultOptions, searchOptions) as SearchOptions;
-  const searchQuery = constructSearchQuery(options.query, options);
+  const searchQuery = constructSearchConfig(options);
+  console.log(searchQuery)
   const searchRequest = await axios.get(options.baseUrl, searchQuery);
   const html = searchRequest.data;
   const $ = load(html);

@@ -44,9 +44,9 @@ export interface CurrencySelectors {
  */
 export interface SearchOptions {
   /**
-   * Options for axios request
+   * raw config for axios
    */
-  requestOptions: AxiosRequestConfig;
+  requestConfig: AxiosRequestConfig;
   /**
    * Toggle to enable google safe mode
    */
@@ -81,19 +81,7 @@ export interface SearchOptions {
 }
 
 export const defaultOptions: SearchOptions = {
-  requestOptions: {
-    responseType: "text",
-    responseEncoding: "utf-8",
-    headers: {
-      Accept: "text/html",
-      "accept-encoding": "gzip, deflate",
-      "Accept-language": "en-US,en",
-      referer: "https://www.google.com/",
-      "upgrade-insecure-requests": 1,
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
-    },
-  },
+  requestConfig: {},
   safeMode: true,
   // these selectors must be updated when necessary
   // last selector update was on 8/15/2023
