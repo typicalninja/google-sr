@@ -1,13 +1,22 @@
 import { type CheerioAPI } from "cheerio";
-import {
+
+// only types
+import type {
+  // selectors
   SearchSelectors,
-  SearchResultNode,
-  ResultTypes,
   TranslateSelectors,
+  DictionarySelectors,
+  TimeSelectors,
+
+  // nodes
+  SearchResultNode,
   TranslateResultNode,
   DictionaryResultNode,
-  DictionarySelectors,
+  TimeResultNode
 } from "./constants";
+import { ResultTypes } from "./constants";
+
+
 import { extractUrlFromGoogleLink } from "./helpers";
 
 /**
@@ -124,4 +133,25 @@ export function loadDictionaryNodes(
   } satisfies DictionaryResultNode;
 
   return [result];
+}
+
+
+export function loadTimeNode(
+  $: CheerioAPI,
+  selectors: TimeSelectors
+): TimeResultNode[] {
+  const location = $(selectors.location).text().trim();
+  const time = $(selectors.time).text().trim()
+  const timeInWords = $(selectors.timeInWords).text().trim();
+
+  if([location, time, timeInWords].some(val => val === '')) return [];
+
+  const result = {
+    type: ResultTypes.TimeResult,
+    location,
+    time,
+    timeInWords
+  } satisfies TimeResultNode;
+
+  return [result]
 }
