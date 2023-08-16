@@ -49,7 +49,9 @@ export async function search(searchOptions: Partial<SearchOptions>) {
   // TYPE: Dictionary
   const dictionaryResults = loadDictionaryNodes($, selectors.DictionaryNode)
 
-  return result.concat(translateResults, searchResults, dictionaryResults);
+
+  // will be present in the order they appear in a real query
+  return result.concat(translateResults, dictionaryResults, searchResults);
 }
 
 
