@@ -1,7 +1,7 @@
 # google-sr 🔍
 
-![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)
-![npm](https://img.shields.io/npm/dw/google-sr)
+[![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
+[![npm downloads](https://img.shields.io/npm/dw/google-sr)](https://www.npmjs.com/package/google-sr)
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
 [![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
 [![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
@@ -9,19 +9,15 @@
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-> API documentation can be found [here](https://paka.dev/npm/google-sr/api) and api overview [here](./overview.md)
+> View typedoc [here](https://paka.dev/npm/google-sr/api)
 
 ## Features ✨
 
-* Lightweight 💨
 * Simple & Fast ⚡️ *
-* [Well tested 🔄](./testing.md)
+* [Well tested 🔄](#tests)
 * TypeScript compatible 🧑‍💻
 * No API key is needed 🔑
-* [Ability to retrieve multiple types of search results](./types.md)
-
-
-> \* depends on amount of pages fetched and host internet speed (avg of 500ms per page in testing )
+* [Wide variety of search result types supported 🌴](./types.md)
 
 ## Install 📦
 
@@ -55,11 +51,21 @@ yarn add google-sr
     * [*Searching specific pages*](./multipage.md#searching-specific-pages)
     * [*Searching specific range of pages*](./multipage.md#searching-specific-range-of-pages)
 
-More examples can be found in [/tests](../tests/) directory
+
+
+> Additional examples can be found in [tests](#tests)
+
+> For a comprehensive list of available options, you can refer to the unofficial Typedoc [here](https://paka.dev/npm/google-sr/api).
 
 # Html selectors
 
 For scraping we use jquery like selectors, view current selectors [here](./selectors.md). This document will be updated when a update for google occurs
+
+# Disclaimer
+
+This is not sponsored, supported, or affiliated with Google Inc.
+
+The module scrapes the google search result page instead of using the API as suggested by google. Author is **NOT** responsible for any issue (ip block from google, etc...) that occurs due to misuse.
 
 # Tests
 
@@ -67,28 +73,17 @@ Tests are written using [mocha](https://mochajs.org/) and can be run by using th
 
 > Tests are also executed on a schedule every week to make sure all selectors are updated
 
+Project uses pnpm as its package manager
+
 ```bash
-
-# npm
-
-npm run test
-
-# pnpm 
-
 pnpm run test
-
-# yarn
-
-yarn run test
-
 ```
 
 # Support & Bug Reporting 🛠️🐞
 
 > Make sure you are on the latest version before creating bug reports
 
-Support and bug reporting both can be done on either my [discord server](https://discord.gg/9s52pz6nWX) or on [github issues](https://github.com/typicalninja/google-sr/issues)
-
+Support and bug reporting both can be done on  [github issues](https://github.com/typicalninja/google-sr/issues)
 
 # License
 
