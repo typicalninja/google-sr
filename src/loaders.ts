@@ -12,7 +12,9 @@ import type {
   SearchResultNode,
   TranslateResultNode,
   DictionaryResultNode,
-  TimeResultNode
+  TimeResultNode,
+  CurrencySelectors,
+  CurrencyResultNode
 } from "./constants";
 import { ResultTypes } from "./constants";
 
@@ -152,6 +154,27 @@ export function loadTimeNode(
     time,
     timeInWords
   } satisfies TimeResultNode;
+
+  return [result]
+}
+
+export function loadCurrencyNode(
+  $: CheerioAPI,
+  selectors: CurrencySelectors
+): CurrencyResultNode[] {
+  const from = $(selectors.from).text().trim();
+  const to = $(selectors.to).text().trim();
+
+  const formula = `${from} ${to}`;
+
+  if([to ,from].some(val => val === '')) return [];
+
+  const result = {
+    type: ResultTypes.CurrencyResult,
+    formula,
+    from: from.replace('=', ''),
+    to
+  } satisfies CurrencyResultNode;
 
   return [result]
 }
