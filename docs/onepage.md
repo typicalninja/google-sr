@@ -20,23 +20,21 @@ This would return structure similar to below.
 ```js
 [
     {
+        type: ResultType.SearchResult,
         title: '...',
         description: '...',
         link: '...'
     },
     {
-        title: '...',
-        description: '...',
-        link: '...'
+        type: ResultTypes.TimeResult
+        location: '...',
+        time: '...',
+        timeInWords: '...'
     },
-    {
-        title: '...',
-        description: '...',
-        link: '...'
-    }
 ]
 ```
 
+> To view the variety of ResultType `search` can return view [docpage](./types.md) or [typedoc](https://paka.dev/npm/google-sr/api)
 
 ### Searching a specific page
 

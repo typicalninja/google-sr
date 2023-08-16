@@ -16,6 +16,7 @@ Simple & Fast Package for scraping Google search results without the need for an
 
 * Simple & Fast ⚡️ *
 * [Well tested 🔄](#tests)
+* [Well documented 📚](https://typicalninja.github.io/google-sr/)
 * TypeScript compatible 🧑‍💻
 * No API key is needed 🔑
 * [Wide variety of search result types supported 🌴](https://typicalninja.github.io/google-sr/types)

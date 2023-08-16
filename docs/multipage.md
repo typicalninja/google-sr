@@ -27,28 +27,22 @@ This would return structure similar to below.
 [
   // each array represents a page
   [
-      {
+    {
+        type: ResultType.SearchResult,
         title: '...',
         description: '...',
         link: '...'
     },
     {
-        title: '...',
-        description: '...',
-        link: '...'
+        type: ResultTypes.TimeResult
+        location: '...',
+        time: '...',
+        timeInWords: '...'
     },
-    {
-        title: '...',
-        description: '...',
-        link: '...'
-    }
   ],
-  [  {
-        title: '...',
-        description: '...',
-        link: '...'
-    },
+  [  
     {
+        type: ResultType.SearchResult,
         title: '...',
         description: '...',
         link: '...'
@@ -62,7 +56,7 @@ This would return structure similar to below.
 
 Alternatively you can specify array of pages you want to fetch. The order of pages does not matter here and it can  start and end from where ever you want (**Ensure no duplicated pages are present**)
 
-> **NOTE:** Unlike [`search`](./onepage.md) with `page` option we internally call `pageToGoogleQueryPage` on each page, you do not have to call it your self
+> **NOTE:** Unlike [`search`](./onepage.md) with `page` option we internally call `pageToGoogleQueryPage` on each page, you do NOT have to call it your self
 
 
 
