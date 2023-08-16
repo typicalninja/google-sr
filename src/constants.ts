@@ -1,5 +1,20 @@
 import { AxiosRequestConfig } from "axios";
 
+export interface SearchSelectors {
+  block: string;
+  link: string;
+  title: string;
+  description: string;
+}
+
+export interface TranslateSelectors {
+  sourceLanguage: string;
+  targetLanguage: string;
+  translationText: string;
+  sourceText: string;
+  pronunciation: string;
+}
+
 /**
  * Selectors used for organic search
  */
@@ -181,6 +196,7 @@ export interface SearchOptions {
     CurrencyNode: CurrencySelectors;
   };
 }
+
 
 export const defaultOptions: SearchOptions = {
   requestConfig: {},
