@@ -34,6 +34,11 @@ export interface TimeSelectors {
   timeInWords: string;
 }
 
+export interface CurrencySelectors {
+  from: string;
+  to: string;
+}
+
 /**
  * Search options supported by the parser
  */
@@ -54,6 +59,7 @@ export interface SearchOptions {
     TranslateNodes: TranslateSelectors;
     DictionaryNode: DictionarySelectors;
     TimeNode: TimeSelectors;
+    CurrencyNode: CurrencySelectors;
   };
   /**
    * Page number to fetch. Google page numbers are different that what you might expect
@@ -118,6 +124,10 @@ export const defaultOptions: SearchOptions = {
       time: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
       timeInWords: "div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd",
     },
+    CurrencyNode: {
+      from: 'span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod',
+      to: 'div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd',
+    }
   },
   // by default only the first page is resolved
   page: 0,
@@ -130,7 +140,8 @@ export enum ResultTypes {
   SearchResult = "SEARCH",
   TranslateResult = "TRANSLATE",
   DictionaryResult = "DICTIONARY",
-  TimeResult = 'TIME'
+  TimeResult = "TIME",
+  CurrencyResult = "CURRENCY"
 }
 
 export interface SearchResultNode {
@@ -213,8 +224,17 @@ export interface TimeResultNode {
   timeInWords: string;
 }
 
+export interface CurrencyResultNode {
+   /** Type of this result node */
+  type: ResultTypes.CurrencyResult;
+  from: string;
+  to: string;
+  formula: string;
+}
+
 export type ResultNode =
   | SearchResultNode
   | TranslateResultNode
   | DictionaryResultNode
-  | TimeResultNode;
+  | TimeResultNode
+  | CurrencyResultNode;
