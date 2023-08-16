@@ -189,8 +189,8 @@ export const defaultOptions: SearchOptions = {
   page: 0,
   query: "",
   baseUrl: "https://www.google.com/search",
-  // only organic search results allowed
-  filterResults: [ResultTypes.SearchResult],
+  // do not add anything to this as deep merge will merge a new one with this
+  filterResults: [],
   // these selectors must be updated when necessary
   // last selector update was on 8/15/2023
   selectors: {

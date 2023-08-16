@@ -41,6 +41,11 @@ export async function search(searchOptions: Partial<SearchOptions>) {
       `Search query must be a string, received ${typeof searchOptions.query}`
     );
   const options = deepmerge(defaultOptions, searchOptions) as SearchOptions;
+
+
+  // modify the filter option
+  if(options.filterResults.length === 0) options.filterResults = [ResultTypes.SearchResult]
+
   const searchQuery = constructSearchConfig(options);
   const searchRequest = await axios.get(options.baseUrl, searchQuery);
   const html = searchRequest.data;
@@ -49,12 +54,6 @@ export async function search(searchOptions: Partial<SearchOptions>) {
 
   // get the html selectors
   const selectors = options.selectors;
-
-  if (options.filterResults.includes(ResultTypes.SearchResult)) {
-    // regular search results
-    const searchResults = loadSearchNodes($, selectors.SearchNodes);
-    result.push(...searchResults);
-  }
 
   // TYPE: Translations
   if (options.filterResults.includes(ResultTypes.TranslateResult)) {
@@ -78,6 +77,12 @@ export async function search(searchOptions: Partial<SearchOptions>) {
   if (options.filterResults.includes(ResultTypes.CurrencyResult)) {
     const CurrencyResult = loadCurrencyNode($, selectors.CurrencyNode);
     if (CurrencyResult) result.push(CurrencyResult);
+  }
+
+  if (options.filterResults.includes(ResultTypes.SearchResult)) {
+    // regular search results
+    const searchResults = loadSearchNodes($, selectors.SearchNodes);
+    result.push(...searchResults);
   }
 
   // will be present in the order they appear in a real query
