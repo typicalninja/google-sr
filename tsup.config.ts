@@ -1,14 +1,39 @@
-import { defineConfig } from 'tsup'
+import { defineConfig, Options } from 'tsup';
 
-export default defineConfig({
-  entry: ['src/index.ts'],
-  splitting: false,
-  clean: true,
-  format: ['cjs'],
-  platform: 'node',
-  target: 'es2022',
-  skipNodeModulesBundle: true,
-  keepNames: true,
-  dts: true,
-  minify: true
-})
+export function createTsupConfig({
+	entry = ['src/index.ts'],
+	external = [],
+	noExternal = [],
+	platform = 'node',
+	format = ['cjs', 'esm'],
+	target = 'es2022',
+	skipNodeModulesBundle = true,
+	clean = true,
+	shims = false,
+	minify = false,
+	splitting = false,
+	keepNames = true,
+	dts = true,
+	sourcemap = false,
+	esbuildPlugins = [],
+	outDir = 'dist',
+}: Options = {}) {
+	return defineConfig({
+		entry,
+		external,
+		noExternal,
+		platform,
+		format,
+		skipNodeModulesBundle,
+		target,
+		clean,
+		shims,
+		minify,
+		splitting,
+		keepNames,
+		dts,
+		sourcemap,
+		esbuildPlugins,
+		outDir,
+	});
+}

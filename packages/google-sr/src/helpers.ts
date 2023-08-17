@@ -1,5 +1,5 @@
-import { AxiosRequestConfig } from "axios";
-import { SearchOptions } from "./constants";
+import type { AxiosRequestConfig } from "axios";
+import type { SearchOptions } from "./constants";
 import { deepmerge } from "deepmerge-ts";
 
 /**
