@@ -7,71 +7,24 @@
 [![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
-
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-> View documentation [here](https://typicalninja.github.io/google-sr/)
+* Documentation [here](https://typicalninja.github.io/google-sr)
 
-## Features ✨
+* View typedoc [here](https://paka.dev/npm/google-sr/api)
 
-* Simple & Fast ⚡️ *
-* [Well tested 🔄](#tests)
-* [Well documented 📚](https://typicalninja.github.io/google-sr/)
-* TypeScript compatible 🧑‍💻
-* No API key is needed 🔑
-* [Wide variety of search result types supported 🌴](https://typicalninja.github.io/google-sr/types)
-
-## Install 📦
-
-To get started, you can install **google-sr** using your preferred package manager:
-
-```bash
-
-# npm
-
-npm install google-sr
-
-# pnpm 
-
-pnpm add google-sr
-
-# yarn
-
-yarn add google-sr
-
-```
-
-# Usage
-
-### Simple example
-
-You can easily perform a single-page search like this:
-
-```ts
-import { search } from 'google-sr';
-
-search({ query: 'nodejs' }).then(console.log);
-
-// or if using await/async
-const searchResults = await search({ query: 'nodejs' });
-console.log(searchResults);
-```
-
-* **Read about the returned types [here](https://typicalninja.github.io/google-sr/types)**
-
-> By default only **ResultTypes.SearchResult** are returned, use the [filterResults](https://typicalninja.github.io/google-sr/advanced.html#filtering-result) option to configure it
-
-> **More detailed examples & usage can be found [here](https://typicalninja.github.io/google-sr#usage)**
-
-> Additional examples can be found in [tests](#tests)
+* Npm page [here](https://www.npmjs.com/package/google-sr)
 
 
-# Disclaimer
 
-This is not sponsored, supported, or affiliated with Google Inc.
+# Monorepo
 
-`The module scrapes the google search result page instead of using the API as suggested by google. Author is **NOT** responsible for any issue (ip block from google, etc...) that occurs due to misuse.
+Welcome to the 📦 monorepo of [**google-sr**](https://www.npmjs.com/package/google-sr) npm package.
+This is the home to google-sr and its related packages.
 
+> **You can read the main package readme [here](./packages/google-sr/README.md)**
+
+This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
 # Tests
 
@@ -90,6 +43,12 @@ pnpm run test
 > Make sure you are on the latest version before creating bug reports
 
 Support and bug reporting both can be done on  [github issues](https://github.com/typicalninja/google-sr/issues)
+
+# Disclaimer
+
+This is not sponsored, supported, or affiliated with Google Inc.
+
+The module scrapes the google search result page instead of using the API as suggested by google. Author is **NOT** responsible for any issue (ip block from google, etc...) that occurs due to misuse.
 
 # License
 
