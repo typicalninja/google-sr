@@ -3,7 +3,9 @@
 
 Currently the following type of search results can be obtained via `search`
 
-> `ResultTypes` is a enum. documentation can be found [here](https://paka.dev/npm/google-sr/api)
+> **ResultTypes** is a enum. documentation can be found [here](https://paka.dev/npm/google-sr@3.1.0/api#d88390d9af992177)
+
+> By default only **ResultTypes.SearchResult** are returned, use the [filterResults](./advanced.md#filtering-result) option to configure it
 
 ### Regular search results
 

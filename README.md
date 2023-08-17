@@ -59,6 +59,7 @@ console.log(searchResults);
 
 * **Read about the returned types [here](https://typicalninja.github.io/google-sr/types)**
 
+> By default only **ResultTypes.SearchResult** are returned, use the [filterResults](https://typicalninja.github.io/google-sr/advanced.html#filtering-result) option to configure it
 
 > **More detailed examples & usage can be found [here](https://typicalninja.github.io/google-sr#usage)**
 

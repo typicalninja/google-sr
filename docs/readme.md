@@ -52,6 +52,7 @@ yarn add google-sr
     * [*Searching specific range of pages*](./multipage.md#searching-specific-range-of-pages)
 
 
+> By default only **ResultTypes.SearchResult** are returned, use the [filterResults](./advanced.md#filtering-result) option to configure it
 
 > Additional examples can be found in [tests](#tests)
 
