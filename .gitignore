@@ -3,6 +3,4 @@
 dist
 
 scraper/downloaded*
-# temp test files
-quicktest.ts
 scrapeloader.js
