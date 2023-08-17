@@ -1,6 +1,9 @@
-/node_modules
+
+# tools
+node_modules
 .npmignore
+.turbo
 dist
 
-scraper/downloaded*
-scrapeloader.js
+# Scraper/analyzer 
+scrape/download*
