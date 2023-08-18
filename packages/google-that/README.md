@@ -2,6 +2,10 @@
 
 CLI tool to scrape google search results without a api key 🚀.
 
+# Holding package
+
+Until the api is finalized this published package for npm is a name holding package
+
 
 # Related projects
 
