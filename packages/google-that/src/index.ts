@@ -10,11 +10,18 @@ import c from 'ansi-colors'
 import slugify from "slugify";
 import { stripIndents } from 'common-tags'
 
-import type { InputForm } from "./constants.js";
+import { estimateOffset, type InputForm } from "./constants.js";
 import { SearchQuery } from "./query.js";
-import { delay, getTimePerEachPage, log } from "./helpers.js";
+import { delay, formatter, getTimePerEachPage, log } from "./helpers.js";
 
 async function main() {
+  console.clear()
+  console.log(boxen(c.yellow(stripIndents`
+  🎨 This CLI tool may sprinkle emojis for a touch of flair.
+    If your terminal doesn't support emojis, they might appear as question marks.
+    No worries though! The functionality of the CLI tool remains intact.
+    If you spot this rocket emoji, you're all set for takeoff! 🚀
+  `), { padding: 1 }))
   // get the query
   const queryInput = await enquirer.prompt<InputForm>([
     {
@@ -82,34 +89,30 @@ async function main() {
   const { queries, pages, savePath, resultType } = queryInput;
 
   // validation
-  if (!queries.length) return log.error(`Query/Queries option is required`);
-  if (pages <= 0) return log.error(`Pages must be greater than 0`);
+  if (!queries.length) return log.error(`Query option is required`);
+  if (pages <= 0) return log.error(`Amount of pages must be greater than 0`);
+  if(/[\\/:*?"<>|]/.test(savePath) || savePath.includes(' ')) return log.error(`Invalid file name. File names cannot contain spaces or the following characters: \\ / : * ? \" < > |`)
 
   // check pages counts
   if (pages > 10)
     log.warn(
-      `Fetching more than 10 pages per query, will fetch in delayed chunks to prevent rate limit`
+      `Fetching more than 10 pages per query. To prevent rate limits, the fetching will be done in delayed chunks.`
     );
 
   // calculate estimates
   const perPage = getTimePerEachPage(pages);
-  const totalTime = perPage * pages * queries.length;
-  log.info(
-    `It will take ${prettyMilliseconds(totalTime)} with ${prettyMilliseconds(
-      perPage
-    )} for ${pages} pages with ${queries.length} queries / query`
-  );
+  const estimatedTime = (perPage * pages * queries.length) + estimateOffset;
 
-  log.info(
-    `Searching for ${
-      queries.length > 1
-        ? `multiple queries (${queries.length}) [${queries}]`
-        : `query on "${queries[0]}"`
-    }`
-  );
+  console.log(boxen(stripIndents`
+  ⏰ ETA: ${c.green(prettyMilliseconds(estimatedTime))}
+  📃 Per page: ${c.green(prettyMilliseconds(perPage))} 
+  📖 Pages: ${pages} pages
+  ❓ ${c.yellow(String(queries.length))} ${queries.length > 2 ? 'queries' : 'query'}
+  💭 ${c.italic.yellowBright(queries.join(','))}
+  `, { padding: 2, margin: 1, }));
 
   const downloads: { pathName: string; query: string, total: number }[] = []
-
+  const start = Date.now()
   // run each query
   for (const query of queries) {
     log.info(
@@ -118,16 +121,28 @@ async function main() {
     const searchQuery = new SearchQuery(query, queryInput, perPage);
     try {
       const results = await searchQuery.search();
-      log.success(`Retrieved ${results.length} result(s)`);
       // @ts-ignore
       const saveAt = savePath.replace('%query%', slugify(query, { lower: false, })).replace('%format%', resultType.toLowerCase())
       const pathName = path.join(process.cwd(), saveAt)
-      log.info(`Saving results for query "${query}" to ${pathName}`)
+      log.info(`Saving ${results.length} pages for query "${query}" to ${pathName}`)
+
+
+      let saveData: string;
 
       switch(resultType) {
         case 'JSON':
-          await fsPromises.writeFile(pathName, JSON.stringify(results, null, 4))
+          saveData = formatter.JSON(results)
+        break;
+        case 'TXT':
+          saveData = formatter.TXT(results)
+        break;
+        default:
+          // use in dev env when new types are added
+          saveData = 'Unsupported TYPE'
       }
+
+
+      await fsPromises.writeFile(pathName, saveData)
       const totalResults = results.reduce((a, b) => a.concat(b)).length
       downloads.push({ query, pathName, total: totalResults })
     } catch {
@@ -137,22 +152,23 @@ async function main() {
 
   // wait for save message to appear
   await delay(2000)
-
+  const end = Date.now() - start;
   // print end message
   console.clear()
   console.log(boxen(stripIndents`
-  ✅ google-that download finished.
-
+  ✅ google-that process finished.
+  🕰️ Finished in ${c.blue(prettyMilliseconds(end))} with a deviation of ${c.yellow(prettyMilliseconds(end - estimatedTime))} from estimated time (${prettyMilliseconds(estimatedTime)})
 
   ⭐ Star us here: ${c.blue('https://github.com/typicalninja/google-sr')}
   📦 Github here: ${c.blue('https://github.com/typicalninja/google-sr/tree/master/packages/cli')}
+  📚 Documentation: ${c.blue('https://typicalninja.github.io/google-sr/')}
 
-  ${c.bgCyanBright.underline('Downloads')}
+  ${c.cyanBright.underline('Downloads')}
   ↧↧↧↧
-  ${downloads.map((download) => `→ ${c.bold.magenta(path.basename(download.pathName))} ("${c.italic.yellow(download.query)}" [${download.total} results])`).join('\n')}
-`));
+  ${downloads.map((download) => `→ ${c.bold.grey(path.basename(download.pathName))} ("${c.italic.yellow(download.query)}" [${c.green(String(download.total))} results across ${pages} page${pages > 1 ? 's' : ''}])`).join('\n')}
+`, { padding: 1, margin: 1 }));
 }
 
-main().catch(() => {
-  log.error(`Failed to run, process exited abnormally.`);
+main().catch((err) => {
+  log.error(`Failed to run, process exited abnormally. ${err}`);
 });
