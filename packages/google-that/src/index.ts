@@ -141,7 +141,7 @@ async function main() {
   // print end message
   console.clear()
   console.log(boxen(stripIndents`
-  ✅ GSR-cli download finished.
+  ✅ google-that download finished.
 
 
   ⭐ Star us here: ${c.blue('https://github.com/typicalninja/google-sr')}

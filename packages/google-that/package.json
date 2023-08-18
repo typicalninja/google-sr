@@ -1,6 +1,6 @@
 {
   "name": "google-that",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "CLI tool to scrape google search results without a api key",
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
