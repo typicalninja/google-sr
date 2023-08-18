@@ -76,6 +76,9 @@ The source code within this repository is intended solely for educational purpos
 
 The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
+# Related projects
+
+* [google-that](https://github.com/typicalninja/google-sr/tree/master/packages/google-that) - CLI wrapper around google-sr
 # Tests
 
 Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.
