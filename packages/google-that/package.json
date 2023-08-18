@@ -2,6 +2,8 @@
   "name": "google-that",
   "version": "0.0.1",
   "description": "CLI tool to scrape google search results without a api key [HOLDING]",
+  "repository": "typicalninja/google-sr",
+  "homepage": "https://typicalninja.github.io/google-sr/",
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
   "type": "module",
