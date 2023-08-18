@@ -15,43 +15,6 @@ importers:
         specifier: ^1.10.12
         version: 1.10.12
 
-  packages/cli:
-    dependencies:
-      ansi-colors:
-        specifier: ^4.1.3
-        version: 4.1.3
-      boxen:
-        specifier: ^7.1.1
-        version: 7.1.1
-      cli-progress:
-        specifier: ^3.12.0
-        version: 3.12.0
-      common-tags:
-        specifier: ^1.8.2
-        version: 1.8.2
-      enquirer:
-        specifier: ^2.4.1
-        version: 2.4.1
-      google-sr:
-        specifier: workspace:*
-        version: link:../google-sr
-      pretty-ms:
-        specifier: ^8.0.0
-        version: 8.0.0
-      slugify:
-        specifier: ^1.6.6
-        version: 1.6.6
-    devDependencies:
-      '@types/cli-progress':
-        specifier: ^3.11.0
-        version: 3.11.0
-      '@types/common-tags':
-        specifier: ^1.8.1
-        version: 1.8.1
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.1(@types/node@20.5.0)(typescript@5.1.6)
-
   packages/google-sr:
     dependencies:
       axios:
@@ -88,6 +51,43 @@ importers:
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
+
+  packages/google-that:
+    dependencies:
+      ansi-colors:
+        specifier: ^4.1.3
+        version: 4.1.3
+      boxen:
+        specifier: ^7.1.1
+        version: 7.1.1
+      cli-progress:
+        specifier: ^3.12.0
+        version: 3.12.0
+      common-tags:
+        specifier: ^1.8.2
+        version: 1.8.2
+      enquirer:
+        specifier: ^2.4.1
+        version: 2.4.1
+      google-sr:
+        specifier: workspace:*
+        version: link:../google-sr
+      pretty-ms:
+        specifier: ^8.0.0
+        version: 8.0.0
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
+    devDependencies:
+      '@types/cli-progress':
+        specifier: ^3.11.0
+        version: 3.11.0
+      '@types/common-tags':
+        specifier: ^1.8.1
+        version: 1.8.1
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@types/node@20.5.0)(typescript@5.1.6)
 
 packages:
 
