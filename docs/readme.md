@@ -66,7 +66,11 @@ For scraping we use jquery like selectors, view current selectors [here](./selec
 
 This is not sponsored, supported, or affiliated with Google Inc.
 
-The module scrapes the google search result page instead of using the API as suggested by google. Author is **NOT** responsible for any issue (ip block from google, etc...) that occurs due to misuse.
+Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
+
+The source code within this repository is intended solely for educational purposes.
+
+The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
 # Tests
 

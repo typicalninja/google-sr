@@ -9,22 +9,35 @@
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-* Documentation [here](https://typicalninja.github.io/google-sr)
 
-* View typedoc [here](https://paka.dev/npm/google-sr/api)
+* Documentation for google-sr & google-that [here](https://typicalninja.github.io/google-sr)
+
+* View typedoc for google-sr [here](https://paka.dev/npm/google-sr/api)
 
 * Npm page [here](https://www.npmjs.com/package/google-sr)
 
 
-
 # Monorepo
 
-Welcome to the 📦 monorepo of [**google-sr**](https://www.npmjs.com/package/google-sr) npm package.
-This is the home to google-sr and its related packages.
+Welcome to the 📦 monorepo of [**google-sr**](https://www.npmjs.com/package/google-sr) npm package and [**google-that**](https://www.npmjs.com/package/google-that) cli package (on npm).
+ 
+🏠 This is the home to google-sr and its related packages & applications.
 
 > **You can read the main package readme [here](./packages/google-sr/README.md)**
 
+> **google-that readme can be found [here](./packages/google-that/README.md)**
+
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
+
+# Disclaimer
+
+This is not sponsored, supported, or affiliated with Google Inc.
+
+Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
+
+The source code within this repository is intended solely for educational purposes.
+
+The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
 # Tests
 
@@ -48,7 +61,7 @@ Support and bug reporting both can be done on  [github issues](https://github.co
 
 This is not sponsored, supported, or affiliated with Google Inc.
 
-The module scrapes the google search result page instead of using the API as suggested by google. Author is **NOT** responsible for any issue (ip block from google, etc...) that occurs due to misuse.
+The module scrapes the google search result page instead of using the API as normally suggested by google (which may also fall under tos violations). Author is **NOT** responsible for **any** issue (ip block from google, etc...) that occurs due to misuse.
 
 # License
 
