@@ -1,7 +1,7 @@
 {
   "name": "google-that",
   "version": "0.0.1",
-  "description": "CLI tool to scrape google search results without a api key",
+  "description": "CLI tool to scrape google search results without a api key [HOLDING]",
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
   "type": "module",
@@ -9,7 +9,17 @@
     "build": "tsup",
     "dev": "ts-node --esm src/index.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "google-sr",
+    "gsr",
+    "google",
+    "googlesr",
+    "search",
+    "google-search",
+    "googlesearch",
+    "scraping",
+    "cli"
+  ],
   "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
