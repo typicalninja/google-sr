@@ -20,6 +20,13 @@ importers:
       enquirer:
         specifier: ^2.4.1
         version: 2.4.1
+      google-sr:
+        specifier: workspace:^
+        version: link:../google-sr
+    devDependencies:
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@types/node@20.5.0)(typescript@5.1.6)
 
   packages/google-sr:
     dependencies:

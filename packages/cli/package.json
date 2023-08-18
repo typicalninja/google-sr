@@ -2,14 +2,23 @@
   "name": "cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "exports": "./dist/index.mjs",
+  "type": "module",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "dev": "ts-node --esm src/index.ts"
   },
   "keywords": [],
   "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
-    "enquirer": "^2.4.1"
+    "enquirer": "^2.4.1",
+    "google-sr": "workspace:^"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1"
   }
 }
