@@ -1,4 +1,4 @@
-name: Test module state
+name: Test core selectors
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Test Package
+    name: Test scraping selectors
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -34,8 +34,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Page using tsup
-        run: pnpm run build
+      - name: Build Package using tsup and turbo
+        run: pnpm run build --filter=google-sr
 
       - name: Run tests
         run: pnpm run test

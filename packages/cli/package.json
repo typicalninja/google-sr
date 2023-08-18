@@ -13,7 +13,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "enquirer": "^2.4.1",
-    "google-sr": "workspace:^"
+    "google-sr": "workspace:*"
   },
   "engines": {
     "node": ">=16"

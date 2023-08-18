@@ -8,6 +8,10 @@
         "test": {
             "dependsOn": ["build"],
             "inputs": ["src/**/*.ts", "test/**/*.ts"]
-          }
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true
+        }
     }
 }
