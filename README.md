@@ -23,9 +23,9 @@ Welcome to the 📦 monorepo of [**google-sr**](https://www.npmjs.com/package/go
  
 🏠 This is the home to google-sr and its related packages & applications.
 
-> **You can read the main package readme [here](./packages/google-sr/README.md)**
+> **[google-sr](./packages/google-sr/README.md)**
 
-> **google-that readme can be found [here](./packages/google-that/README.md)**
+> **[google-that](./packages/google-that/README.md)**
 
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
@@ -43,9 +43,9 @@ The author (typicalninja) & contributors takes **no** responsibility for any iss
 
 Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.
 
-> Weekly tests a executed using a github action to ensure compatibility
+> Weekly tests are executed using a github action to ensure compatibility
 
-Project uses pnpm as its package manager
+This monorepo uses pnpm as its package manager
 
 ```bash
 pnpm run test
