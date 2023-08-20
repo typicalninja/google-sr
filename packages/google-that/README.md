@@ -1,10 +1,10 @@
 # google-that
 
-CLI tool to scrape google search results without a api key 🚀.
+CLI tool to scrape google search results without an api key 🚀.
 
 ## Install 📦
 
-To get started, you can install **google-sr** using your preferred package manager:
+To get started, you can install **google-that** using your preferred package manager:
 
 > We suggest you install the package as a global module
 
@@ -39,7 +39,7 @@ this should come up with bunch of question answer these to use the tool.
 
 # Related projects
 
-* [google-sr](https://github.com/typicalninja/google-sr) - **google-that** project is a wrapper around google-sr
+* [google-sr](https://github.com/typicalninja/google-sr) - This project is a wrapper around google-sr
 
 # Disclaimer
 
