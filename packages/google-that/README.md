@@ -2,11 +2,7 @@
 
 CLI tool to scrape google search results without a api key 🚀.
 
-# Holding package
-
-Until the api is finalized this published package for npm is a name holding package
-
-
+# Install
 # Related projects
 
 * [google-sr](https://github.com/typicalninja/google-sr) - **google-that** project is a wrapper around google-sr

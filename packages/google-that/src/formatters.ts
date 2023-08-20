@@ -125,6 +125,19 @@ export function getHTMLFormat(results: ResultNode[][], query: string, total: num
             background-color: rgb(243, 255, 174);
           }
 
+
+          .dictionaryResult {
+            background-color: rgb(189, 174, 255);
+          }
+
+          .currencyResult {
+            background-color: rgb(241, 174, 255);
+          }
+
+          .timeResult {
+            background-color: rgb(186, 202, 255);
+          }
+
           .ulReset {
             list-style: none;
             padding: 0;
@@ -151,6 +164,7 @@ export function getHTMLFormat(results: ResultNode[][], query: string, total: num
       <body>
         <div class="hero">
           <input value="${query}" name="query" readonly />
+          <h5>Generated on ${new Date().toDateString()}</h5>
           <h4>${total} results across ${results.length} pages</h4>
           <div class="pagination">
             <span><</span>
@@ -187,6 +201,39 @@ export function getHTMLFormat(results: ResultNode[][], query: string, total: num
                           ${result.translation.pronunciation ? `<h5>📢 ${result.translation.pronunciation}</h5>` : ''}
                         </div>
                       </li>
+                    `
+                  case ResultTypes.DictionaryResult:
+                    return html`
+                    <li class="searchResult dictionaryResult">
+                      <h1>${result.word}</h1>
+                      <p>${result.phonetic}</p>
+
+                      <audio controls>
+                        <source src="${result.audio}" type="audio/mp3">
+                      </audio>
+                      <ul>
+                        ${result.definitions.map((definition) => `
+                        <li>
+                          <h5>${definition[0]}</h5>
+                          <p>${definition[1]}</p>
+                        </li>
+                        `)}
+                      </ul>
+                    </li>
+                    ` 
+                  case ResultTypes.CurrencyResult:
+                    return html`
+                    <li class="searchResult currencyResult">
+                      <h3>${result.formula}</h3>
+                    </li>
+                    `
+                  case ResultTypes.TimeResult:
+                    return html`
+                    <li class="searchResult timeResult">
+                      <h3>${result.location}</h3>
+                      <p>${result.time}</p>
+                      <p>${result.timeInWords}</p>
+                    </li>
                     `
                   default:
                     return "Unsupported";
