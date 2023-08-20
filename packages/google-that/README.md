@@ -12,21 +12,21 @@ To get started, you can install **google-that** using your preferred package man
 
 # npm
 
-npm install -g google-sr
+npm install -g google-that
 
 # pnpm 
 
-pnpm add -g google-sr
+pnpm add -g google-that
 
 # yarn
 
-yarn add -g google-sr
+yarn add -g google-that
 
 ```
 
 # Usage
 
-If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window without any arguments
+If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window **without** any arguments
 
 ```bash
 
