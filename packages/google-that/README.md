@@ -2,7 +2,41 @@
 
 CLI tool to scrape google search results without a api key 🚀.
 
-# Install
+## Install 📦
+
+To get started, you can install **google-sr** using your preferred package manager:
+
+> We suggest you install the package as a global module
+
+```bash
+
+# npm
+
+npm install -g google-sr
+
+# pnpm 
+
+pnpm add -g google-sr
+
+# yarn
+
+yarn add -g google-sr
+
+```
+
+# Usage
+
+If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window without any arguments
+
+```bash
+
+google-that
+
+```
+
+this should come up with bunch of question answer these to use the tool.
+
+
 # Related projects
 
 * [google-sr](https://github.com/typicalninja/google-sr) - **google-that** project is a wrapper around google-sr

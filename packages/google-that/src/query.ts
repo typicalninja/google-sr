@@ -1,5 +1,4 @@
 import type { InputForm } from "./constants.js";
-// import { log } from "./helpers.js";
 import cliProgress from "cli-progress";
 import { delay, log } from "./helpers.js";
 import { search, type ResultNode, pageToGoogleQueryPage } from "google-sr";
