@@ -1,5 +1,11 @@
 # google-that
 
+[![npm downloads](https://img.shields.io/npm/dw/google-that)](https://www.npmjs.com/package/google-that)
+[![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
+[![NPM](https://img.shields.io/npm/l/google-that)](https://www.npmjs.com/package/google-that)
+[![npm version](https://img.shields.io/npm/v/google-that)](https://www.npmjs.com/package/google-that)
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
+
 CLI tool to scrape google search results without an api key 🚀.
 
 ## Install 📦
