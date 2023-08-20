@@ -2,7 +2,7 @@ import type { ResultTypes } from "google-sr";
 
 export interface InputForm {
     queries: string[];
-    searchType: ResultTypes;
+    searchType: ResultTypes[];
     safeMode: boolean;
     pages: number;
     savePath: string;

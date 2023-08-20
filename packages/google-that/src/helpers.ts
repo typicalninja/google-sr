@@ -1,7 +1,4 @@
 import c from "ansi-colors";
-import boxen from "boxen";
-import { html, stripIndents } from "common-tags";
-import { ResultTypes, type ResultNode } from "google-sr";
 
 export const log = {
   info: (...args: string[]) =>
@@ -39,27 +36,3 @@ export const getTimePerEachPage = (noOfPages: number) =>
 
 export const delay = (timeout: number) =>
   new Promise((resolve) => setTimeout(resolve, timeout));
-
-export const formatter = {
-  JSON: (results: ResultNode[][]) => JSON.stringify(results, null, 4),
-  TXT: (results: ResultNode[][]) => {
-    let startTxt = stripIndents(html)`
-      ${results.map(
-        (page, i) => html`
-          ==============${i + 1}/${results.length}==================
-          ${page.map((data) => {
-            if (data.type === ResultTypes.SearchResult) {
-              return boxen(stripIndents`
-              🔍 ${data.title}
-              🔗 ${data.link}
-              📝 ${data.description}
-              `);
-            } else return `Not supported`;
-          })}
-        `
-      )}
-    `;
-
-    return startTxt;
-  },
-};

@@ -33,6 +33,6 @@ export class SearchQuery {
     return result;
   }
   doSearch(page: number) {
-    return search({ query: this.query , page: pageToGoogleQueryPage(page)})
+    return search({ query: this.query , page: pageToGoogleQueryPage(page), filterResults: this.inputOptions.searchType })
   }
 }
