@@ -7,7 +7,7 @@ export function getJSONFormat(results: ResultNode[][]) {
 }
 
 export function getTXTFormat(results: ResultNode[][]) {
-  let startTxt = stripIndents(html)`
+  const startTxt = stripIndents(html)`
     ${results.map(
       (page, i) => html`
         ==============${i + 1}/${results.length}==================
