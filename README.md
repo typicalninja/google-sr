@@ -56,13 +56,6 @@ pnpm run test
 > Make sure you are on the latest version before creating bug reports
 
 Support and bug reporting both can be done on  [github issues](https://github.com/typicalninja/google-sr/issues)
-
-# Disclaimer
-
-This is not sponsored, supported, or affiliated with Google Inc.
-
-The module scrapes the google search result page instead of using the API as normally suggested by google (which may also fall under tos violations). Author is **NOT** responsible for **any** issue (ip block from google, etc...) that occurs due to misuse.
-
 # License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
