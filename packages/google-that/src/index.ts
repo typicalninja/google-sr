@@ -140,7 +140,7 @@ async function main() {
     try {
       const results = await searchQuery.search();
       const saveAt = savePath
-        .replace("%query%", slugify.default(query, { lower: false }))
+        .replace("%query%", slugify.default(query, { lower: true, strict: true, remove: /[*+~.()'"!:@]/g }))
         .replace("%format%", resultType.toLowerCase());
       const pathName = path.join(process.cwd(), saveAt);
       if(!results.length) {
