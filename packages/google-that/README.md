@@ -40,7 +40,7 @@ google-that
 
 ```
 
-this should come up with bunch of question answer these to use the tool.
+This will start the google-that process.
 
 
 ## Related projects
