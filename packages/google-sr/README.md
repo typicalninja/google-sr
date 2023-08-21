@@ -41,9 +41,7 @@ yarn add google-sr
 
 ```
 
-# Usage
-
-### Simple example
+## Usage
 
 You can easily perform a single-page search like this:
 
@@ -66,7 +64,7 @@ console.log(searchResults);
 > Additional examples can be found in [tests](#tests)
 
 
-# Disclaimer
+## Disclaimer
 
 This is not sponsored, supported, or affiliated with Google Inc.
 
@@ -76,7 +74,7 @@ The source code within this repository is intended solely for educational purpos
 
 The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
-# Related projects
+## Related projects
 
 * [google-that](https://github.com/typicalninja/google-sr/tree/master/packages/google-that) - CLI wrapper around google-sr
 # Tests
@@ -91,12 +89,12 @@ Project uses pnpm as its package manager
 pnpm run test
 ```
 
-# Support & Bug Reporting 🛠️🐞
+## Support & Bug Reporting 🛠️🐞
 
 > Make sure you are on the latest version before creating bug reports
 
 Support and bug reporting both can be done on  [github issues](https://github.com/typicalninja/google-sr/issues)
 
-# License
+## License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
