@@ -1,5 +1,5 @@
 export default {
-    logo: <img src="/transparent.png" height={70} width={70} />,
+    logo: <img src="/images/logo/transparent.png" height={70} width={70} />,
     project: {
       link: 'https://github.com/typicalninja/google-sr'
     },
@@ -14,7 +14,7 @@ export default {
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta property="og:title" content="GSR" />
-          <meta property="og:description" content="The next site builder" />
+          <meta property="og:description" content="Collection of tools to scrape google search results in javascript" />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </>
       ),
