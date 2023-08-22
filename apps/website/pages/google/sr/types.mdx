@@ -1,0 +1,84 @@
+import { Callout } from 'nextra/components'
+
+# Types of search results
+
+Currently the following type of search results can be obtained via `search`
+
+<Callout type="info" emoji="🌟">
+     Suggest more types to be added in our [github discussions](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
+</Callout>
+
+<Callout type="default" emoji="📚">
+     `ResultTypes` is a enum. documentation can be found [here](https://paka.dev/npm/google-sr@3.1.0/api#d88390d9af992177)
+</Callout>
+
+<Callout type="info" emoji="⚙️">
+     By default only `ResultTypes.SearchResult` types are returned, use the [filterResults](./usage.mdx#filtering-search-results) option to configure it
+</Callout>
+
+
+### Regular search results
+
+Organic search results / Regular or normal search results
+
+eg: "**node js**"
+
+![Regular Search](/images/DefaultSearch.png)
+
+<Callout type="default" emoji="🏷️">
+     These will contain `type: ResultTypes.SearchResult` in returned objects
+</Callout>
+
+<Callout type="warning" emoji="⚖️">
+     Other types will appear before these types in the array, just like actual search results
+</Callout>
+
+### Translations
+
+Search result that are obtained via translation queries
+
+eg: "**Translate hello to spanish**"
+
+![Google translation result](/images/Translate.png)
+
+<Callout type="default" emoji="🏷️">
+     These will contain `type: ResultTypes.TranslateResult` in returned objects
+</Callout>
+
+### Dictionary
+
+Search results obtained via "define" queries
+
+eg: "**define amazing**"
+
+![Search result for definition](/images/Dictionary.png)
+
+<Callout type="default" emoji="🏷️">
+    These will contain `type: ResultTypes.DictionaryResult` in returned objects
+</Callout>
+
+
+### Current time
+
+Search results obtained via "current time" queries
+
+eg: "**what is the current time in uk**"
+
+![Search result for current time](/images/Time.png)
+
+<Callout type="default" emoji="🏷️">
+    These will contain `type: ResultTypes.TimeResult` in returned objects
+</Callout>
+
+### Currency conversions
+
+Search results obtained via "Currency conversions" queries
+
+eg: "**Convert 10 usd to cad**"
+
+![Currency](/images/Currency.png)
+
+<Callout type="default" emoji="🏷️">
+    The objects returned will contain `type` property set to  `ResultTypes.CurrencyResult`
+</Callout>
+

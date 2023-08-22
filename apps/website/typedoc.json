@@ -1,0 +1,13 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    // Comments are supported, like tsconfig.json
+    "entryPoints": ["../../packages/google-sr/src/index.ts"],
+    "plugin": ["typedoc-plugin-markdown"],
+    "tsconfig": "../../packages/google-sr/tsconfig.json",
+    "out": "./pages/google/sr/api",
+    "githubPages": false,
+    "readme": "none",
+    "hideGenerator": true,
+    "hideParameterTypesInTitle": true,
+    "cleanOutputDir": true
+}

@@ -1,0 +1,116 @@
+import { Callout } from 'nextra/components'
+
+# Using google-sr
+
+<Callout type="info" emoji="ℹ️">
+ All examples are written in typescript (cjs)
+</Callout>
+
+google-sr comes fully equipped with a variety of utilities & features to kickstart your experience. 
+From multi-page searching to finding different types of search outcomes like [Translate Results](./types.mdx#translations), 
+it's all right at your fingertips.
+
+
+## Single page search
+
+```ts filename="you-are-single.ts"
+import { search } from 'google-sr';
+
+// using await (inside async)
+const searchResults = await search({ query: 'nodejs' });
+```
+
+<Callout type="info" emoji="⚙️">
+ By default only `ResultTypes.SearchResult` type is returned. see the [Filtering search results](#filtering-search-results) for more info.
+</Callout>
+
+## Searching a specific page
+
+To search a specific page you can use the `page` option.
+
+<Callout type="info" emoji="🧩">
+Google's system employs a "from start" approach instead of a direct page numbering system. the page index starts at **0** and each page contains **10** results. Consequently, when utilizing the page option, it's advisable to make use of the `pageToGoogleQueryPage` helper that's provided by google-sr. 
+This will allow you to align your intended page numbers (like page 1 = 0, and page 2 = 10) more effectively.
+</Callout>
+
+```ts filename="find-my-page.ts"
+import { search, pageToGoogleQueryPage } from 'google-sr';
+
+// using await (inside async)
+const searchResults = await search({ query: 'nodejs', page: pageToGoogleQueryPage(5) });
+```
+
+#### Same without the helper function
+
+```ts filename="find-my-page-without-help.ts"
+import { search } from 'google-sr';
+
+// using await (inside async)
+const searchResults = await search({ query: 'nodejs', page: 40 });
+```
+
+## Query operators
+
+<Callout type="info" emoji="🕵️‍♂️">
+    For more info on oprators check [this blog (`blog by moz.com`)](https://moz.com/learn/seo/search-operators)
+</Callout>
+
+### What are query operators?
+
+Google search operators are special characters and commands sometimes called “advanced operators” or search parameters that extend the capabilities of regular text searches. Search operators can be useful for everything from content research to technical SEO audits.
+([moz.com](https://moz.com/learn/seo/search-operators))
+
+### Using query operators
+
+```ts filename="queryOperators.ts"
+import { search } from 'google-sr';
+ 
+// using await (inside async)
+const searchResults = await search({ query: 'google site:npmjs.com' });
+```
+
+Thats it. since search operators are part of the query itself there is no special configuration you have to do here.
+
+## Filtering search results
+
+Filtering search results allow you to finely control what your are receiving.
+on some occassions this **may even** speed up the parsing.
+
+<Callout type="default" emoji="📚">
+     `ResultTypes` is a enum. documentation can be found [here](https://paka.dev/npm/google-sr@3.1.0/api#d88390d9af992177)
+</Callout>
+
+<Callout type="info" emoji="⚙️">
+     By default only `ResultTypes.SearchResult` type is returned.
+</Callout>
+
+The default option you get without sepcifying `filterResults` is equivelent to the following
+
+```ts filename="filter.ts"
+import { search, ResultTypes } from 'google-sr';
+ 
+// using await (inside async)
+const searchResults = await search({ 
+    query: 'nodejs', 
+    filterResults: [ResultTypes.SearchResult] 
+});
+```
+
+This will return all [Organic search](./types.mdx#regular-search-results) results available for the page.
+
+#### Receiving Translate results
+
+```ts filename="translate-filter.ts"
+import { search, ResultTypes } from 'google-sr';
+ 
+// using await (inside async)
+const searchResults = await search({ 
+    query: 'translate hello to spanish', 
+    filterResults: [ResultTypes.TranslateResult, ResultTypes.SearchResult] 
+});
+```
+
+<Callout type="warning" emoji="⚠️">
+    Only including a special type (e.x. `ResultTypes.TranslateResult`) **may** return empty results if used in a non related query (e.x. non translate query),
+    it is suggested to be used with `ResultTypes.SearchResult`
+</Callout>
