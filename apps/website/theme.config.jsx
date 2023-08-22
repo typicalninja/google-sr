@@ -20,5 +20,8 @@ export default {
       ),
     footer: {
       text: `© ${new Date().getFullYear()} GSR project | By typicalninja`,
+    },
+    chat: {
+      link: 'https://discord.gg/ynwckXS9T2 '
     }
 }
