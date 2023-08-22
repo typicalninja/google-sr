@@ -29,9 +29,12 @@ const searchResults = await search({ query: 'nodejs' });
 To search a specific page you can use the `page` option.
 
 <Callout type="info" emoji="🧩">
-Google's system employs a "from start" approach instead of a direct page numbering system. the page index starts at **0** and each page contains **10** results. Consequently, when utilizing the page option, it's advisable to make use of the `pageToGoogleQueryPage` helper that's provided by google-sr. 
+Google's system employs a "from start" approach instead of a direct page numbering system. the page index starts at **0** and each page contains **10** results. 
+Consequently, when utilizing the page option, it's advisable to make use of the [`pageToGoogleQueryPage`](./api.md#pagetogooglequerypage) helper that's provided by google-sr. 
 This will allow you to align your intended page numbers (like page 1 = 0, and page 2 = 10) more effectively.
 </Callout>
+
+#### With the helpr function
 
 ```ts filename="find-my-page.ts"
 import { search, pageToGoogleQueryPage } from 'google-sr';
@@ -40,13 +43,63 @@ import { search, pageToGoogleQueryPage } from 'google-sr';
 const searchResults = await search({ query: 'nodejs', page: pageToGoogleQueryPage(5) });
 ```
 
-#### Same without the helper function
+#### Without the helper function
 
-```ts filename="find-my-page-without-help.ts"
+```ts filename="find-my-page-without-helper.ts"
 import { search } from 'google-sr';
 
 // using await (inside async)
 const searchResults = await search({ query: 'nodejs', page: 40 });
+```
+
+## Searching multiple pages 
+
+google-sr also offers a simple helper function that wraps arround [`search`](./api.md#search)
+named [`searchWithPages`](./api.md#searchwithpages) to perform multi-page searches. This function accepts the same options
+as the regular search function, with one notable difference: instead of the `page` option, 
+it utilizes `pages` to specify a range of pages to retrieve.
+
+<Callout type="info" emoji="📊">
+    The time it takes to get results might increase as you fetch more pages. This can be influenced by your internet speed.
+</Callout>
+
+<Callout type="warning" emoji="🛑">
+If you plan to retrieve a **large number of pages (>10)**, 
+consider a custom implementation. The helper doesn't include a delay between requests, 
+which could potentially result in Google **blocking your IP**.
+
+Checkout [google-that](../that) implementation for inspiration [here](https://github.com/typicalninja/google-sr/blob/master/packages/google-that/src/query.ts#L25)
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+Unlike the page options for regular [`search`](./api.md#search) function, for pages, we'll call the [`pageToGoogleQueryPage`](./api.md#pagetogooglequerypage) helper  internally. 
+Kindly refrain from using the helper yourself to avoid unexpected problems.
+</Callout>
+
+#### Search a certain number of pages
+
+```ts filename="multi-search.ts"
+import { searchWithPages } from 'google-sr';
+
+// using await (inside async)
+const searchResults = await searchWithPages({ query: 'nodejs', pages: 5 });
+```
+
+
+#### Search a range of pages
+
+A alternative to the **number of pages** method involves utilizing an array to indicate 
+the pages you wish to retrieve. You can specify pages in any order you prefer.
+It's worth noting that while the function accommodates non-sequential pages, duplicates are not managed.
+If duplicate page entries exist within the array, 
+the function will **inadvertently perform redundant searches**, revisiting those pages.
+
+
+```ts filename="multi-search.ts"
+import { searchWithPages } from 'google-sr';
+
+// using await (inside async)
+const searchResults = await searchWithPages({ query: 'nodejs', pages: [5, 2, 4, 10] });
 ```
 
 ## Query operators

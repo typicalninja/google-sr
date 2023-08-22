@@ -8,7 +8,7 @@
     "githubPages": false,
     "readme": "none",
     "hideGenerator": true,
-    "hideParameterTypesInTitle": true,
+   // "hideParameterTypesInTitle": true,
     "cleanOutputDir": false,
     // markdown plugin
     "flattenOutputFiles": true,
@@ -23,6 +23,6 @@
     // remove private apis
     "excludePrivate": true,
 
-
+    // unreadable with this
     "disableSources": true
 }
