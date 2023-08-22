@@ -1,11 +1,13 @@
 import type { AxiosRequestConfig } from "axios";
 
+
 export interface SearchSelectors {
   block: string;
   link: string;
   title: string;
   description: string;
 }
+
 
 export interface TranslateSelectors {
   sourceLanguage: string;
@@ -61,6 +63,7 @@ export enum ResultTypes {
   TimeResult = "TIME",
   CurrencyResult = "CURRENCY",
 }
+
 export interface SearchResultNode {
   /** Type of this result node */
   type: ResultTypes.SearchResult;
@@ -197,7 +200,9 @@ export interface SearchOptions {
   };
 }
 
-
+/**
+ * @private
+ */
 export const defaultOptions: SearchOptions = {
   requestConfig: {},
   safeMode: true,

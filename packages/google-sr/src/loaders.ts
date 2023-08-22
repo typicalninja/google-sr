@@ -26,6 +26,7 @@ import { extractUrlFromGoogleLink } from "./helpers";
  * @param $
  * @param selectors
  * @returns
+ * @private
  */
 export function loadSearchNodes(
   $: CheerioAPI,
@@ -56,6 +57,7 @@ export function loadSearchNodes(
  * @param $
  * @param selectors
  * @returns
+ * @private
  */
 export function loadTranslateNodes(
   $: CheerioAPI,
@@ -95,6 +97,7 @@ export function loadTranslateNodes(
 
 /**
  * Loader for dictionary blocks
+ * @private
  */
 export function loadDictionaryNodes(
   $: CheerioAPI,
@@ -137,7 +140,12 @@ export function loadDictionaryNodes(
   return result;
 }
 
-
+/**
+ * @param $ 
+ * @param selectors 
+ * @returns 
+ * @private
+ */
 export function loadTimeNode(
   $: CheerioAPI,
   selectors: TimeSelectors
@@ -158,6 +166,13 @@ export function loadTimeNode(
   return result
 }
 
+/**
+ * 
+ * @param $ 
+ * @param selectors 
+ * @returns 
+ * @private
+ */
 export function loadCurrencyNode(
   $: CheerioAPI,
   selectors: CurrencySelectors

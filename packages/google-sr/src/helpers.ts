@@ -6,6 +6,7 @@ import { deepmerge } from "deepmerge-ts";
  * Extract the actual webpage link from a href tag result
  * @param googleLink
  * @returns
+ * @private
  */
 export function extractUrlFromGoogleLink(googleLink: string): string | null {
   // regex to match the part
@@ -23,6 +24,7 @@ export function extractUrlFromGoogleLink(googleLink: string): string | null {
 
 /**
  * Constructs the axios config by deep merging user provided config
+ * @private
  */
 export function constructSearchConfig(
   options: SearchOptions
