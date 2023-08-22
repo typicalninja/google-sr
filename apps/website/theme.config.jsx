@@ -17,5 +17,8 @@ export default {
           <meta property="og:description" content="The next site builder" />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </>
-      )
+      ),
+    footer: {
+      text: `© ${new Date().getFullYear()} GSR project | By typicalninja`,
+    }
 }
