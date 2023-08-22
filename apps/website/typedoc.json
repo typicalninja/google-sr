@@ -4,23 +4,25 @@
     "entryPoints": ["../../packages/google-sr/src/index.ts"],
     "plugin": ["typedoc-plugin-markdown"],
     "tsconfig": "../../packages/google-sr/tsconfig.json",
-    "out": "./pages/google/sr/api",
+    "out": "./pages/google/sr",
     "githubPages": false,
     "readme": "none",
     "hideGenerator": true,
     "hideParameterTypesInTitle": true,
-    "cleanOutputDir": true,
-
+    "cleanOutputDir": false,
     // markdown plugin
     "flattenOutputFiles": true,
     "hideInPageTOC": true,
     "hideBreadcrumbs": true,
     "outputFileStrategy": "modules",
-    "entryFileName": "index.md",
+    "entryFileName": "api.md",
     "excludeGroups": true,
     "hideHierarchy": true,
     "titleTemplate": "{name}",
 
     // remove private apis
     "excludePrivate": true,
+
+
+    "disableSources": true
 }
