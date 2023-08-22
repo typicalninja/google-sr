@@ -23,5 +23,9 @@ export default {
     },
     chat: {
       link: 'https://discord.gg/ynwckXS9T2 '
-    }
+    },
+    sidebar: {
+      defaultMenuCollapseLevel: 1,
+      toggleButton: true
+    },
 }
