@@ -9,5 +9,18 @@
     "readme": "none",
     "hideGenerator": true,
     "hideParameterTypesInTitle": true,
-    "cleanOutputDir": true
+    "cleanOutputDir": true,
+
+    // markdown plugin
+    "flattenOutputFiles": true,
+    "hideInPageTOC": true,
+    "hideBreadcrumbs": true,
+    "outputFileStrategy": "modules",
+    "entryFileName": "index.md",
+    "excludeGroups": true,
+    "hideHierarchy": true,
+    "titleTemplate": "{name}",
+
+    // remove private apis
+    "excludePrivate": true,
 }
