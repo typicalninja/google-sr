@@ -7,7 +7,9 @@
   "scripts": {
     "build": "turbo run build --parallel --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
-    "test": "turbo run test --parallel --no-daemon"
+    "test": "turbo run test --parallel --no-daemon",
+
+    "build:website": "pnpm run build --filter=website"
   },
   "keywords": [],
   "author": "typicalninja",
