@@ -1,0 +1,1 @@
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) { alert('Workbox available')} else alert(`Workbox not available`)
