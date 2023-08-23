@@ -16,6 +16,8 @@ export default {
           <meta property="og:title" content="GSR" />
           <meta property="og:description" content="Collection of tools to scrape google search results in javascript" />
           <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          {/** Analytics */}
+          <script async src="https://umami.typical.gq/script.js" data-website-id="2dedf0d0-da4d-4b81-9cf3-2fac41885109"></script>
         </>
       ),
     footer: {
