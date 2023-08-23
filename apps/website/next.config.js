@@ -3,4 +3,8 @@ const withNextra = require("nextra")({
   themeConfig: "./theme.config.jsx",
 });
 
-module.exports = withNextra();
+const withPWA = require('next-pwa')({
+  dest: 'public'
+})
+
+module.exports = withPWA(withNextra());
