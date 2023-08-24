@@ -10,6 +10,9 @@ dist
 
 # docs (pray that anything else is not named api) used to autogen
 api.md
+# service worker for docs
+sw.js
+sw.map.js
 
 # Scraper/analyzer 
 scrape/download*
