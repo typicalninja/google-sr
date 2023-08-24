@@ -13,6 +13,7 @@ api.md
 # service worker for docs
 sw.js
 sw.js.map
+workbox-*
 
 # Scraper/analyzer 
 scrape/download*
