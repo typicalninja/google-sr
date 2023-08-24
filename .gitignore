@@ -9,7 +9,7 @@ dist
 .next
 
 # docs (pray that anything else is not named api) used to autogen
-api
+api.md
 
 # Scraper/analyzer 
 scrape/download*

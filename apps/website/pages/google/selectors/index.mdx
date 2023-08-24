@@ -1,0 +1,36 @@
+import { Callout } from 'nextra/components'
+
+
+# google-sr-selectors
+
+Set of html selectors for parsing google search results
+
+<Callout type="info" emoji="🕵️‍♂️">
+   Please note that the included selectors are intended for the non-Javascript version of Google Search page. 
+   These were obtained by appending `&gbv=1` to the regular query link.
+
+   ex: (disable javascript, else it will redirect): [query `nodejs`](https://www.google.com/search?hl=en&q=nodejs&gbv=1)
+</Callout>
+
+## Installation
+
+> Not yet released
+
+```sh npm2yarn
+npm i google-sr-selectors
+```
+
+## What are selectors?
+
+Selectors form the backbone of packages like google-sr. These are predefined strings that outline the structure of specific HTML code representing the desired value. 
+By utilizing selectors, we gain the ability to parse the HTML and precisely extract the intended information.
+
+This document outlines the selectors used to extract search result values from, html page data we receive
+for purposes of contributors and other developers interested in parsing raw google search html
+
+<Callout type="default" emoji="🛠️">
+   Google can update its HTML structure periodically, which could potentially disrupt the functionality of the package. 
+   While we do run a github action to test the package periodically, we may take time to patch package.
+
+   If you suspect that Google has updated all or some selectors and we have not yet patched the package, please [create a github issue](https://github.com/typicalninja/google-sr/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=[BUG]%20Selectors%20outdated).
+</Callout>
