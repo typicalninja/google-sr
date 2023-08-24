@@ -3,10 +3,15 @@ import { Callout } from 'nextra/components'
 
 # Overview of selectors
 
-
 <Callout type="info" emoji="🌟">
      Suggest more types to be added in our [github discussions](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
 </Callout>
+
+<Callout type="info" emoji="🕒">
+    The selector list was last updated on `8/24/23` for the non-Javascript version of Google Search 
+    by [TypicalNinja](https://github.com/typicalninja/).
+</Callout>
+
 
 All selector descriptions will feature an accompanying image that visually represents the element targeted by the selector.
 Additionally, each image will be accompanied by its corresponding selector, along with illustrative examples derived from the image.
@@ -58,11 +63,42 @@ Search results obtained via "define" queries
 #### Selectors for dictionary queries
 
 ```json
-"DictionaryNode":  {
+{
     "audio": "audio:first",
     "phonetic": "span > div.BNeawe.tAd8D.AP7Wnd",
     "word": "h3 > div.BNeawe.deIvCb.AP7Wnd",
     "examples": "div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod",
     "definitions":"div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
+}
+```
+
+## Current time
+
+Search results obtained via "current time" queries
+
+![Search result for current time](/images/Time.png)
+
+#### Selectors for time queries
+
+```json
+{
+    "location": "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
+    "time": "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
+    "timeInWords": "div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd",
+}
+```
+
+## Currency conversions
+
+Search results obtained via "Currency conversions" queries
+
+![Currency](/images/Currency.png)
+
+#### Selectors for Currency conversions queries
+
+```json
+{
+    "from": "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
+    "to": "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
 }
 ```
