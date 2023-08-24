@@ -1,0 +1,68 @@
+import { Callout } from 'nextra/components'
+
+
+# Overview of selectors
+
+
+<Callout type="info" emoji="🌟">
+     Suggest more types to be added in our [github discussions](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
+</Callout>
+
+All selector descriptions will feature an accompanying image that visually represents the element targeted by the selector.
+Additionally, each image will be accompanied by its corresponding selector, along with illustrative examples derived from the image.
+
+## Regular search results
+
+Organic search results / Regular or normal search results
+
+![Regular Search](/images/DefaultSearch.png)
+
+#### Selectors for Regular search results
+
+
+```json
+{
+    "block": ".Gx5Zad.fP1Qef.xpd.EtOod.pkphOe", // the entire block (the picture contains a block)
+    "link": "[jsname][data-ved]", // https://nodejs.org
+    "title": "h3.zBAuLc", // Node.js
+    "description": ".BNeawe.s3v9rd.AP7Wnd", // Node.js is an open...
+}
+```
+
+
+## Translations
+
+Search result that are obtained via translation queries
+
+![Google translation result](/images/Translate.png)
+
+#### Selectors for translation queries
+
+```json
+{
+    "sourceLanguage": "#tsuid_2 option:selected", // English
+    "targetLanguage": "#tsuid_4 option:selected", // Spanish
+    "sourceText": "#lrtl-source-text input[name=\"tlitetxt\"]", // hello world
+    "translationText": '[id="lrtl-translation-text"]', // Hola Mundo
+    "pronunciation": "[id=\"lrtl-transliteration-text\"]", // [not present in image]
+}
+```
+
+
+## Dictionary
+
+Search results obtained via "define" queries
+
+![Search result for definition](/images/Dictionary.png)
+
+#### Selectors for dictionary queries
+
+```json
+"DictionaryNode":  {
+    "audio": "audio:first",
+    "phonetic": "span > div.BNeawe.tAd8D.AP7Wnd",
+    "word": "h3 > div.BNeawe.deIvCb.AP7Wnd",
+    "examples": "div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod",
+    "definitions":"div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
+}
+```
