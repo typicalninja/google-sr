@@ -12,7 +12,7 @@ dist
 api.md
 # service worker for docs
 sw.js
-sw.map.js
+sw.js.map
 
 # Scraper/analyzer 
 scrape/download*
