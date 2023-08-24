@@ -13,22 +13,21 @@
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
 
-* Documentation for google-sr & google-that [here](https://typicalninja.github.io/google-sr)
+* Documentation can be found [here](hhttps://g-sr.vercel.app/google/that)
 
-* View typedoc for google-sr [here](https://paka.dev/npm/google-sr/api)
-
-* Npm page [here](https://www.npmjs.com/package/google-sr)
-
+* View typedoc for google-sr [here](https://g-sr.vercel.app/google/sr/api)
 
 ## Monorepo
 
-Welcome to the 📦 monorepo of [**google-sr**](https://www.npmjs.com/package/google-sr) npm package and [**google-that**](https://www.npmjs.com/package/google-that) cli package (on npm).
+Welcome to the 📦 monorepo of GSR Project.
  
 🏠 This is the home to google-sr and its related packages & applications.
 
 > **[google-sr](./packages/google-sr/README.md)**
 
 > **[google-that](./packages/google-that/README.md)**
+
+> **[google-sr-selectors](./packages/google-sr-selectors/README.md)**
 
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
