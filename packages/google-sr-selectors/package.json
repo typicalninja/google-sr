@@ -1,9 +1,9 @@
 {
-  "name": "google-sr",
-  "version": "3.1.0",
-  "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
+  "name": "google-sr-selectors",
+  "version": "0.0.1",
+  "description": "Html selectors for google search result pages.",
   "repository": "typicalninja/google-sr",
-  "homepage": "https://g-sr.vercel.app/google/sr",
+  "homepage": "https://g-sr.vercel.app/google/selectors",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
@@ -13,7 +13,6 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "test": "mocha --require ts-node/register tests/*.ts",
     "build": "tsup"
   },
   "keywords": [
@@ -25,22 +24,12 @@
     "google-search",
     "googlesearch",
     "scraping",
-    "simple"
+    "selectors",
+    "cheerio"
   ],
   "author": "typicalninja",
   "license": "Apache-2.0",
-  "dependencies": {
-    "axios": "^1.4.0",
-    "cheerio": "1.0.0-rc.12",
-    "deepmerge-ts": "^5.1.0",
-    "tslib": "^2.6.1"
-  },
   "devDependencies": {
-    "@types/chai": "^4.3.5",
-    "@types/mocha": "^10.0.1",
-    "chai": "^4.3.7",
-    "mocha": "^10.2.0",
-    "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6"
   }
