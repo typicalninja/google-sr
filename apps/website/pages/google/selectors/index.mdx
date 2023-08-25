@@ -3,7 +3,7 @@ import { Callout, Card, Cards } from 'nextra/components'
 
 # google-sr-selectors
 
-Set of html selectors for parsing google search results
+Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
 
 <Callout type="info" emoji="🕵️‍♂️">
    Please note that the included selectors are intended for the non-Javascript version of Google Search page. 
@@ -14,7 +14,10 @@ Set of html selectors for parsing google search results
 
 ## Installation
 
-> Not yet released
+[![NPM license](https://img.shields.io/npm/l/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+
+[![npm downloads](https://img.shields.io/npm/dw/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+
 
 ```sh npm2yarn
 npm i google-sr-selectors
@@ -25,8 +28,8 @@ npm i google-sr-selectors
 Selectors form the backbone of packages like google-sr. These are predefined strings that outline the structure of specific HTML code representing the desired value. 
 By utilizing selectors, we gain the ability to parse the HTML and precisely extract the intended information.
 
-This document outlines the selectors used to extract search result values from, html page data we receive
-for purposes of contributors and other developers interested in parsing raw google search html.
+This package exports the selectors used to extract search result values from, google html page data we receive.
+Offered for purposes of contributors and other developers interested in parsing raw google search html.
 
 <Callout type="default" emoji="🛠️">
    Google can update its HTML structure periodically, which could potentially disrupt the functionality of the package. 
@@ -34,6 +37,20 @@ for purposes of contributors and other developers interested in parsing raw goog
 
    If you suspect that Google has updated all or some selectors and we have not yet patched the package, please [create a github issue](https://github.com/typicalninja/google-sr/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=[BUG]%20Selectors%20outdated).
 </Callout>
+
+## Disclaimer
+
+This is not sponsored, supported, or affiliated with Google Inc.
+
+Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
+
+The source code within this repository is intended solely for educational purposes.
+
+The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
+
+## License
+
+This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
 
 By utilizing one of the following cards, 
 you can choose to either explore the selectors 
