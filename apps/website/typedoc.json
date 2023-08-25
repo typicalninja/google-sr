@@ -18,7 +18,7 @@
     "excludeGroups": true,
     "hideHierarchy": true,
     "titleTemplate": "{name}",
-
+    "hidePageHeader": true,
     // remove private apis
     "excludePrivate": true,
 

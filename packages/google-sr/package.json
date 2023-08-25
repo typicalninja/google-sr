@@ -34,7 +34,7 @@
     "cheerio": "1.0.0-rc.12",
     "deepmerge-ts": "^5.1.0",
     "tslib": "^2.6.1",
-    "google-sr-selectors": "workspace:^"
+    "google-sr-selectors": "workspace:*"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
