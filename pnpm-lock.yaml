@@ -54,6 +54,9 @@ importers:
       deepmerge-ts:
         specifier: ^5.1.0
         version: 5.1.0
+      google-sr-selectors:
+        specifier: workspace:^
+        version: link:../google-sr-selectors
       tslib:
         specifier: ^2.6.1
         version: 2.6.1
