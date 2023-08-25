@@ -67,22 +67,6 @@ Type of this result node
 
 ***
 
-## CurrencySelectors
-
-### Properties
-
-#### from
-
-> **from**: `string`
-
-***
-
-#### to
-
-> **to**: `string`
-
-***
-
 ## DictionaryResultNode
 
 ### Properties
@@ -126,40 +110,6 @@ Array of array containing definitions and their respective examples
 > **type**: [`DictionaryResult`](api.md#dictionaryresult)
 
 Type of this result node
-
-***
-
-#### word
-
-> **word**: `string`
-
-***
-
-## DictionarySelectors
-
-### Properties
-
-#### audio
-
-> **audio**: `string`
-
-***
-
-#### definitions
-
-> **definitions**: `string`
-
-***
-
-#### examples
-
-> **examples**: `string`
-
-***
-
-#### phonetic
-
-> **phonetic**: `string`
 
 ***
 
@@ -226,33 +176,9 @@ Toggle to enable google safe mode
 
 #### selectors
 
-> **selectors**: `object`
+> **selectors**: `__module`
 
 jquery selectors (cheerio) to extract data from scraped data
-
-##### Type declaration
-
-> ###### `selectors.CurrencyNode`
->
-> > **CurrencyNode**: [`CurrencySelectors`](api.md#currencyselectors)
->
-> ###### `selectors.DictionaryNode`
->
-> > **DictionaryNode**: [`DictionarySelectors`](api.md#dictionaryselectors)
->
-> ###### `selectors.SearchNodes`
->
-> > **SearchNodes**: [`SearchSelectors`](api.md#searchselectors)
->
-> ###### `selectors.TimeNode`
->
-> > **TimeNode**: [`TimeSelectors`](api.md#timeselectors)
->
-> ###### `selectors.TranslateNodes`
->
-> > **TranslateNodes**: [`TranslateSelectors`](api.md#translateselectors)
->
->
 
 ***
 
@@ -288,36 +214,6 @@ Type of this result node
 
 ***
 
-## SearchSelectors
-
-Selectors used for organic search
-
-### Properties
-
-#### block
-
-> **block**: `string`
-
-***
-
-#### description
-
-> **description**: `string`
-
-***
-
-#### link
-
-> **link**: `string`
-
-***
-
-#### title
-
-> **title**: `string`
-
-***
-
 ## TimeResultNode
 
 ### Properties
@@ -345,28 +241,6 @@ Selectors used for organic search
 > **type**: [`TimeResult`](api.md#timeresult)
 
 Type of this result node
-
-***
-
-## TimeSelectors
-
-### Properties
-
-#### location
-
-> **location**: `string`
-
-***
-
-#### time
-
-> **time**: `string`
-
-***
-
-#### timeInWords
-
-> **timeInWords**: `string`
 
 ***
 
@@ -434,42 +308,6 @@ Translated content
 > **type**: [`TranslateResult`](api.md#translateresult)
 
 Type of this result node
-
-***
-
-## TranslateSelectors
-
-Selectors used for Translations
-
-### Properties
-
-#### pronunciation
-
-> **pronunciation**: `string`
-
-***
-
-#### sourceLanguage
-
-> **sourceLanguage**: `string`
-
-***
-
-#### sourceText
-
-> **sourceText**: `string`
-
-***
-
-#### targetLanguage
-
-> **targetLanguage**: `string`
-
-***
-
-#### translationText
-
-> **translationText**: `string`
 
 ***
 
