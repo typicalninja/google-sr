@@ -1,6 +1,3 @@
-[**google-sr**](api.md)
-***
-
 # Index
 
 ## ResultTypes

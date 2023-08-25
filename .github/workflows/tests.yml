@@ -35,7 +35,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build Package using tsup and turbo
-        run: pnpm run build --filter=google-sr
+        run: pnpm run build --filter=google-sr --filter=google-sr-selectors
 
       - name: Run tests
         run: pnpm run test
