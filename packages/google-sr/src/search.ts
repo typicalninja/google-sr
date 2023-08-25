@@ -57,31 +57,31 @@ export async function search(searchOptions: Partial<SearchOptions>) {
 
   // TYPE: Translations
   if (options.filterResults.includes(ResultTypes.TranslateResult)) {
-    const translateResult = loadTranslateNodes($, selectors.TranslateNodes);
+    const translateResult = loadTranslateNodes($, selectors.TranslateSearchSelector);
     if (translateResult) result.push(translateResult);
   }
 
   // TYPE: Dictionary
   if (options.filterResults.includes(ResultTypes.DictionaryResult)) {
-    const dictionaryResult = loadDictionaryNodes($, selectors.DictionaryNode);
+    const dictionaryResult = loadDictionaryNodes($, selectors.DictionarySearchSelector);
     if (dictionaryResult) result.push(dictionaryResult);
   }
 
   // TYPE: Time
   if (options.filterResults.includes(ResultTypes.TimeResult)) {
-    const timeResult = loadTimeNode($, selectors.TimeNode);
+    const timeResult = loadTimeNode($, selectors.TimeSearchSelector);
     if (timeResult) result.push(timeResult);
   }
 
   // TYPE: Currency
   if (options.filterResults.includes(ResultTypes.CurrencyResult)) {
-    const CurrencyResult = loadCurrencyNode($, selectors.CurrencyNode);
+    const CurrencyResult = loadCurrencyNode($, selectors.CurrencyConvertSelector);
     if (CurrencyResult) result.push(CurrencyResult);
   }
 
   if (options.filterResults.includes(ResultTypes.SearchResult)) {
     // regular search results
-    const searchResults = loadSearchNodes($, selectors.SearchNodes);
+    const searchResults = loadSearchNodes($, selectors.OrganicSearchSelector);
     result.push(...searchResults);
   }
 

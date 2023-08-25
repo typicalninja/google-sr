@@ -2,22 +2,17 @@ import type { CheerioAPI } from "cheerio";
 
 // only types
 import type {
-  // selectors
-  SearchSelectors,
-  TranslateSelectors,
-  DictionarySelectors,
-  TimeSelectors,
 
   // nodes
   SearchResultNode,
   TranslateResultNode,
   DictionaryResultNode,
   TimeResultNode,
-  CurrencySelectors,
   CurrencyResultNode
 } from "./constants";
 import { ResultTypes } from "./constants";
 
+import type { OrganicSearchSelector, TranslateSearchSelector, DictionarySearchSelector, TimeSearchSelector, CurrencyConvertSelector } from 'google-sr-selectors'
 
 import { extractUrlFromGoogleLink } from "./helpers";
 
@@ -30,7 +25,7 @@ import { extractUrlFromGoogleLink } from "./helpers";
  */
 export function loadSearchNodes(
   $: CheerioAPI,
-  selectors: SearchSelectors
+  selectors: typeof OrganicSearchSelector
 ): SearchResultNode[] {
   const parsedResults: SearchResultNode[] = [];
   $(selectors.block).each((_index, element) => {
@@ -61,7 +56,7 @@ export function loadSearchNodes(
  */
 export function loadTranslateNodes(
   $: CheerioAPI,
-  selectors: TranslateSelectors
+  selectors: typeof TranslateSearchSelector
 ): TranslateResultNode | null {
   const sourceLanguage = $(selectors.sourceLanguage).text().trim();
   const targetLanguage = $(selectors.targetLanguage).text().trim();
@@ -101,7 +96,7 @@ export function loadTranslateNodes(
  */
 export function loadDictionaryNodes(
   $: CheerioAPI,
-  selectors: DictionarySelectors
+  selectors: typeof DictionarySearchSelector
 ): DictionaryResultNode | null {
   const audio = $(selectors.audio).attr("src");
   const phonetic = $(selectors.phonetic).text().trim();
@@ -148,7 +143,7 @@ export function loadDictionaryNodes(
  */
 export function loadTimeNode(
   $: CheerioAPI,
-  selectors: TimeSelectors
+  selectors: typeof TimeSearchSelector
 ): TimeResultNode | null {
   const location = $(selectors.location).text().trim();
   const time = $(selectors.time).text().trim()
@@ -175,7 +170,7 @@ export function loadTimeNode(
  */
 export function loadCurrencyNode(
   $: CheerioAPI,
-  selectors: CurrencySelectors
+  selectors: typeof CurrencyConvertSelector
 ): CurrencyResultNode | null {
   const from = $(selectors.from).text().trim();
   const to = $(selectors.to).text().trim();
