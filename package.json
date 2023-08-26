@@ -9,7 +9,7 @@
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --parallel --no-daemon",
 
-    "build:website": "turbo run build --filter=google-sr-selectors --filter=google-sr && pnpm run build --filter=website"
+    "build:website": "pnpm run build --filter=google-sr-selectors --filter=google-sr --filter=website"
   },
   "keywords": [],
   "author": "typicalninja",
