@@ -5,7 +5,7 @@
   "description": "Monorepo for google-sr and its related projects",
   "main": "index.js",
   "scripts": {
-    "build": "turbo run build --parallel --no-daemon",
+    "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --parallel --no-daemon",
 
