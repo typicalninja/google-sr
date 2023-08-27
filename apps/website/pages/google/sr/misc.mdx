@@ -1,0 +1,58 @@
+import { Callout } from 'nextra/components'
+
+# Miscellaneous usage guide
+
+## Using custom selectors
+
+google-sr is fully customizable allowing you to fine tune it to your liking. One important part
+of this is to customize the selectors used by the module.
+
+By default google-sr uses [google-sr-selectors](/google/selectors) internally for its selectors.
+However you can customize them using the [searchOptions.selectors](/google/sr/api#selectors) option.
+See the available selectors types in [google-sr-selectors API Documentation](/google/selectors/api)
+
+
+Following example will show how to customize the [TimeSearchSelector](/google/selectors/api#timesearchselector)
+
+
+```ts
+import { search, ResultTypes } from 'google-sr';
+
+
+// using await (inside async)
+const searchResults = await search({ 
+    query: 'what is the time in uk',
+    filterResults: [ResultTypes.TimeResult],
+    // modify the selectors
+    // other selectors will get deep merged with this option
+    selectors: {
+        TimeSearchSelector: {
+            location: 'some selector',
+            time: 'another selector for time',
+            timeInWords: 'new selector for timeInwords'
+        }
+    }
+});
+```
+
+## Query operators
+
+<Callout type="info" emoji="🕵️‍♂️">
+    For more info on oprators check [this blog (`blog by moz.com`)](https://moz.com/learn/seo/search-operators)
+</Callout>
+
+### What are query operators?
+
+Google search operators are special characters and commands sometimes called “advanced operators” or search parameters that extend the capabilities of regular text searches. Search operators can be useful for everything from content research to technical SEO audits.
+([moz.com](https://moz.com/learn/seo/search-operators))
+
+### Using query operators
+
+```ts filename="queryOperators.ts"
+import { search } from 'google-sr';
+ 
+// using await (inside async)
+const searchResults = await search({ query: 'google site:npmjs.com' });
+```
+
+Thats it. since search operators are part of the query itself there is no special configuration you have to do here.

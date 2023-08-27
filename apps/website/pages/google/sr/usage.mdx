@@ -102,28 +102,6 @@ import { searchWithPages } from 'google-sr';
 const searchResults = await searchWithPages({ query: 'nodejs', pages: [5, 2, 4, 10] });
 ```
 
-## Query operators
-
-<Callout type="info" emoji="🕵️‍♂️">
-    For more info on oprators check [this blog (`blog by moz.com`)](https://moz.com/learn/seo/search-operators)
-</Callout>
-
-### What are query operators?
-
-Google search operators are special characters and commands sometimes called “advanced operators” or search parameters that extend the capabilities of regular text searches. Search operators can be useful for everything from content research to technical SEO audits.
-([moz.com](https://moz.com/learn/seo/search-operators))
-
-### Using query operators
-
-```ts filename="queryOperators.ts"
-import { search } from 'google-sr';
- 
-// using await (inside async)
-const searchResults = await search({ query: 'google site:npmjs.com' });
-```
-
-Thats it. since search operators are part of the query itself there is no special configuration you have to do here.
-
 ## Filtering search results
 
 Filtering search results allow you to finely control what your are receiving.
