@@ -1,13 +1,8 @@
 # google-sr 🔍
-
 [![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
-[![npm downloads](https://img.shields.io/npm/dw/google-sr)](https://www.npmjs.com/package/google-sr)
-[![npm downloads for google that](https://img.shields.io/npm/dw/google-that)](https://www.npmjs.com/package/google-that)
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
-[![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
-[![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
-[![NPM](https://img.shields.io/npm/l/google-that)](https://www.npmjs.com/package/google-that)
-[![npm version](https://img.shields.io/npm/v/google-that)](https://www.npmjs.com/package/google-that)
+<iframe src="https://ghbtns.com/github-btn.html?user=typicalninja&repo=google-sr&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe> 
+
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
@@ -25,9 +20,21 @@ Welcome to the 📦 monorepo of GSR Project.
 
 > **[google-sr](./packages/google-sr/README.md)**
 
+[![npm downloads for google-sr](https://img.shields.io/npm/dw/google-sr)](https://www.npmjs.com/package/google-sr)
+[![NPM license for google-sr](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
+[![npm version for google-sr](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
+
 > **[google-that](./packages/google-that/README.md)**
 
+[![npm downloads for google-that](https://img.shields.io/npm/dw/google-that)](https://www.npmjs.com/package/google-that)
+[![NPM license for google-that](https://img.shields.io/npm/l/google-that)](https://www.npmjs.com/package/google-that)
+[![npm version for google-that](https://img.shields.io/npm/v/google-that)](https://www.npmjs.com/package/google-that)
+
 > **[google-sr-selectors](./packages/google-sr-selectors/README.md)**
+
+[![npm downloads for google-sr-selectors](https://img.shields.io/npm/dw/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+[![NPM license for google-sr-selectors](https://img.shields.io/npm/l/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+[![npm version for google-sr-selectors](https://img.shields.io/npm/v/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
 
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
