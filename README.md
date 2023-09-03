@@ -1,8 +1,7 @@
 # google-sr 🔍
 [![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
-<iframe src="https://ghbtns.com/github-btn.html?user=typicalninja&repo=google-sr&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe> 
-
+[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/stargazers)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
