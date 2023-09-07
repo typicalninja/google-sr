@@ -198,7 +198,7 @@ async function main() {
     📦 Github here: ${c.blue(
       "https://github.com/typicalninja/google-sr/tree/master/packages/cli"
     )}
-    📚 Documentation: ${c.blue("https://typicalninja.github.io/google-sr/")}
+    📚 Documentation: ${c.blue("https://g-sr.vercel.app/google/that")}
   
     ${c.cyanBright.underline("Downloads")}
     ↧↧↧↧
@@ -222,7 +222,7 @@ async function main() {
     📦 Github here: ${c.blue(
       "https://github.com/typicalninja/google-sr/tree/master/packages/cli"
     )}
-    📚 Documentation: ${c.blue("https://typicalninja.github.io/google-sr/")}
+    📚 Documentation: ${c.blue("https://g-sr.vercel.app/google/that")}
   
     ${c.cyanBright.underline("Downloads")}
     ↧↧↧↧

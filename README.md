@@ -7,9 +7,7 @@
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
 
-* Documentation can be found [here](hhttps://g-sr.vercel.app/google/that)
-
-* View typedoc for google-sr [here](https://g-sr.vercel.app/google/sr/api)
+* Documentation can be found [here](https://g-sr.vercel.app)
 
 ## Monorepo
 

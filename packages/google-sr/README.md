@@ -10,16 +10,16 @@
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-> View documentation [here](https://typicalninja.github.io/google-sr/)
+> View documentation [here](https://g-sr.vercel.app)
 
 ## Features ✨
 
 * Simple & Fast ⚡️ *
 * [Well tested 🔄](#tests)
-* [Well documented 📚](https://typicalninja.github.io/google-sr/)
+* [Well documented 📚](https://g-sr.vercel.app)
 * TypeScript compatible 🧑‍💻
 * No API key is needed 🔑
-* [Wide variety of search result types supported 🌴](https://typicalninja.github.io/google-sr/types)
+* [Wide variety of search result types supported 🌴](https://g-sr.vercel.app/google/sr/types)
 
 ## Install 📦
 
@@ -55,13 +55,13 @@ const searchResults = await search({ query: 'nodejs' });
 console.log(searchResults);
 ```
 
-* **Read about the returned types [here](https://typicalninja.github.io/google-sr/types)**
+* **Read about the returned types [here](https://g-sr.vercel.app/google/sr/types)**
 
-> By default only **ResultTypes.SearchResult** are returned, use the [filterResults](https://typicalninja.github.io/google-sr/advanced.html#filtering-result) option to configure it
+* **More detailed examples & usage can be found [here](https://g-sr.vercel.app/google/sr/usage)**
 
-> **More detailed examples & usage can be found [here](https://typicalninja.github.io/google-sr#usage)**
+> By default only [`ResultTypes.SearchResult`](https://g-sr.vercel.app/google/sr/types#regular-search-results) are returned, use the [filterResults](https://g-sr.vercel.app/google/sr/usage#filtering-search-results) option to configure it
 
-> Additional examples can be found in [tests](#tests)
+* Additional examples can be found in [tests](#tests) and apps directory
 
 
 ## Disclaimer
