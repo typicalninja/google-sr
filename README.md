@@ -35,6 +35,13 @@ Welcome to the 📦 monorepo of GSR Project.
 
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
+## Mirror 🪞
+
+GSR project has a mirror repository on codeberg 
+You can find it [here](https://codeberg.org/typicalninja/google-sr)
+
+* All issues and discussion are limited to github & discord
+
 ## Disclaimer
 
 This is not sponsored, supported, or affiliated with Google Inc.
