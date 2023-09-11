@@ -5,6 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
 [![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
 [![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
+[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 
@@ -74,9 +75,11 @@ The source code within this repository is intended solely for educational purpos
 
 The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
-## Related projects
+## Related projects 🥂
 
-* [google-that](https://github.com/typicalninja/google-sr/tree/master/packages/google-that) - CLI wrapper around google-sr
+* [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
+* [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
+
 # Tests
 
 Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.

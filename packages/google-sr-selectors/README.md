@@ -6,6 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
 [![NPM license](https://img.shields.io/npm/l/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
 [![npm version](https://img.shields.io/npm/v/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
@@ -31,6 +32,12 @@ The package currently only supports a limited amount of selectors
 You can view them in the [documentation](https://g-sr.vercel.app/google/selectors)
 
 🌟 Suggest more to be added [here](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
+
+## Related projects 🥂
+
+* [google-sr](https://g-sr.vercel.app/google/sr) - Simple tool to programmatically get google search results
+* [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
+
 
 ## Disclaimer
 
