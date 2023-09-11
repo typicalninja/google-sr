@@ -7,11 +7,11 @@ describe('#search', () => {
         const queryResult =  await search({ query: 'nodejs' });
         
         expect(queryResult).length.to.be.greaterThan(0);
-        queryResult.every((result) => {
+        queryResult.every((result, i) => {
             if(result.type === ResultTypes.SearchResult) {
-                expect(result.link).to.be.a('string');
-                expect(result.description).to.be.a('string');
-                expect(result.title).to.be.a('string');
+                expect(result.link).to.be.a('string', `Expected result[${i}].link to be a string`);
+                expect(result.description).to.be.a('string', `Expected result[${i}].description to be a string`);
+                expect(result.title).to.be.a('string', `Expected result[${i}].title to be a string`);
             }
             else throw new TypeError(`Expected result to be a #SearchResult received ${result.type}`)
         });
