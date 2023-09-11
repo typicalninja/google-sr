@@ -1,6 +1,6 @@
 export const OrganicSearchSelector = {
     block: ".Gx5Zad.fP1Qef.xpd.EtOod.pkphOe",
-    link: "[jsname][data-ved]",
+    link: "[data-ved]",
     title: "h3.zBAuLc",
     description: ".BNeawe.s3v9rd.AP7Wnd",
 }
