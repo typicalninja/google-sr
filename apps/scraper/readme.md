@@ -1,6 +1,6 @@
-# Prescraper
+# Scraper
 
-Used to download Google search result for analyzing
+Used to download Google search results html for analyzing
 
 
 # Usage
@@ -8,8 +8,7 @@ Used to download Google search result for analyzing
 > Run with a script
 
 ```ts
-pnpm run pre:scrape
+pnpm install
 
-# or
-yarn run pre:scrape
+node scrape
 ```

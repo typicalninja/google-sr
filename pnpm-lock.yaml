@@ -15,6 +15,15 @@ importers:
         specifier: ^1.10.12
         version: 1.10.12
 
+  apps/scraper:
+    dependencies:
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0
+      cheerio:
+        specifier: 1.0.0-rc.12
+        version: 1.0.0-rc.12
+
   apps/website:
     dependencies:
       next:
