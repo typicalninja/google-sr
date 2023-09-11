@@ -11,7 +11,9 @@
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-> View documentation [here](https://g-sr.vercel.app)
+* View documentation [here](https://g-sr.vercel.app)
+
+* Come chat with us on [our discord](https://discord.gg/ynwckXS9T2)
 
 ## Features ✨
 

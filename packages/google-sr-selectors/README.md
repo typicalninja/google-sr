@@ -12,6 +12,11 @@
 Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
 
 
+* View documentation [here](https://g-sr.vercel.app/google/selectors)
+
+* Come chat with us on [our discord](https://discord.gg/ynwckXS9T2)
+
+
 Please note that the included selectors are intended for the **non-Javascript** version of Google Search page. 
 These were obtained by appending `&gbv=1` to the regular query link.
 

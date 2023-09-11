@@ -4,9 +4,14 @@
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
 [![NPM](https://img.shields.io/npm/l/google-that)](https://www.npmjs.com/package/google-that)
 [![npm version](https://img.shields.io/npm/v/google-that)](https://www.npmjs.com/package/google-that)
+[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 CLI tool to scrape google search results without an api key 🚀.
+
+* View documentation [here](https://g-sr.vercel.app/google/selectors)
+
+* Come chat with us on [our discord](https://discord.gg/ynwckXS9T2)
 
 ## Install 📦
 
@@ -43,9 +48,10 @@ google-that
 This will start the google-that process.
 
 
-## Related projects
+## Related projects 🥂
 
-* [google-sr](https://github.com/typicalninja/google-sr) - This project is a wrapper around google-sr
+* [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
+* [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
 
 ## Disclaimer
 
