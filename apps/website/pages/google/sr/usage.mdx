@@ -30,7 +30,7 @@ To search a specific page you can use the `page` option.
 
 <Callout type="info" emoji="🧩">
 Google's system employs a "from start" approach instead of a direct page numbering system. the page index starts at **0** and each page contains **10** results. 
-Consequently, when utilizing the page option, it's advisable to make use of the [`pageToGoogleQueryPage`](./api.md#pagetogooglequerypage) helper that's provided by google-sr. 
+Consequently, when utilizing the page option, it's advisable to make use of the [`pageToGoogleQueryPage`](https://typicalninja.github.io/google-sr/functions/google_sr.pageToGoogleQueryPage.html) helper that's provided by google-sr. 
 This will allow you to align your intended page numbers (like page 1 = 0, and page 2 = 10) more effectively.
 </Callout>
 
@@ -54,8 +54,8 @@ const searchResults = await search({ query: 'nodejs', page: 40 });
 
 ## Searching multiple pages 
 
-google-sr also offers a simple helper function that wraps around [`search`](./api.md#search)
-named [`searchWithPages`](./api.md#searchwithpages) to perform multi-page searches. This function accepts the same options
+google-sr also offers a simple helper function that wraps around [`search`](https://typicalninja.github.io/google-sr/functions/google_sr.search.html)
+named [`searchWithPages`](https://typicalninja.github.io/google-sr/functions/google_sr.searchWithPages.html) to perform multi-page searches. This function accepts the same options
 as the regular search function, with one notable difference: instead of the `page` option, 
 it utilizes `pages` to specify a range of pages to retrieve.
 
@@ -72,7 +72,7 @@ Checkout [google-that](../that) implementation for inspiration [here](https://gi
 </Callout>
 
 <Callout type="warning" emoji="⚠️">
-Unlike the page options for regular [`search`](./api.md#search) function, for pages, we'll call the [`pageToGoogleQueryPage`](./api.md#pagetogooglequerypage) helper  internally. 
+Unlike the page options for regular [`search`](https://typicalninja.github.io/google-sr/functions/google_sr.search.html) function, for pages, we'll call the [`pageToGoogleQueryPage`](https://typicalninja.github.io/google-sr/functions/google_sr.pageToGoogleQueryPage.html) helper  internally. 
 Kindly refrain from using the helper yourself to avoid unexpected problems.
 </Callout>
 
@@ -108,7 +108,7 @@ Filtering search results allow you to finely control what your are receiving.
 on some occassions this **may even** speed up the parsing.
 
 <Callout type="default" emoji="📚">
-     `ResultTypes` is a enum. documentation can be found [here](/google/sr/api#resulttypes)
+     `ResultTypes` is a enum. documentation can be found [here](https://typicalninja.github.io/google-sr/enums/google_sr.ResultTypes.html)
 </Callout>
 
 The default option you get without sepcifying `filterResults` is equivelent to the following
