@@ -17,3 +17,7 @@ workbox-*
 
 # Scraper/analyzer 
 scrape/download*
+
+
+#Docs
+docs/*

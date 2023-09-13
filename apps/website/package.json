@@ -6,12 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm run gen:typedoc && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "gen:typedoc": "pnpm run gen:typedoc:gsr && pnpm run gen:typedoc:gsrs",
-    "gen:typedoc:gsr": "typedoc --entryPoints ../../packages/google-sr/src/index.ts  --tsconfig ../../packages/google-sr/tsconfig.json --out ./pages/google/sr",
-    "gen:typedoc:gsrs": "typedoc --entryPoints ../../packages/google-sr-selectors/src/index.ts --tsconfig ../../packages/google-sr-selectors/tsconfig.json --out ./pages/google/selectors"
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
