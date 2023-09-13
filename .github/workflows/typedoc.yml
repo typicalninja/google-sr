@@ -1,10 +1,11 @@
-name: Typedoc build
+name: Build typedoc pages
 
 on:
   push:
     branches:
       - main  # Set a branch name to trigger deployment
   pull_request:
+  workflow_dispatch:
 
 jobs:
   deploy:
