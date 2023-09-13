@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Build Packages
+        run: pnpm run build --filter=google-sr --filter=google-sr-selectors
+
       - name: Build Page using typedoc
         run: pnpm run build:typedoc
 
