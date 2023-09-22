@@ -9,17 +9,17 @@ export default {
           titleTemplate: '%s – GSR'
         }
     },
-    primaryHue: 174,
     head: (
         <>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          {/** Analytics */}
+
           <meta property="og:type" content="website" />
           <meta property="og:description" content="Collection of tools to scrape google search results in javascript" />
           <meta property="og:image" content="/images/logo/transparent.png" />
           <meta property="og:url" content="https://g-sr.vercel.app/" />
           
-          
+          {/** Analytics */}
+          <script async src="https://umami.typical.gq/script.js" data-website-id="2dedf0d0-da4d-4b81-9cf3-2fac41885109"></script>
 
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -30,7 +30,7 @@ export default {
         </>
       ),
     footer: {
-      text: `© ${new Date().getFullYear()} GSR project | By typicalninja`,
+      text: `© ${new Date().getFullYear()} GSR project | Made with ☕ by typicalninja`,
     },
     chat: {
       link: 'https://discord.gg/ynwckXS9T2 '
