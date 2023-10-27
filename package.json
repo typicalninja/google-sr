@@ -2,8 +2,6 @@
   "name": "gsr",
   "version": "1.0.0",
   "private": true,
-  "description": "Monorepo for google-sr and its related projects",
-  "main": "index.js",
   "scripts": {
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
