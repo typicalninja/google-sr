@@ -106,14 +106,14 @@ export function loadDictionaryNodes(
 
   const definitions: [string, string][] = [];
 
-  $("div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))").each(
+  $(selectors.definitions).each(
     (index, el) => {
       definitions[index] = ["", ""];
       definitions[index][0] = $(el).text().trim();
     }
   );
 
-  $("div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod").each((index, el) => {
+  $(selectors.examples).each((index, el) => {
     if (definitions[index]) {
       let example = $(el).text().trim();
 
