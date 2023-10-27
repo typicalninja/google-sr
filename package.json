@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
-    "test": "turbo run test --parallel --no-daemon --filter=google-sr --filter=google-sr-selectors",
+    "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
     "build:website": "pnpm run build --filter=google-sr-selectors --filter=google-sr --filter=website",
     "build:typedoc": "typedoc"
   },
