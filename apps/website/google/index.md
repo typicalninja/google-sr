@@ -20,12 +20,35 @@ If you like the project, please give it a star on [Github](https://github.com/ty
 
 ## google-sr
 
-[![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
+[![npm downloads for google-sr](https://img.shields.io/npm/dm/google-sr)](https://www.npmjs.com/package/google-sr)
 
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
-::: tip Links
+::: info Links
 * Guide can be found [here](./sr/)
 * API Documentation can be found [here](https://typicalninja.github.io/google-sr/modules/google_sr.html)
-* NPM is available [here](https://www.npmjs.com/package/google-sr)
+* NPM page is available [here](https://www.npmjs.com/package/google-sr)
+:::
+
+## google-sr-selectors
+
+[![npm downloads for google-sr-selectors](https://img.shields.io/npm/dm/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
+
+Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
+
+::: info Links
+* Guide can be found [here](./selectors/)
+* API Documentation can be found [here](https://typicalninja.github.io/google-sr/modules/google_sr_selectors.html)
+* NPM page is available [here](https://www.npmjs.com/package/google-sr-selectors)
+:::
+
+## google-that
+
+[![npm downloads for google-that](https://img.shields.io/npm/dm/google-that)](https://www.npmjs.com/package/google-that)
+
+CLI tool to scrape google search results without an api key 🚀.
+
+::: info Links
+* Guide can be found [here](./that/)
+* NPM page is available [here](https://www.npmjs.com/package/google-that)
 :::
