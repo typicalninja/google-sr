@@ -5,6 +5,7 @@ export default defineConfig({
   title: "GSR",
   description: "Complete set of tools to scrape google search results",
   cleanUrls: true,
+  lastUpdated : true,
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     // anaytics
@@ -17,7 +18,12 @@ export default defineConfig({
       { text: 'Guide', link: '/google/' },
       { text: 'API Docs', link: 'https://typicalninja.github.io/google-sr/' }
     ],
-
+    editLink: {
+      pattern: 'https://github.com/typicalninja/google-sr/tree/master/apps/website/:path'
+    },
+    search: {
+      provider: 'local'
+    },
     sidebar: [
       {
         text: 'sr',
@@ -60,6 +66,7 @@ export default defineConfig({
       copyright: 'Copyright © 2023 <a href="https://typical.gq/">Typicalninja</a> & contributors'
     }
   },
+  
   markdown: {
     lineNumbers: true
   }

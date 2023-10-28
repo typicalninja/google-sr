@@ -25,7 +25,6 @@ If you like the project, please give it a star on [Github](https://github.com/ty
 Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
 
 ::: tip Links
-
 * Guide can be found [here](./sr/)
 * API Documentation can be found [here](https://typicalninja.github.io/google-sr/modules/google_sr.html)
 * NPM is available [here](https://www.npmjs.com/package/google-sr)
