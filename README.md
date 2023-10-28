@@ -52,9 +52,6 @@ You can find it [here](https://codeberg.org/typicalninja/google-sr)
 ## Disclaimer
 
 This is not sponsored, supported, or affiliated with Google Inc.
-
-Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
-
 The source code within this repository is intended solely for educational purposes.
 
 The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
