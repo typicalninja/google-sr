@@ -21,3 +21,4 @@ scrape/download*
 
 #Docs
 docs/*
+cache

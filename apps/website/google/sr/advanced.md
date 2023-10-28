@@ -1,6 +1,4 @@
-import { Callout, Cards, Card } from 'nextra/components'
-
-# Miscellaneous usage guide
+# Advanced usage guide
 
 ## Custom selectors
 
@@ -9,14 +7,10 @@ import { Callout, Cards, Card } from 'nextra/components'
 google-sr is fully customizable allowing you to fine tune it to your liking. One important part
 of this is to customize the selectors used by the module.
 
-By default google-sr uses [google-sr-selectors](/google/selectors) internally for its selectors.
-However you can customize them using the [searchOptions.selectors](/google/sr/api#selectors) option.
-See the available selectors types in [google-sr-selectors API Documentation](/google/selectors/api)
+By default google-sr uses [google-sr-selectors](/google/selectors/) internally for its selectors.
+However you can customize them using the [searchOptions.selectors](https://typicalninja.github.io/google-sr/interfaces/google_sr.SearchOptions.html#selectors) option.
+See the available selectors types in [google-sr-selectors API Documentation](https://typicalninja.github.io/google-sr/modules/google_sr_selectors.html)
 
-
-<Cards>
-  <Card icon="❓" title="What are selectors?" href="/google/selectors#what-are-selectors" />
-</Cards>
 
 ### Customizing default selectors
 
@@ -25,15 +19,13 @@ Following example will show how to customize the [TimeSearchSelector](https://ty
 
 ```ts
 import { search, ResultTypes } from 'google-sr';
-
-
-// using await (inside async)
+// using async/await
 const searchResults = await search({ 
     query: 'what is the time in uk',
     filterResults: [ResultTypes.TimeResult],
     // modify the selectors
     // other selectors will get deep merged with this option
-    selectors: {
+    selectors: { // [!code focus:7]
         TimeSearchSelector: {
             location: 'some selector',
             time: 'another selector for time',
@@ -45,9 +37,9 @@ const searchResults = await search({
 
 ## Query operators
 
-<Callout type="info" emoji="🕵️‍♂️">
-    For more info on oprators check [this blog (`blog by moz.com`)](https://moz.com/learn/seo/search-operators)
-</Callout>
+:::tip
+For more info on operators check [this blog (`blog by moz.com`)](https://moz.com/learn/seo/search-operators)
+:::
 
 ### What are query operators?
 
@@ -56,10 +48,10 @@ Google search operators are special characters and commands sometimes called “
 
 ### Using query operators
 
-```ts filename="queryOperators.ts"
+```ts
 import { search } from 'google-sr';
  
-// using await (inside async)
+// using async/await
 const searchResults = await search({ query: 'google site:npmjs.com' });
 ```
 

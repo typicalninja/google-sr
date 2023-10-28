@@ -1,16 +1,12 @@
-import { Callout, Cards, Card } from 'nextra/components'
-
-
 # Overview of selectors
 
-<Callout type="info" emoji="🌟">
-     Suggest more types to be added in our [github discussions](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
-</Callout>
+:::tip 🌟 Suggestions
+Suggest more types to be added in our [github discussions](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
+:::
 
-<Callout type="info" emoji="🕒">
-    The selector list was last updated on `8/24/23` for the non-Javascript version of Google Search 
-    by [TypicalNinja](https://github.com/typicalninja/).
-</Callout>
+:::info
+The selector list was last updated on `8/24/23` for the non-Javascript version of Google Search by [TypicalNinja](https://github.com/typicalninja/).
+:::
 
 
 
@@ -104,8 +100,3 @@ Search results obtained via "Currency conversions" queries
     "to": "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd", // 13.53...
 }
 ```
-
-
-<Cards>
-    <Card icon="📗" title="Typedoc documentation" href="https://typicalninja.github.io/google-sr/modules/google_sr_selectors.html" />
-</Cards>
