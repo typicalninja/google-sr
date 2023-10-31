@@ -42,7 +42,13 @@ export default withPwa(defineConfig({
       pattern: 'https://github.com/typicalninja/google-sr/tree/master/apps/website/:path'
     },
     search: {
-      provider: 'local'
+      provider: 'algolia',
+      options: {
+        appId: 'O9D6RFQCVG',
+        apiKey: 'f9d74f9f9f5a0fde8077000d1a75dc51',
+        indexName: 'g-sr',
+        insights: true
+      }
     },
     sidebar: [
       {
