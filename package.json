@@ -2,6 +2,7 @@
   "name": "gsr",
   "version": "1.0.0",
   "private": true,
+  "repository":"https://github.com/typicalninja/google-sr",
   "scripts": {
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
