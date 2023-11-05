@@ -10,6 +10,18 @@
   "devDependencies": {
     "@vite-pwa/assets-generator": "^0.0.10",
     "@vite-pwa/vitepress": "^0.2.3",
-    "vitepress": "1.0.0-rc.24"
+    "vitepress": "1.0.0-rc.24",
+    "workbox-window": "^7.0.0"
+  },
+  "dependencies": {
+    "vue": "^3.3.7"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "search-insights"
+      ]
+    }
   }
 }
