@@ -7,7 +7,7 @@ const docHead = [
   ['link', { rel: 'icon', href: '/favicon.ico' }],
   ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     // anaytics
-  ['script', { src: 'https://umami.typical.gq/script.js', async: '', "data-website-id": '2dedf0d0-da4d-4b81-9cf3-2fac41885109' }],
+  ['script', { src: 'https://umami.typical.gq/script.js', async: '', "data-website-id": '2dedf0d0-da4d-4b81-9cf3-2fac41885109', 'data-do-not-track': 'true' }],
   
   ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' }],
 
