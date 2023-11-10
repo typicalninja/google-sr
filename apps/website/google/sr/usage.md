@@ -84,9 +84,8 @@ import { search, ResultTypes } from 'google-sr';
 await search({ 
     // default behaviour will be the same, you can remove this safely
     filterResults: [ResultTypes.SearchResult], // [!code --]
-    // Using a empty [] will result in 0 results being returned and 
-    // is NOT similar to above
-    filterResults: [] // [!code warning]
+    // Using a empty [] will be equivalent to above
+    filterResults: [] // [!code --]
 });
 ```
 :::
