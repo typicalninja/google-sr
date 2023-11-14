@@ -14,7 +14,7 @@ hero:
       link: /google/
     - theme: alt
       text: API Docs
-      link: https://typicalninja.github.io/google-sr/
+      link: /api/
 
 features:
   - icon: 🛠️

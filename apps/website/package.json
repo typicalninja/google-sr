@@ -3,9 +3,12 @@
   "private": true,
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "pnpm run build:typedoc && vitepress build",
     "preview": "vitepress preview",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg"
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
+    "build:typedoc": "pnpm run gsr:typedoc && pnpm run gsrs:typedoc",
+    "gsr:typedoc": "typedoc --entryPoints ../../packages/google-sr --out api/sr",
+    "gsrs:typedoc": "typedoc --entryPoints ../../packages/google-sr-selectors --out api/selectors"
   },
   "devDependencies": {
     "@vite-pwa/assets-generator": "^0.0.10",
@@ -14,14 +17,8 @@
     "workbox-window": "^7.0.0"
   },
   "dependencies": {
+    "typedoc": "^0.25.1",
+    "typedoc-plugin-markdown": "^3.17.1",
     "vue": "^3.3.7"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "search-insights"
-      ]
-    }
   }
 }

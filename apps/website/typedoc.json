@@ -1,0 +1,12 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "githubPages": false,
+
+  //  "entryPoints": ["../../packages/google-sr"],
+    "name": "GSR",
+    "entryPointStrategy": "packages",
+    "includeVersion": true,
+    "plugin": ["typedoc-plugin-markdown"],
+    "cleanOutputDir": true,
+    "readme": "none"
+}

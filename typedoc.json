@@ -1,9 +1,0 @@
-{
-    "$schema": "https://typedoc.org/schema.json",
-    "githubPages": true,
-
-    "entryPoints": ["packages/**"],
-    "name": "GSR",
-    "entryPointStrategy": "packages",
-    "includeVersion": true,
-}

@@ -1,4 +1,4 @@
-import { HeadConfig, defineConfig } from 'vitepress';
+import { HeadConfig, defineConfig, type DefaultTheme } from 'vitepress';
 import { withPwa } from '@vite-pwa/vitepress';
 
 
@@ -24,6 +24,7 @@ const docHead = [
 
 
 
+
 // https://vitepress.dev/reference/site-config
 export default withPwa(defineConfig({
   title: "GSR",
@@ -36,7 +37,7 @@ export default withPwa(defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/google/' },
-      { text: 'API Docs', link: 'https://typicalninja.github.io/google-sr/' }
+      { text: 'API Docs', link: '/api/' }
     ],
     editLink: {
       pattern: 'https://github.com/typicalninja/google-sr/tree/master/apps/website/:path'
@@ -50,38 +51,12 @@ export default withPwa(defineConfig({
         insights: true
       }
     },
-    sidebar: [
-      {
-        text: 'sr',
-        collapsed: true,
-        items: [
-          { text: 'Introduction', link: '/google/sr/' },
-          { text: 'Usage', link: '/google/sr/usage' },
-          { text: 'Advanced usage', link: '/google/sr/advanced' },
-          { text: 'Result types', link: '/google/sr/types' },
-          { text: 'API Documentation', link: 'https://typicalninja.github.io/google-sr/modules/google_sr.html' },
-          { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
-        ]
-      },
-      {
-        text: 'selectors',
-        collapsed: true,
-        items: [
-          { text: 'Introduction', link: '/google/selectors/' },
-          { text: 'Overview', link: '/google/selectors/overview' },
-          { text: 'API Documentation', link: 'https://typicalninja.github.io/google-sr/modules/google_sr_selectors.html' },
-          { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
-        ]
-      },
-      {
-        text: 'that',
-        collapsed: true,
-        items: [
-          { text: 'Introduction', link: '/google/that/' },
-          { text: 'NPM link', link: 'https://www.npmjs.com/package/google-that' }
-        ]
-      }
-    ],
+    sidebar: {
+      '/google/': { base: '/google/', items: getGuideSidebar() },
+      '/api': { base: '/api/', items: getAPISidebar() },
+      '/api/sr': { base: '/api/sr/', items: getGSRApiSidebar() },
+      '/api/selectors': { base: '/api/selectors/', items: getGSRSApiSidebar() },
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/typicalninja/google-sr' },
@@ -102,3 +77,110 @@ export default withPwa(defineConfig({
   },
   pwa: {}
 }))
+
+function getGuideSidebar(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'sr',
+      collapsed: true,
+      items: [
+        { text: 'Introduction', link: 'sr/' },
+        { text: 'Usage', link: 'sr/usage' },
+        { text: 'Advanced usage', link: 'sr/advanced' },
+        { text: 'Result types', link: 'sr/types' },
+        { text: 'API Documentation', link: '/api' },
+        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
+      ]
+    },
+    {
+      text: 'selectors',
+      collapsed: true,
+      items: [
+        { text: 'Introduction', link: 'selectors/' },
+        { text: 'Overview', link: 'selectors/overview' },
+        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
+      ]
+    },
+    {
+      text: 'that',
+      collapsed: true,
+      items: [
+        { text: 'Introduction', link: 'that/' },
+        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-that' }
+      ]
+    }
+  ]
+}
+
+
+// while the api files are auto generated these are hardcoded
+function getAPISidebar(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'GSR', 
+      link: 'sr/README'
+    },
+    {
+      text: 'GSR-SELECTORS', 
+      link: 'selectors/README'
+    }
+  ]
+}
+
+function getGSRApiSidebar(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Module',
+      link: 'README'
+    },
+    {
+      text: 'Enumerations',
+      collapsed: true,
+      items: [
+        {
+          text: 'ResultTypes',
+          link: 'enums/ResultTypes'
+        }
+      ]
+    },
+    {
+      text: 'Interfaces',
+      collapsed: true,
+      items: [
+        {
+          text: 'SearchOptions',
+          link: 'interfaces/SearchOptions'
+        },
+        {
+          text: 'SearchResult node',
+          link: 'interfaces/SearchResultNode'
+        },
+        {
+          text: 'TranslateResult node',
+          link: 'interfaces/TranslateResultNode'
+        },
+        {
+          text: 'DictionaryResult node',
+          link: 'interfaces/DictionaryResultNode'
+        },
+        {
+          text: 'TimeResult node',
+          link: 'interfaces/TimeResultNode'
+        },
+        {
+          text: 'CurrencryResult node',
+          link: 'interfaces/CurrencyResultNode'
+        }
+      ]
+    }
+  ]
+}
+
+function getGSRSApiSidebar(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Module',
+      link: 'README'
+    }
+  ]
+}

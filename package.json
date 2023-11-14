@@ -2,13 +2,12 @@
   "name": "gsr",
   "version": "1.0.0",
   "private": true,
-  "repository":"https://github.com/typicalninja/google-sr",
+  "repository": "https://github.com/typicalninja/google-sr",
   "scripts": {
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
-    "build:website": "pnpm run build --filter=google-sr-selectors --filter=google-sr --filter=website",
-    "build:typedoc": "typedoc"
+    "build:website": "pnpm run build --filter=google-sr-selectors --filter=google-sr --filter=website"
   },
   "keywords": [],
   "author": "typicalninja",
@@ -20,7 +19,14 @@
   "packageManager": "pnpm@8.6.12",
   "devDependencies": {
     "tsup": "^7.2.0",
-    "turbo": "^1.10.12",
-    "typedoc": "^0.25.1"
+    "turbo": "^1.10.12"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "search-insight"
+      ]
+    }
   }
 }

@@ -8,12 +8,9 @@ dist
 # next
 .next
 
-# docs (pray that anything else is not named api) used to autogen
-api.md
-# service worker for docs
-sw.js
-sw.js.map
-workbox-*
+# docs will be auto gen
+apps/website/api/sr
+apps/website/api/selectors
 
 # Scraper/analyzer 
 scrape/download*
@@ -22,3 +19,4 @@ scrape/download*
 #Docs
 docs/*
 cache
+
