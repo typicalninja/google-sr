@@ -9,7 +9,6 @@
     "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
     "build:website": "pnpm run build --filter=google-sr-selectors --filter=google-sr --filter=website"
   },
-  "keywords": [],
   "author": "typicalninja",
   "license": "Apache-2.0",
   "engines": {
