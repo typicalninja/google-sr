@@ -29,6 +29,9 @@ export default withPwa(defineConfig({
   cleanUrls: true,
   lastUpdated : true,
   head: docHead,
+  sitemap: {
+    hostname: 'https://g-sr.vercel.app/',
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
