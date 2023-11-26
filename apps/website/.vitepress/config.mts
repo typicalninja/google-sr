@@ -1,7 +1,6 @@
 import { HeadConfig, defineConfig, type DefaultTheme } from 'vitepress';
 import { withPwa } from '@vite-pwa/vitepress';
 
-
 const docHead = [
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -21,8 +20,6 @@ const docHead = [
   ['meta', { property: 'og:type', content: 'website' }],
   ['meta', { property: 'og:title', content: 'GSR' }],
 ] satisfies HeadConfig[];
-
-
 
 
 // https://vitepress.dev/reference/site-config
@@ -89,7 +86,6 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
         { text: 'Advanced usage', link: 'sr/advanced' },
         { text: 'Result types', link: 'sr/types' },
         { text: 'API Documentation', link: '/api' },
-        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
       ]
     },
     {
@@ -98,7 +94,7 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
       items: [
         { text: 'Introduction', link: 'selectors/' },
         { text: 'Overview', link: 'selectors/overview' },
-        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-sr' }
+
       ]
     },
     {
@@ -106,7 +102,6 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
       collapsed: true,
       items: [
         { text: 'Introduction', link: 'that/' },
-        { text: 'NPM link', link: 'https://www.npmjs.com/package/google-that' }
       ]
     }
   ]
@@ -117,11 +112,11 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
 function getAPISidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: 'GSR', 
+      text: 'Gsr', 
       link: 'sr/README'
     },
     {
-      text: 'GSR-SELECTORS', 
+      text: 'Gsr selectors', 
       link: 'selectors/README'
     }
   ]
