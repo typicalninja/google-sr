@@ -12,7 +12,49 @@ Easy to use, updated tools for scraping google search results. 🚀
 
 * API documentation can be found [here](https://typicalninja.github.io/google-sr/index.html)
 
+## Install 📦
 
+To get started, you can install **google-sr** using your preferred package manager:
+
+```bash
+
+# npm
+
+npm install google-sr
+
+# pnpm 
+
+pnpm add google-sr
+
+# yarn
+
+yarn add google-sr
+
+```
+
+## Usage
+
+You can easily perform a single-page search like this:
+
+```ts
+import { search, ResultTypes } from 'google-sr';
+
+// using await/async
+const searchResults = await search({ 
+    query: 'nodejs', 
+    safeMode: false, 
+    filterResults: [ResultTypes.SearchResult] 
+});
+
+// will return a []
+console.log(searchResults);
+// should log: true
+console.log(searchResults[0].type === ResultTypes.SearchResult)
+```
+
+* **Read about the returned types [here](https://g-sr.vercel.app/google/sr/types)**
+
+* **More detailed examples & usage can be found [here](https://g-sr.vercel.app/google/sr/usage)**
 
 ## Monorepo
 
