@@ -49,13 +49,19 @@ yarn add google-sr
 You can easily perform a single-page search like this:
 
 ```ts
-import { search } from 'google-sr';
+import { search, ResultTypes } from 'google-sr';
 
-search({ query: 'nodejs' }).then(console.log);
+// using await/async
+const searchResults = await search({ 
+    query: 'nodejs', 
+    safeMode: false, 
+    filterResults: [ResultTypes.SearchResult] 
+});
 
-// or if using await/async
-const searchResults = await search({ query: 'nodejs' });
+// will return a []
 console.log(searchResults);
+// should log: true
+console.log(searchResults[0].type === ResultTypes.SearchResult)
 ```
 
 * **Read about the returned types [here](https://g-sr.vercel.app/google/sr/types)**
