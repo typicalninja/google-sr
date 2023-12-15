@@ -2,7 +2,6 @@ import type { CheerioAPI } from "cheerio";
 
 // only types
 import type {
-
   // nodes
   SearchResultNode,
   TranslateResultNode,
