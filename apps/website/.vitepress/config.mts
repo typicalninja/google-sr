@@ -26,7 +26,7 @@ const docHead = [
 export default withPwa(defineConfig({
   title: "GSR",
   description: "Complete set of tools to scrape google search results",
-  cleanUrls: true,
+  cleanUrls: false,
   lastUpdated : true,
   head: docHead,
   sitemap: {
