@@ -82,3 +82,7 @@ export function pageToGoogleQueryPage(page: number) {
 
 export const generateArrayOfNumbers = (maxNumber: number) =>
   new Array(maxNumber).fill(0).map((_, index) => index + 1);
+
+
+
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
