@@ -1,5 +1,3 @@
-[google-sr - v3.2.1](../README.md) / SearchOptions
-
 # Interface: SearchOptions
 
 Search options supported by the parser

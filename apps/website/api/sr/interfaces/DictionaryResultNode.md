@@ -1,5 +1,3 @@
-[google-sr - v3.2.1](../README.md) / DictionaryResultNode
-
 # Interface: DictionaryResultNode
 
 ## Table of contents
