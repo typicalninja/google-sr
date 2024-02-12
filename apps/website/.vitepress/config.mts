@@ -26,7 +26,7 @@ const docHead = [
 export default defineConfig({
   title: "GSR",
   description: "Complete set of tools to scrape google search results",
-  cleanUrls: false,
+  cleanUrls: true,
   lastUpdated : true,
   head: docHead,
   sitemap: {
