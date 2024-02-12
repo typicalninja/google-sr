@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "vitepress dev",
-    "build": "pnpm run build:typedoc && vitepress build",
+    "build": "pnpm run build:typedoc && pnpm run build:vitepress",
     "build:vitepress": "vitepress build",
     "preview": "vitepress preview",
     "build:typedoc": "pnpm run gsr:typedoc && pnpm run gsrs:typedoc",

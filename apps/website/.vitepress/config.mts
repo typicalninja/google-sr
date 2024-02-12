@@ -54,8 +54,8 @@ export default defineConfig({
     sidebar: {
       '/google/': { base: '/google/', items: getGuideSidebar() },
       '/api': { base: '/api/', items: getAPISidebar() },
-      '/api/sr': { base: '/api/sr/', items: getGSRApiSidebar() },
-      '/api/selectors': { base: '/api/selectors/', items: getGSRSApiSidebar() },
+      '/api/sr/': { base: '/api/sr/', items: getGSRApiSidebar() },
+      '/api/selectors/': { base: '/api/selectors/', items: getGSRSApiSidebar() },
     },
 
     socialLinks: [

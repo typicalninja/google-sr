@@ -8,5 +8,5 @@
     "includeVersion": true,
     "plugin": ["typedoc-plugin-markdown"],
     "cleanOutputDir": true,
-    "readme": "none"
+    "readme": "none",
 }
