@@ -10,6 +10,7 @@ import {
   constructSearchConfig,
   generateArrayOfNumbers,
   pageToGoogleQueryPage,
+  sleep,
 } from "./helpers";
 import { deepmerge } from "deepmerge-ts";
 import {
@@ -91,9 +92,9 @@ export async function search(searchOptions: Partial<SearchOptions>) {
 
 /**
  * Search multiple pages
- * @param query
- * @param pages no of pages or array of pages numbers to retrieve
  * @param options
+ * @param options.pages no of pages / array of pages numbers to retrieve
+ * @param options.searchDelay amount of milliseconds (ms) the package should wait between retrieving results (default is disabled) useful with ratelimits
  * @returns Array of arrays representing pages containing search results
  *
  * @example
@@ -119,8 +120,9 @@ export async function search(searchOptions: Partial<SearchOptions>) {
  */
 export async function searchWithPages({
   pages,
+  searchDelay = 0,
   ...options
-}: Partial<Omit<SearchOptions, "page">> & { pages: number | number[] }) {
+}: Partial<Omit<SearchOptions, "page">> & { pages: number | number[]; searchDelay?: number }) {
   const queryPages = Array.isArray(pages)
     ? pages
     : generateArrayOfNumbers(pages);
@@ -130,6 +132,8 @@ export async function searchWithPages({
     (options as SearchOptions).page = pageToGoogleQueryPage(page);
     const result = await search(options);
     pagesResults.push(result);
+    // if search delay is enabled 
+    searchDelay && await sleep(searchDelay);
   }
 
   return pagesResults;
