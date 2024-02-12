@@ -2,8 +2,8 @@
 
 ## GSR API
 
-[View GSR Api documentation here](/api/sr/README)
+[View GSR Api documentation here](/api/sr/)
 
 ## GSR-Selectors API
 
-[View GSR-Selectors Api documentation here](/api/selectors/README)
+[View GSR-Selectors Api documentation here](/api/selectors/)

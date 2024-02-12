@@ -8,9 +8,9 @@ dist
 # next
 .next
 
-# docs will be auto gen
-apps/website/api/sr
-apps/website/api/selectors
+# docs will be auto gen (Comment out for now)
+#apps/website/api/sr
+#apps/website/api/selectors
 
 # Scraper/analyzer 
 scrape/download*

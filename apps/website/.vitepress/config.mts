@@ -115,11 +115,11 @@ function getAPISidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Gsr', 
-      link: 'sr/README'
+      link: 'sr/'
     },
     {
       text: 'Gsr selectors', 
-      link: 'selectors/README'
+      link: 'selectors/'
     }
   ]
 }
@@ -128,7 +128,7 @@ function getGSRApiSidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Module',
-      link: 'README'
+      link: '/'
     },
     {
       text: 'Enumerations',
