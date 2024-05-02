@@ -3,20 +3,16 @@
   "private": true,
   "scripts": {
     "dev": "vitepress dev",
-    "build": "pnpm run build:typedoc && vitepress build",
+    "build": "pnpm run build:vitepress",
     "build:vitepress": "vitepress build",
     "preview": "vitepress preview",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal public/logo.svg",
     "build:typedoc": "pnpm run gsr:typedoc && pnpm run gsrs:typedoc",
     "gsr:typedoc": "typedoc --entryPoints ../../packages/google-sr --out api/sr",
     "gsrs:typedoc": "typedoc --entryPoints ../../packages/google-sr-selectors --out api/selectors"
   },
   "devDependencies": {
-    "@vite-pwa/assets-generator": "^0.0.11",
-    "@vite-pwa/vitepress": "^0.3.1",
     "vitepress": "1.0.0-rc.31",
-    "vue": "^3.3.9",
-    "workbox-window": "^7.0.0"
+    "vue": "^3.3.9"
   },
   "dependencies": {
     "typedoc": "^0.25.1",

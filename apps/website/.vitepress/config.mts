@@ -1,11 +1,13 @@
 import { HeadConfig, defineConfig, type DefaultTheme } from 'vitepress';
 
+
 const docHead = [
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['link', { rel: 'icon', href: '/favicon.ico' }],
   ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     // anaytics
   //['script', { src: 'https://typical-umami.vercel.app/script.js', async: '', "data-website-id": '2dedf0d0-da4d-4b81-9cf3-2fac41885109', 'data-do-not-track': 'true' }],
+
   
   ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' }],
 
@@ -53,8 +55,8 @@ export default defineConfig({
     sidebar: {
       '/google/': { base: '/google/', items: getGuideSidebar() },
       '/api': { base: '/api/', items: getAPISidebar() },
-      '/api/sr': { base: '/api/sr/', items: getGSRApiSidebar() },
-      '/api/selectors': { base: '/api/selectors/', items: getGSRSApiSidebar() },
+      '/api/sr/': { base: '/api/sr/', items: getGSRApiSidebar() },
+      '/api/selectors/': { base: '/api/selectors/', items: getGSRSApiSidebar() },
     },
 
     socialLinks: [
@@ -74,7 +76,7 @@ export default defineConfig({
       dark: 'one-dark-pro',
     },
   },
-});
+})
 
 function getGuideSidebar(): DefaultTheme.SidebarItem[] {
   return [
@@ -114,11 +116,11 @@ function getAPISidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Gsr', 
-      link: 'sr/README'
+      link: 'sr/'
     },
     {
       text: 'Gsr selectors', 
-      link: 'selectors/README'
+      link: 'selectors/'
     }
   ]
 }
@@ -127,7 +129,7 @@ function getGSRApiSidebar(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Module',
-      link: 'README'
+      link: '/'
     },
     {
       text: 'Enumerations',
