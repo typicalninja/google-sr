@@ -1,12 +1,11 @@
 import { HeadConfig, defineConfig, type DefaultTheme } from 'vitepress';
-import { withPwa } from '@vite-pwa/vitepress';
 
 const docHead = [
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['link', { rel: 'icon', href: '/favicon.ico' }],
   ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     // anaytics
-  ['script', { src: 'https://typical-umami.vercel.app/script.js', async: '', "data-website-id": '2dedf0d0-da4d-4b81-9cf3-2fac41885109', 'data-do-not-track': 'true' }],
+  //['script', { src: 'https://typical-umami.vercel.app/script.js', async: '', "data-website-id": '2dedf0d0-da4d-4b81-9cf3-2fac41885109', 'data-do-not-track': 'true' }],
   
   ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png', sizes: '180x180' }],
 
@@ -23,7 +22,7 @@ const docHead = [
 
 
 // https://vitepress.dev/reference/site-config
-export default withPwa(defineConfig({
+export default defineConfig({
   title: "GSR",
   description: "Complete set of tools to scrape google search results",
   cleanUrls: false,
@@ -75,8 +74,7 @@ export default withPwa(defineConfig({
       dark: 'one-dark-pro',
     },
   },
-  pwa: {}
-}))
+});
 
 function getGuideSidebar(): DefaultTheme.SidebarItem[] {
   return [
