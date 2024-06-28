@@ -14,3 +14,4 @@ node search-dump.js [query]
 ```
 
 Output will be at `/sdump/{date}.dump.html`.
+Output relevant for google-sr-selectors will be in `/sdump/{date}.selectors.md`
