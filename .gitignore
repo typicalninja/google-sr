@@ -12,8 +12,8 @@ dist
 #apps/website/api/sr
 #apps/website/api/selectors
 
-# Scraper/analyzer 
-scrape/download*
+# Google search dumpr files
+apps/scraper/sdump
 
 
 #Docs
