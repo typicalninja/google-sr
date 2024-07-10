@@ -98,4 +98,4 @@ export type ResultNodeTyper<T, K extends string> = {
  */
 export type AsArrayElement<T> = T extends Array<infer U> ? U : T;
 
-export type SearchResultType<R extends ResultSelector> = AsArrayElement<ReturnType<R>>;
+export type SearchResultType<R extends ResultSelector> = NonNullable<AsArrayElement<ReturnType<R>>>;
