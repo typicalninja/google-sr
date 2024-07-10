@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "private": true,
+  "scripts": {
+    "basic": "tsx src/basic.ts",
+    "translate": "tsx src/translate.ts",
+    "custom-selector": "tsx src/custom-selector.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "google-sr": "workspace:^"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.2"
+  }
+}
