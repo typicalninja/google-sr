@@ -12,6 +12,8 @@ import { OrganicResult } from "./results";
  * @param options Search options
  * @returns Search results as an array of SearchResultNodes
  */
+export async function search<R extends ResultSelector>(options: SearchOptions<R> & { strictSelector?: false }): Promise<Partial<SearchResultType<R>>[]>;
+export async function search<R extends ResultSelector>(options: SearchOptions<R> & { strictSelector: true }): Promise<SearchResultType<R>[]>;
 export async function search<R extends ResultSelector>(
   options: SearchOptions<R>
 ) {
@@ -27,7 +29,7 @@ export async function search<R extends ResultSelector>(
   let searchResults: SearchResultType<R>[] = [];
   // Iterate over each selector to call it with the cheerioApi and concatenate the results
   for (const selector of selectors) {
-    const result = selector(cheerioApi) as SearchResultType<R>[];
+    const result = selector(cheerioApi, Boolean(options.strictSelector)) as SearchResultType<R>[];
     // Result must be flattened to a single array
     if(result) searchResults = searchResults.concat(result);
   }

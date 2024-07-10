@@ -20,7 +20,7 @@ export type CurrencyResultNode = ResultNodeTyper<typeof ResultTypes.CurrencyResu
 // All possible result types as a union
 export type SearchResultNode = OrganicResultNode | TranslateResultNode | DictionaryResultNode | TimeResultNode | CurrencyResultNode;
 // the type used to identify a parser/selector function
-export type ResultSelector<R extends SearchResultNode = SearchResultNode> = (cheerio: CheerioAPI) => R[] | R | null;
+export type ResultSelector<R extends SearchResultNode = SearchResultNode> = (cheerio: CheerioAPI, strictSelector: boolean) => R[] | R | null;
 export interface SearchOptions<R extends ResultSelector = ResultSelector> {
   /**
    * Search query
@@ -46,11 +46,11 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
   strictSelector?: boolean;
 
   /**
-   * Headers to be sent with the request
+   * Additional headers to be sent with the request
    */
   requestHeaders?: Record<string, string>;
   /**
-   * Additional url parameters
+   * Additional url parameters to be sent with the request
    */
   requestParams?: Record<string, string>;
 }

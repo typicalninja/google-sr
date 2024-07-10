@@ -21,7 +21,7 @@ import { extractUrlFromGoogleLink, isResultValid, throwNoCheerioError } from "./
  * Parses regular non-ads search results.
  * @returns Array of OrganicSearchResultNodes
  */
-export const OrganicResult: ResultSelector<OrganicResultNode> = ($) => {
+export const OrganicResult: ResultSelector<OrganicResultNode> = ($, strictSelector) => {
   if (!$) throwNoCheerioError("OrganicResult");
   const parsedResults: OrganicResultNode[] = [];
   const organicSearchBlocks = $(OrganicSearchSelector.block).toArray();
@@ -36,7 +36,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = ($) => {
       link = extractUrlFromGoogleLink(link) as string;
     if (typeof description === "string") description = description;
 
-    if(isResultValid(false, link, description, title)) continue;
+    if(isResultValid(strictSelector, link, description, title)) continue;
 
     parsedResults.push({
       type: ResultTypes.OrganicResult,
@@ -53,7 +53,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = ($) => {
  * Parses translation search results.
  * @returns Array of TranslateSearchResultNodes
  */
-export const TranslateResult: ResultSelector<TranslateResultNode> = ($) => {
+export const TranslateResult: ResultSelector<TranslateResultNode> = ($, strictSelector) => {
   if (!$) throwNoCheerioError("TranslateResult");
   const sourceLanguage = $(TranslateSearchSelector.sourceLanguage)
     .text()
@@ -68,7 +68,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = ($) => {
   const translationPronunciation = $(TranslateSearchSelector.pronunciation).text().trim();
 
 
-  if(isResultValid(false, sourceLanguage, translationLanguage, sourceText, translationText, translationPronunciation)) return null;
+  if(isResultValid(strictSelector, sourceLanguage, translationLanguage, sourceText, translationText, translationPronunciation)) return null;
 
   return {
     type: ResultTypes.TranslateResult,
@@ -85,7 +85,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = ($) => {
  * Parses dictionary search results.
  * @returns Array of DictionaryResultNode
  */
-export const DictionaryResult: ResultSelector<DictionaryResultNode> = ($) => {
+export const DictionaryResult: ResultSelector<DictionaryResultNode> = ($, strictSelector) => {
   if (!$) throwNoCheerioError("DictionaryResult");
   const audio = $(DictionarySearchSelector.audio).attr("src") || "";
   const phonetic = $(DictionarySearchSelector.phonetic).text().trim();
@@ -111,7 +111,7 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = ($) => {
     }
   });
 
-  if(isResultValid(false, audio, phonetic, word)) return null;
+  if(isResultValid(strictSelector, audio, phonetic, word)) return null;
 
   return {
     type: ResultTypes.DictionaryResult,
@@ -127,13 +127,13 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = ($) => {
  * Parses time search results.
  * @returns Array of TimeResultNode
  */
-export const TimeResult: ResultSelector<TimeResultNode> = ($) => {
+export const TimeResult: ResultSelector<TimeResultNode> = ($, strictSelector) => {
   if (!$) throwNoCheerioError("TimeResult");
   const location = $(TimeSearchSelector.location).text().trim();
   const time = $(TimeSearchSelector.time).text().trim();
   const timeInWords = $(TimeSearchSelector.timeInWords).text().trim();
 
-  if(isResultValid(false, location, time, timeInWords)) return null;
+  if(isResultValid(strictSelector, location, time, timeInWords)) return null;
 
   return {
     type: ResultTypes.TimeResult,
@@ -147,13 +147,13 @@ export const TimeResult: ResultSelector<TimeResultNode> = ($) => {
  * Parses currency convert search results.
  * @returns Array of CurrencyResultNode
  */
-export const CurrencyResult: ResultSelector<CurrencyResultNode> = ($) => {
+export const CurrencyResult: ResultSelector<CurrencyResultNode> = ($, strictSelector) => {
   if (!$) throwNoCheerioError("CurrencyResult");
   const from = $(CurrencyConvertSelector.from).text().replace('=', '').trim();
   const to = $(CurrencyConvertSelector.to).text().trim();
 
 
-  if(isResultValid(false, from, to)) return null;
+  if(isResultValid(strictSelector, from, to)) return null;
 
   return {
     type: ResultTypes.CurrencyResult,
