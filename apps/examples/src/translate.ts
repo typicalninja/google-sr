@@ -8,6 +8,7 @@ import { search, TranslateResult, ResultTypes } from "google-sr"
 
 const results = await search({
   query: "translate hello to spanish",
+  // we only want the results for the translation
   resultTypes: [TranslateResult]
 });
 
