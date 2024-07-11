@@ -50,6 +50,8 @@ export function prepareRequestConfig(opts: SearchOptions): AxiosRequestConfig {
     requestConfig.params.set('q', opts.query);
     // force the search result to be non javascript
     requestConfig.params.set('gbv', '1');
+    // safe search
+    if(opts.safeMode === true) requestConfig.params.set('safe', 'active');
 
     // force the response to be text
     requestConfig.responseType = "text";
