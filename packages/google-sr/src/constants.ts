@@ -1,5 +1,6 @@
 import type { CheerioAPI } from "cheerio";
 import type { ResultNodeTyper } from "./utils";
+import type { AxiosRequestConfig } from "axios";
 
 export const ResultTypes = {
   OrganicResult: "ORGANIC",
@@ -36,21 +37,17 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
    */
   page?: number;
   /**
-   * Filter the types of results returned (may have performance impact)
+   * Control the type of results returned (can have a significant performance impact)
    */
   resultTypes?: R[];
 
   /**
-   * when true, will only return results that contain all/non-undefined properties in the result
+   * when true, will only return resultNodes that do not contain any undefined/empty properties
    */
   strictSelector?: boolean;
 
   /**
-   * Additional headers to be sent with the request
+   * Custom request configuration to be sent with the request
    */
-  requestHeaders?: Record<string, string>;
-  /**
-   * Additional url parameters to be sent with the request
-   */
-  requestParams?: Record<string, string>;
+  requestConfig?: AxiosRequestConfig;
 }

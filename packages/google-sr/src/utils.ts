@@ -33,32 +33,28 @@ export function extractUrlFromGoogleLink(googleLink: string): string | null {
 
 
 /**
- * Accepts searchOptions and creates all the relevant configuration for a axios request
+ * Accepts searchOptions and creates all the relevant configuration for an axios request
  * @param opts 
  * @returns 
  */
 export function prepareRequestConfig(opts: SearchOptions): AxiosRequestConfig {
-    const requestHeaders = opts.requestHeaders ?? {};
+    const requestConfig: AxiosRequestConfig = opts.requestConfig ?? {};
     if(typeof opts.query !== 'string') throw new TypeError(`Search query must be a string, received ${typeof opts.query} instead.`)
-    if(typeof requestHeaders !== "object") throw new TypeError(`Request headers must be an object if specified, received ${typeof requestHeaders}.`);    
-    const finalHeaders = Object.assign({}, baseHeaders, requestHeaders);
+    if(typeof requestConfig !== "object") throw new TypeError(`Request config must be an object if specified, received ${typeof requestConfig}.`);    
+    // merge the base headers with the provided headers if any
+    requestConfig.headers = requestConfig.headers ? Object.assign({}, baseHeaders, requestConfig.headers) : baseHeaders;
+    requestConfig.url = requestConfig.url ?? "https://www.google.com/search";
 
-    // use the default or provided base url
-    const searchParams = new URLSearchParams(opts.requestParams);
-
+    requestConfig.params = new URLSearchParams(requestConfig.params);
     // set the actual query
-    searchParams.set('q', opts.query)
+    requestConfig.params.set('q', opts.query);
     // force the search result to be non javascript
-    searchParams.set('gbv', '1')
+    requestConfig.params.set('gbv', '1');
 
-    return {
-        headers: finalHeaders,
-        url: "https://www.google.com/search",
-        params: searchParams,
+    // force the response to be text
+    requestConfig.responseType = "text";
 
-        // force the response to be text
-        responseType: "text",
-    }
+    return requestConfig
 }
 
 /**
