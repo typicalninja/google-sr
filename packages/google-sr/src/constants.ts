@@ -27,15 +27,12 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
    * Search query
    */
   query: string;
+  
   /**
    * Toggle to enable google safe mode
    */
   safeMode?: boolean;
-  /**
-   * Page number to fetch. Google page numbers are different that what you might expect
-   * we suggest you to use searchWithPages instead
-   */
-  page?: number;
+
   /**
    * Control the type of results returned (can have a significant performance impact)
    */
