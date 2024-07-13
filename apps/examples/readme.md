@@ -6,7 +6,9 @@ This is a collection of examples for the [google-sr](https://github.com/google-s
 
 Scripts are written in TypeScript.
 
+Here [script] is the file name of any file in the `src` directory without the `.ts` extension.
+
 ```sh
 pnpm install
-pnpm run <script>
+pnpm run [script]
 ```
