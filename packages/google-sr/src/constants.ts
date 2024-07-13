@@ -22,6 +22,10 @@ export type CurrencyResultNode = ResultNodeTyper<typeof ResultTypes.CurrencyResu
 export type SearchResultNode = OrganicResultNode | TranslateResultNode | DictionaryResultNode | TimeResultNode | CurrencyResultNode;
 // the type used to identify a parser/selector function
 export type ResultSelector<R extends SearchResultNode = SearchResultNode> = (cheerio: CheerioAPI, strictSelector: boolean) => R[] | R | null;
+
+/**
+ * Search options for single page search
+ */
 export interface SearchOptions<R extends ResultSelector = ResultSelector> {
   /**
    * Search query
@@ -47,4 +51,33 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
    * Custom request configuration to be sent with the request
    */
   requestConfig?: AxiosRequestConfig;
+}
+
+
+/**
+ * Search options for multiple pages search
+ */
+export interface SearchOptionsWithPages<R extends ResultSelector = ResultSelector> extends SearchOptions<R> {
+  /**
+   * Total number of pages to search or an array of specific pages to search
+   * 
+   * google search uses cursor-based pagination. 
+   * 
+   * Specific page numbers are incremented by 10 starting from 0 (page 1)
+   * 
+   * If total number of pages is provided, cursor will be created according to: start = page * 10
+   */
+  pages: number | number[];
+
+  /**
+   * Make the returned results into a single array
+   */
+  flattenResults?: boolean;
+
+  /**
+   * Delay between each request in milliseconds. helps to avoid rate limiting issues.
+   * 
+   * Default is 1000 ms (1 second). set to 0 to disable delay.
+   */
+  delay?: number;
 }
