@@ -4,7 +4,8 @@
   "scripts": {
     "basic": "tsx src/basic.ts",
     "translate": "tsx src/translate.ts",
-    "custom-selector": "tsx src/custom-selector.ts"
+    "custom-selector": "tsx src/custom-selector.ts",
+    "paged": "tsx src/paged.ts"
   },
   "type": "module",
   "dependencies": {
