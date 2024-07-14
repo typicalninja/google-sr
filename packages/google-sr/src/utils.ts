@@ -68,12 +68,13 @@ export function throwNoCheerioError(resultParserName: keyof typeof ResultTypes):
 }
 
 /**
- * Internal utility function to check if a selectors result should be null depending on the strictSelector option
+ * Internal utility function to check if all properties are empty,
+ *  with additional logic for strictSelector option to check if any property is empty
  * @param result 
  * @param strictSelector 
  * @private
  */
-export function isResultValid(strictSelector: boolean, ...values: (string | undefined | null)[]): boolean {
+export function isEmpty(strictSelector: boolean, ...values: (string | undefined | null)[]): boolean {
   if(strictSelector) return values.some(value => value === '' || value === undefined || value === null);
   return values.every(value => value === '' || value === undefined || value === null);
 }
@@ -87,7 +88,7 @@ export function isResultValid(strictSelector: boolean, ...values: (string | unde
  */
 export type ResultNodeTyper<T, K extends string> = {
   type: T;
-} & Record<K, string>;
+} & Record<K, string >;
 
 /**
  * Internal utility type to convert a array type (T[]) to a single type (T)

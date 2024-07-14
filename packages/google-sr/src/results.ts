@@ -15,7 +15,7 @@ import {
   TimeSearchSelector,
   CurrencyConvertSelector,
 } from "google-sr-selectors";
-import { extractUrlFromGoogleLink, isResultValid, throwNoCheerioError } from "./utils";
+import { extractUrlFromGoogleLink, isEmpty, throwNoCheerioError } from "./utils";
 
 /**
  * Parses regular non-ads search results.
@@ -36,7 +36,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = ($, strictSelect
       link = extractUrlFromGoogleLink(link) as string;
     if (typeof description === "string") description = description;
 
-    if(isResultValid(strictSelector, link, description, title)) continue;
+    if(isEmpty(strictSelector, link, description, title)) continue;
 
     parsedResults.push({
       type: ResultTypes.OrganicResult,
@@ -68,7 +68,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = ($, strictSe
   const translationPronunciation = $(TranslateSearchSelector.pronunciation).text().trim();
 
 
-  if(isResultValid(strictSelector, sourceLanguage, translationLanguage, sourceText, translationText, translationPronunciation)) return null;
+  if(isEmpty(strictSelector, sourceLanguage, translationLanguage, sourceText, translationText, translationPronunciation)) return null;
 
   return {
     type: ResultTypes.TranslateResult,
@@ -111,7 +111,7 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = ($, strict
     }
   });
 
-  if(isResultValid(strictSelector, audio, phonetic, word)) return null;
+  if(isEmpty(strictSelector, audio, phonetic, word)) return null;
 
   return {
     type: ResultTypes.DictionaryResult,
@@ -133,7 +133,7 @@ export const TimeResult: ResultSelector<TimeResultNode> = ($, strictSelector) =>
   const time = $(TimeSearchSelector.time).text().trim();
   const timeInWords = $(TimeSearchSelector.timeInWords).text().trim();
 
-  if(isResultValid(strictSelector, location, time, timeInWords)) return null;
+  if(isEmpty(strictSelector, location, time, timeInWords)) return null;
 
   return {
     type: ResultTypes.TimeResult,
@@ -153,7 +153,7 @@ export const CurrencyResult: ResultSelector<CurrencyResultNode> = ($, strictSele
   const to = $(CurrencyConvertSelector.to).text().trim();
 
 
-  if(isResultValid(strictSelector, from, to)) return null;
+  if(isEmpty(strictSelector, from, to)) return null;
 
   return {
     type: ResultTypes.CurrencyResult,
