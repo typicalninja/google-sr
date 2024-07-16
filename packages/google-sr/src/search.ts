@@ -15,10 +15,10 @@ import { OrganicResult } from "./results";
  */
 export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R> & { strictSelector?: false }
-): Promise<Partial<SearchResultType<R>>[]>;
+): Promise<SearchResultType<R>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R> & { strictSelector: true }
-): Promise<SearchResultType<R>[]>;
+): Promise<SearchResultType<R, true>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R>
 ) {
@@ -76,11 +76,22 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
  * ```
  * @returns Search results as an array of SearchResultNodes or an array of arrays of SearchResultNodes
  */
-export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(options: SearchOptionsWithPages<R> & { flattenResults?: false; }): Promise<SearchResultType<R>[][]>;
-export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(options: SearchOptionsWithPages<R> & { flattenResults: true }): Promise<SearchResultType<R>[]>;
+// we have to handle overloads for both flattenResults and strictSelector
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
+  options: SearchOptionsWithPages<R> & { flattenResults?: false; strictSelector?: false }
+): Promise<SearchResultType<R>[][]>;
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
+  options: SearchOptionsWithPages<R> & { flattenResults?: false; strictSelector: true }
+): Promise<SearchResultType<R, true>[][]>;
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
+  options: SearchOptionsWithPages<R> & { flattenResults: true; strictSelector?: false }
+): Promise<SearchResultType<R>[]>;
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
+  options: SearchOptionsWithPages<R> & { flattenResults: true; strictSelector: true }
+): Promise<SearchResultType<R, true>[]>;
 export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptionsWithPages<R>
-): Promise<SearchResultType<R>[] | SearchResultType<R>[][]> {
+) {
   if (!options)
     throw new TypeError(
       `Search options must be provided. Received ${typeof options}`

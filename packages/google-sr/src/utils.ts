@@ -88,7 +88,7 @@ export function isEmpty(strictSelector: boolean, ...values: (string | undefined 
  */
 export type ResultNodeTyper<T, K extends string> = {
   type: T;
-} & Record<K, string >;
+} & Record<K, string | null>;
 
 /**
  * Internal utility type to convert a array type (T[]) to a single type (T)
@@ -97,4 +97,13 @@ export type ResultNodeTyper<T, K extends string> = {
  */
 export type AsArrayElement<T> = T extends Array<infer U> ? U : T;
 
-export type SearchResultType<R extends ResultSelector> = NonNullable<AsArrayElement<ReturnType<R>>>;
+/**
+ * Internal utility type to get a record without null and undefined values
+ * @private
+ */
+export type NonNullableRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
+
+/**
+ * Generic type for the search results, derives the resultTypes from selector array.
+ */
+export type SearchResultType<R extends ResultSelector, S extends boolean = false> = S extends true ? NonNullableRecord<NonNullable<AsArrayElement<ReturnType<R>>>> : NonNullable<AsArrayElement<ReturnType<R>>>;
