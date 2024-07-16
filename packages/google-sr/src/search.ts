@@ -13,13 +13,13 @@ import { OrganicResult } from "./results";
  * @param options Search options
  * @returns Search results as an array of SearchResultNodes
  */
-export async function search<R extends ResultSelector>(
+export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R> & { strictSelector?: false }
 ): Promise<Partial<SearchResultType<R>>[]>;
-export async function search<R extends ResultSelector>(
+export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R> & { strictSelector: true }
 ): Promise<SearchResultType<R>[]>;
-export async function search<R extends ResultSelector>(
+export async function search<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptions<R>
 ) {
   if (!options)
@@ -76,9 +76,9 @@ export async function search<R extends ResultSelector>(
  * ```
  * @returns Search results as an array of SearchResultNodes or an array of arrays of SearchResultNodes
  */
-export async function searchWithPages<R extends ResultSelector>(options: SearchOptionsWithPages<R> & { flattenResults?: false; }): Promise<SearchResultType<R>[][]>;
-export async function searchWithPages<R extends ResultSelector>(options: SearchOptionsWithPages<R> & { flattenResults: true }): Promise<SearchResultType<R>[]>;
-export async function searchWithPages<R extends ResultSelector>(
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(options: SearchOptionsWithPages<R> & { flattenResults?: false; }): Promise<SearchResultType<R>[][]>;
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(options: SearchOptionsWithPages<R> & { flattenResults: true }): Promise<SearchResultType<R>[]>;
+export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptionsWithPages<R>
 ): Promise<SearchResultType<R>[] | SearchResultType<R>[][]> {
   if (!options)
