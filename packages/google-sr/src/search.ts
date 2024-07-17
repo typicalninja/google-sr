@@ -78,17 +78,11 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
  */
 // we have to handle overloads for both flattenResults and strictSelector
 export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
-  options: SearchOptionsWithPages<R> & { flattenResults?: false; strictSelector?: false }
+  options: SearchOptionsWithPages<R> & { strictSelector?: false }
 ): Promise<SearchResultType<R>[][]>;
 export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
-  options: SearchOptionsWithPages<R> & { flattenResults?: false; strictSelector: true }
+  options: SearchOptionsWithPages<R> & { strictSelector: true }
 ): Promise<SearchResultType<R, true>[][]>;
-export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
-  options: SearchOptionsWithPages<R> & { flattenResults: true; strictSelector?: false }
-): Promise<SearchResultType<R>[]>;
-export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
-  options: SearchOptionsWithPages<R> & { flattenResults: true; strictSelector: true }
-): Promise<SearchResultType<R, true>[]>;
 export async function searchWithPages<R extends ResultSelector = typeof OrganicResult>(
   options: SearchOptionsWithPages<R>
 ) {
@@ -103,7 +97,7 @@ export async function searchWithPages<R extends ResultSelector = typeof OrganicR
 
   // instead of using the above search() function,
   // we must reimplement it in order to make it efficient, since it will call same function for each page unnecessarily
-  let searchResults: (SearchResultType<R>[][]) = [];
+  let searchResults: (SearchResultType<R>[])[] = [];
   const pages = Array.isArray(options.pages)
     ? options.pages
     : Array.from({ length: options.pages }, (_, i) => i * 10);
@@ -121,13 +115,12 @@ export async function searchWithPages<R extends ResultSelector = typeof OrganicR
       const result = selector(
         cheerioApi,
         Boolean(options.strictSelector)
-      ) as SearchResultType<R>[];
+      ) as SearchResultType<R>;
       // Result must be flattened to a single array
       if (result) pageResults = pageResults.concat(result);
     }
 
-    if (options.flattenResults) searchResults = searchResults.concat(pageResults);
-    else searchResults.push(pageResults);
+    searchResults.push(pageResults);
   }
 
   return searchResults;

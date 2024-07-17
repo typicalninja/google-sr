@@ -68,12 +68,6 @@ export interface SearchOptionsWithPages<R extends ResultSelector = ResultSelecto
    * If total number of pages is provided, cursor will be created according to: start = page * 10
    */
   pages: number | number[];
-
-  /**
-   * Make the returned results into a single array
-   */
-  flattenResults?: boolean;
-
   /**
    * Delay between each request in milliseconds. helps to avoid rate limiting issues.
    * 
