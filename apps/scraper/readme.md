@@ -1,14 +1,17 @@
-# Scraper
+# google search dump
 
-Used to download Google search results html for analyzing
-
+Used to dump google search result pages. send requests identical to gsr for easier comparison
 
 # Usage
 
 > Run with a script
 
-```ts
+```sh
+# Make sure to install the required packages
 pnpm install
 
-node scrape
+node search-dump.js [query]
 ```
+
+Output will be at `/sdump/{date}.dump.html`.
+Output relevant for google-sr-selectors will be in `/sdump/{date}.selectors.md`
