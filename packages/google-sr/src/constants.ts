@@ -1,157 +1,77 @@
+import type { CheerioAPI } from "cheerio";
+import type { ResultNodeTyper } from "./utils";
 import type { AxiosRequestConfig } from "axios";
-import * as selectors from 'google-sr-selectors';
 
-export enum ResultTypes {
-  SearchResult = "SEARCH",
-  TranslateResult = "TRANSLATE",
-  DictionaryResult = "DICTIONARY",
-  TimeResult = "TIME",
-  CurrencyResult = "CURRENCY",
-}
+export const ResultTypes = {
+  OrganicResult: "ORGANIC",
+  TranslateResult: "TRANSLATE",
+  DictionaryResult: "DICTIONARY",
+  TimeResult: "TIME",
+  CurrencyResult: "CURRENCY",
+} as const;
 
-export interface SearchResultNode {
-  /** Type of this result node */
-  type: ResultTypes.SearchResult;
-  /**
-   * Link or url of this search result
-   */
-  link: string;
-  description: string;
-  title: string;
-}
-export interface TranslateResultNode {
-  /** Type of this result node */
-  type: ResultTypes.TranslateResult;
-  /**
-   * Source for translation
-   */
-  source: {
-    /**
-     * Language of the source text
-     */
-    language: string;
-    /**
-     * Source text
-     */
-    text: string;
-  };
-  /**
-   * Translated content
-   */
-  translation: {
-    /**
-     * Language of the translated text
-     */
-    language: string;
-    /**
-     * translated text
-     */
-    text: string;
-    /**
-     * Pronunciation of the translation in english
-     * Only available in certain cases
-     */
-    pronunciation?: string;
-  };
-}
+// Specific result types returned by gsr
+export type OrganicResultNode = ResultNodeTyper<typeof ResultTypes.OrganicResult, "title" | "description" | "link">;
+export type TranslateResultNode = ResultNodeTyper<typeof ResultTypes.TranslateResult, "sourceLanguage" | "translationLanguage" | "sourceText" | "translationText" | "translationPronunciation">;
+// Dictionary result contains a special property called definitions which is an array
+export type DictionaryResultNode = ResultNodeTyper<typeof ResultTypes.DictionaryResult, "audio" | "phonetic" | "word"> & { definitions: [string, string][] };
+export type TimeResultNode = ResultNodeTyper<typeof ResultTypes.TimeResult, "location" | "time" | "timeInWords">;
+export type CurrencyResultNode = ResultNodeTyper<typeof ResultTypes.CurrencyResult, "from" | "to">;
 
-export interface DictionaryResultNode {
-  /** Type of this result node */
-  type: ResultTypes.DictionaryResult;
-  word: string;
-  phonetic: string;
-  /**
-   * Audio pronunciation of this word
-   */
-  audio?: string;
-  /**
-   * Array of array containing definitions and their respective examples
-   * @example
-   *
-   * ```ts
-   * [
-   *  [
-   *    'causing great surprise or wonder; astonishing.',
-   *    'an amazing number of people registered'
-   *  ]
-   * ]
-   *
-   * ```
-   */
-  definitions: [string, string][];
-}
-
-export interface TimeResultNode {
-  /** Type of this result node */
-  type: ResultTypes.TimeResult;
-  location: string;
-  time: string;
-  timeInWords: string;
-}
-
-export interface CurrencyResultNode {
-  /** Type of this result node */
-  type: ResultTypes.CurrencyResult;
-  from: string;
-  to: string;
-  formula: string;
-}
-
-export type ResultNode =
-  | SearchResultNode
-  | TranslateResultNode
-  | DictionaryResultNode
-  | TimeResultNode
-  | CurrencyResultNode;
+// All possible result types as a union
+export type SearchResultNode = OrganicResultNode | TranslateResultNode | DictionaryResultNode | TimeResultNode | CurrencyResultNode;
+// the type used to identify a parser/selector function
+export type ResultSelector<R extends SearchResultNode = SearchResultNode> = (cheerio: CheerioAPI, strictSelector: boolean) => R[] | R | null;
 
 /**
- * Search options supported by the parser
+ * Search options for single page search
  */
-export interface SearchOptions {
-  /**
-   * raw config for axios
-   */
-  requestConfig: AxiosRequestConfig;
-  /**
-   * Toggle to enable google safe mode
-   */
-  safeMode: boolean;
-  /**
-   * Page number to fetch. Google page numbers are different that what you might expect
-   * we suggest you to use searchWithPages instead
-   */
-  page: number;
-  /**
-   * Base url of the service by default google.com/search
-   */
-  baseUrl: string;
+export interface SearchOptions<R extends ResultSelector = ResultSelector> {
   /**
    * Search query
    */
   query: string;
+  
   /**
-   * Filter the types of results returned (may have performance impact)
+   * Toggle to enable google safe mode
    */
-  filterResults: ResultTypes[];
+  safeMode?: boolean;
+
   /**
-   * jquery selectors (cheerio) to extract data from scraped data
+   * Control the type of results returned (can have a significant performance impact)
    */
-  selectors: typeof selectors
+  resultTypes?: R[];
+
+  /**
+   * when true, will only return resultNodes that do not contain any undefined/empty properties
+   */
+  strictSelector?: boolean;
+
+  /**
+   * Custom request configuration to be sent with the request
+   */
+  requestConfig?: AxiosRequestConfig;
 }
 
+
 /**
- * @private
+ * Search options for multiple pages search
  */
-export const defaultOptions: SearchOptions = {
-  requestConfig: {},
-  safeMode: true,
-  // by default only the first page is resolved
-  page: 0,
-  query: "",
-  baseUrl: "https://www.google.com/search",
-  // do not add anything to this as deep merge will merge a new one with this
-  filterResults: [],
-  // these selectors must be updated when necessary
-  // last selector update was on 8/15/2023
-  selectors: selectors
-};
+export interface SearchOptionsWithPages<R extends ResultSelector = ResultSelector> extends SearchOptions<R> {
+  /**
+   * Total number of pages to search or an array of specific pages to search
+   * 
+   * google search uses cursor-based pagination. 
+   * 
+   * Specific page numbers are incremented by 10 starting from 0 (page 1)
+   * 
+   * If total number of pages is provided, cursor will be created according to: start = page * 10
+   */
+  pages: number | number[];
+  /**
+   * Delay between each request in milliseconds. helps to avoid rate limiting issues.
+   * 
+   * Default is 1000 ms (1 second). set to 0 to disable delay.
+   */
+  delay?: number;
+}

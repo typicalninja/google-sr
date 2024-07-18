@@ -2,7 +2,7 @@
   "name": "google-sr",
   "version": "3.3.1",
   "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
-  "repository":"https://github.com/typicalninja/google-sr",
+  "repository": "https://github.com/typicalninja/google-sr",
   "homepage": "https://g-sr.vercel.app/google/sr",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,9 +32,8 @@
   "dependencies": {
     "axios": "^1.4.0",
     "cheerio": "1.0.0-rc.12",
-    "deepmerge-ts": "^5.1.0",
-    "tslib": "^2.6.1",
-    "google-sr-selectors": "workspace:^"
+    "google-sr-selectors": "workspace:^",
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
     "@types/chai": "^4.3.5",
