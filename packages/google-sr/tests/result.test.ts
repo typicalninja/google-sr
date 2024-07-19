@@ -37,7 +37,7 @@ test("Search for translation results", async () => {
   });
   // only one result should be returned for this query
 
-  expect(queryResult).length.greaterThan(0).lessThan(2);
+  expect(queryResult).toHaveLength(1)
 
   for (const result of queryResult) {
     expect(result.type).toBe(ResultTypes.TranslateResult);
@@ -56,7 +56,7 @@ test("Search for dictionary results", async () => {
     resultTypes: [DictionaryResult],
   });
   // only one result should be returned for this query
-  expect(queryResult).length.greaterThan(0).lessThan(2);
+  expect(queryResult).toHaveLength(1)
 
   for (const result of queryResult) {
     expect(result.type).toBe(ResultTypes.DictionaryResult);
@@ -78,7 +78,7 @@ test("Search for currency results", async () => {
     resultTypes: [CurrencyResult],
   });
   // only one result should be returned for this query
-  expect(queryResult).length.greaterThan(0).lessThan(2);
+  expect(queryResult).toHaveLength(1)
 
   for (const result of queryResult) {
     expect(result.type).toBe(ResultTypes.CurrencyResult);
@@ -93,7 +93,7 @@ test("Search for time results", async () => {
     resultTypes: [TimeResult],
   });
   // only one result should be returned for this query
-  expect(queryResult).length.greaterThan(0).lessThan(2);
+  expect(queryResult).toHaveLength(1)
 
   for (const result of queryResult) {
     expect(result.type).toBe(ResultTypes.TimeResult);
