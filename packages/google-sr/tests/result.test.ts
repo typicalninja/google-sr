@@ -103,3 +103,4 @@ test("Search for time results", async () => {
     expect(result.timeInWords).toBeTypeOf("string");
   }
 });
+ 
