@@ -1,4 +1,4 @@
-name: Test core selectors
+name: Test packages
 
 on:
   push:
@@ -12,27 +12,28 @@ on:
 
 jobs:
   test:
-    name: Test scraping selectors
+    name: Test packages
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # setup pnpm to specific version to avoid breaking changes
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9.6.0
+          run_install: false
 
-      - name: Setting up node v18.x
-        uses: actions/setup-node@v3
+      # action was tested on node 20.x
+      - name: Install Node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build Package using tsup and turbo
         run: pnpm run build --filter=google-sr --filter=google-sr-selectors
