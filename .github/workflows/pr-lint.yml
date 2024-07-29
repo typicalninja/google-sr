@@ -1,7 +1,7 @@
 name: Lint PR
 on:
-    pull_request:
-      types: [opened, reopened, edited, synchronize]
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   lint:
@@ -22,10 +22,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install workspace dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Run lint
-        run: pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true
+        run: pnpm exec biome check --no-errors-on-unmatched --files-ignore-unknown=true
