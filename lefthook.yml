@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      glob: "*.{js,ts}"
+      run: pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files} && git update-index --again
+skip_output:
+  - meta #(version and which hook running)
+  - skips # Skips "skip" printing (i.e. no files matched

@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      '@biomejs/biome':
+        specifier: 1.8.3
+        version: 1.8.3
+      lefthook:
+        specifier: ^1.7.11
+        version: 1.7.11
       tsup:
         specifier: ^7.2.0
         version: 7.2.0(postcss@8.4.31)(ts-node@10.9.1(typescript@5.3.2))(typescript@5.3.2)
@@ -208,6 +214,59 @@ packages:
   '@babel/types@7.23.4':
     resolution: {integrity: sha512-7uIFwVYpoplT5jp/kVv6EF93VaJ8H+Yn5IczYiaAi98ajzjfoZfslet/e0sLh+wVBjb2qqIut1b0S26VSafsSQ==}
     engines: {node: '>=6.9.0'}
+
+  '@biomejs/biome@1.8.3':
+    resolution: {integrity: sha512-/uUV3MV+vyAczO+vKrPdOW0Iaet7UnJMU4bNMinggGJTAnBPjCoLEYcyYtYHNnUNYlv4xZMH6hVIQCAozq8d5w==}
+    engines: {node: '>=14.21.3'}
+    hasBin: true
+
+  '@biomejs/cli-darwin-arm64@1.8.3':
+    resolution: {integrity: sha512-9DYOjclFpKrH/m1Oz75SSExR8VKvNSSsLnVIqdnKexj6NwmiMlKk94Wa1kZEdv6MCOHGHgyyoV57Cw8WzL5n3A==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@biomejs/cli-darwin-x64@1.8.3':
+    resolution: {integrity: sha512-UeW44L/AtbmOF7KXLCoM+9PSgPo0IDcyEUfIoOXYeANaNXXf9mLUwV1GeF2OWjyic5zj6CnAJ9uzk2LT3v/wAw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@biomejs/cli-linux-arm64-musl@1.8.3':
+    resolution: {integrity: sha512-9yjUfOFN7wrYsXt/T/gEWfvVxKlnh3yBpnScw98IF+oOeCYb5/b/+K7YNqKROV2i1DlMjg9g/EcN9wvj+NkMuQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@biomejs/cli-linux-arm64@1.8.3':
+    resolution: {integrity: sha512-fed2ji8s+I/m8upWpTJGanqiJ0rnlHOK3DdxsyVLZQ8ClY6qLuPc9uehCREBifRJLl/iJyQpHIRufLDeotsPtw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@biomejs/cli-linux-x64-musl@1.8.3':
+    resolution: {integrity: sha512-UHrGJX7PrKMKzPGoEsooKC9jXJMa28TUSMjcIlbDnIO4EAavCoVmNQaIuUSH0Ls2mpGMwUIf+aZJv657zfWWjA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+
+  '@biomejs/cli-linux-x64@1.8.3':
+    resolution: {integrity: sha512-I8G2QmuE1teISyT8ie1HXsjFRz9L1m5n83U1O6m30Kw+kPMPSKjag6QGUn+sXT8V+XWIZxFFBoTDEDZW2KPDDw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+
+  '@biomejs/cli-win32-arm64@1.8.3':
+    resolution: {integrity: sha512-J+Hu9WvrBevfy06eU1Na0lpc7uR9tibm9maHynLIoAjLZpQU3IW+OKHUtyL8p6/3pT2Ju5t5emReeIS2SAxhkQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@biomejs/cli-win32-x64@1.8.3':
+    resolution: {integrity: sha512-/PJ59vA1pnQeKahemaQf4Nyj7IKUvGQSc3Ze1uIGi+Wvr1xF7rGobSrAAG01T/gUDG21vkDsZYM03NAmPiVkqg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [win32]
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -1251,10 +1310,6 @@ packages:
     engines: {node: '>=0.4.7'}
     hasBin: true
 
-  has-flag@4.0.0:
-    resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
-    engines: {node: '>=8'}
-
   hast-util-from-parse5@8.0.1:
     resolution: {integrity: sha512-Er/Iixbc7IEa7r/XLtuG52zoqn/b3Xng/w6aZQ0xGVxzhw5xUFxcRqdPzP6yFi/4HBYRaifaI5fQ1RH8n0ZeOQ==}
 
@@ -1337,6 +1392,50 @@ packages:
 
   jsonc-parser@3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
+
+  lefthook-darwin-arm64@1.7.11:
+    resolution: {integrity: sha512-JQtGTM2uZF/3MGKmqb3jg8KG0B/V+2IU+H2jLvRtJULjHQxgiAQGsCJZKCYr8Uvq2/sbjaa+YdiKHROlqt7O6w==}
+    cpu: [arm64]
+    os: [darwin]
+
+  lefthook-darwin-x64@1.7.11:
+    resolution: {integrity: sha512-sfHzHklBh/xEiRGbCkIWZfkyf6gxg4nSryKuA7M6VgwooauXYN+0aXxNbK4CjXBPSMhSCSHh6uHXsqXWaVrTCQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  lefthook-freebsd-arm64@1.7.11:
+    resolution: {integrity: sha512-UsEHI2xB0c+k3DfTNhl9STBuxZMkgMCUdOS2r6OkVoUY5Uf1PVUH+OTq7dvSAnsueSl6r+3xyCBz2tn48uVwbA==}
+    cpu: [arm64]
+    os: [freebsd]
+
+  lefthook-freebsd-x64@1.7.11:
+    resolution: {integrity: sha512-WJznUCrP8kb0nlxWvlvfWJm/SAW0TOJOv2VFeFLInYM1ylFVUVeV2fEvEHOjGIKyt96+uAnbiHOkqIYbhfc03g==}
+    cpu: [x64]
+    os: [freebsd]
+
+  lefthook-linux-arm64@1.7.11:
+    resolution: {integrity: sha512-4S+Gdr5jWmwrfHGokcuRQm/A92KLRwYotBgOMwf0etQa4n9B6FGXEi59IOuFNHeZXY4DpxA9A8AvplVdN5KSOA==}
+    cpu: [arm64]
+    os: [linux]
+
+  lefthook-linux-x64@1.7.11:
+    resolution: {integrity: sha512-3CwNNpRa1fHlymgtxjHQ0BqYMvvj3WXvX4eq1BT+w5NF7h5ZjVaK+nilpgEWUUTQyF66FLai+CGx6wfKvcPOag==}
+    cpu: [x64]
+    os: [linux]
+
+  lefthook-windows-arm64@1.7.11:
+    resolution: {integrity: sha512-DfLVQ4F1iQcudTDnX/Ru1WNSN2OBPrHwwcWVVdQ/KDYWSru6dd4f18M7g98TZ2X9nYHA5IWrX8w2DaBR6P0/bw==}
+    cpu: [arm64]
+    os: [win32]
+
+  lefthook-windows-x64@1.7.11:
+    resolution: {integrity: sha512-xAZP4tQr/6YKbKKvp0qMf6UnToXxo9RulzpKq+v5SiGWE5rz3G12XpyaNVslfrb1N30Yp8wUdZdlXBqhUvltYw==}
+    cpu: [x64]
+    os: [win32]
+
+  lefthook@1.7.11:
+    resolution: {integrity: sha512-IJ9KSk3+dkjTmKEsH2XJC4elocdgXzIznAHfbgr+5N/dJoB3fj8xNWfNx5fDhjT6so4eCJgdOrF9NJ7cS4wRvw==}
+    hasBin: true
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -1680,10 +1779,6 @@ packages:
     resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
     engines: {node: '>=8'}
     hasBin: true
-
-  supports-color@8.1.1:
-    resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
-    engines: {node: '>=10'}
 
   tabbable@6.2.0:
     resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
@@ -2113,6 +2208,41 @@ snapshots:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  '@biomejs/biome@1.8.3':
+    optionalDependencies:
+      '@biomejs/cli-darwin-arm64': 1.8.3
+      '@biomejs/cli-darwin-x64': 1.8.3
+      '@biomejs/cli-linux-arm64': 1.8.3
+      '@biomejs/cli-linux-arm64-musl': 1.8.3
+      '@biomejs/cli-linux-x64': 1.8.3
+      '@biomejs/cli-linux-x64-musl': 1.8.3
+      '@biomejs/cli-win32-arm64': 1.8.3
+      '@biomejs/cli-win32-x64': 1.8.3
+
+  '@biomejs/cli-darwin-arm64@1.8.3':
+    optional: true
+
+  '@biomejs/cli-darwin-x64@1.8.3':
+    optional: true
+
+  '@biomejs/cli-linux-arm64-musl@1.8.3':
+    optional: true
+
+  '@biomejs/cli-linux-arm64@1.8.3':
+    optional: true
+
+  '@biomejs/cli-linux-x64-musl@1.8.3':
+    optional: true
+
+  '@biomejs/cli-linux-x64@1.8.3':
+    optional: true
+
+  '@biomejs/cli-win32-arm64@1.8.3':
+    optional: true
+
+  '@biomejs/cli-win32-x64@1.8.3':
+    optional: true
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -2799,12 +2929,6 @@ snapshots:
     dependencies:
       ms: 2.1.2
 
-  debug@4.3.4(supports-color@8.1.1):
-    dependencies:
-      ms: 2.1.2
-    optionalDependencies:
-      supports-color: 8.1.1
-
   debug@4.3.5:
     dependencies:
       ms: 2.1.2
@@ -3038,9 +3162,6 @@ snapshots:
     optionalDependencies:
       uglify-js: 3.17.4
 
-  has-flag@4.0.0:
-    optional: true
-
   hast-util-from-parse5@8.0.1:
     dependencies:
       '@types/hast': 3.0.3
@@ -3154,6 +3275,41 @@ snapshots:
   joycon@3.1.1: {}
 
   jsonc-parser@3.2.0: {}
+
+  lefthook-darwin-arm64@1.7.11:
+    optional: true
+
+  lefthook-darwin-x64@1.7.11:
+    optional: true
+
+  lefthook-freebsd-arm64@1.7.11:
+    optional: true
+
+  lefthook-freebsd-x64@1.7.11:
+    optional: true
+
+  lefthook-linux-arm64@1.7.11:
+    optional: true
+
+  lefthook-linux-x64@1.7.11:
+    optional: true
+
+  lefthook-windows-arm64@1.7.11:
+    optional: true
+
+  lefthook-windows-x64@1.7.11:
+    optional: true
+
+  lefthook@1.7.11:
+    optionalDependencies:
+      lefthook-darwin-arm64: 1.7.11
+      lefthook-darwin-x64: 1.7.11
+      lefthook-freebsd-arm64: 1.7.11
+      lefthook-freebsd-x64: 1.7.11
+      lefthook-linux-arm64: 1.7.11
+      lefthook-linux-x64: 1.7.11
+      lefthook-windows-arm64: 1.7.11
+      lefthook-windows-x64: 1.7.11
 
   lilconfig@2.1.0: {}
 
@@ -3477,11 +3633,6 @@ snapshots:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  supports-color@8.1.1:
-    dependencies:
-      has-flag: 4.0.0
-    optional: true
-
   tabbable@6.2.0: {}
 
   thenify-all@1.6.0:
@@ -3583,7 +3734,7 @@ snapshots:
       bundle-require: 4.0.1(esbuild@0.18.20)
       cac: 6.7.14
       chokidar: 3.5.3
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.4
       esbuild: 0.18.20
       execa: 5.1.1
       globby: 11.1.0
@@ -3606,7 +3757,7 @@ snapshots:
       bundle-require: 4.0.1(esbuild@0.18.20)
       cac: 6.7.14
       chokidar: 3.5.3
-      debug: 4.3.4(supports-color@8.1.1)
+      debug: 4.3.4
       esbuild: 0.18.20
       execa: 5.1.1
       globby: 11.1.0
