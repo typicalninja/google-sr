@@ -9,9 +9,6 @@
 
 CLI tool to scrape google search results without an api key 🚀.
 
-* View documentation [here](https://g-sr.vercel.app/google/selectors)
-
-* Come chat with us on [our discord](https://discord.gg/ynwckXS9T2)
 
 ## Install 📦
 
@@ -22,17 +19,13 @@ To get started, you can install **google-that** using your preferred package man
 ```bash
 
 # npm
-
 npm install -g google-that
 
 # pnpm 
-
 pnpm add -g google-that
 
 # yarn
-
 yarn add -g google-that
-
 ```
 
 ## Usage
@@ -48,21 +41,21 @@ google-that
 This will start the google-that process.
 
 
-## Related projects 🥂
+# Related projects 🥂
 
 * [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
 * [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
 
-## Disclaimer
+# Disclaimer
 
 This is not sponsored, supported, or affiliated with Google Inc.
 
 Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
 
-The source code within this repository is intended solely for educational purposes.
+The source code within this repository is intended solely for educational & research purposes.
 
-The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
+The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
-## License
+# License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
