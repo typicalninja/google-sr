@@ -1,4 +1,4 @@
-name: Test packages
+name: Test
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Test packages
+    name: Main package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
