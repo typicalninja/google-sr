@@ -3,7 +3,7 @@
  * Uses the default result types. (OrganicResult)
  */
 
-import { search } from "google-sr"
+import { search } from "google-sr";
 
 const results = await search({ query: "hello" });
 

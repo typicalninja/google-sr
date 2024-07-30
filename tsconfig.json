@@ -1,29 +1,29 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Default",
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": true,
-    "outDir": "dist",
-    "removeComments": false,
-    "importHelpers": true,
-    "importsNotUsedAsValues": "error",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "allowUnreachableCode": false,
-    "useUnknownInCatchVariables": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "noImplicitThis": true,
-    // TODO: Look into fixing this (due to verbatimModuleSyntax & deprecation of importsNotUsedAsValues)
-    "ignoreDeprecations": "5.0"
-  }
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Default",
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"declaration": true,
+		"outDir": "dist",
+		"removeComments": false,
+		"importHelpers": true,
+		"importsNotUsedAsValues": "error",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"allowUnreachableCode": false,
+		"useUnknownInCatchVariables": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"skipLibCheck": true,
+		"noImplicitThis": true,
+		// TODO: Look into fixing this (due to verbatimModuleSyntax & deprecation of importsNotUsedAsValues)
+		"ignoreDeprecations": "5.0"
+	}
 }
