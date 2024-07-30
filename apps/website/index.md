@@ -4,17 +4,17 @@ layout: home
 
 hero:
   name: "google sr"
-  tagline: Complete set of tools to scrape google search results.
+  tagline: JS/TS library for searching Google | [Documentation Has moved]
   image:
     src: /logo.png
-    alt: VitePress
+    alt: logo
   actions:
     - theme: brand
       text: Guide
       link: /google/
     - theme: alt
       text: API Docs
-      link: /api/
+      link: /google/
 
 features:
   - icon: 🛠️
