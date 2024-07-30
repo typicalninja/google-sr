@@ -19,7 +19,7 @@ Simple & Fast Package for scraping Google search results without the need for an
   * [search(SearchOptions\<R>)](#searchsearchoptionsr-promisesearchresulttyper)
     * [SearchOptions\<R>](#searchoptionsr--resultselector)
   * [searchWithPages(SearchOptionsWithPages\<R>)](#searchwithpagessearchoptionswithpagesr-promisesearchresulttyper)
-    * [SearchOptionsWithPages\<R>](#searchoptionswithpagesr--resultselector)
+    * [SearchOptionsWithPages\<R>](#searchoptionswithpagesr--resultselector-extends-searchoptionsr)
   * [ResultSelector](#resultselector)
   * [SearchResultNode](#searchresultnode)
     * [OrganicResult](#organicresult)
@@ -28,10 +28,10 @@ Simple & Fast Package for scraping Google search results without the need for an
     * [TimeResult](#timeresult)
     * [CurrencyResult](#currencyresult)
   * [ResultTypes](#resulttypes)
-* [Disclaimer](#disclaimer)
-* [Related projects 🥂](#related-projects)
+* [Disclaimer](#️-disclaimer)
+* [Related projects 🥂](#related-projects-)
 * [Tests](#tests)
-* [Support & Bug Reporting 🛠️🐞](#support--bug-reporting)
+* [Support & Bug Reporting 🛠️🐞](#support--bug-reporting-️)
 * [License](#license)
 
 # Features
