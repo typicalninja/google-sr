@@ -16,7 +16,7 @@
     "node": ">=15.0.0",
     "pnpm": ">=7"
   },
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@9.6.0",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@commitlint/cli": "19.3.0",
