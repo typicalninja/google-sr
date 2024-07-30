@@ -1,6 +1,6 @@
 # Documentation Moved
 
-The documentation has been moved to the readme file of each package. this documentation will be removed in the next major release.
+The documentation has been moved to the readme file of each package. this documentation will be removed in the next major release. 
 
 
 * [google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
