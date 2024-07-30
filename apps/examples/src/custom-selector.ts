@@ -3,20 +3,25 @@
  * This should only be used for testing purposes
  */
 
-import { search, ResultSelector, ResultTypes, OrganicResultNode } from "google-sr"
+import {
+	type OrganicResultNode,
+	type ResultSelector,
+	ResultTypes,
+	search,
+} from "google-sr";
 
 const customSelector: ResultSelector<OrganicResultNode> = () => {
-    return {
-        type: ResultTypes.OrganicResult,
-        title: 'Some title',
-        link: 'Some link',
-        description: 'Some description'
-    }
-}
+	return {
+		type: ResultTypes.OrganicResult,
+		title: "Some title",
+		link: "Some link",
+		description: "Some description",
+	};
+};
 
 const results = await search({
-    query: "hello",
-    resultTypes: [customSelector]
-})
+	query: "hello",
+	resultTypes: [customSelector],
+});
 
-console.log(results)
+console.log(results);
