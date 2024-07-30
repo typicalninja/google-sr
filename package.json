@@ -8,19 +8,20 @@
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
     "build:website": "turbo run build --filter=website --no-daemon",
-    "prepare": "lefthook install"
+    "prepare": "is-ci || lefthook install"
   },
   "author": "typicalninja",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=15.0.0",
-    "pnpm": ">=7"
+    "pnpm": ">=9"
   },
   "packageManager": "pnpm@9.6.0",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "is-ci": "3.0.1",
     "lefthook": "^1.7.11",
     "tsup": "^7.2.0",
     "turbo": "^1.10.12"
