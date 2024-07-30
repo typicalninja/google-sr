@@ -64,7 +64,7 @@ console.log(queryResult[0][0].type === ResultTypes.OrganicResult)
 
 > By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it
 
-* Additional examples can be found in [tests](#tests) and [apps/examples](https://github.com/typicalninja/google-sr/tree/main/apps/examples) directory
+* Additional examples can be found in [tests](#tests) and [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # google-sr API
 
