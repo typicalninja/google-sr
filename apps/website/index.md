@@ -14,7 +14,7 @@ hero:
       link: /google/
     - theme: alt
       text: API Docs
-      link: /api/
+      link: /google/
 
 features:
   - icon: 🛠️
