@@ -1,4 +1,4 @@
-# google-sr 🔍
+# google-sr
 [![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/stargazers)
@@ -8,55 +8,69 @@
 
 Easy to use, updated tools for scraping google search results. 🚀
 
-* Documentation can be found [here](https://g-sr.vercel.app)
-
-* API documentation can be found [here](https://typicalninja.github.io/google-sr/index.html)
-
-## Install 📦
+# Install
 
 To get started, you can install **google-sr** using your preferred package manager:
 
 ```bash
-
 # npm
-
 npm install google-sr
 
 # pnpm 
-
 pnpm add google-sr
 
 # yarn
-
 yarn add google-sr
-
 ```
 
-## Usage
+# Usage
 
 You can easily perform a single-page search like this:
 
 ```ts
-import { search, ResultTypes } from 'google-sr';
+import { search, OrganicResult } from 'google-sr';
 
 // using await/async
-const searchResults = await search({ 
-    query: 'nodejs', 
-    safeMode: false, 
-    filterResults: [ResultTypes.SearchResult] 
+const queryResult = await search({
+    query: "nodejs",
+    // OrganicResult is the default, however it is recommended to always specify the result type
+    resultTypes: [OrganicResult],
 });
 
-// will return a []
-console.log(searchResults);
+// will return a SearchResult[]
+console.log(queryResult);
 // should log: true
-console.log(searchResults[0].type === ResultTypes.SearchResult)
+console.log(queryResult[0].type === ResultTypes.OrganicResult)
 ```
 
-* **Read about the returned types [here](https://g-sr.vercel.app/google/sr/types)**
+To search for multiple pages of results, use the `searchWithPages` function:
 
-* **More detailed examples & usage can be found [here](https://g-sr.vercel.app/google/sr/usage)**
+```ts
+import { searchWithPages, OrganicResult } from 'google-sr';
 
-## Monorepo
+// using await/async
+const queryResult = await searchWithPages({
+    query: "nodejs",
+    // OrganicResult is the default, however it is recommended to always specify the result type
+    resultTypes: [OrganicResult],
+    pages: 2,
+});
+
+// will return a SearchResult[][]
+console.log(queryResult);
+// should log: true
+console.log(queryResult[0][0].type === ResultTypes.OrganicResult)
+```
+
+> By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it
+
+* Additional examples can be found in [tests](#tests) and [apps/examples](https://github.com/typicalninja/google-sr/tree/main/apps/examples) directory
+
+# google-sr API
+
+Please refer to the google-sr readme in [packages/google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+
+# Monorepo
 
 Welcome to the 📦 monorepo of GSR Project.
  
@@ -84,37 +98,19 @@ Welcome to the 📦 monorepo of GSR Project.
 
 This monorepo is managed with [turborepo](https://turbo.build/repo) and uses [pnpm workspaces](https://pnpm.io/workspaces).
 
-## Mirror 🪞
+# Mirror
 
 GSR project has a mirror repository on codeberg 
 You can find it [here](https://codeberg.org/typicalninja/google-sr)
 
 * All issues and discussion are limited to github & discord
 
-## Disclaimer
+# Disclaimer
 
 This is not sponsored, supported, or affiliated with Google Inc.
-The source code within this repository is intended solely for educational purposes.
-
+The source code within this repository is intended solely for educational & research purposes.
 The author (typicalninja) & contributors takes **no** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
-## Tests
-
-Tests are written using [mocha](https://mochajs.org/) and can be run by using the `test` script.
-
-> Weekly tests are executed using a github action to ensure compatibility
-
-This monorepo uses pnpm as its package manager
-
-```bash
-pnpm run test
-```
-
-## Support & Bug Reporting 🛠️🐞
-
-> Make sure you are on the latest version before creating bug reports
-
-Support and bug reporting both can be done on  [github issues](https://github.com/typicalninja/google-sr/issues)
-## License
+# License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
