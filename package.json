@@ -7,7 +7,6 @@
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
-    "build:website": "turbo run build --no-daemon --filter=google-sr-selectors --filter=google-sr --filter=website",
     "prepare": "lefthook install"
   },
   "author": "typicalninja",
@@ -24,13 +23,5 @@
     "lefthook": "^1.7.11",
     "tsup": "^7.2.0",
     "turbo": "^1.10.12"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "search-insight"
-      ]
-    }
   }
 }
