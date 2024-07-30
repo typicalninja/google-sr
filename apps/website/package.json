@@ -3,12 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "vitepress dev",
-    "build": "pnpm run build:vitepress",
-    "build:vitepress": "vitepress build",
-    "preview": "vitepress preview",
-    "build:typedoc": "pnpm run gsr:typedoc && pnpm run gsrs:typedoc",
-    "gsr:typedoc": "typedoc --entryPoints ../../packages/google-sr --out api/sr",
-    "gsrs:typedoc": "typedoc --entryPoints ../../packages/google-sr-selectors --out api/selectors"
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "vitepress": "1.0.0-rc.31",

@@ -7,6 +7,7 @@
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr --filter=google-sr-selectors",
+    "build:website": "turbo run build --filter=website --no-daemon",
     "prepare": "lefthook install"
   },
   "author": "typicalninja",
