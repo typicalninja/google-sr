@@ -67,9 +67,9 @@ const queryResult = await search({
 });
 
 // will return a SearchResult[]
-console.log(searchResults);
+console.log(queryResult);
 // should log: true
-console.log(searchResults[0].type === ResultTypes.OrganicResult)
+console.log(queryResult[0].type === ResultTypes.OrganicResult)
 ```
 
 To search for multiple pages of results, use the `searchWithPages` function:
@@ -86,9 +86,9 @@ const queryResult = await searchWithPages({
 });
 
 // will return a SearchResult[][]
-console.log(searchResults);
+console.log(queryResult);
 // should log: true
-console.log(searchResults[0][0].type === ResultTypes.OrganicResult)
+console.log(queryResult[0][0].type === ResultTypes.OrganicResult)
 ```
 
 > By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it
