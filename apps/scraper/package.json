@@ -1,7 +1,6 @@
 {
   "name": "google-search-dumper",
   "private": true,
-  "version": "1.0.0",
   "description": "Scrapes google and dumps a copy of the search html",
   "exports": "./search-dump.js",
   "type": "module",
