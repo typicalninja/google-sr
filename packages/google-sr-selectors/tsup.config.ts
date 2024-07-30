@@ -1,5 +1,3 @@
-import { createTsupConfig } from '../../tsup.config'
+import { createTsupConfig } from "../../tsup.config";
 
-export default  [
-  createTsupConfig() 
-]
+export default [createTsupConfig()];
