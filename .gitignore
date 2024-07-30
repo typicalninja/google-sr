@@ -1,17 +1,8 @@
 
 # tools
 node_modules
-.npmignore
 .turbo
 dist
-
-# next
-.next
-
-# docs will be auto gen (Comment out for now)
-#apps/website/api/sr
-#apps/website/api/selectors
-
 # Google search dumpr files
 apps/scraper/sdump
 
