@@ -1,6 +1,5 @@
 {
   "name": "gsr",
-  "version": "1.0.0",
   "private": true,
   "repository": "https://github.com/typicalninja/google-sr",
   "scripts": {
@@ -11,6 +10,8 @@
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check": "biome check --write",
+    "ci:publish": "pnpm publish -r",
+    "ci:version": "changeset version",
     "prepare": "is-ci || lefthook install"
   },
   "author": "typicalninja",
@@ -22,6 +23,7 @@
   "packageManager": "pnpm@9.6.0",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
+    "@changesets/cli": "^2.27.7",
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
     "is-ci": "3.0.1",
