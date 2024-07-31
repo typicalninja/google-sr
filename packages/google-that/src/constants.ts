@@ -1,12 +1,19 @@
-import type { ResultTypes } from "google-sr";
-
-export interface InputForm {
-    queries: string[];
-    searchType: ResultTypes[];
-    safeMode: boolean;
-    pages: number;
-    savePath: string;
-    resultType: 'JSON' | 'TXT' | 'HTML'
+import { ResultTypes } from "google-sr";
+export interface CLIArguments {
+	[x: string]: unknown;
+	interactive: boolean;
+	query: string;
+	write: boolean;
+	page: number | undefined;
+	pages: number | undefined;
+	start: number | undefined;
+	resultTypes: (typeof ResultTypes)[keyof typeof ResultTypes][];
 }
 
-export const estimateOffset = 1000
+export const resultTypeArray: CLIArguments["resultTypes"] = [
+	ResultTypes.OrganicResult,
+	ResultTypes.CurrencyResult,
+	ResultTypes.DictionaryResult,
+	ResultTypes.TimeResult,
+	ResultTypes.TranslateResult,
+] as const;

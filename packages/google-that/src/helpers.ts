@@ -1,38 +1,25 @@
-import c from "ansi-colors";
+import type { CLIArguments } from "./constants.js";
 
-export const log = {
-  info: (...args: string[]) =>
-    console.log(
-      `${c.blue.bold("[INFO]")} @ ${new Date().toLocaleTimeString()} ${c.yellow(
-        ">"
-      )}`,
-      ...args.map((s) => c.blueBright(s))
-    ),
-  success: (...args: string[]) =>
-    console.log(
-      `${c.green.bold(
-        "[SUCCESS]"
-      )} @ ${new Date().toLocaleTimeString()} ${c.yellow(">")}`,
-      ...args.map((s) => c.greenBright(s))
-    ),
-  warn: (...args: string[]) =>
-    console.log(
-      `${c.yellowBright.bold(
-        "[WARN]"
-      )} @ ${new Date().toLocaleTimeString()} ${c.yellow(">")}`,
-      ...args.map((s) => c.yellowBright(s))
-    ),
-  error: (...args: string[]) =>
-    console.log(
-      `${c.red.bold("[ERROR]")} @ ${new Date().toLocaleTimeString()} ${c.yellow(
-        ">"
-      )}`,
-      ...args.map((s) => c.redBright(s))
-    ),
-};
+// validates the options passed in
+// Follows following rules:
+// - query is required
+// - pages and page are mutually exclusive
+// - start and pages are mutually exclusive
+export function validateOptions(options: CLIArguments): boolean {
+	if (!options.query) {
+		console.log("Query is required");
+		return false;
+	}
 
-export const getTimePerEachPage = (noOfPages: number) =>
-  noOfPages > 10 ? 5000 : 2000;
+	if (options.pages && options.page) {
+		console.log("Cannot use both pages and page");
+		return false;
+	}
 
-export const delay = (timeout: number) =>
-  new Promise((resolve) => setTimeout(resolve, timeout));
+	if (options.start && !options.pages) {
+		console.log("Start can only be used with pages");
+		return false;
+	}
+	// TODO: implement
+	return true;
+}
