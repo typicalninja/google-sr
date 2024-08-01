@@ -1,7 +1,6 @@
 import { ResultTypes } from "google-sr";
 export interface CLIArguments {
 	[x: string]: unknown;
-	interactive: boolean;
 	query: string;
 	write: boolean;
 	page: number | undefined;

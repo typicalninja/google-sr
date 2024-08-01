@@ -112,9 +112,6 @@ importers:
       common-tags:
         specifier: ^1.8.2
         version: 1.8.2
-      enquirer:
-        specifier: ^2.4.1
-        version: 2.4.1
       google-sr:
         specifier: workspace:*
         version: link:../google-sr
