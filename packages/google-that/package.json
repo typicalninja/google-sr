@@ -25,6 +25,7 @@
   "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/node": "^22.3.0",
     "google-sr": "workspace:*",
     "yargs": "^17.7.2"
   },

@@ -5,4 +5,5 @@
 		"moduleResolution": "node16",
         "outDir": "./dist",
     },
+    "exclude": ["tsup.config.ts", "dist"]
 }
