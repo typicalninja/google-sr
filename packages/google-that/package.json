@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "build": "tsup",
-    "dev": "ts-node --esm src/index.ts"
+    "dev": "tsx src/index.ts"
   },
   "keywords": [
     "google-sr",
@@ -25,22 +25,14 @@
   "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
-    "ansi-colors": "^4.1.3",
-    "boxen": "^7.1.1",
-    "cli-progress": "^3.12.0",
-    "common-tags": "^1.8.2",
     "google-sr": "workspace:*",
-    "pretty-ms": "^8.0.0",
-    "slugify": "^1.6.6",
     "yargs": "^17.7.2"
   },
   "engines": {
     "node": ">=16"
   },
   "devDependencies": {
-    "@types/cli-progress": "^3.11.0",
-    "@types/common-tags": "^1.8.1",
     "@types/yargs": "^17.0.32",
-    "ts-node": "^10.9.1"
+    "tsx": "^4.16.2"
   }
 }
