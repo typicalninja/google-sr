@@ -38,8 +38,7 @@ if (!validateOptions(argv)) {
 
 const providedQuery = (argv.query ? [argv.query] : argv.queries) as string[];
 
-// biome-ignore lint/suspicious/noExplicitAny: the type required here is not exported. fix in future pr
-const queryResult: { query: string; results: any }[] = [];
+const queryResult: { query: string; results: unknown }[] = [];
 
 for (const query of providedQuery) {
 	// sometimes the query is a number (yargs parse it this way), convert it to string
