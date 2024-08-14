@@ -1,17 +1,22 @@
 #!/usr/bin/env node
 
-import { ResultTypes } from "google-sr";
+import fsPromises from "node:fs/promises";
+import { ResultTypes, search } from "google-sr";
 import yargs from "yargs/yargs";
 import { resultTypeArray } from "./constants.js";
-import { validateOptions } from "./helpers.js";
+import { selectorTypeArrayToSelector, validateOptions } from "./helpers.js";
 
-// for running commands with args we use yargs
 const argv = yargs(process.argv.slice(2))
 	.options({
-		// main query
-		query: { type: "string", alias: "q", demandOption: true },
+		// our query, can be one or multiple queries
+		query: { type: "string", alias: "q" },
+		queries: { type: "array", alias: "Q" },
+
 		// in default mode, output will go to stdout
-		write: { type: "boolean", alias: "w", default: false },
+		// providing a string will write to a file with that name (placeholder variables are supported)
+		// such as %query% will be replaced with the query
+		// and %queryIndex% will be replaced with the index of the query
+		write: { type: "string", alias: "w" },
 		// fetch specific page
 		page: { type: "number", alias: "p" },
 		// fetch multiple specific pages
@@ -29,4 +34,49 @@ const argv = yargs(process.argv.slice(2))
 
 if (!validateOptions(argv)) {
 	process.exit(1);
+}
+
+const providedQuery = (argv.query ? [argv.query] : argv.queries) as string[];
+
+// biome-ignore lint/suspicious/noExplicitAny: the type required here is not exported. fix in future pr
+const queryResult: { query: string; results: any }[] = [];
+
+for (const query of providedQuery) {
+	// sometimes the query is a number (yargs parse it this way), convert it to string
+	const stringQuery = String(query);
+	const selectors = selectorTypeArrayToSelector(argv.resultTypes);
+
+	const results = await search({
+		query: stringQuery,
+		resultTypes: selectors,
+	});
+
+	if (results.length) {
+		queryResult.push({ query, results });
+	}
+}
+
+if (typeof argv.write === "string") {
+	let fileWriteFormat = "";
+	if (argv.write === "") {
+		// use the default write format which is %queryIndex%-%query%.json
+		fileWriteFormat = "%queryIndex%-%query%.json";
+	} else {
+		// use the provided format
+		fileWriteFormat = argv.write;
+	}
+
+	for (const item in queryResult) {
+		const { query, results } = queryResult[item];
+		const formattedFileName = fileWriteFormat
+			.replace("%query%", query)
+			.replace("%queryIndex%", item);
+		await fsPromises.writeFile(
+			formattedFileName,
+			JSON.stringify(results, null, 1),
+		);
+	}
+} else {
+	// simply log the results with minimal formatting
+	process.stdout.write(JSON.stringify(queryResult, null, 1));
 }

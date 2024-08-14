@@ -1,3 +1,12 @@
+import {
+	CurrencyResult,
+	DictionaryResult,
+	OrganicResult,
+	type ResultSelector,
+	ResultTypes,
+	TimeResult,
+	TranslateResult,
+} from "google-sr";
 import type { CLIArguments } from "./constants.js";
 
 // validates the options passed in
@@ -6,20 +15,46 @@ import type { CLIArguments } from "./constants.js";
 // - pages and page are mutually exclusive
 // - start and pages are mutually exclusive
 export function validateOptions(options: CLIArguments): boolean {
-	if (!options.query) {
-		console.log("Query is required");
+	if (!options.query && !Array.isArray(options.queries)) {
+		console.log("Please specify -q <query> or -Q <queries>");
 		return false;
 	}
 
-	if (options.pages && options.page) {
-		console.log("Cannot use both pages and page");
+	if (options.start && !options.pages && !options.page) {
+		console.log(
+			"Start can only be used when pages (-P) or page (-p) is specified",
+		);
 		return false;
 	}
 
-	if (options.start && !options.pages) {
-		console.log("Start can only be used with pages");
-		return false;
-	}
-	// TODO: implement
 	return true;
+}
+
+export function selectorTypeToSelector(selector: string): ResultSelector {
+	switch (selector) {
+		case ResultTypes.OrganicResult:
+			return OrganicResult;
+		case ResultTypes.TimeResult:
+			return TimeResult;
+		case ResultTypes.TranslateResult:
+			return TranslateResult;
+		case ResultTypes.DictionaryResult:
+			return DictionaryResult;
+		case ResultTypes.CurrencyResult:
+			return CurrencyResult;
+		default:
+			throw new Error(`Unknown selector type: ${selector}`);
+	}
+}
+
+export function selectorTypeArrayToSelector(
+	selector: string[],
+): ResultSelector[] {
+	const selectors: ResultSelector[] = [];
+
+	for (const type of selector) {
+		selectors.push(selectorTypeToSelector(type));
+	}
+
+	return selectors;
 }
