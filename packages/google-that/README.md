@@ -8,7 +8,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
 CLI tool to scrape google search results without an api key 🚀.
-
+This is a demo project to showcase the usage and performance of the [google-sr](https://npmjs.com/package/google-sr) package. google-that is able to output parsed results to a file or to stdout, please check the help page for more info.
 
 ## Install 📦
 
@@ -30,16 +30,27 @@ yarn add -g google-that
 
 ## Usage
 
-If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window **without** any arguments
+If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window. it will show you the help page for the tool.
 
 ```bash
 
-google-that
+google-that --help
 
 ```
 
-This will start the google-that process.
+### Example query
 
+```bash
+google-that -q "Nodejs"
+
+# Multiple queries
+# Seperate queries with a space, the option is case insensitive (Q)
+google-that -Q query1 "queries with spaces need to be quoted"
+
+# Writing the results to a file
+google-that -q "Nodejs" -w
+
+```
 
 # Related projects 🥂
 

@@ -1,7 +1,7 @@
-import { createTsupConfig } from '../../tsup.config'
+import { createTsupConfig } from "../../tsup.config";
 
-export default  [
-  createTsupConfig({
-    format: ['esm']
-  }) 
-]
+export default [
+	createTsupConfig({
+		format: ["esm"],
+	}),
+];
