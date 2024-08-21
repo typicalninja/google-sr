@@ -6,7 +6,10 @@ import type {
 	SearchOptionsWithPages,
 } from "./constants";
 import { OrganicResult } from "./results";
-import { type SearchResultType, prepareRequestConfig } from "./utils";
+import {
+	type SearchResultTypeFromSelector,
+	prepareRequestConfig,
+} from "./utils";
 
 /**
  * Search google with the given query, only 1 page is returned
@@ -15,10 +18,10 @@ import { type SearchResultType, prepareRequestConfig } from "./utils";
  */
 export async function search<R extends ResultSelector = typeof OrganicResult>(
 	options: SearchOptions<R> & { strictSelector?: false },
-): Promise<SearchResultType<R>[]>;
+): Promise<SearchResultTypeFromSelector<R>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
 	options: SearchOptions<R> & { strictSelector: true },
-): Promise<SearchResultType<R, true>[]>;
+): Promise<SearchResultTypeFromSelector<R, true>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
 	options: SearchOptions<R>,
 ) {
@@ -34,13 +37,13 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
 	const cheerioApi = load(data);
 	// use the provided selectors or the default one (OrganicSearchSelector)
 	const selectors = options.resultTypes || [OrganicResult];
-	let searchResults: SearchResultType<R>[] = [];
+	let searchResults: SearchResultTypeFromSelector<R>[] = [];
 	// Iterate over each selector to call it with the cheerioApi and concatenate the results
 	for (const selector of selectors) {
 		const result = selector(
 			cheerioApi,
 			Boolean(options.strictSelector),
-		) as SearchResultType<R>[];
+		) as SearchResultTypeFromSelector<R>[];
 		// Result must be flattened to a single array
 		if (result) searchResults = searchResults.concat(result);
 	}
@@ -81,12 +84,12 @@ export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
 	options: SearchOptionsWithPages<R> & { strictSelector?: false },
-): Promise<SearchResultType<R>[][]>;
+): Promise<SearchResultTypeFromSelector<R>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
 	options: SearchOptionsWithPages<R> & { strictSelector: true },
-): Promise<SearchResultType<R, true>[][]>;
+): Promise<SearchResultTypeFromSelector<R, true>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(options: SearchOptionsWithPages<R>) {
@@ -101,7 +104,7 @@ export async function searchWithPages<
 
 	// instead of using the above search() function,
 	// we must reimplement it in order to make it efficient, since it will call same function for each page unnecessarily
-	const searchResults: SearchResultType<R>[][] = [];
+	const searchResults: SearchResultTypeFromSelector<R>[][] = [];
 	const pages = Array.isArray(options.pages)
 		? options.pages
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
@@ -114,12 +117,12 @@ export async function searchWithPages<
 		(baseRequestConfig.params as URLSearchParams).set("start", String(page));
 		const { data } = await axios(baseRequestConfig);
 		const cheerioApi = load(data);
-		let pageResults: SearchResultType<R>[] = [];
+		let pageResults: SearchResultTypeFromSelector<R>[] = [];
 		for (const selector of selectors) {
 			const result = selector(
 				cheerioApi,
 				Boolean(options.strictSelector),
-			) as SearchResultType<R>;
+			) as SearchResultTypeFromSelector<R>;
 			// Result must be flattened to a single array
 			if (result) pageResults = pageResults.concat(result);
 		}

@@ -125,7 +125,7 @@ export type NonNullableRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
 /**
  * Generic type for the search results, derives the resultTypes from selector array.
  */
-export type SearchResultType<
+export type SearchResultTypeFromSelector<
 	R extends ResultSelector,
 	S extends boolean = false,
 > = S extends true
