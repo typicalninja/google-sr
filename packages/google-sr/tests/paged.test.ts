@@ -17,9 +17,9 @@ test("Search for paged search results", async () => {
 			expect(result.type).toBe(ResultTypes.OrganicResult);
 
 			// verify properties are present and not empty;
-			expect(result.link).toBeTypeOf("string");
-			expect(result.description).toBeTypeOf("string");
-			expect(result.title).toBeTypeOf("string");
+			expect(result.link).to.be.a("string").and.not.empty;
+			expect(result.description).to.be.a("string").and.not.empty;
+			expect(result.title).to.be.a("string").and.not.empty;
 		}
 	}
 });

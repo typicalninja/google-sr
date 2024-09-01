@@ -24,9 +24,9 @@ test("Search for organic results (default)", async () => {
 		expect(result.type).toBe(ResultTypes.OrganicResult);
 
 		// verify properties are present and not empty;
-		expect(result.link).toBeTypeOf("string");
-		expect(result.description).toBeTypeOf("string");
-		expect(result.title).toBeTypeOf("string");
+		expect(result.link).to.be.a("string").and.not.empty;
+		expect(result.description).to.be.a("string").and.not.empty;
+		expect(result.title).to.be.a("string").and.not.empty;
 	}
 });
 
@@ -42,11 +42,11 @@ test("Search for translation results", async () => {
 	for (const result of queryResult) {
 		expect(result.type).toBe(ResultTypes.TranslateResult);
 
-		expect(result.sourceLanguage).toBeTypeOf("string");
-		expect(result.sourceText).toBeTypeOf("string");
-		expect(result.translationLanguage).toBeTypeOf("string");
-		expect(result.translationText).toBeTypeOf("string");
-		expect(result.translationPronunciation).toBeTypeOf("string");
+		expect(result.sourceLanguage).to.be.a("string").and.not.empty;
+		expect(result.sourceText).to.be.a("string").and.not.empty;
+		expect(result.translationLanguage).to.be.a("string").and.not.empty;
+		expect(result.translationText).to.be.a("string").and.not.empty;
+		expect(result.translationPronunciation).to.be.a("string").and.not.empty;
 	}
 });
 
@@ -61,13 +61,13 @@ test("Search for dictionary results", async () => {
 	for (const result of queryResult) {
 		expect(result.type).toBe(ResultTypes.DictionaryResult);
 
-		expect(result.phonetic).toBeTypeOf("string");
-		expect(result.word).toBeTypeOf("string");
-		expect(result.audio).toBeTypeOf("string");
+		expect(result.phonetic).to.be.a("string").and.not.empty;
+		expect(result.word).to.be.a("string").and.not.empty;
+		expect(result.audio).to.be.a("string").and.not.empty;
 
 		for (const definition of result.definitions) {
-			expect(definition[1]).toBeTypeOf("string");
-			expect(definition[1]).toBeTypeOf("string");
+			expect(definition[1]).to.be.a("string").and.not.empty;
+			expect(definition[1]).to.be.a("string").and.not.empty;
 		}
 	}
 });
@@ -82,8 +82,8 @@ test("Search for currency results", async () => {
 
 	for (const result of queryResult) {
 		expect(result.type).toBe(ResultTypes.CurrencyResult);
-		expect(result.from).toBeTypeOf("string");
-		expect(result.to).toBeTypeOf("string");
+		expect(result.from).to.be.a("string").and.not.empty;
+		expect(result.to).to.be.a("string").and.not.empty;
 	}
 });
 
@@ -98,8 +98,8 @@ test("Search for time results", async () => {
 	for (const result of queryResult) {
 		expect(result.type).toBe(ResultTypes.TimeResult);
 
-		expect(result.time).toBeTypeOf("string");
-		expect(result.location).toBeTypeOf("string");
-		expect(result.timeInWords).toBeTypeOf("string");
+		expect(result.time).to.be.a("string").and.not.empty;
+		expect(result.location).to.be.a("string").and.not.empty;
+		expect(result.timeInWords).to.be.a("string").and.not.empty;
 	}
 });
