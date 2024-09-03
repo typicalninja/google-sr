@@ -14,7 +14,8 @@ import * as Selectors from "google-sr-selectors";
 // query is everything after "node scrape.js"
 const query = process.argv.slice(2).join(" ") || "nodejs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const destinationDir = path.resolve(__dirname, "sdump");
+const curDate = String(Date.now());
+const destinationDir = path.resolve(__dirname, `sdump/${curDate}`);
 
 console.log(`Search query > ${query}`);
 
@@ -42,13 +43,10 @@ try {
 
 	const mainContent = $("#main");
 	// filter out uneeded parts
-	mainContent.find("footer, header, script, svg, style").remove();
-	const curDate = Date.now();
-	const htmlDumpFile = path.resolve(destinationDir, `./${curDate}.dump.html`);
-	const selectorDumpDir = path.resolve(
-		destinationDir,
-		`./${curDate}.selectors.md`,
-	);
+	mainContent.find("footer, header, script, svg, style, #st-card").remove();
+
+	const htmlDumpFile = path.resolve(destinationDir, "./dump.html");
+	const selectorDumpDir = path.resolve(destinationDir, "./selectors.md");
 
 	let selectorDumpData = "";
 
@@ -72,7 +70,7 @@ try {
 	}
 
 	// ensure the directory exists
-	await fs.mkdir(path.dirname(htmlDumpFile), { recursive: true });
+	await fs.mkdir(destinationDir, { recursive: true });
 
 	console.log(`Dumping html to > ${htmlDumpFile}`);
 	await fs.writeFile(htmlDumpFile, mainContent.html());
