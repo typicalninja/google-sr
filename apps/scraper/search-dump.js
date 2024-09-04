@@ -14,7 +14,8 @@ import * as Selectors from "google-sr-selectors";
 // query is everything after "node scrape.js"
 const query = process.argv.slice(2).join(" ") || "nodejs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const destinationDir = path.resolve(__dirname, "sdump");
+const curDate = String(Date.now());
+const destinationDir = path.resolve(__dirname, `sdump/${curDate}`);
 
 console.log(`Search query > ${query}`);
 
@@ -42,15 +43,13 @@ try {
 
 	const mainContent = $("#main");
 	// filter out uneeded parts
-	mainContent.find("footer, header, script, svg, style").remove();
-	const curDate = Date.now();
-	const htmlDumpFile = path.resolve(destinationDir, `./${curDate}.dump.html`);
-	const selectorDumpDir = path.resolve(
-		destinationDir,
-		`./${curDate}.selectors.md`,
-	);
+	mainContent.find("footer, header, script, svg, style, #st-card").remove();
 
-	let selectorDumpData = "";
+	const htmlDumpFile = path.resolve(destinationDir, "./dump.html");
+	const selectorDumpDir = path.resolve(destinationDir, "./selectors.md");
+	const generatedAt = new Date();
+
+	let selectorDumpData = `# Generator Info\nGenerated at \`${generatedAt}\` For query: **${query}**\n`;
 
 	/**
 	 * selectors.md content
@@ -64,7 +63,24 @@ try {
 		let queryTypeResults = `# ${queryType}`;
 		for (const [selectorName, selector] of Object.entries(querySelectors)) {
 			const result = $(selector);
-			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]\n### text: \n${result.text()}\n### html: \n${result.html()}`;
+			const blockHtml = result.html();
+			const blockText = result.text();
+
+			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]`;
+
+			if (blockText) {
+				queryTypeResults += `\n\n### text: \n${blockText}`;
+			}
+
+			if (blockHtml) {
+				// \n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}
+				queryTypeResults += `\n\n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}`;
+			}
+
+			const attributes = result.attr();
+			if (attributes) {
+				queryTypeResults += `\n\n### attributes: \n\`\`\`json\n${JSON.stringify(attributes, null, 2)}\n\`\`\``;
+			}
 		}
 
 		// add the result
@@ -72,7 +88,7 @@ try {
 	}
 
 	// ensure the directory exists
-	await fs.mkdir(path.dirname(htmlDumpFile), { recursive: true });
+	await fs.mkdir(destinationDir, { recursive: true });
 
 	console.log(`Dumping html to > ${htmlDumpFile}`);
 	await fs.writeFile(htmlDumpFile, mainContent.html());
