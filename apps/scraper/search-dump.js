@@ -62,7 +62,14 @@ try {
 		let queryTypeResults = `# ${queryType}`;
 		for (const [selectorName, selector] of Object.entries(querySelectors)) {
 			const result = $(selector);
-			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]\n### text: \n${result.text()}\n### html: \n${result.html()}`;
+			const blockHtml = result.html();
+			const blockText = result.text();
+
+			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]\n\n### text: \n${blockText}\n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}`;
+			const attributes = result.attr();
+			if (attributes) {
+				queryTypeResults += `\n\n### attributes: \n\`\`\`json\n${JSON.stringify(attributes, null, 2)}\n\`\`\``;
+			}
 		}
 
 		// add the result
