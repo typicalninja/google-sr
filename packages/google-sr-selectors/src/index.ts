@@ -16,7 +16,7 @@ export const TranslateSearchSelector = {
 export const DictionarySearchSelector = {
 	audio: "h3.zBAuLc.l97dzf > div.BNeawe > audio",
 	phonetic: "span > div.BNeawe.tAd8D.AP7Wnd",
-	word: "span > h3.zBAuLc.l97dzf > div.BNeawe",
+	word: "span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
 	examples: "div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod",
 	definitions:
 		"div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
