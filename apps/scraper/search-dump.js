@@ -47,8 +47,9 @@ try {
 
 	const htmlDumpFile = path.resolve(destinationDir, "./dump.html");
 	const selectorDumpDir = path.resolve(destinationDir, "./selectors.md");
+	const generatedAt = new Date();
 
-	let selectorDumpData = "";
+	let selectorDumpData = `# Generator Info\nGenerated at \`${generatedAt}\` For query: **${query}**\n`;
 
 	/**
 	 * selectors.md content
@@ -65,7 +66,17 @@ try {
 			const blockHtml = result.html();
 			const blockText = result.text();
 
-			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]\n\n### text: \n${blockText}\n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}`;
+			queryTypeResults += `\n\n## ${selectorName} [\`${selector}\`]`;
+
+			if (blockText) {
+				queryTypeResults += `\n\n### text: \n${blockText}`;
+			}
+
+			if (blockHtml) {
+				// \n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}
+				queryTypeResults += `\n\n### html: \n\`\`\`html\n${blockHtml}\n\`\`\`\n${blockHtml ?? ""}`;
+			}
+
 			const attributes = result.attr();
 			if (attributes) {
 				queryTypeResults += `\n\n### attributes: \n\`\`\`json\n${JSON.stringify(attributes, null, 2)}\n\`\`\``;
