@@ -14,6 +14,7 @@ export const TranslateSearchSelector = {
 };
 
 export const DictionarySearchSelector = {
+	// use attr('src') to get the audio url
 	audio: "h3.zBAuLc.l97dzf > div.BNeawe > audio",
 	phonetic: "span > div.BNeawe.tAd8D.AP7Wnd",
 	word: "span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
