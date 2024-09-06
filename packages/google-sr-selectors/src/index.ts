@@ -1,5 +1,5 @@
 export const OrganicSearchSelector = {
-	block: ".Gx5Zad.xpd.EtOod.pkphOe",
+	block: "div:not([data-hveid]):not(.yStFkb) > div.Gx5Zad.xpd.EtOod.pkphOe",
 	link: "[data-ved]",
 	title: "h3.zBAuLc",
 	description: ".BNeawe.s3v9rd.AP7Wnd",
