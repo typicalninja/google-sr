@@ -21,7 +21,6 @@ test("Search for organic results (default)", async () => {
 
 	// verify all results are OrganicResults
 	for (const result of queryResult) {
-		console.log(result);
 		expect(result.type).toBe(ResultTypes.OrganicResult);
 
 		// verify properties are present and not empty;
