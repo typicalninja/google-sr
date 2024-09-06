@@ -14,12 +14,19 @@ export const TranslateSearchSelector = {
 };
 
 export const DictionarySearchSelector = {
-	audio: "audio:first",
+	// use attr('src') to get the audio url
+	audio: "h3.zBAuLc.l97dzf > div.BNeawe > audio",
 	phonetic: "span > div.BNeawe.tAd8D.AP7Wnd",
-	word: "h3 > div.BNeawe.deIvCb.AP7Wnd",
-	examples: "div.v9i61e > div.BNeawe > span.r0bn4c.rQMQod",
-	definitions:
-		"div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span.r0bn4c.rQMQod))",
+	word: "span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
+	// there can be multiple definitions
+	// use definitionPartOfSpeech as reference to how many definitions there are
+	// there are no reliable way other than that to get definitions
+	definition: "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span))",
+	definitionPartOfSpeech:
+		"div.Ap5OSd > div.BNeawe.s3v9rd.AP7Wnd > span.r0bn4c.rQMQod",
+	definitionExample: "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:has(span)",
+	definitionSynonyms:
+		"div:not(.v9i61e):not(.Ap5OSd) > div.BNeawe.s3v9rd.AP7Wnd > span.r0bn4c.rQMQod",
 };
 
 export const TimeSearchSelector = {

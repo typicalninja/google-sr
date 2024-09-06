@@ -52,7 +52,7 @@ test("Search for translation results", async () => {
 
 test("Search for dictionary results", async () => {
 	const queryResult = await search({
-		query: "define amazing",
+		query: "define war",
 		resultTypes: [DictionaryResult],
 	});
 	// only one result should be returned for this query
@@ -64,10 +64,25 @@ test("Search for dictionary results", async () => {
 		expect(result.phonetic).to.be.a("string").and.not.empty;
 		expect(result.word).to.be.a("string").and.not.empty;
 		expect(result.audio).to.be.a("string").and.not.empty;
+		// we only expect 2 definitions for this query
+		expect(result.definitions).to.be.an("array").and.toHaveLength(2);
 
 		for (const definition of result.definitions) {
-			expect(definition[1]).to.be.a("string").and.not.empty;
-			expect(definition[1]).to.be.a("string").and.not.empty;
+			expect(definition.partOfSpeech).to.be.a("string").and.not.empty;
+			// check if partOfSpeech is a valid part of speech
+			expect(definition.partOfSpeech).to.be.oneOf([
+				// these are only the expected part of speeches for this test query
+				// mismatch might indicate a issue
+				"noun",
+				"verb",
+			]);
+
+			expect(definition.definition).to.be.a("string").and.not.empty;
+			expect(definition.example).to.be.a("string").and.not.empty;
+
+			expect(definition.synonyms)
+				.to.be.an("array")
+				.and.to.length.be.greaterThan(0);
 		}
 	}
 });

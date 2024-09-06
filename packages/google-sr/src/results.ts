@@ -7,6 +7,7 @@ import {
 } from "google-sr-selectors";
 import {
 	type CurrencyResultNode,
+	type DictionaryDefinition,
 	type DictionaryResultNode,
 	//
 	type OrganicResultNode,
@@ -116,26 +117,43 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
 	const audio = $(DictionarySearchSelector.audio).attr("src") || "";
-	const phonetic = $(DictionarySearchSelector.phonetic).text().trim();
+	const phonetic = $(DictionarySearchSelector.phonetic).first().text().trim();
 	const word = $(DictionarySearchSelector.word).text().trim();
 
-	const definitions: [string, string][] = [];
+	const definitions: DictionaryDefinition[] = [];
 
-	$(DictionarySearchSelector.definitions).each((index, el) => {
-		definitions[index] = ["", ""];
-		definitions[index][0] = $(el).text().trim();
-	});
+	// get all the matching partOfSpeech elements, we assume that as the overall number of elements
+	// to be checked for definitions
+	const definitionElements = $(DictionarySearchSelector.definitionPartOfSpeech);
 
-	$(DictionarySearchSelector.examples).each((index, el) => {
-		if (definitions[index]) {
-			let example = $(el).text().trim();
+	for (let i = 0; i < definitionElements.length; i++) {
+		const partOfSpeech = $(definitionElements[i]).text().trim();
+		if (partOfSpeech) {
+			const definition = $(DictionarySearchSelector.definition)
+				.eq(i)
+				.text()
+				.trim();
+			const example = $(DictionarySearchSelector.definitionExample)
+				.eq(i)
+				.text()
+				.trim();
+			const synonyms = $(DictionarySearchSelector.definitionSynonyms)
+				.eq(i)
+				.text()
+				// at the start of the string, remove "synonyms: "
+				.replace("synonyms: ", "")
+				.split(",")
+				// some strings have extra spaces, trim them (might have performance implications TODO: check later)
+				.map((synonym) => synonym.trim());
 
-			if (example.startsWith(`"`)) example = example.slice(1);
-			if (example.endsWith(`"`)) example = example.slice(0, example.length - 1);
-
-			definitions[index][1] = example;
+			definitions.push({
+				partOfSpeech,
+				definition,
+				example,
+				synonyms,
+			});
 		}
-	});
+	}
 
 	if (isEmpty(strictSelector, audio, phonetic, word)) return null;
 
