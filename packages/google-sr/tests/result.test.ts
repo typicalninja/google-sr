@@ -83,7 +83,6 @@ test("Search for dictionary results", async () => {
 			expect(definition.synonyms)
 				.to.be.an("array")
 				.and.to.length.be.greaterThan(0);
-			console.log(definition);
 		}
 	}
 });
