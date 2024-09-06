@@ -23,11 +23,18 @@ export type TranslateResultNode = ResultNodeTyper<
 	| "translationText"
 	| "translationPronunciation"
 >;
+export interface DictionaryDefinition {
+	partOfSpeech: string;
+	definition: string;
+	example: string;
+	synonyms: string[];
+}
 // Dictionary result contains a special property called definitions which is an array
 export type DictionaryResultNode = ResultNodeTyper<
 	typeof ResultTypes.DictionaryResult,
 	"audio" | "phonetic" | "word"
-> & { definitions: [string, string][] };
+> & { definitions: DictionaryDefinition[] };
+
 export type TimeResultNode = ResultNodeTyper<
 	typeof ResultTypes.TimeResult,
 	"location" | "time" | "timeInWords"
