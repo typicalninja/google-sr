@@ -1,7 +1,6 @@
 
 # tools
 node_modules
-.npmignore
 .turbo
 dist
 
