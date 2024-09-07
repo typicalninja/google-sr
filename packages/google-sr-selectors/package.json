@@ -1,6 +1,6 @@
 {
   "name": "google-sr-selectors",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Html selectors for google search result pages.",
   "repository":"https://github.com/typicalninja/google-sr",
   "homepage": "https://g-sr.vercel.app/google/selectors",
