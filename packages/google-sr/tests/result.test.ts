@@ -32,7 +32,7 @@ test("Search for organic results (default)", async () => {
 
 test("Search for translation results", async () => {
 	const queryResult = await search({
-		query: "translate hello to spanish",
+		query: "translate hello to japanese",
 		resultTypes: [TranslateResult],
 	});
 	// only one result should be returned for this query
