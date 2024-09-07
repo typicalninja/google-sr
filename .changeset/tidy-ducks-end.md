@@ -2,4 +2,4 @@
 "google-sr-selectors": patch
 ---
 
-Patche organic search block selector
+Patch organic search block selector
