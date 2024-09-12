@@ -51,11 +51,15 @@ export type SearchResultNode =
 	| DictionaryResultNode
 	| TimeResultNode
 	| CurrencyResultNode;
+
+export interface SearchResultNodeLike {
+	type: string;
+}
+
 // the type used to identify a parser/selector function
-export type ResultSelector<R extends SearchResultNode = SearchResultNode> = (
-	cheerio: CheerioAPI,
-	strictSelector: boolean,
-) => R[] | R | null;
+export type ResultSelector<
+	R extends SearchResultNodeLike = SearchResultNodeLike,
+> = (cheerio: CheerioAPI, strictSelector: boolean) => R[] | R | null;
 
 /**
  * Search options for single page search
