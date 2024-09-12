@@ -4,18 +4,31 @@
  */
 
 import {
-	type OrganicResultNode,
+	// little helper to create a type for the result node (optional)
+	type ResultNodeTyper,
 	type ResultSelector,
-	ResultTypes,
 	search,
 } from "google-sr";
 
-const customSelector: ResultSelector<OrganicResultNode> = () => {
+type CustomResultNode = ResultNodeTyper<"CUSTOM", "title"> & {
+	examples: string[];
+};
+
+/*
+Or without the type helper:
+
+interface CustomResultNode {
+	type: 'CUSTOM'
+	title: string
+	examples: string[]
+}
+*/
+
+const customSelector: ResultSelector<CustomResultNode> = () => {
 	return {
-		type: ResultTypes.OrganicResult,
+		type: "CUSTOM",
 		title: "Some title",
-		link: "Some link",
-		description: "Some description",
+		examples: ["example1", "example2"],
 	};
 };
 
@@ -24,4 +37,4 @@ const results = await search({
 	resultTypes: [customSelector],
 });
 
-console.log(results);
+console.log(results[0]);
