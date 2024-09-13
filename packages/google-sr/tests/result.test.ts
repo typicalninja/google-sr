@@ -16,6 +16,10 @@ test("Search for organic results (default)", async () => {
 	const queryResult = await search({
 		query: "nodejs",
 		resultTypes: [OrganicResult],
+		// on some platforms (i.e github actions) it returns some weird results that does not have a link/description/title
+		// so we set strictSelector to true to ignore those results
+		//TODO: recheck in future as the tests pass on local machines (tested on 2 different machines)
+		strictSelector: true,
 	});
 	expect(queryResult).length.greaterThan(0);
 

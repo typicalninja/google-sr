@@ -7,6 +7,10 @@ test("Search for paged search results", async () => {
 		query: "nodejs",
 		resultTypes: [OrganicResult],
 		pages: 2,
+		// on some platforms (i.e github actions) it returns some weird results that does not have a link/description/title
+		// so we set strictSelector to true to ignore those results
+		//TODO: recheck in future as the tests pass on local machines (tested on 2 different machines)
+		strictSelector: true,
 	});
 	expect(queryResult).toHaveLength(2);
 
