@@ -1,5 +1,10 @@
 # Introduction to google-sr
 
+::: warning ⚠️ Old documentation
+You are viewing the the documentation for the v3.x.x version of google-sr.
+Please see the latest documentation [here](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+:::
+
 Simple & Fast Package for scraping Google search results without the need for an API key.
 
 ::: info 🌟 Show Your Support!

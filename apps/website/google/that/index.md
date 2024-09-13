@@ -1,4 +1,9 @@
-# Introduction to google-that
+# -Introduction to google-that
+
+::: warning ⚠️ Old documentation
+You are viewing the the documentation for the v3.x.x version of google-sr.
+Please see the latest documentation [here](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+:::
 
 CLI tool to scrape google search results without an api key 🚀.
 

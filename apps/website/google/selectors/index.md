@@ -1,5 +1,9 @@
 # Introduction to google-sr-selectors
 
+::: warning ⚠️ Old documentation
+You are viewing the the documentation for the v3.x.x version of google-sr.
+Please see the latest documentation [here](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+:::
 
 Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
 

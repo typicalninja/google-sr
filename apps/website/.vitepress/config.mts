@@ -25,8 +25,8 @@ const docHead = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "GSR",
-  description: "Complete set of tools to scrape google search results",
+  title: "GSR | Old documentation",
+  description: "Complete set of tools to scrape google search results (outdated/v3)",
   cleanUrls: false,
   lastUpdated : true,
   head: docHead,
@@ -66,7 +66,8 @@ export default defineConfig({
     footer: {
       message: 'Released under the <a href="https://github.com/typicalninja/disci/blob/main/LICENSE">Apache 2.0 License</a>.',
       copyright: 'Copyright © 2021-Present <a href="http://typical.vercel.app/">Typicalninja</a> & contributors'
-    }
+    },
+    
   },
   
   markdown: {

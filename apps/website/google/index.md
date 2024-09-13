@@ -1,6 +1,10 @@
 # Introduction
 
-[![powered by vercel](/images/powered-by-vercel.svg)](https://vercel.com?utm_source=g-sr.vercel.app&utm_campaign=oss)
+::: warning ⚠️ Old documentation
+You are viewing the the documentation for the v3.x.x version of google-sr.
+Please see the latest documentation [here](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+:::
+
 
 Welcome to the 🏘️ home of GSR project.
 
