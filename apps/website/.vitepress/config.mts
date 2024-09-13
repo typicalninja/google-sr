@@ -88,7 +88,6 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
         { text: 'Usage', link: 'sr/usage' },
         { text: 'Advanced usage', link: 'sr/advanced' },
         { text: 'Result types', link: 'sr/types' },
-        { text: 'API Documentation', link: 'sr/api' },
       ]
     },
     {
@@ -97,7 +96,6 @@ function getGuideSidebar(): DefaultTheme.SidebarItem[] {
       items: [
         { text: 'Introduction', link: 'selectors/' },
         { text: 'Overview', link: 'selectors/overview' },
-        { text: 'API Documentation', link: 'selectors/api'}
       ]
     },
     {
