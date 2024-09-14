@@ -53,13 +53,15 @@ export function prepareRequestConfig(opts: SearchOptions): AxiosRequestConfig {
 		: baseHeaders;
 	requestConfig.url = requestConfig.url ?? "https://www.google.com/search";
 
-	requestConfig.params = new URLSearchParams(requestConfig.params);
+	// if params is not a URLSearchParams instance, make it one
+	if (!(requestConfig.params instanceof URLSearchParams)) {
+		requestConfig.params = new URLSearchParams(requestConfig.params);
+	}
+	// these params are always set without being overwritten
 	// set the actual query
 	requestConfig.params.set("q", opts.query);
 	// force the search result to be non javascript
 	requestConfig.params.set("gbv", "1");
-	// safe search
-	if (opts.safeMode === true) requestConfig.params.set("safe", "active");
 
 	// force the response to be text
 	requestConfig.responseType = "text";
