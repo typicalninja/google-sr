@@ -28,38 +28,39 @@ yarn add google-sr
 You can easily perform a single-page search like this:
 
 ```ts
-import { search, OrganicResult } from 'google-sr';
+import { search, OrganicResult, ResultTypes } from 'google-sr';
 
-// using await/async
 const queryResult = await search({
     query: "nodejs",
     // OrganicResult is the default, however it is recommended to always specify the result type
     resultTypes: [OrganicResult],
+    // to add additional configuration to the request, use the requestConfig option
+    // which accepts a AxiosRequestConfig object
+    // OPTIONAL
+    requestConfig: {
+		params: {
+            // enable "safe mode"
+			safe: 'active'
+		},
+	},
 });
 
 // will return a SearchResult[]
 console.log(queryResult);
-// should log: true
-console.log(queryResult[0].type === ResultTypes.OrganicResult)
 ```
 
 To search for multiple pages of results, use the `searchWithPages` function:
 
 ```ts
-import { searchWithPages, OrganicResult } from 'google-sr';
+import { searchWithPages, OrganicResult, ResultTypes } from 'google-sr';
 
-// using await/async
 const queryResult = await searchWithPages({
     query: "nodejs",
     // OrganicResult is the default, however it is recommended to always specify the result type
     resultTypes: [OrganicResult],
     pages: 2,
 });
-
-// will return a SearchResult[][]
 console.log(queryResult);
-// should log: true
-console.log(queryResult[0][0].type === ResultTypes.OrganicResult)
 ```
 
 > By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it

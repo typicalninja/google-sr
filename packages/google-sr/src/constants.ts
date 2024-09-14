@@ -69,12 +69,6 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
 	 * Search query
 	 */
 	query: string;
-
-	/**
-	 * Toggle to enable google safe mode
-	 */
-	safeMode?: boolean;
-
 	/**
 	 * Control the type of results returned (can have a significant performance impact)
 	 */
