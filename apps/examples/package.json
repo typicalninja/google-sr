@@ -5,7 +5,8 @@
     "basic": "tsx src/basic.ts",
     "translate": "tsx src/translate.ts",
     "custom-selector": "tsx src/custom-selector.ts",
-    "paged": "tsx src/paged.ts"
+    "paged": "tsx src/paged.ts",
+    "proxies": "tsx src/proxies.ts"
   },
   "type": "module",
   "dependencies": {
