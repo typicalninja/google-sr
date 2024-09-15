@@ -6,7 +6,8 @@
     "translate": "tsx src/translate.ts",
     "custom-selector": "tsx src/custom-selector.ts",
     "paged": "tsx src/paged.ts",
-    "proxies": "tsx src/proxies.ts"
+    "proxies": "tsx src/proxies.ts",
+    "kitchen-sink": "tsx src/kitchen-sink.ts"
   },
   "type": "module",
   "dependencies": {
