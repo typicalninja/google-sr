@@ -11,3 +11,7 @@ tsconfig.json
 
 # tools
 .turbo
+
+
+# Ignore api docs
+API.md

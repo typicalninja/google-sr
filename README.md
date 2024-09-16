@@ -62,7 +62,7 @@ console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 
 # google-sr API
 
-Please refer to the google-sr readme in [packages/google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/README.md)
+Please refer to the google-sr API in [packages/google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md)
 
 # Monorepo
 
@@ -106,8 +106,17 @@ This is not sponsored, supported, or affiliated with Google Inc.
 Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
 
 The source code within this repository is intended solely for educational & research purposes.
-
 The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
+
+# Tests
+
+Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
+
+> Weekly tests are executed using a github action to ensure compatibility and catch breakage due to google changes
+
+```bash
+pnpm run test
+```
 
 # License
 
