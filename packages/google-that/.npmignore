@@ -2,10 +2,6 @@
 # Stop npm from publishing ts files
 src
 
-# Stop npm from publishing test files
-tests
-
-
 # Typescript
 tsup.config.ts
 tsconfig.json
