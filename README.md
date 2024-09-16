@@ -10,30 +10,36 @@ Easy to use, updated tools for scraping google search results. 🚀
 
 # Install
 
-To get started, you can install **google-sr** using your preferred package manager:
+To get started, you can install **google-sr** using your preferred package manager.
+google-sr is tested on following runtimes:
+
+* node.js
+* bun
+
+Other runtimes might work, but are not tested (web is unsupported)
 
 ```bash
-# npm
 npm install google-sr
 
-# pnpm 
-pnpm add google-sr
-
-# yarn
-yarn add google-sr
+[pnpm/yarn/bun] add google-sr
 ```
 
 # Usage
 
-You can easily perform a single-page search like this:
-
 ```ts
-import { search, OrganicResult, ResultTypes } from 'google-sr';
+import { 
+    search, 
+    // import the result types you want
+    OrganicResult, 
+    DictionaryResult,
+    // helpful to import ResultTypes to filter results
+    ResultTypes 
+} from 'google-sr';
 
 const queryResult = await search({
     query: "nodejs",
-    // OrganicResult is the default, however it is recommended to always specify the result type
-    resultTypes: [OrganicResult],
+    // OrganicResult is the default, however it is recommended to ALWAYS specify the result type
+    resultTypes: [OrganicResult, DictionaryResult],
     // to add additional configuration to the request, use the requestConfig option
     // which accepts a AxiosRequestConfig object
     // OPTIONAL
@@ -47,25 +53,12 @@ const queryResult = await search({
 
 // will return a SearchResult[]
 console.log(queryResult);
+console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 ```
 
-To search for multiple pages of results, use the `searchWithPages` function:
+> **By default only `ResultTypes.OrganicResult` result type are returned, use the `resultTypes` option to configure it**
 
-```ts
-import { searchWithPages, OrganicResult, ResultTypes } from 'google-sr';
-
-const queryResult = await searchWithPages({
-    query: "nodejs",
-    // OrganicResult is the default, however it is recommended to always specify the result type
-    resultTypes: [OrganicResult],
-    pages: 2,
-});
-console.log(queryResult);
-```
-
-> By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it
-
-* Additional examples can be found in [tests](#tests) and [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
+* Additional examples in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # google-sr API
 
