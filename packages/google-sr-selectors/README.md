@@ -20,6 +20,8 @@ ex: (disable javascript, else it will redirect): [query `nodejs`](https://www.go
 
 The package currently only supports a limited amount search result types
 
+See the [api docs](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr-selectors/API.md) for more information.
+
 🌟 Suggest more to be added [here](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
 
 # Related projects 🥂
