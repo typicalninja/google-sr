@@ -11,7 +11,7 @@
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check": "biome check --write",
-    "ci:publish": "pnpm publish -r",
+    "ci:publish": "pnpm publish -r --no-git-checks",
     "ci:version": "changeset version",
     "prepare": "is-ci || lefthook install"
   },
