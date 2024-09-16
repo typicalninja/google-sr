@@ -1,5 +1,4 @@
 import {
-	DictionaryResult,
 	// import the result types you want
 	OrganicResult,
 	// helpful to import ResultTypes to filter results
@@ -10,16 +9,7 @@ import {
 const queryResult = await search({
 	query: "nodejs",
 	// OrganicResult is the default, however it is recommended to ALWAYS specify the result type
-	resultTypes: [OrganicResult, DictionaryResult],
-	// to add additional configuration to the request, use the requestConfig option
-	// which accepts a AxiosRequestConfig object
-	// OPTIONAL
-	requestConfig: {
-		params: {
-			// enable "safe mode"
-			safe: "active",
-		},
-	},
+	resultTypes: [OrganicResult],
 });
 
 // will return a SearchResult[]
