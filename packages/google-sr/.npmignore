@@ -15,3 +15,5 @@ tsconfig.json
 
 # Ignore api docs
 API.md
+# Ignore changelog
+CHANGELOG.md

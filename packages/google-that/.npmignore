@@ -8,3 +8,6 @@ tsconfig.json
 
 # tools
 .turbo
+
+# Ignore changelog
+CHANGELOG.md
