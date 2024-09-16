@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "description": "CLI tool to scrape google search results without a api key",
   "repository": "https://github.com/typicalninja/google-sr",
-  "homepage": "https://g-sr.vercel.app/google/that",
+  "homepage": "https://github.com/typicalninja/google-sr",
   "exports": "./dist/index.js",
   "bin": "./dist/index.js",
   "type": "module",

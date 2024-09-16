@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Html selectors for google search result pages.",
   "repository":"https://github.com/typicalninja/google-sr",
-  "homepage": "https://g-sr.vercel.app/google/selectors",
+  "homepage": "https://github.com/typicalninja/google-sr",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
