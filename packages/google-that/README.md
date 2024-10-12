@@ -10,32 +10,29 @@
 CLI tool to scrape google search results without an api key 🚀.
 This is a demo project to showcase the usage and performance of the [google-sr](https://npmjs.com/package/google-sr) package. google-that is able to output parsed results to a file or to stdout, please check the help page for more info.
 
-## Install 📦
+# Install 📦
 
 To get started, you can install **google-that** using your preferred package manager:
 
-> We suggest you install the package as a global module
+> You can also use `npx` (or similar tools like `pnpm dlx`) to run the tool without needing to install it globally.
 
 ```bash
-
 # npm
 npm install -g google-that
 
-# pnpm 
+# pnpm
 pnpm add -g google-that
 
 # yarn
 yarn add -g google-that
 ```
 
-## Usage
+# Usage
 
 If installation succeeded you can proceed to this step, run the following command in a **NEW** terminal window. it will show you the help page for the tool.
 
 ```bash
-
 google-that --help
-
 ```
 
 ### Example query
@@ -49,23 +46,19 @@ google-that -Q query1 "queries with spaces need to be quoted"
 
 # Writing the results to a file
 google-that -q "Nodejs" -w
-
 ```
-
-# Related projects 🥂
-
-* [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
-* [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
 
 # Disclaimer
 
-This is not sponsored, supported, or affiliated with Google Inc.
+This is not sponsored, supported, or affiliated with Google.
 
-Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
+The source code within this repository is intended solely for **educational & research purposes**.
+The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
 
-The source code within this repository is intended solely for educational & research purposes.
+# Related projects 🥂
 
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
+- [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
+- [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
 
 # License
 

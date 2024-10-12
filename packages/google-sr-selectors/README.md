@@ -24,21 +24,17 @@ See the [api docs](https://github.com/typicalninja/google-sr/blob/master/package
 
 🌟 Suggest more to be added [here](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
 
+# Disclaimer
+
+This is not sponsored, supported, or affiliated with Google.
+
+The source code within this repository is intended solely for **educational & research purposes**.
+The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
+
 # Related projects 🥂
 
 * [google-sr](https://g-sr.vercel.app/google/sr) - Simple tool to programmatically get google search results
 * [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
-
-
-# Disclaimer
-
-This is not sponsored, supported, or affiliated with Google Inc.
-
-Unlike the conventional recommendation of using the Google API, this module scrapes the Google search result page (which might potentially infringe upon Google's terms of service).
-
-The source code within this repository is intended solely for educational & research purposes.
-
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
 
 # License
 
