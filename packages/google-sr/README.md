@@ -12,46 +12,53 @@ Simple & Fast Package for scraping Google search results without the need for an
 
 # Features
 
-* No API key is needed 🔑
-* 1st party typescript support
-* [Customizable selectors](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/custom-selector.ts) 🔍
-* [Well tested 🔄](#tests)
+- No API key is needed 🔑
+- First-party TypeScript support
+- [Customizable selectors](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/custom-selector.ts) 🔍
+- [Well tested 🔄](#tests)
+- [Supports multiple runtimes](#runtime-support)
 
 # Install 📦
 
-> google-sr is not supported on browser environments.
+### Runtime Support
+
+`google-sr` does not support web environments, but it has been tested and confirmed to work on the following runtimes:
+
+- [Node.js](https://nodejs.org/en)
+- [Bun](https://bun.sh/)
+- [Deno](https://deno.com/) (with the [`npm:` specifier](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages))
+
+To get started, you can install **google-sr** using your preferred package manager:
 
 ```bash
 npm install google-sr
-# or other supported runtimes/package managers
-[pnpm/yarn/bun] add google-sr
+# For pnpm/yarn/bun:
+pnpm/yarn/bun add google-sr
+# For Deno, the package will be automatically installed when running the script
 ```
 
 # Usage
 
+This example demonstrates some of the features of `google-sr`. For a bare minimum setup, refer to the [examples/basic](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/basic.ts) file.
+
 ```ts
-import { 
-    search, 
-    // import the result types you want
-    OrganicResult, 
-    DictionaryResult,
-    // helpful to import ResultTypes to filter results
-    ResultTypes 
-} from 'google-sr';
+import {
+  search,
+  OrganicResult, // Import the result types you need
+  DictionaryResult,
+  ResultTypes, // Import to filter results by type
+} from "google-sr";
 
 const queryResult = await search({
-    query: "nodejs",
-    // OrganicResult is the default, however it is recommended to ALWAYS specify the result type
-    resultTypes: [OrganicResult, DictionaryResult],
-    // to add additional configuration to the request, use the requestConfig option
-    // which accepts a AxiosRequestConfig object
-    // OPTIONAL
-    requestConfig: {
-		params: {
-            // enable "safe mode"
-			safe: 'active'
-		},
-	},
+  query: "nodejs",
+  // Specify the result types explicitly ([OrganicResult] is the default, but it is recommended to always specify the result type)
+  resultTypes: [OrganicResult, DictionaryResult],
+  // Optional: Customize the request using AxiosRequestConfig (e.g., enabling safe search)
+  requestConfig: {
+    params: {
+      safe: "active",   // Enable "safe mode"
+    },
+  },
 });
 
 // will return a SearchResult[]
@@ -59,26 +66,25 @@ console.log(queryResult);
 console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 ```
 
-> By default only `ResultTypes.OrganicResult` result type are returned, use the [resultTypes](#searchoptionsr--resultselector) option to configure it
+> Note: By default, only results of type [`ResultTypes.OrganicResult`](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md#resulttypes) are returned. Use the [`resultTypes`](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md#searchoptionsr--resultselector) option to customize the output.
 
-* Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
+- Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # google-sr programatic API
 
 Please refer to the google-sr API in [packages/google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md)
 
+# Disclaimer
+
+This is not sponsored, supported, or affiliated with Google.
+
+The source code within this repository is intended solely for **educational & research purposes**.
+The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
 
 # Related projects 🥂
 
-* [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
-* [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
-
-# ⚠️ Disclaimer
-
-This is not sponsored, supported, or affiliated with Google Inc.
-
-The source code within this repository is intended solely for educational & research purposes.
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from misuse, such as IP blocking by Google. Your discretion in usage is advised.
+- [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
+- [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
 
 # Tests
 
