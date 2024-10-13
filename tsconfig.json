@@ -3,13 +3,12 @@
 	"display": "Default",
 	"compilerOptions": {
 		"target": "ES2022",
-		"module": "commonjs",
+		"module": "ES2022",
 		"moduleResolution": "node",
 		"declaration": true,
 		"outDir": "dist",
 		"removeComments": false,
-		"importHelpers": true,
-		"importsNotUsedAsValues": "error",
+		"verbatimModuleSyntax": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
@@ -23,7 +22,5 @@
 		"noUnusedLocals": true,
 		"skipLibCheck": true,
 		"noImplicitThis": true,
-		// TODO: Look into fixing this (due to verbatimModuleSyntax & deprecation of importsNotUsedAsValues)
-		"ignoreDeprecations": "5.0"
 	}
 }

@@ -2,7 +2,7 @@ export * from "./search";
 export * from "./results";
 export * from "./constants";
 
-export {
+export type {
 	ResultNodeTyper,
 	SearchResultTypeFromSelector,
 } from "./utils";
