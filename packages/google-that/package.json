@@ -4,7 +4,7 @@
   "description": "CLI tool to scrape google search results without a api key",
   "repository": "https://github.com/typicalninja/google-sr",
   "homepage": "https://github.com/typicalninja/google-sr",
-  "exports": "./dist/index.js",
+  "exports": null,
   "bin": "./dist/index.js",
   "type": "module",
   "scripts": {
