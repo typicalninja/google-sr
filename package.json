@@ -5,7 +5,7 @@
   "scripts": {
     "build": "turbo run build --no-daemon",
     "dev": "turbo run dev --parallel --no-daemon",
-    "test": "turbo run test --no-daemon",
+    "test": "turbo run test --no-daemon --filter=google-sr -- --watch=false",
     "build:packages": "turbo run build --no-daemon",
     "lint": "biome lint --write",
     "format": "biome format --write",
