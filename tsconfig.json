@@ -23,5 +23,4 @@
 		"skipLibCheck": true,
 		"noImplicitThis": true,
 	},
-	"exclude": ["tsup.config.ts", "dist"]
 }
