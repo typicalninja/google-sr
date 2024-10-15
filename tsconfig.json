@@ -8,7 +8,6 @@
 		"declaration": true,
 		"outDir": "dist",
 		"removeComments": false,
-		"verbatimModuleSyntax": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
