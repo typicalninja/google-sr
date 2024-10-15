@@ -20,6 +20,6 @@
 		"noImplicitOverride": true,
 		"noUnusedLocals": true,
 		"skipLibCheck": true,
-		"noImplicitThis": true,
-	},
+		"noImplicitThis": true
+	}
 }
