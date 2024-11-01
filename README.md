@@ -25,7 +25,9 @@ To get started, you can install **google-sr** using your preferred package manag
 npm install google-sr
 # For pnpm/yarn/bun:
 pnpm/yarn/bun add google-sr
-# For Deno, the package will be automatically installed when running the script
+# For Deno, either use the npm: specifier
+# or import from esm.sh
+# https://esm.sh/google-sr
 ```
 
 # Usage
