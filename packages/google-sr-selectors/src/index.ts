@@ -39,3 +39,22 @@ export const CurrencyConvertSelector = {
 	from: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
 	to: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
 };
+
+export const KnowledgePanelSelector = {
+	title: "div.kCrYT > span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
+	label: "span > div.BNeawe.tAd8D.AP7Wnd",
+	description: "div.BNeawe.s3v9rd.AP7Wnd > div > div.BNeawe.s3v9rd.AP7Wnd",
+	metadataBlock: "div.vbShOe.kCrYT > div.AVsepf > div.BNeawe.s3v9rd.AP7Wnd",
+	metadataLabel: "span > span.BNeawe.s3v9rd.AP7Wnd",
+	metadataValue: "span > span.BNeawe.tAd8D.AP7Wnd",
+	imageSource: "div.idg8be > a.BVG0Nb.OxTOff",
+	// imageUrl is a direct child of the imageSource
+	imageUrl: "div > img.WddBJd",
+
+	catalogBlock: "div:has(> div.kCrYT > span.punez)",
+	catalogTitle: "div.kCrYT > span.punez",
+	catalogItem: "div.Xdlr0d > div.idg8be > a.BVG0Nb.OxTOff > div",
+	catalogItemImage: "div > div.l7d08 > img.h1hFNe",
+	catalogItemTitle: "div > div.RWuggc.kCrYT > div > div.BNeawe.s3v9rd.AP7Wnd",
+	catalogItemCaption: "div > div.RWuggc.kCrYT > div > div.BNeawe.tAd8D.AP7Wnd",
+};
