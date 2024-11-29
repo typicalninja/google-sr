@@ -19,16 +19,21 @@ const baseHeaders = {
  * @private
  */
 export function extractUrlFromGoogleLink(googleLink: string): string | null {
-	// regex to match the part
-	// ! as of 8/9/2023:
-	// following is how the link will look:
-	// * /url?q=https://expressjs.com/&sa=U&ved=2ahUKEwihg46ous-AAxU8XaQEHWwVBxIQFnoECAgQAg&usg=AOvVaw0RwID-oweDOqO2Pg_8gWi1
-	const match = googleLink.match(/\/url\?q=([^&]+)/);
-	if (match) {
-		const decodedUrl = decodeURIComponent(match[1]);
-		return decodedUrl;
+	// Regular expression to extract the `q` or `imgurl` parameter from the link
+	const regex = /[?&](q|imgurl)=([^&]+)/;
+
+	// Match the link against the regex
+	const match = googleLink.match(regex);
+	if (match?.[2]) {
+		try {
+			// Decode the extracted URL to handle encoded characters
+			return decodeURIComponent(match[2]);
+		} catch {
+			// Return null if decoding fails
+			return null;
+		}
 	}
-	// link could not be parsed
+	// Return null if no match is found
 	return null;
 }
 
