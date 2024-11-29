@@ -8,6 +8,7 @@ export const ResultTypes = {
 	DictionaryResult: "DICTIONARY",
 	TimeResult: "TIME",
 	CurrencyResult: "CURRENCY",
+	KnowledgePanel: "KNOWLEDGE_PANEL",
 } as const;
 
 // Specific result types returned by gsr
@@ -44,13 +45,44 @@ export type CurrencyResultNode = ResultNodeTyper<
 	"from" | "to"
 >;
 
+export interface KnowledgePanelMetadata {
+	label: string;
+	value: string;
+}
+
+export interface KnowledgePanelImage {
+	source: string;
+	url: string;
+}
+
+export interface KnowledgePanelCatalog {
+	title: string;
+	items: KnowledgePanelCatalogItem[];
+}
+
+export interface KnowledgePanelCatalogItem {
+	title: string;
+	caption: string;
+	image: string;
+}
+
+export type KnowledgePanelResultNode = ResultNodeTyper<
+	typeof ResultTypes.KnowledgePanel,
+	"label" | "title" | "description"
+> & {
+	metadata: KnowledgePanelMetadata[];
+	images: KnowledgePanelImage[];
+	catalog: KnowledgePanelCatalog[];
+};
+
 // All possible result types as a union
 export type SearchResultNode =
 	| OrganicResultNode
 	| TranslateResultNode
 	| DictionaryResultNode
 	| TimeResultNode
-	| CurrencyResultNode;
+	| CurrencyResultNode
+	| KnowledgePanelResultNode;
 
 export interface SearchResultNodeLike {
 	type: string;
