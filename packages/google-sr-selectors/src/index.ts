@@ -6,8 +6,8 @@ export const OrganicSearchSelector = {
 };
 
 export const TranslateSearchSelector = {
-	sourceLanguage: "#tsuid_2 option:selected",
-	targetLanguage: "#tsuid_4 option:selected",
+	sourceLanguage: "select.J9hCCd[name='tlitesl'] > option:selected",
+	targetLanguage: "select.J9hCCd[name='tlitetl'] > option:selected",
 	translationText: '[id="lrtl-translation-text"]',
 	sourceText: '#lrtl-source-text input[name="tlitetxt"]',
 	pronunciation: '[id="lrtl-transliteration-text"]',
