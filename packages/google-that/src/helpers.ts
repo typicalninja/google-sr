@@ -1,6 +1,7 @@
 import {
 	CurrencyResult,
 	DictionaryResult,
+	KnowledgePanelResult,
 	OrganicResult,
 	type ResultSelector,
 	ResultTypes,
@@ -42,6 +43,8 @@ export function selectorTypeToSelector(selector: string): ResultSelector {
 			return DictionaryResult;
 		case ResultTypes.CurrencyResult:
 			return CurrencyResult;
+		case ResultTypes.KnowledgePanelResult:
+			return KnowledgePanelResult;
 		default:
 			throw new Error(`Unknown selector type: ${selector}`);
 	}
