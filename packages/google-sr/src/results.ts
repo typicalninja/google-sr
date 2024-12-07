@@ -15,7 +15,6 @@ import {
 	type KnowledgePanelImage,
 	type KnowledgePanelMetadata,
 	type KnowledgePanelResultNode,
-	//
 	type OrganicResultNode,
 	type ResultSelector,
 	ResultTypes,
@@ -226,7 +225,7 @@ export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 	$,
 	strictSelector,
 ) => {
-	if (!$) throwNoCheerioError("KnowledgePanel");
+	if (!$) throwNoCheerioError("KnowledgePanelResult");
 	const title = $(KnowledgePanelSelector.title).text().trim();
 	const description = $(KnowledgePanelSelector.description)
 		.contents()
@@ -300,7 +299,7 @@ export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 	if (isEmpty(strictSelector, title, description, label)) return null;
 
 	return {
-		type: ResultTypes.KnowledgePanel,
+		type: ResultTypes.KnowledgePanelResult,
 		title,
 		description,
 		label,

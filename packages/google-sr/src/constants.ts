@@ -8,7 +8,7 @@ export const ResultTypes = {
 	DictionaryResult: "DICTIONARY",
 	TimeResult: "TIME",
 	CurrencyResult: "CURRENCY",
-	KnowledgePanel: "KNOWLEDGE_PANEL",
+	KnowledgePanelResult: "KNOWLEDGE_PANEL",
 } as const;
 
 // Specific result types returned by gsr
@@ -67,7 +67,7 @@ export interface KnowledgePanelCatalogItem {
 }
 
 export type KnowledgePanelResultNode = ResultNodeTyper<
-	typeof ResultTypes.KnowledgePanel,
+	typeof ResultTypes.KnowledgePanelResult,
 	"label" | "title" | "description"
 > & {
 	metadata: KnowledgePanelMetadata[];
