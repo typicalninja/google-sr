@@ -1,6 +1,7 @@
 import {
 	CurrencyConvertSelector,
 	DictionarySearchSelector,
+	KnowledgePanelSelector,
 	OrganicSearchSelector,
 	TimeSearchSelector,
 	TranslateSearchSelector,
@@ -9,7 +10,11 @@ import {
 	type CurrencyResultNode,
 	type DictionaryDefinition,
 	type DictionaryResultNode,
-	//
+	type KnowledgePanelCatalog,
+	type KnowledgePanelCatalogItem,
+	type KnowledgePanelImage,
+	type KnowledgePanelMetadata,
+	type KnowledgePanelResultNode,
 	type OrganicResultNode,
 	type ResultSelector,
 	ResultTypes,
@@ -207,5 +212,99 @@ export const CurrencyResult: ResultSelector<CurrencyResultNode> = (
 		type: ResultTypes.CurrencyResult,
 		from: from,
 		to,
+	};
+};
+
+/**
+ * Parses knowledge panel search results.
+ * @param $
+ * @param strictSelector
+ * @returns KnowledgePanelResultNode
+ */
+export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
+	$,
+	strictSelector,
+) => {
+	if (!$) throwNoCheerioError("KnowledgePanelResult");
+	const title = $(KnowledgePanelSelector.title).text().trim();
+	const description = $(KnowledgePanelSelector.description)
+		.contents()
+		.first()
+		.text()
+		.trim();
+	const label = $(KnowledgePanelSelector.label).text().trim();
+
+	const metadataBlock = $(KnowledgePanelSelector.metadataBlock);
+	const metadata: KnowledgePanelMetadata[] = [];
+
+	for (const element of metadataBlock) {
+		const label = $(element)
+			.find(KnowledgePanelSelector.metadataLabel)
+			.text()
+			.trim();
+		const value = $(element)
+			.find(KnowledgePanelSelector.metadataValue)
+			.text()
+			.trim();
+		if (label && value) metadata.push({ label, value });
+	}
+
+	const imageSource = $(KnowledgePanelSelector.imageSource);
+	const images: KnowledgePanelImage[] = [];
+	for (const element of imageSource) {
+		const source = $(element).attr("href") as string;
+		const url = $(element)
+			.find(KnowledgePanelSelector.imageUrl)
+			.attr("src") as string;
+		if (source && url) {
+			const filteredSource = extractUrlFromGoogleLink(source);
+			if (filteredSource)
+				images.push({ source: filteredSource as string, url });
+		}
+	}
+
+	const catalogBlock = $(KnowledgePanelSelector.catalogBlock);
+	const catalog: KnowledgePanelCatalog[] = [];
+	for (const element of catalogBlock) {
+		const title = $(element)
+			.find(KnowledgePanelSelector.catalogTitle)
+			.text()
+			.trim();
+		const items: KnowledgePanelCatalogItem[] = [];
+		const catalogItems = $(element).find(KnowledgePanelSelector.catalogItem);
+		if (!title || !catalogItems.length) continue;
+		for (const item of catalogItems) {
+			const itemImage = $(item)
+				.find(KnowledgePanelSelector.catalogItemImage)
+				.attr("src") as string;
+			const itemTitle = $(item)
+				.find(KnowledgePanelSelector.catalogItemTitle)
+				.text()
+				.trim();
+			const itemCaption = $(item)
+				.find(KnowledgePanelSelector.catalogItemCaption)
+				.text()
+				.trim();
+			// only itemTitle and itemImage are required
+			if (item && itemImage)
+				items.push({
+					title: itemTitle,
+					image: itemImage,
+					caption: itemCaption,
+				});
+		}
+		if (title && items.length) catalog.push({ title, items });
+	}
+
+	if (isEmpty(strictSelector, title, description, label)) return null;
+
+	return {
+		type: ResultTypes.KnowledgePanelResult,
+		title,
+		description,
+		label,
+		metadata,
+		images,
+		catalog,
 	};
 };
