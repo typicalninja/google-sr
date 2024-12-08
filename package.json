@@ -7,6 +7,7 @@
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr -- --watch=false",
     "build:packages": "turbo run build --no-daemon",
+    "docs": "typedoc ",
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check": "biome check --write",
@@ -23,15 +24,16 @@
   "packageManager": "pnpm@9.6.0",
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
-    "@changesets/cli": "^2.27.9",
+    "@changesets/cli": "^2.27.10",
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
     "is-ci": "3.0.1",
-    "lefthook": "^1.7.18",
+    "lefthook": "^1.9.0",
     "pkg-pr-new": "^0.0.29",
-    "tsup": "^8.3.0",
-    "turbo": "^2.1.3",
-    "typescript": "^5.6.3"
+    "tsup": "^8.3.5",
+    "turbo": "^2.3.3",
+    "typedoc": "^0.27.3",
+    "typescript": "^5.7.2"
   },
   "commitlint": {
     "extends": [
