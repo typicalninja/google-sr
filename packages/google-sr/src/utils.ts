@@ -107,10 +107,12 @@ export function isEmpty(
 }
 
 /**
- * internal type to create a node with its type and other properties set as strings
- * Example:
- * Creates interface { type: "ORGANIC_RESULT", title: string } for ResultNodeTyper<typeof ResultTypes.OrganicSearchResult, "title">
- * @private
+ * @internal
+ * Internal type for creating a node with a `type` field
+ * and any additional field as a string or null.
+ *
+ * @typeParam T - The value for the `type` property.
+ * @typeParam K - Key name of the additional string (or null) fields.
  */
 export type ResultNodeTyper<T, K extends string> = {
 	type: T;
