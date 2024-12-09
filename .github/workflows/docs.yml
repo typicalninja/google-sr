@@ -1,0 +1,46 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+        - 'packages/*/src/**'
+        - '!packages/google-that/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy-docs:
+    name: Build and Deploy Docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+    
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+            version: 9.6.0
+            run_install: true
+
+      - name: Build packages
+        run: pnpm run build:packages
+
+      - name: Build documentation
+        run: pnpm run build:docs
+
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs

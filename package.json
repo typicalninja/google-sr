@@ -7,7 +7,7 @@
     "dev": "turbo run dev --parallel --no-daemon",
     "test": "turbo run test --no-daemon --filter=google-sr -- --watch=false",
     "build:packages": "turbo run build --no-daemon",
-    "docs": "typedoc ",
+    "build:docs": "typedoc ",
     "lint": "biome lint --write",
     "format": "biome format --write",
     "check": "biome check --write",
