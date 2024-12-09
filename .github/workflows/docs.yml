@@ -21,17 +21,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
-    
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
             version: 9.6.0
             run_install: true
+
+      - name: Install Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
 
       - name: Build packages
         run: pnpm run build:packages
