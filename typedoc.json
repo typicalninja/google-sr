@@ -1,0 +1,9 @@
+{
+	"entryPoints": [
+		"packages/google-sr/src/index.ts",
+		"packages/google-sr-selectors/src/index.ts"
+	],
+	"out": "docs",
+	"includeVersion": true,
+	"cleanOutputDir": true
+}
