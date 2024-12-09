@@ -59,13 +59,13 @@ console.log(queryResult);
 console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 ```
 
-> Note: By default, only results of type [`ResultTypes.OrganicResult`](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md#resulttypes) are returned. Use the [`resultTypes`](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md#searchoptionsr--resultselector) option to customize the output.
+> Note: By default, only results of type [`ResultTypes.OrganicResult`](https://typicalninja.github.io/google-sr/variables/google-sr_src.ResultTypes.html) are returned. Use the [`resultTypes`](https://typicalninja.github.io/google-sr/interfaces/google-sr_src.SearchOptions.html#resulttypes) option to customize the output.
 
 - Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # google-sr API
 
-Please refer to the google-sr API in [packages/google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr/API.md)
+Please refer to the google-sr API [here](https://typicalninja.github.io/google-sr/)
 
 # Monorepo
 
