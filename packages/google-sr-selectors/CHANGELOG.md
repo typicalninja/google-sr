@@ -1,5 +1,15 @@
 # google-sr-selectors
 
+## 1.1.0
+
+### Minor Changes
+
+- 0d21c7a: Add selectors for knowledge graph results
+
+### Patch Changes
+
+- fabb572: patch the translate search result selectors
+
 ## 1.0.0
 
 ### Major Changes

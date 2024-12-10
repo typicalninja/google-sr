@@ -1,5 +1,16 @@
 # google-that
 
+## 1.1.0
+
+### Minor Changes
+
+- 0d21c7a: Add support for knowledge graph results
+
+### Patch Changes
+
+- Updated dependencies [0d21c7a]
+  - google-sr@4.1.0
+
 ## 1.0.0
 
 ### Major Changes
