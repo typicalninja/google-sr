@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Html selectors for google search result pages.",
   "repository": "https://github.com/typicalninja/google-sr",
-  "homepage": "https://github.com/typicalninja/google-sr",
+  "homepage": "https://typicalninja.github.io/google-sr/",
   "exports": {
     "types": "./dist/index.d.ts",
     "require": "./dist/index.js",
