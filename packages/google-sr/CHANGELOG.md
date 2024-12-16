@@ -1,5 +1,17 @@
 # google-sr
 
+## 4.1.0
+
+### Minor Changes
+
+- 0d21c7a: Implement knowledge graph results
+
+### Patch Changes
+
+- Updated dependencies [fabb572]
+- Updated dependencies [0d21c7a]
+  - google-sr-selectors@1.1.0
+
 ## 4.0.0
 
 ### Major Changes
@@ -45,11 +57,9 @@
   ```ts
   import { ResultNodeTyper, ResultSelector } from "google-sr";
   // first argument is the "type" value (string) of the node, second is all the properties of the node
-  type DidYouKnow = ResultNodeTyper<
-    "SOMETYPE",
-    "prop1" | "prop2"
-  > & // properties that are not string can be defined as this
-  { descriptions: string[] };
+  type DidYouKnow = ResultNodeTyper<"SOMETYPE", "prop1" | "prop2"> & { // properties that are not string can be defined as this
+    descriptions: string[];
+  };
   const selector: ResultSelector<DidYouKnow> = ($, strictSelector) => {
     // return node
   };
