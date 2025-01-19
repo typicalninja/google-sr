@@ -39,7 +39,7 @@ try {
 	console.log(`Request success > received ${queryRequest.data.length} bytes`);
 	const $ = cheerio.load(queryRequest.data);
 
-	const mainContent = $("#main");
+	const mainContent = $("html");
 	// filter out uneeded parts
 	mainContent.find("footer, header, script, svg, style, #st-card").remove();
 
