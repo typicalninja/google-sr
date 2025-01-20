@@ -50,8 +50,7 @@ test("Search for translation results", async () => {
 		expect(result.sourceLanguage).to.be.a("string").and.not.empty;
 		expect(result.sourceText).to.be.a("string").and.not.empty;
 		expect(result.translationLanguage).to.be.a("string").and.not.empty;
-		expect(result.translationText).to.be.a("string").and.not.empty;
-		expect(result.translationPronunciation).to.be.a("string").and.not.empty;
+		expect(result.translatedText).to.be.a("string").and.not.empty;
 	}
 });
 
