@@ -6,11 +6,13 @@ export const OrganicSearchSelector = {
 };
 
 export const TranslateSearchSelector = {
-	sourceLanguage: "select.J9hCCd[name='tlitesl'] > option:selected",
-	targetLanguage: "select.J9hCCd[name='tlitetl'] > option:selected",
-	translationText: '[id="lrtl-translation-text"]',
-	sourceText: '#lrtl-source-text input[name="tlitetxt"]',
-	pronunciation: '[id="lrtl-transliteration-text"]',
+	block: "div > div.ezO2md",
+	// old version does not have seperate source and target language
+	// instead it has ex "English (detected) to Spanish "
+	translateFromTo: "div.kk667b > span.FrIlee > span.fYyStc",
+	translatedText: "td > div > div > span.qXLe6d.epoveb > span.fYyStc",
+	// source text is in the format "hello" in Japanese
+	sourceText: "td > div > div > span.qXLe6d.F9iS2e > span.fYyStc",
 };
 
 export const DictionarySearchSelector = {
