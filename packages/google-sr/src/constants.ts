@@ -18,11 +18,7 @@ export type OrganicResultNode = ResultNodeTyper<
 >;
 export type TranslateResultNode = ResultNodeTyper<
 	typeof ResultTypes.TranslateResult,
-	| "sourceLanguage"
-	| "translationLanguage"
-	| "sourceText"
-	| "translationText"
-	| "translationPronunciation"
+	"sourceLanguage" | "translationLanguage" | "sourceText" | "translatedText"
 >;
 export interface DictionaryDefinition {
 	partOfSpeech: string;
@@ -140,3 +136,6 @@ export interface SearchOptionsWithPages<
 	 */
 	delay?: number;
 }
+
+// source text is in the format "hello" in Japanese, we need to select the text between ""
+export const TranslateSourceTextRegex = /"(.+?)"/;

@@ -20,6 +20,7 @@ import {
 	ResultTypes,
 	type TimeResultNode,
 	type TranslateResultNode,
+	TranslateSourceTextRegex,
 } from "./constants";
 import {
 	extractUrlFromGoogleLink,
@@ -72,18 +73,23 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("TranslateResult");
-	const sourceLanguage = $(TranslateSearchSelector.sourceLanguage)
-		.text()
-		.trim();
-	const sourceText = $(TranslateSearchSelector.sourceText).val() as string;
+	// only one block is expected, and it should be the first one
+	const translateBlock = $(TranslateSearchSelector.block).first();
+	if (!translateBlock) return null;
+	// old version does not have seperate source and target language
+	// instead it has ex "English (detected) to Spanish "
+	const translatedFromTo = $(TranslateSearchSelector.translateFromTo).text();
+	const fromTo = translatedFromTo.split(" to ");
+	// we expect only 2 languages, source and target
+	if (fromTo.length !== 2) return null;
 
-	const translationText = $(TranslateSearchSelector.translationText)
-		.text()
-		.trim();
-	const translationLanguage = $(TranslateSearchSelector.targetLanguage)
-		.text()
-		.trim();
-	const translationPronunciation = $(TranslateSearchSelector.pronunciation)
+	const sourceLanguage = fromTo[0].trim();
+	const translationLanguage = fromTo[1].trim();
+	// source text is in the format "hello" in Japanese
+	const sourceTextBlock = $(TranslateSearchSelector.sourceText).text().trim();
+	const sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1] ?? "";
+
+	const translatedText = $(TranslateSearchSelector.translatedText)
 		.text()
 		.trim();
 
@@ -93,8 +99,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 			sourceLanguage,
 			translationLanguage,
 			sourceText,
-			translationText,
-			translationPronunciation,
+			translatedText,
 		)
 	)
 		return null;
@@ -102,11 +107,9 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	return {
 		type: ResultTypes.TranslateResult,
 		sourceLanguage,
-		sourceText,
-
 		translationLanguage,
-		translationText,
-		translationPronunciation,
+		sourceText,
+		translatedText,
 	};
 };
 
