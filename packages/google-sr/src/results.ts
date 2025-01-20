@@ -78,7 +78,9 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	if (!translateBlock) return null;
 	// old version does not have seperate source and target language
 	// instead it has ex "English (detected) to Spanish "
-	const translatedFromTo = $(TranslateSearchSelector.translateFromTo).text();
+	const translatedFromTo = translateBlock
+		.find(TranslateSearchSelector.translateFromTo)
+		.text();
 	const fromTo = translatedFromTo.split(" to ");
 	// we expect only 2 languages, source and target
 	if (fromTo.length !== 2) return null;
@@ -86,10 +88,14 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	const sourceLanguage = fromTo[0].trim();
 	const translationLanguage = fromTo[1].trim();
 	// source text is in the format "hello" in Japanese
-	const sourceTextBlock = $(TranslateSearchSelector.sourceText).text().trim();
+	const sourceTextBlock = translateBlock
+		.find(TranslateSearchSelector.sourceText)
+		.text()
+		.trim();
 	const sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1] ?? "";
 
-	const translatedText = $(TranslateSearchSelector.translatedText)
+	const translatedText = translateBlock
+		.find(TranslateSearchSelector.translatedText)
 		.text()
 		.trim();
 
