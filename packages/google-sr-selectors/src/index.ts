@@ -1,8 +1,8 @@
 export const OrganicSearchSelector = {
-	block: "div:not([data-hveid]):not(.yStFkb) > div.Gx5Zad.xpd.EtOod.pkphOe",
-	link: "[data-ved]",
-	title: "h3.zBAuLc",
-	description: ".BNeawe.s3v9rd.AP7Wnd",
+	block: "div > div.ezO2md",
+	link: "div > div > a.fuLhoc.ZWRArf",
+	title: "span.CVA68e.qXLe6d.fuLhoc.ZWRArf",
+	description: "span.qXLe6d.FrIlee > span.fYyStc",
 };
 
 export const TranslateSearchSelector = {
