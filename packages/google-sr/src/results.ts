@@ -41,18 +41,16 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 	// parse each block individually for its content
 	// TODO: switched from cheerio.each to for..of loop (check performance in future tests)
 	for (const element of organicSearchBlocks) {
-		let link = $(element)
-			.find(OrganicSearchSelector.link)
-			.attr("href") as string;
+		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
 		const description = $(element)
 			.find(OrganicSearchSelector.description)
 			.text() as string;
-		const title = $(element).find(OrganicSearchSelector.title).text();
-
-		if (typeof link === "string")
-			link = extractUrlFromGoogleLink(link) as string;
-
-		if (isEmpty(strictSelector, link, description, title)) continue;
+		const title = $(element).find(OrganicSearchSelector.title).text() as string;
+		link = extractUrlFromGoogleLink(link);
+		// if not links is found its not a valid result, we can safely skip it
+		if (typeof link !== "string") continue;
+		// both title and description can be empty, we skip the result only if strictSelector is true
+		if (isEmpty(strictSelector, description, title)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,
