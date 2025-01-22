@@ -1,3 +1,4 @@
+import type { Cheerio, Element } from "cheerio";
 import {
 	CurrencyConvertSelector,
 	DictionarySearchSelector,
@@ -9,6 +10,7 @@ import {
 import {
 	type CurrencyResultNode,
 	type DictionaryDefinition,
+	type DictionaryMeaning,
 	type DictionaryResultNode,
 	type KnowledgePanelCatalog,
 	type KnowledgePanelCatalogItem,
@@ -48,7 +50,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 			.text() as string;
 		const title = $(element).find(OrganicSearchSelector.title).text() as string;
 		link = extractUrlFromGoogleLink(link);
-		// if not links is found its not a valid result, we can safely skip it
+		// if not links is found it's not a valid result, we can safely skip it
 		if (typeof link !== "string") continue;
 		// both title and description can be empty, we skip the result only if strictSelector is true
 		if (isEmpty(strictSelector, description, title)) continue;
@@ -119,6 +121,34 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	};
 };
 
+// extract logic for parsing dictionary definitions into a separate function
+const parseDefinitionBlock = (
+	definitionBlock: Cheerio<Element>,
+): DictionaryDefinition | null => {
+	const definitionTextBlock = definitionBlock.find(
+		DictionarySearchSelector.definitionTextBlock,
+	);
+	const definitionText = definitionTextBlock.eq(0).text().trim();
+	const example = definitionTextBlock.eq(1).text().trim();
+	// synonym is a comma separated list starting with "synonyms: "
+	const synonyms = definitionTextBlock
+		.eq(2)
+		.text()
+		.trim()
+		.replace("synonyms: ", "")
+		.split(", ")
+		.filter((s) => s !== "");
+	// definition is required, example and synonyms are optional
+	if (!definitionText) return null;
+	const definition: DictionaryDefinition = {
+		definition: definitionText,
+	};
+	if (example && example !== "") definition.example = example;
+	if (synonyms && synonyms.length > 0) definition.synonyms = synonyms;
+
+	return definition;
+};
+
 /**
  * Parses dictionary search results.
  * @returns Array of DictionaryResultNode
@@ -128,53 +158,77 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
-	const audio = $(DictionarySearchSelector.audio).attr("src") || "";
-	const phonetic = $(DictionarySearchSelector.phonetic).first().text().trim();
-	const word = $(DictionarySearchSelector.word).text().trim();
+	const dictionaryBlock = $(DictionarySearchSelector.block).first();
+	if (!dictionaryBlock) return null;
+	const phonetic = dictionaryBlock
+		.find(DictionarySearchSelector.phonetic)
+		.first()
+		.text()
+		.trim();
+	const word = dictionaryBlock
+		.find(DictionarySearchSelector.word)
+		.text()
+		.trim();
 
-	const definitions: DictionaryDefinition[] = [];
-
-	// get all the matching partOfSpeech elements, we assume that as the overall number of elements
-	// to be checked for definitions
-	const definitionElements = $(DictionarySearchSelector.definitionPartOfSpeech);
-
-	for (let i = 0; i < definitionElements.length; i++) {
-		const partOfSpeech = $(definitionElements[i]).text().trim();
-		if (partOfSpeech) {
-			const definition = $(DictionarySearchSelector.definition)
-				.eq(i)
+	const meanings: DictionaryMeaning[] = [];
+	const definitionContainer = dictionaryBlock
+		.find(DictionarySearchSelector.definitionsContainer)
+		.first();
+	// if no definitions, we return null
+	if (!definitionContainer) return null;
+	const definitionBlocks = definitionContainer
+		.find(DictionarySearchSelector.definitionsBlock)
+		.toArray();
+	// there is no clear distinction between definitions, we need to loop through each block
+	// definitions at most will have a part of speech, and an ol list of definitions
+	// each definition may have a definition text (required), an example and synonyms (not guaranteed)
+	// we loop through each block
+	let partOfSpeech: string | null = null;
+	for (const definitionBlock of definitionBlocks) {
+		if (!partOfSpeech) {
+			// if no previous part of speech, then we expect this block to have it
+			// normally the first (and only) element in this block is the part of speech
+			// but just to be sure we use first() to get the first element with a selector
+			partOfSpeech = $(definitionBlock)
+				.find(DictionarySearchSelector.definitionPartOfSpeech)
+				.first()
 				.text()
 				.trim();
-			const example = $(DictionarySearchSelector.definitionExample)
-				.eq(i)
-				.text()
-				.trim();
-			const synonyms = $(DictionarySearchSelector.definitionSynonyms)
-				.eq(i)
-				.text()
-				// at the start of the string, remove "synonyms: "
-				.replace("synonyms: ", "")
-				.split(",")
-				// some strings have extra spaces, trim them (might have performance implications TODO: check later)
-				.map((synonym) => synonym.trim());
+		} else {
+			// if we have a part of speech, then we expect this block to have definitions
+			const definitionLists = $(definitionBlock)
+				.find(DictionarySearchSelector.definitionList)
+				.toArray();
+			let definitions: DictionaryDefinition[];
+			if (definitionLists.length > 0) {
+				definitions = definitionLists
+					.map((item) => parseDefinitionBlock($(item)))
+					.filter((d) => d !== null);
+			} else {
+				// single definition words do not have list
+				// instead they have the content directly as children
+				const definition = parseDefinitionBlock($(definitionBlock));
+				if (definition) definitions = [definition];
+				else definitions = [];
+			}
+			// single definition words do not have list, instead they have the thing that is supposed to be in the list directly
 
-			definitions.push({
+			meanings.push({
 				partOfSpeech,
-				definition,
-				example,
-				synonyms,
+				definitions,
 			});
+			// reset part of speech for the next block
+			partOfSpeech = null;
 		}
 	}
 
-	if (isEmpty(strictSelector, audio, phonetic, word)) return null;
+	if (isEmpty(strictSelector, phonetic, word)) return null;
 
 	return {
 		type: ResultTypes.DictionaryResult,
-		audio,
 		phonetic,
 		word,
-		definitions,
+		meanings,
 	};
 };
 
