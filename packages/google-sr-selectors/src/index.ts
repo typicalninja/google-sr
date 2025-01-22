@@ -16,19 +16,22 @@ export const TranslateSearchSelector = {
 };
 
 export const DictionarySearchSelector = {
-	// use attr('src') to get the audio url
-	audio: "h3.zBAuLc.l97dzf > div.BNeawe > audio",
-	phonetic: "span > div.BNeawe.tAd8D.AP7Wnd",
-	word: "span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
+	block: "div > div.ezO2md",
+	phonetic: "td > span.qXLe6d.F9iS2e > span",
+	word: "td > span.qXLe6d.x3G5ab > span.fYyStc",
 	// there can be multiple definitions
-	// use definitionPartOfSpeech as reference to how many definitions there are
-	// there are no reliable way other than that to get definitions
-	definition: "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:not(:has(span))",
-	definitionPartOfSpeech:
-		"div.Ap5OSd > div.BNeawe.s3v9rd.AP7Wnd > span.r0bn4c.rQMQod",
-	definitionExample: "div.v9i61e > div.BNeawe.s3v9rd.AP7Wnd:has(span)",
-	definitionSynonyms:
-		"div:not(.v9i61e):not(.Ap5OSd) > div.BNeawe.s3v9rd.AP7Wnd > span.r0bn4c.rQMQod",
+	// use definitionPartOfSpeech as reference to how many definitions
+	// there are no reliable ways other than that to get definitions
+	// the main container
+	definitionsContainer: "div.AS66f",
+	// container has multiple of these blocks
+	definitionsBlock: "div.CSfvHb",
+	// within each definition block
+	definitionPartOfSpeech: "span.qXLe6d.FrIlee > span.fYyStc.YVIcad",
+	definitionList: "div.CSfvHb > ol > li",
+	// each li contains multiple spans (TextBlocks)
+	// the selector for synonyms and examples are the same
+	definitionTextBlock: "span.qXLe6d.FrIlee > span.fYyStc",
 };
 
 export const TimeSearchSelector = {
