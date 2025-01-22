@@ -20,17 +20,23 @@ export type TranslateResultNode = ResultNodeTyper<
 	typeof ResultTypes.TranslateResult,
 	"sourceLanguage" | "translationLanguage" | "sourceText" | "translatedText"
 >;
+
 export interface DictionaryDefinition {
-	partOfSpeech: string;
-	definition: string;
-	example: string;
-	synonyms: string[];
+	definition: string; // The definition text
+	example?: string; // An example sentence using the word
+	synonyms?: string[]; // List of synonyms for this definition
 }
+
+export interface DictionaryMeaning {
+	partOfSpeech: string; // The part of speech (e.g., "noun", "verb")
+	definitions: DictionaryDefinition[]; // Array of definitions for this part of speech
+}
+
 // Dictionary result contains a special property called definitions which is an array
 export type DictionaryResultNode = ResultNodeTyper<
 	typeof ResultTypes.DictionaryResult,
-	"audio" | "phonetic" | "word"
-> & { definitions: DictionaryDefinition[] };
+	"phonetic" | "word"
+> & { meanings: DictionaryMeaning[] };
 
 export type TimeResultNode = ResultNodeTyper<
 	typeof ResultTypes.TimeResult,
