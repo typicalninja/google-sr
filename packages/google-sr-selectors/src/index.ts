@@ -1,13 +1,17 @@
+export const GeneralSelector = {
+	// almost all results are within same structured container
+	// data-hveid attr blocks are for time search selectors
+	block: "div:not([data-hveid]) > div.ezO2md",
+};
+
 export const OrganicSearchSelector = {
-	block: "div > div.ezO2md",
 	link: "div > div > a.fuLhoc.ZWRArf",
 	title: "span.CVA68e.qXLe6d.fuLhoc.ZWRArf",
 	description: "span.qXLe6d.FrIlee > span.fYyStc",
 };
 
 export const TranslateSearchSelector = {
-	block: "div > div.ezO2md",
-	// old version does not have seperate source and target language
+	// old version does not have separate source and target language
 	// instead it has ex "English (detected) to Spanish "
 	translateFromTo: "div.kk667b > span.FrIlee > span.fYyStc",
 	translatedText: "td > div > div > span.qXLe6d.epoveb > span.fYyStc",
@@ -16,7 +20,6 @@ export const TranslateSearchSelector = {
 };
 
 export const DictionarySearchSelector = {
-	block: "div > div.ezO2md",
 	phonetic: "td > span.qXLe6d.F9iS2e > span",
 	word: "td > span.qXLe6d.x3G5ab > span.fYyStc",
 	// there can be multiple definitions
@@ -26,15 +29,16 @@ export const DictionarySearchSelector = {
 	definitionsContainer: "div.AS66f",
 	// container has multiple of these blocks
 	definitionsBlock: "div.CSfvHb",
-	// within each definition block
+	// within a definition block
 	definitionPartOfSpeech: "span.qXLe6d.FrIlee > span.fYyStc.YVIcad",
 	definitionList: "div.CSfvHb > ol > li",
-	// each li contains multiple spans (TextBlocks)
 	// the selector for synonyms and examples are the same
 	definitionTextBlock: "span.qXLe6d.FrIlee > span.fYyStc",
 };
 
 export const TimeSearchSelector = {
+	// slightly specific selector
+	block: "div[data-hveid] > div.ezO2md",
 	location: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
 	time: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
 	timeInWords: "div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd",
