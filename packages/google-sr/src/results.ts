@@ -2,6 +2,7 @@ import type { Cheerio, Element } from "cheerio";
 import {
 	CurrencyConvertSelector,
 	DictionarySearchSelector,
+	GeneralSelector,
 	KnowledgePanelSelector,
 	OrganicSearchSelector,
 	TimeSearchSelector,
@@ -40,7 +41,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("OrganicResult");
 	const parsedResults: OrganicResultNode[] = [];
-	const organicSearchBlocks = $(OrganicSearchSelector.block).toArray();
+	const organicSearchBlocks = $(GeneralSelector.block).toArray();
 	// parse each block individually for its content
 	// TODO: switched from cheerio.each to for..of loop (check performance in future tests)
 	for (const element of organicSearchBlocks) {
@@ -51,6 +52,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 		const title = $(element).find(OrganicSearchSelector.title).text() as string;
 		link = extractUrlFromGoogleLink(link);
 		// if not links is found it's not a valid result, we can safely skip it
+		// most likely the first result can be a special block
 		if (typeof link !== "string") continue;
 		// both title and description can be empty, we skip the result only if strictSelector is true
 		if (isEmpty(strictSelector, description, title)) continue;
@@ -76,9 +78,9 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("TranslateResult");
 	// only one block is expected, and it should be the first one
-	const translateBlock = $(TranslateSearchSelector.block).first();
+	const translateBlock = $(GeneralSelector.block).first();
 	if (!translateBlock) return null;
-	// old version does not have seperate source and target language
+	// old version does not have separate source and target language
 	// instead it has ex "English (detected) to Spanish "
 	const translatedFromTo = translateBlock
 		.find(TranslateSearchSelector.translateFromTo)
@@ -158,7 +160,7 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
-	const dictionaryBlock = $(DictionarySearchSelector.block).first();
+	const dictionaryBlock = $(GeneralSelector.block).first();
 	if (!dictionaryBlock) return null;
 	const phonetic = dictionaryBlock
 		.find(DictionarySearchSelector.phonetic)
@@ -241,11 +243,15 @@ export const TimeResult: ResultSelector<TimeResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("TimeResult");
-	const location = $(TimeSearchSelector.location).text().trim();
-	const time = $(TimeSearchSelector.time).text().trim();
-	const timeInWords = $(TimeSearchSelector.timeInWords).text().trim();
-
-	if (isEmpty(strictSelector, location, time, timeInWords)) return null;
+	const block = $(TimeSearchSelector.block).first();
+	const location = block.find(TimeSearchSelector.location).text();
+	// if we don't find a valid location drop this
+	if (location === "") return null;
+	const layoutTable = block.find(TimeSearchSelector.timeLayoutTable).first();
+	if (!layoutTable) return null;
+	const time = layoutTable.find(TimeSearchSelector.time).text();
+	const timeInWords = layoutTable.find(TimeSearchSelector.timeInWords).text();
+	if (isEmpty(strictSelector, time, timeInWords)) return null;
 
 	return {
 		type: ResultTypes.TimeResult,
