@@ -37,14 +37,17 @@ export const DictionarySearchSelector = {
 };
 
 export const TimeSearchSelector = {
-	// slightly specific selector
-	block: "div[data-hveid] > div.ezO2md",
-	location: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
-	time: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
-	timeInWords: "div.BNeawe.tAd8D.AP7Wnd > div > div.BNeawe.tAd8D.AP7Wnd",
+	block: "div[data-hveid] > div.ezO2md > div",
+	location: "div.kk667b > span.F9iS2e > span.fYyStc.YVIcad",
+	// the time and tiw is within a table for layouting
+	// this makes it efficient the container before taking the actual content itself
+	timeLayoutTable: "table.Mw6wOc > tbody > tr > td > div",
+	time: "div > span.qXLe6d.epoveb > span.fYyStc",
+	timeInWords: "div > span.qXLe6d.F9iS2e > span.fYyStc.YVIcad",
 };
 
 export const CurrencyConvertSelector = {
+	block: "div[data-hveid] > div.ezO2md",
 	from: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
 	to: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
 };
