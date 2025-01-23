@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "tsup"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "keywords": [
     "google-sr",
