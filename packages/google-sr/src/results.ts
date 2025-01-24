@@ -270,9 +270,13 @@ export const CurrencyResult: ResultSelector<CurrencyResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("CurrencyResult");
-	const from = $(CurrencyConvertSelector.from).text().replace("=", "").trim();
-	const to = $(CurrencyConvertSelector.to).text().trim();
-
+	const block = $(GeneralSelector.block).first();
+	const from = block
+		.find(CurrencyConvertSelector.from)
+		.text()
+		.replace("=", "")
+		.trim();
+	const to = block.find(CurrencyConvertSelector.to).text().trim();
 	if (isEmpty(strictSelector, from, to)) return null;
 
 	return {
