@@ -47,9 +47,8 @@ export const TimeSearchSelector = {
 };
 
 export const CurrencyConvertSelector = {
-	block: "div[data-hveid] > div.ezO2md",
-	from: "span.BNeawe.tAd8D.AP7Wnd > span.r0bn4c.rQMQod",
-	to: "div.BNeawe.iBp4i.AP7Wnd > div > div.BNeawe.iBp4i.AP7Wnd",
+	from: "div > div.kk667b > span.F9iS2e > span.fYyStc.YVIcad",
+	to: "div > table.Mw6wOc > tbody > tr > td > div.fBgPuf > div > span.qXLe6d.epoveb > span.fYyStc",
 };
 
 export const KnowledgePanelSelector = {
