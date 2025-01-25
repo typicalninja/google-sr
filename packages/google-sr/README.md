@@ -26,7 +26,7 @@ Simple & Fast Package for scraping Google search results without the need for an
 
 - [Node.js](https://nodejs.org/en)
 - [Bun](https://bun.sh/)
-- [Deno](https://deno.com/) (with the [`npm:` specifier](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages))
+- [Deno](https://deno.com/)
 
 To get started, you can install **google-sr** using your preferred package manager:
 
@@ -72,16 +72,19 @@ console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 
 - Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
-# google-sr API
-
-Please refer to the google-sr API [here](https://typicalninja.github.io/google-sr/)
-
 # Disclaimer
 
 This is not sponsored, supported, or affiliated with Google.
 
 The source code within this repository is intended solely for **educational & research purposes**.
 The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
+
+# Links
+
+- [API Documentation](https://typicalninja.github.io/google-sr)
+- [GitHub Repository](https://github.com/typicalninja/google-sr)
+- [NPM Package](https://www.npmjs.com/package/google-sr) 
+- [Discord](https://discord.gg/ynwckXS9T2)
 
 # Related projects 🥂
 

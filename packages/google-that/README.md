@@ -55,6 +55,12 @@ This is not sponsored, supported, or affiliated with Google.
 The source code within this repository is intended solely for **educational & research purposes**.
 The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
 
+# Links
+
+- [GitHub Repository](https://github.com/typicalninja/google-sr)
+- [NPM Package](https://www.npmjs.com/package/google-that)
+- [Discord](https://discord.gg/ynwckXS9T2)
+
 # Related projects 🥂
 
 - [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
