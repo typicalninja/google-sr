@@ -9,7 +9,7 @@ const baseHeaders = {
 	"upgrade-insecure-requests": 1,
 	// the tested user agent is for Chrome 103 on Windows 10
 	"User-Agent":
-		"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+		"Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)",
 };
 
 /**
@@ -18,7 +18,10 @@ const baseHeaders = {
  * @returns
  * @private
  */
-export function extractUrlFromGoogleLink(googleLink: string): string | null {
+export function extractUrlFromGoogleLink(
+	googleLink: string | null,
+): string | null {
+	if (!googleLink) return null;
 	// Regular expression to extract the `q` or `imgurl` parameter from the link
 	const regex = /[?&](q|imgurl)=([^&]+)/;
 

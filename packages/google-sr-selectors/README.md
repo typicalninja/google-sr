@@ -1,6 +1,5 @@
 # google-sr-selectors
 
-
 [![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
 [![npm downloads](https://img.shields.io/npm/dw/google-sr-selectors)](https://www.npmjs.com/package/google-sr-selectors)
 [![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
@@ -9,20 +8,18 @@
 [![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
 
-Set of html selectors for parsing google search results with jquery like modules (ex: cheerio).
+**For simple use cases, refer to [google-sr](https://github.com/typicalninja/google-sr/tree/master/packages/google-sr)**
 
-Please note that the included selectors are intended for the **non-Javascript** version of Google Search page. 
-These were obtained by appending `&gbv=1` to the regular query link.
+This package provides a set of CSS selectors for parsing Google search results, using tools such as [cheerio](https://github.com/cheeriojs/cheerio), etc...
 
-ex: (disable javascript, else it will redirect): [query `nodejs`](https://www.google.com/search?hl=en&q=nodejs&gbv=1)
+These selectors are compatible only with the search results page returned when the following user-agent is used:
+`Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)`.
 
-# Supported types
-
-The package currently only supports a limited amount search result types
-
-See the [api docs](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr-selectors/API.md) for more information.
-
-🌟 Suggest more to be added [here](https://github.com/typicalninja/google-sr/discussions/new?category=ideas)
+#### Important Note:
+Due to the constantly evolving nature of Google's search page structure, we cannot guarantee consistent 
+usage/validity of these selectors. Unless you are an advanced user with specific requirements, **we highly recommend 
+using the [google-sr](https://github.com/typicalninja/google-sr/tree/master/packages/google-sr) package instead** of 
+relying directly on google-sr-selectors.
 
 # Disclaimer
 
@@ -30,6 +27,14 @@ This is not sponsored, supported, or affiliated with Google.
 
 The source code within this repository is intended solely for **educational & research purposes**.
 The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
+
+# Links
+
+- [API Documentation](https://typicalninja.github.io/google-sr)
+- [GitHub Repository](https://github.com/typicalninja/google-sr)
+- [NPM Package](https://www.npmjs.com/package/google-sr-selectors)
+- [Discord](https://discord.gg/ynwckXS9T2)
+
 
 # Related projects 🥂
 

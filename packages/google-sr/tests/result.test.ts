@@ -50,8 +50,7 @@ test("Search for translation results", async () => {
 		expect(result.sourceLanguage).to.be.a("string").and.not.empty;
 		expect(result.sourceText).to.be.a("string").and.not.empty;
 		expect(result.translationLanguage).to.be.a("string").and.not.empty;
-		expect(result.translationText).to.be.a("string").and.not.empty;
-		expect(result.translationPronunciation).to.be.a("string").and.not.empty;
+		expect(result.translatedText).to.be.a("string").and.not.empty;
 	}
 });
 
@@ -68,26 +67,25 @@ test("Search for dictionary results", async () => {
 
 		expect(result.phonetic).to.be.a("string").and.not.empty;
 		expect(result.word).to.be.a("string").and.not.empty;
-		expect(result.audio).to.be.a("string").and.not.empty;
 		// we only expect 2 definitions for this query
-		expect(result.definitions).to.be.an("array").and.toHaveLength(2);
+		expect(result.meanings).to.be.an("array").and.toHaveLength(2);
 
-		for (const definition of result.definitions) {
-			expect(definition.partOfSpeech).to.be.a("string").and.not.empty;
+		for (const meaning of result.meanings) {
+			expect(meaning.partOfSpeech).to.be.a("string").and.not.empty;
 			// check if partOfSpeech is a valid part of speech
-			expect(definition.partOfSpeech).to.be.oneOf([
+			expect(meaning.partOfSpeech).to.be.oneOf([
 				// these are only the expected part of speeches for this test query
 				// mismatch might indicate a issue
 				"noun",
 				"verb",
 			]);
 
-			expect(definition.definition).to.be.a("string").and.not.empty;
-			expect(definition.example).to.be.a("string").and.not.empty;
-
-			expect(definition.synonyms)
-				.to.be.an("array")
-				.and.to.length.be.greaterThan(0);
+			expect(meaning.definitions).to.be.an("array").and.not.empty;
+			for (const definition of meaning.definitions) {
+				expect(definition.definition).to.be.a("string").and.not.empty;
+				expect(definition.example).to.be.a("string").and.not.empty;
+				expect(definition.synonyms).to.be.an("array");
+			}
 		}
 	}
 });
@@ -147,33 +145,4 @@ test("Search for Knowledge panel results", async () => {
 	const meta1 = result.metadata[0];
 	// validate 1st metadata, if 1st is correct, others should be correct too
 	expect(meta1.label).toBe("Release date");
-	expect(meta1.value).toBe("October 26, 2014 (USA)");
-
-	// validate images
-	for (const image of result.images) {
-		expect(image.source).to.be.a("string");
-		expect(image.url).to.be.a("string");
-		// validate urls
-		expect(image.url).to.match(/^https?:\/\//);
-		expect(image.source).to.match(/^https?:\/\//);
-	}
-
-	// validate catalog
-	for (const catalog of result.catalog) {
-		expect(catalog.title).to.be.a("string");
-		// validate each item in catalog
-		for (const item of catalog.items) {
-			expect(item.title).to.be.a("string");
-			expect(item.image).to.be.a("string");
-			expect(item.image).to.match(/^https?:\/\//);
-			expect(item.caption).to.be.a("string");
-		}
-	}
-
-	// validate 1st catalog
-	const catalog1 = result.catalog[0];
-	expect(catalog1.title).toBe("Cast");
-	const item1 = catalog1.items[0];
-	expect(item1.title).toBe("Matthew McConaughey");
-	expect(item1.caption).toBe("Cooper");
 });

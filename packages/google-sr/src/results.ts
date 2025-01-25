@@ -1,6 +1,8 @@
+import type { Cheerio, Element } from "cheerio";
 import {
 	CurrencyConvertSelector,
 	DictionarySearchSelector,
+	GeneralSelector,
 	KnowledgePanelSelector,
 	OrganicSearchSelector,
 	TimeSearchSelector,
@@ -9,10 +11,8 @@ import {
 import {
 	type CurrencyResultNode,
 	type DictionaryDefinition,
+	type DictionaryMeaning,
 	type DictionaryResultNode,
-	type KnowledgePanelCatalog,
-	type KnowledgePanelCatalogItem,
-	type KnowledgePanelImage,
 	type KnowledgePanelMetadata,
 	type KnowledgePanelResultNode,
 	type OrganicResultNode,
@@ -20,6 +20,7 @@ import {
 	ResultTypes,
 	type TimeResultNode,
 	type TranslateResultNode,
+	TranslateSourceTextRegex,
 } from "./constants";
 import {
 	extractUrlFromGoogleLink,
@@ -37,22 +38,21 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("OrganicResult");
 	const parsedResults: OrganicResultNode[] = [];
-	const organicSearchBlocks = $(OrganicSearchSelector.block).toArray();
+	const organicSearchBlocks = $(GeneralSelector.block).toArray();
 	// parse each block individually for its content
 	// TODO: switched from cheerio.each to for..of loop (check performance in future tests)
 	for (const element of organicSearchBlocks) {
-		let link = $(element)
-			.find(OrganicSearchSelector.link)
-			.attr("href") as string;
+		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
 		const description = $(element)
 			.find(OrganicSearchSelector.description)
 			.text() as string;
-		const title = $(element).find(OrganicSearchSelector.title).text();
-
-		if (typeof link === "string")
-			link = extractUrlFromGoogleLink(link) as string;
-
-		if (isEmpty(strictSelector, link, description, title)) continue;
+		const title = $(element).find(OrganicSearchSelector.title).text() as string;
+		link = extractUrlFromGoogleLink(link);
+		// if not links is found it's not a valid result, we can safely skip it
+		// most likely the first result can be a special block
+		if (typeof link !== "string") continue;
+		// both title and description can be empty, we skip the result only if strictSelector is true
+		if (isEmpty(strictSelector, description, title)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,
@@ -74,18 +74,29 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("TranslateResult");
-	const sourceLanguage = $(TranslateSearchSelector.sourceLanguage)
-		.text()
-		.trim();
-	const sourceText = $(TranslateSearchSelector.sourceText).val() as string;
+	// only one block is expected, and it should be the first one
+	const translateBlock = $(GeneralSelector.block).first();
+	if (!translateBlock) return null;
+	// old version does not have separate source and target language
+	// instead it has ex "English (detected) to Spanish "
+	const translatedFromTo = translateBlock
+		.find(TranslateSearchSelector.translateFromTo)
+		.text();
+	const fromTo = translatedFromTo.split(" to ");
+	// we expect only 2 languages, source and target
+	if (fromTo.length !== 2) return null;
 
-	const translationText = $(TranslateSearchSelector.translationText)
+	const sourceLanguage = fromTo[0].trim();
+	const translationLanguage = fromTo[1].trim();
+	// source text is in the format "hello" in Japanese
+	const sourceTextBlock = translateBlock
+		.find(TranslateSearchSelector.sourceText)
 		.text()
 		.trim();
-	const translationLanguage = $(TranslateSearchSelector.targetLanguage)
-		.text()
-		.trim();
-	const translationPronunciation = $(TranslateSearchSelector.pronunciation)
+	const sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1] ?? "";
+
+	const translatedText = translateBlock
+		.find(TranslateSearchSelector.translatedText)
 		.text()
 		.trim();
 
@@ -95,8 +106,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 			sourceLanguage,
 			translationLanguage,
 			sourceText,
-			translationText,
-			translationPronunciation,
+			translatedText,
 		)
 	)
 		return null;
@@ -104,12 +114,38 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	return {
 		type: ResultTypes.TranslateResult,
 		sourceLanguage,
-		sourceText,
-
 		translationLanguage,
-		translationText,
-		translationPronunciation,
+		sourceText,
+		translatedText,
 	};
+};
+
+// extract logic for parsing dictionary definitions into a separate function
+const parseDefinitionBlock = (
+	definitionBlock: Cheerio<Element>,
+): DictionaryDefinition | null => {
+	const definitionTextBlock = definitionBlock.find(
+		DictionarySearchSelector.definitionTextBlock,
+	);
+	const definitionText = definitionTextBlock.eq(0).text().trim();
+	const example = definitionTextBlock.eq(1).text().trim();
+	// synonym is a comma separated list starting with "synonyms: "
+	const synonyms = definitionTextBlock
+		.eq(2)
+		.text()
+		.trim()
+		.replace("synonyms: ", "")
+		.split(", ")
+		.filter((s) => s !== "");
+	// definition is required, example and synonyms are optional
+	if (!definitionText) return null;
+	const definition: DictionaryDefinition = {
+		definition: definitionText,
+	};
+	if (example && example !== "") definition.example = example;
+	if (synonyms && synonyms.length > 0) definition.synonyms = synonyms;
+
+	return definition;
 };
 
 /**
@@ -121,53 +157,78 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
-	const audio = $(DictionarySearchSelector.audio).attr("src") || "";
-	const phonetic = $(DictionarySearchSelector.phonetic).first().text().trim();
-	const word = $(DictionarySearchSelector.word).text().trim();
+	const dictionaryBlock = $(GeneralSelector.block).first();
+	if (!dictionaryBlock) return null;
+	const phonetic = dictionaryBlock
+		.find(DictionarySearchSelector.phonetic)
+		.first()
+		.text()
+		.trim();
+	const word = dictionaryBlock
+		.find(DictionarySearchSelector.word)
+		.text()
+		.trim();
 
-	const definitions: DictionaryDefinition[] = [];
-
-	// get all the matching partOfSpeech elements, we assume that as the overall number of elements
-	// to be checked for definitions
-	const definitionElements = $(DictionarySearchSelector.definitionPartOfSpeech);
-
-	for (let i = 0; i < definitionElements.length; i++) {
-		const partOfSpeech = $(definitionElements[i]).text().trim();
-		if (partOfSpeech) {
-			const definition = $(DictionarySearchSelector.definition)
-				.eq(i)
+	const meanings: DictionaryMeaning[] = [];
+	const definitionContainer = dictionaryBlock
+		.find(DictionarySearchSelector.definitionsContainer)
+		.first();
+	// if no definitions, we return null
+	if (!definitionContainer) return null;
+	const definitionBlocks = definitionContainer
+		.find(DictionarySearchSelector.definitionsBlock)
+		.toArray();
+	// there is no clear distinction between definitions, we need to loop through each block
+	// definitions at most will have a part of speech, and an ol list of definitions
+	// each definition may have a definition text (required), an example and synonyms (not guaranteed)
+	// we loop through each block
+	let partOfSpeech: string | null = null;
+	for (const definitionBlock of definitionBlocks) {
+		if (!partOfSpeech) {
+			// if no previous part of speech, then we expect this block to have it
+			// normally the first (and only) element in this block is the part of speech
+			// but just to be sure we use first() to get the first element with a selector
+			partOfSpeech = $(definitionBlock)
+				.find(DictionarySearchSelector.definitionPartOfSpeech)
+				.first()
 				.text()
 				.trim();
-			const example = $(DictionarySearchSelector.definitionExample)
-				.eq(i)
-				.text()
-				.trim();
-			const synonyms = $(DictionarySearchSelector.definitionSynonyms)
-				.eq(i)
-				.text()
-				// at the start of the string, remove "synonyms: "
-				.replace("synonyms: ", "")
-				.split(",")
-				// some strings have extra spaces, trim them (might have performance implications TODO: check later)
-				.map((synonym) => synonym.trim());
+		} else {
+			// if we have a part of speech, then we expect this block to have definitions
+			const definitionLists = $(definitionBlock)
+				.find(DictionarySearchSelector.definitionList)
+				.toArray();
+			let definitions: DictionaryDefinition[];
+			if (definitionLists.length > 0) {
+				definitions = definitionLists
+					.map((item) => parseDefinitionBlock($(item)))
+					.filter((d) => d !== null);
+			} else {
+				// single definition words do not have list
+				// instead they have the content directly as children
+				const definition = parseDefinitionBlock($(definitionBlock));
+				if (definition) definitions = [definition];
+				else definitions = [];
+			}
 
-			definitions.push({
-				partOfSpeech,
-				definition,
-				example,
-				synonyms,
-			});
+			if (definitions.length > 0) {
+				meanings.push({
+					partOfSpeech,
+					definitions,
+				});
+			}
+			// reset part of speech for the next block
+			partOfSpeech = null;
 		}
 	}
 
-	if (isEmpty(strictSelector, audio, phonetic, word)) return null;
+	if (isEmpty(strictSelector, phonetic, word)) return null;
 
 	return {
 		type: ResultTypes.DictionaryResult,
-		audio,
 		phonetic,
 		word,
-		definitions,
+		meanings,
 	};
 };
 
@@ -180,11 +241,15 @@ export const TimeResult: ResultSelector<TimeResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("TimeResult");
-	const location = $(TimeSearchSelector.location).text().trim();
-	const time = $(TimeSearchSelector.time).text().trim();
-	const timeInWords = $(TimeSearchSelector.timeInWords).text().trim();
-
-	if (isEmpty(strictSelector, location, time, timeInWords)) return null;
+	const block = $(TimeSearchSelector.block).first();
+	const location = block.find(TimeSearchSelector.location).text();
+	// if we don't find a valid location drop this
+	if (location === "") return null;
+	const layoutTable = block.find(TimeSearchSelector.timeLayoutTable).first();
+	if (!layoutTable) return null;
+	const time = layoutTable.find(TimeSearchSelector.time).text();
+	const timeInWords = layoutTable.find(TimeSearchSelector.timeInWords).text();
+	if (isEmpty(strictSelector, time, timeInWords)) return null;
 
 	return {
 		type: ResultTypes.TimeResult,
@@ -203,9 +268,13 @@ export const CurrencyResult: ResultSelector<CurrencyResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("CurrencyResult");
-	const from = $(CurrencyConvertSelector.from).text().replace("=", "").trim();
-	const to = $(CurrencyConvertSelector.to).text().trim();
-
+	const block = $(GeneralSelector.block).first();
+	const from = block
+		.find(CurrencyConvertSelector.from)
+		.text()
+		.replace("=", "")
+		.trim();
+	const to = block.find(CurrencyConvertSelector.to).text().trim();
 	if (isEmpty(strictSelector, from, to)) return null;
 
 	return {
@@ -226,85 +295,72 @@ export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("KnowledgePanelResult");
-	const title = $(KnowledgePanelSelector.title).text().trim();
-	const description = $(KnowledgePanelSelector.description)
-		.contents()
-		.first()
-		.text()
-		.trim();
-	const label = $(KnowledgePanelSelector.label).text().trim();
-
-	const metadataBlock = $(KnowledgePanelSelector.metadataBlock);
-	const metadata: KnowledgePanelMetadata[] = [];
-
-	for (const element of metadataBlock) {
-		const label = $(element)
-			.find(KnowledgePanelSelector.metadataLabel)
-			.text()
-			.trim();
-		const value = $(element)
-			.find(KnowledgePanelSelector.metadataValue)
-			.text()
-			.trim();
-		if (label && value) metadata.push({ label, value });
-	}
-
-	const imageSource = $(KnowledgePanelSelector.imageSource);
-	const images: KnowledgePanelImage[] = [];
-	for (const element of imageSource) {
-		const source = $(element).attr("href") as string;
-		const url = $(element)
+	// knowledge panel can be anywhere, at the start, or +x (mostly 2) from the start
+	const blocks = $(GeneralSelector.block);
+	// we loop through each block to find the first valid knowledge panel
+	// we use cheerio.each instead of for-of loop because we need to break the loop to avoid
+	// parsing non-knowledge panel blocks
+	let knowledgePanel: KnowledgePanelResultNode | null = null;
+	blocks.each((index, element) => {
+		// knowledge panel will always be within +5 blocks from the start
+		if (index > 5) return false;
+		const block = $(element);
+		const headerContainer = block.find(KnowledgePanelSelector.headerBlock);
+		const headerBlock = headerContainer.first();
+		// the second td contains the image data
+		const imageContainer = headerBlock.next();
+		if (!headerBlock) return;
+		const title = headerBlock.find(KnowledgePanelSelector.title).text().trim();
+		const label = headerBlock.find(KnowledgePanelSelector.label).text().trim();
+		const imageLink = imageContainer
 			.find(KnowledgePanelSelector.imageUrl)
-			.attr("src") as string;
-		if (source && url) {
-			const filteredSource = extractUrlFromGoogleLink(source);
-			if (filteredSource)
-				images.push({ source: filteredSource as string, url });
-		}
-	}
+			.attr("src");
+		// if we don't find a title or label, then this is an invalid knowledge panel
+		if (title === "" || label === "") return;
+		const descriptionBlock = block.find(
+			KnowledgePanelSelector.descriptionBlock,
+		);
+		const description = descriptionBlock.find("span").first().text().trim();
+		// second span is the source link, we can get the source link from the href attribute
+		const sourceLink = descriptionBlock.find("a").attr("href");
+		const cleanSourceLink = extractUrlFromGoogleLink(sourceLink ?? null);
+		// source link is optional in normal reqs, we ignore it for strictSelector check
+		const metadataBlocks = block
+			.find(KnowledgePanelSelector.metadataBlock)
+			.toArray();
+		const metadata: KnowledgePanelMetadata[] = [];
 
-	const catalogBlock = $(KnowledgePanelSelector.catalogBlock);
-	const catalog: KnowledgePanelCatalog[] = [];
-	for (const element of catalogBlock) {
-		const title = $(element)
-			.find(KnowledgePanelSelector.catalogTitle)
-			.text()
-			.trim();
-		const items: KnowledgePanelCatalogItem[] = [];
-		const catalogItems = $(element).find(KnowledgePanelSelector.catalogItem);
-		if (!title || !catalogItems.length) continue;
-		for (const item of catalogItems) {
-			const itemImage = $(item)
-				.find(KnowledgePanelSelector.catalogItemImage)
-				.attr("src") as string;
-			const itemTitle = $(item)
-				.find(KnowledgePanelSelector.catalogItemTitle)
+		for (const metadataContainerElement of metadataBlocks) {
+			const metadataContainer = $(metadataContainerElement);
+			const label = metadataContainer
+				.find(KnowledgePanelSelector.metadataLabel)
+				.first()
 				.text()
 				.trim();
-			const itemCaption = $(item)
-				.find(KnowledgePanelSelector.catalogItemCaption)
+			if (label === "") continue;
+			const value = metadataContainer
+				.find(KnowledgePanelSelector.metadataValue)
 				.text()
 				.trim();
-			// only itemTitle and itemImage are required
-			if (item && itemImage)
-				items.push({
-					title: itemTitle,
-					image: itemImage,
-					caption: itemCaption,
-				});
+			if (value === "") continue;
+			metadata.push({
+				label,
+				value,
+			});
 		}
-		if (title && items.length) catalog.push({ title, items });
-	}
 
-	if (isEmpty(strictSelector, title, description, label)) return null;
+		if (!isEmpty(strictSelector, title, description, label))
+			knowledgePanel = {
+				type: ResultTypes.KnowledgePanelResult,
+				title,
+				label,
+				description,
+				sourceLink: cleanSourceLink,
+				imageLink: imageLink ?? null,
+				metadata,
+			};
+		return false;
+	});
 
-	return {
-		type: ResultTypes.KnowledgePanelResult,
-		title,
-		description,
-		label,
-		metadata,
-		images,
-		catalog,
-	};
+	return knowledgePanel;
 };

@@ -24,5 +24,5 @@ if (!translated) {
 }
 
 console.log(
-	`"${translated.sourceText}" in ${translated.sourceLanguage} translated to ${translated.translationLanguage} is "${translated.translationText}"`,
+	`"${translated.sourceText}" in ${translated.sourceLanguage} translated to ${translated.translationLanguage} is "${translated.translatedText}"`,
 );

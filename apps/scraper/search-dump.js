@@ -29,19 +29,17 @@ try {
 			referer: "https://www.google.com/",
 			"upgrade-insecure-requests": 1,
 			"User-Agent":
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+				"Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)",
 		},
 		params: {
 			q: query,
-			// required to get the non-js version of the page
-			gbv: "1",
 		},
 		responseType: "text",
 	});
 	console.log(`Request success > received ${queryRequest.data.length} bytes`);
 	const $ = cheerio.load(queryRequest.data);
 
-	const mainContent = $("#main");
+	const mainContent = $("html");
 	// filter out uneeded parts
 	mainContent.find("footer, header, script, svg, style, #st-card").remove();
 

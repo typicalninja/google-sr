@@ -18,23 +18,25 @@ export type OrganicResultNode = ResultNodeTyper<
 >;
 export type TranslateResultNode = ResultNodeTyper<
 	typeof ResultTypes.TranslateResult,
-	| "sourceLanguage"
-	| "translationLanguage"
-	| "sourceText"
-	| "translationText"
-	| "translationPronunciation"
+	"sourceLanguage" | "translationLanguage" | "sourceText" | "translatedText"
 >;
+
 export interface DictionaryDefinition {
-	partOfSpeech: string;
-	definition: string;
-	example: string;
-	synonyms: string[];
+	definition: string; // The definition text
+	example?: string; // An example sentence using the word
+	synonyms?: string[]; // List of synonyms for this definition
 }
+
+export interface DictionaryMeaning {
+	partOfSpeech: string; // The part of speech (e.g., "noun", "verb")
+	definitions: DictionaryDefinition[]; // Array of definitions for this part of speech
+}
+
 // Dictionary result contains a special property called definitions which is an array
 export type DictionaryResultNode = ResultNodeTyper<
 	typeof ResultTypes.DictionaryResult,
-	"audio" | "phonetic" | "word"
-> & { definitions: DictionaryDefinition[] };
+	"phonetic" | "word"
+> & { meanings: DictionaryMeaning[] };
 
 export type TimeResultNode = ResultNodeTyper<
 	typeof ResultTypes.TimeResult,
@@ -50,29 +52,11 @@ export interface KnowledgePanelMetadata {
 	value: string;
 }
 
-export interface KnowledgePanelImage {
-	source: string;
-	url: string;
-}
-
-export interface KnowledgePanelCatalog {
-	title: string;
-	items: KnowledgePanelCatalogItem[];
-}
-
-export interface KnowledgePanelCatalogItem {
-	title: string;
-	caption: string;
-	image: string;
-}
-
 export type KnowledgePanelResultNode = ResultNodeTyper<
 	typeof ResultTypes.KnowledgePanelResult,
-	"label" | "title" | "description"
+	"label" | "title" | "description" | "sourceLink" | "imageLink"
 > & {
 	metadata: KnowledgePanelMetadata[];
-	images: KnowledgePanelImage[];
-	catalog: KnowledgePanelCatalog[];
 };
 
 // All possible result types as a union
@@ -140,3 +124,6 @@ export interface SearchOptionsWithPages<
 	 */
 	delay?: number;
 }
+
+// source text is in the format "hello" in Japanese, we need to select the text between ""
+export const TranslateSourceTextRegex = /"(.+?)"/;
