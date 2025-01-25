@@ -52,20 +52,18 @@ export const CurrencyConvertSelector = {
 };
 
 export const KnowledgePanelSelector = {
-	title: "div.kCrYT > span.lU7jec > h3.zBAuLc.l97dzf > div.BNeawe",
-	label: "span > div.BNeawe.tAd8D.AP7Wnd",
-	description: "div.BNeawe.s3v9rd.AP7Wnd > div > div.BNeawe.s3v9rd.AP7Wnd",
-	metadataBlock: "div.vbShOe.kCrYT > div.AVsepf > div.BNeawe.s3v9rd.AP7Wnd",
-	metadataLabel: "span > span.BNeawe.s3v9rd.AP7Wnd",
-	metadataValue: "span > span.BNeawe.tAd8D.AP7Wnd",
-	imageSource: "div.idg8be > a.BVG0Nb.OxTOff",
-	// imageUrl is a direct child of the imageSource
-	imageUrl: "div > img.WddBJd",
+	headerBlock: "table.ZuwI5d > tbody > tr > td",
+	// the headerBlock contains title and label
+	title: "span.qXLe6d.x3G5ab > span.fYyStc",
+	label: "span.qXLe6d.F9iS2e > span.fYyStc",
+	// the second td contains the image
+	imageUrl: "a > img.qPa7sb",
+	// description block contains description and metadata (description source link)
+	// the first span is the description
+	// and the first "<a>" is the source link
+	descriptionBlock: "div.AS66f > div > span.qXLe6d.FrIlee",
 
-	catalogBlock: "div:has(> div.kCrYT > span.punez)",
-	catalogTitle: "div.kCrYT > span.punez",
-	catalogItem: "div.Xdlr0d > div.idg8be > a.BVG0Nb.OxTOff > div",
-	catalogItemImage: "div > div.l7d08 > img.h1hFNe",
-	catalogItemTitle: "div > div.RWuggc.kCrYT > div > div.BNeawe.s3v9rd.AP7Wnd",
-	catalogItemCaption: "div > div.RWuggc.kCrYT > div > div.BNeawe.tAd8D.AP7Wnd",
+	metadataBlock: "div.omMllc",
+	metadataLabel: "span.FrIlee > span.fYyStc",
+	metadataValue: "span.F9iS2e",
 };
