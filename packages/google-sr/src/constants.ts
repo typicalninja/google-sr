@@ -52,29 +52,11 @@ export interface KnowledgePanelMetadata {
 	value: string;
 }
 
-export interface KnowledgePanelImage {
-	source: string;
-	url: string;
-}
-
-export interface KnowledgePanelCatalog {
-	title: string;
-	items: KnowledgePanelCatalogItem[];
-}
-
-export interface KnowledgePanelCatalogItem {
-	title: string;
-	caption: string;
-	image: string;
-}
-
 export type KnowledgePanelResultNode = ResultNodeTyper<
 	typeof ResultTypes.KnowledgePanelResult,
-	"label" | "title" | "description"
+	"label" | "title" | "description" | "sourceLink" | "imageLink"
 > & {
 	metadata: KnowledgePanelMetadata[];
-	images: KnowledgePanelImage[];
-	catalog: KnowledgePanelCatalog[];
 };
 
 // All possible result types as a union

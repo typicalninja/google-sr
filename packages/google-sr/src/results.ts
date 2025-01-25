@@ -13,9 +13,6 @@ import {
 	type DictionaryDefinition,
 	type DictionaryMeaning,
 	type DictionaryResultNode,
-	type KnowledgePanelCatalog,
-	type KnowledgePanelCatalogItem,
-	type KnowledgePanelImage,
 	type KnowledgePanelMetadata,
 	type KnowledgePanelResultNode,
 	type OrganicResultNode,
@@ -213,12 +210,13 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 				if (definition) definitions = [definition];
 				else definitions = [];
 			}
-			// single definition words do not have list, instead they have the thing that is supposed to be in the list directly
 
-			meanings.push({
-				partOfSpeech,
-				definitions,
-			});
+			if (definitions.length > 0) {
+				meanings.push({
+					partOfSpeech,
+					definitions,
+				});
+			}
 			// reset part of speech for the next block
 			partOfSpeech = null;
 		}
@@ -297,85 +295,72 @@ export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 	strictSelector,
 ) => {
 	if (!$) throwNoCheerioError("KnowledgePanelResult");
-	const title = $(KnowledgePanelSelector.title).text().trim();
-	const description = $(KnowledgePanelSelector.description)
-		.contents()
-		.first()
-		.text()
-		.trim();
-	const label = $(KnowledgePanelSelector.label).text().trim();
-
-	const metadataBlock = $(KnowledgePanelSelector.metadataBlock);
-	const metadata: KnowledgePanelMetadata[] = [];
-
-	for (const element of metadataBlock) {
-		const label = $(element)
-			.find(KnowledgePanelSelector.metadataLabel)
-			.text()
-			.trim();
-		const value = $(element)
-			.find(KnowledgePanelSelector.metadataValue)
-			.text()
-			.trim();
-		if (label && value) metadata.push({ label, value });
-	}
-
-	const imageSource = $(KnowledgePanelSelector.imageSource);
-	const images: KnowledgePanelImage[] = [];
-	for (const element of imageSource) {
-		const source = $(element).attr("href") as string;
-		const url = $(element)
+	// knowledge panel can be anywhere, at the start, or +x (mostly 2) from the start
+	const blocks = $(GeneralSelector.block);
+	// we loop through each block to find the first valid knowledge panel
+	// we use cheerio.each instead of for-of loop because we need to break the loop to avoid
+	// parsing non-knowledge panel blocks
+	let knowledgePanel: KnowledgePanelResultNode | null = null;
+	blocks.each((index, element) => {
+		// knowledge panel will always be within +5 blocks from the start
+		if (index > 5) return false;
+		const block = $(element);
+		const headerContainer = block.find(KnowledgePanelSelector.headerBlock);
+		const headerBlock = headerContainer.first();
+		// the second td contains the image data
+		const imageContainer = headerBlock.next();
+		if (!headerBlock) return;
+		const title = headerBlock.find(KnowledgePanelSelector.title).text().trim();
+		const label = headerBlock.find(KnowledgePanelSelector.label).text().trim();
+		const imageLink = imageContainer
 			.find(KnowledgePanelSelector.imageUrl)
-			.attr("src") as string;
-		if (source && url) {
-			const filteredSource = extractUrlFromGoogleLink(source);
-			if (filteredSource)
-				images.push({ source: filteredSource as string, url });
-		}
-	}
+			.attr("src");
+		// if we don't find a title or label, then this is an invalid knowledge panel
+		if (title === "" || label === "") return;
+		const descriptionBlock = block.find(
+			KnowledgePanelSelector.descriptionBlock,
+		);
+		const description = descriptionBlock.find("span").first().text().trim();
+		// second span is the source link, we can get the source link from the href attribute
+		const sourceLink = descriptionBlock.find("a").attr("href");
+		const cleanSourceLink = extractUrlFromGoogleLink(sourceLink ?? null);
+		// source link is optional in normal reqs, we ignore it for strictSelector check
+		const metadataBlocks = block
+			.find(KnowledgePanelSelector.metadataBlock)
+			.toArray();
+		const metadata: KnowledgePanelMetadata[] = [];
 
-	const catalogBlock = $(KnowledgePanelSelector.catalogBlock);
-	const catalog: KnowledgePanelCatalog[] = [];
-	for (const element of catalogBlock) {
-		const title = $(element)
-			.find(KnowledgePanelSelector.catalogTitle)
-			.text()
-			.trim();
-		const items: KnowledgePanelCatalogItem[] = [];
-		const catalogItems = $(element).find(KnowledgePanelSelector.catalogItem);
-		if (!title || !catalogItems.length) continue;
-		for (const item of catalogItems) {
-			const itemImage = $(item)
-				.find(KnowledgePanelSelector.catalogItemImage)
-				.attr("src") as string;
-			const itemTitle = $(item)
-				.find(KnowledgePanelSelector.catalogItemTitle)
+		for (const metadataContainerElement of metadataBlocks) {
+			const metadataContainer = $(metadataContainerElement);
+			const label = metadataContainer
+				.find(KnowledgePanelSelector.metadataLabel)
+				.first()
 				.text()
 				.trim();
-			const itemCaption = $(item)
-				.find(KnowledgePanelSelector.catalogItemCaption)
+			if (label === "") continue;
+			const value = metadataContainer
+				.find(KnowledgePanelSelector.metadataValue)
 				.text()
 				.trim();
-			// only itemTitle and itemImage are required
-			if (item && itemImage)
-				items.push({
-					title: itemTitle,
-					image: itemImage,
-					caption: itemCaption,
-				});
+			if (value === "") continue;
+			metadata.push({
+				label,
+				value,
+			});
 		}
-		if (title && items.length) catalog.push({ title, items });
-	}
 
-	if (isEmpty(strictSelector, title, description, label)) return null;
+		if (!isEmpty(strictSelector, title, description, label))
+			knowledgePanel = {
+				type: ResultTypes.KnowledgePanelResult,
+				title,
+				label,
+				description,
+				sourceLink: cleanSourceLink,
+				imageLink: imageLink ?? null,
+				metadata,
+			};
+		return false;
+	});
 
-	return {
-		type: ResultTypes.KnowledgePanelResult,
-		title,
-		description,
-		label,
-		metadata,
-		images,
-		catalog,
-	};
+	return knowledgePanel;
 };
