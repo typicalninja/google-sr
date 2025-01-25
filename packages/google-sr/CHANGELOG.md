@@ -1,5 +1,36 @@
 # google-sr
 
+## 5.0.0
+
+### Major Changes
+
+- f9d57ea: Bypass JavaScript requirement for Google search
+
+  In a recent Google update, the ability to access search result pages without enabling JavaScript was disabled.
+  (See [#51](https://github.com/typicalninja/google-sr/issues/51) for more details.)
+
+  A workaround that bypasses the JavaScript requirement by utilizing an alternate page version served to specific user agents
+  is now implemented. However, this alternate page lacks certain
+  features available on the standard page, resulting in the removal of some properties.
+
+  #### Changes to results
+
+  - `OrganicResult` - No user facing changes
+  - `TranslateResult` - `translationPronunciation` property was removed
+  - `DictionaryResult` - `definition` property was removed in favour of a `meaning` property, check the documentation for more details
+  - `CurrencyResult` - No user facing changes
+  - `TimeResult` - No user facing changes
+  - `KnowledgePanelResult` - `images` and `catalog` properties were removed, new properties `sourceLink` and `imageLink` were added.
+
+### Patch Changes
+
+- Updated dependencies [f9d57ea]
+- Updated dependencies [f9d57ea]
+- Updated dependencies [f9d57ea]
+- Updated dependencies [f9d57ea]
+- Updated dependencies [f9d57ea]
+  - google-sr-selectors@2.0.0
+
 ## 4.1.0
 
 ### Minor Changes
@@ -57,7 +88,8 @@
   ```ts
   import { ResultNodeTyper, ResultSelector } from "google-sr";
   // first argument is the "type" value (string) of the node, second is all the properties of the node
-  type DidYouKnow = ResultNodeTyper<"SOMETYPE", "prop1" | "prop2"> & { // properties that are not string can be defined as this
+  type DidYouKnow = ResultNodeTyper<"SOMETYPE", "prop1" | "prop2"> & {
+    // properties that are not string can be defined as this
     descriptions: string[];
   };
   const selector: ResultSelector<DidYouKnow> = ($, strictSelector) => {
