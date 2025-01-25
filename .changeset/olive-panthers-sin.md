@@ -2,10 +2,21 @@
 "google-sr-selectors": major
 ---
 
-Fix Translate Search Result Selectors
+Update translate result selectors
 
-This patch resolves issues caused by Google disabling access to search results without JavaScript. Users of `google-sr` will be minimally impacted by this change. For those using `google-sr-selectors`, refer to the `google-sr` source for details on how to use the updated selectors.  
+Following selectors were replaced with new ones / removed.
 
-This update is classified as a major change because it removes several properties, such as `pronunciation` (etc..), which are unavailable in the older version of the search results page (which we use as a bypass).  
+```json5
+{
 
-For more details, see the relevant GitHub issue: [#51](https://github.com/typicalninja/google-sr/issues/51).
+  translationText: "...",
+  sourceLanguage: "...",
+  targetLanguage: "...",
+}
+```
+
+The following selectors are the replacement for the above selectors.
+
+* `translateFromTo` -> `sourceLanguage` and `targetLanguage`
+   * translateFromTo is a string in the format of `sourceLanguage to targetLanguage`
+* `translatedText` -> `translationText`

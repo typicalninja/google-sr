@@ -1,9 +1,36 @@
 ---
-"google-sr": major
+"google-sr-selectors": major
 ---
 
-Fix translate search results
+Update knowledge panel result selectors
 
-This patch resolves issues caused by Google disabling access to search results without JavaScript. It incorporates changes from `google-sr-selectors`. Several properties, such as `pronunciation` (etc..), are unavailable in the older version of the search results page (which we use as a bypass), and thus have been removed.
+Following selectors are no longer available.
 
-For more details, see the relevant GitHub issue: [#51](https://github.com/typicalninja/google-sr/issues/51).
+```json5
+{
+    catalogBlock: "...", 
+    catalogTitle: "...",
+    catalogItem: "...",
+    catalogItemImage: "...",
+    catalogItemTitle: "...",    
+    catalogItemCaption: "...",
+}
+```
+
+Following selectors have some changes on how they are used (or new).
+
+```json5
+{
+  // Direct children of the first element 
+  // obtained via the `headerBlock` selector.
+  title: "...",
+  label: "...",
+  // This is a child of the second element 
+  // obtained via `headerBlock` selector
+  imageUrl: "...",
+  // description block contains description and metadata (description source link)
+  // the first span is the description
+  // and the first "<a>" is the source link
+  descriptionBlock: "...",
+}
+```
