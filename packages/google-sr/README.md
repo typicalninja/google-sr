@@ -1,14 +1,32 @@
-# google-sr 🔍
+[npm-gsr]: https://www.npmjs.com/package/google-sr
+[stargazers]: https://github.com/typicalninja/google-sr/stargazers
+[discord]: https://discord.gg/ynwckXS9T2
+[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
+[api-docs]: https://typicalninja.github.io/google-sr/modules/google-sr_src.html
+[github-gt]: https://github.com/typicalninja/google-sr/tree/master/packages/google-that
+[github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
 
-[![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
-[![npm downloads](https://img.shields.io/npm/dw/google-sr)](https://www.npmjs.com/package/google-sr)
-[![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
-[![NPM](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
-[![npm version](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
-[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
+<h1 align="center">Google-sr</h1>
 
-Simple & Fast Package for scraping Google search results without the need for an API key. 🚀
+<p align="center">Scrape google search results without an API key with javascript/typescript.</p>
+
+<div align="center">
+
+[![testing workflow](https://img.shields.io/github/actions/workflow/status/typicalninja/google-sr/tests.yml?style=flat)][test-action]
+[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
+[![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
+[![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+
+</div>
+
+<div align="center">
+
+**[Installation](#install) |
+[Getting started](#usage) |
+[API Documentation][api-docs] |
+[Disclaimer](#disclaimer)**
+
+</div>
 
 # Features
 
@@ -18,7 +36,7 @@ Simple & Fast Package for scraping Google search results without the need for an
 - [Well tested 🔄](#tests)
 - [Supports multiple runtimes](#runtime-support)
 
-# Install 📦
+# Install
 
 ### Runtime Support
 
@@ -77,25 +95,26 @@ console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 This is not sponsored, supported, or affiliated with Google.
 
 The source code within this repository is intended solely for **educational & research purposes**.
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
+The author & contributors takes **NO** responsibility for any issues that arise from its use. 
+Your discretion in usage is advised.
 
 # Links
 
-- [API Documentation](https://typicalninja.github.io/google-sr)
+- [API Documentation][api-docs]
 - [GitHub Repository](https://github.com/typicalninja/google-sr)
-- [NPM Package](https://www.npmjs.com/package/google-sr) 
-- [Discord](https://discord.gg/ynwckXS9T2)
+- [NPM Package][npm-gsr]
+- [Discord][discord]
 
 # Related projects 🥂
 
-- [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
-- [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
+- [google-that][github-gt] - CLI wrapper around google-sr
+- [google-sr-selectors][github-gsrs] - Selectors for Google search results used by google-sr
 
 # Tests
 
 Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
 
-> Weekly tests are executed using a github action to ensure compatibility and catch breakage due to google changes
+> Weekly tests are executed using a GitHub action to ensure compatibility and catch breakage due to google changes
 
 ```bash
 pnpm run test
