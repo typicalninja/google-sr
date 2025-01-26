@@ -1,13 +1,30 @@
-# google-sr
+[npm-gsr]: https://www.npmjs.com/package/google-sr
+[stargazers]: https://github.com/typicalninja/google-sr/stargazers
+[discord]: https://discord.gg/ynwckXS9T2
+[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
+[api-docs]: https://typicalninja.github.io/google-sr/
 
-[![testing workflow](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)](https://github.com/typicalninja/google-sr)
-[![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
-[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/stargazers)
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
+<h1 align="center">Google-sr</h1>
 
-Scrape google-sr search results without an API key with javascript/typescript.
+<p align="center">Scrape google search results without an API key with javascript/typescript.</p>
+
+<div align="center">
+
+[![testing workflow](https://img.shields.io/github/actions/workflow/status/typicalninja/google-sr/tests.yml?style=flat)][test-action]
+[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
+[![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
+[![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+
+</div>
+
+<div align="center">
+
+**[Installation](#install) |
+[Getting started](#usage) |
+[API Documentation][api-docs] |
+[Disclaimer](#disclaimer)**
+
+</div>
 
 # Install
 
@@ -17,7 +34,7 @@ Scrape google-sr search results without an API key with javascript/typescript.
 
 - [Node.js](https://nodejs.org/en)
 - [Bun](https://bun.sh/)
-- [Deno](https://deno.com/) (with the [`npm:` specifier](https://docs.deno.com/runtime/fundamentals/node/#using-npm-packages))
+- [Deno](https://deno.com/)
 
 To get started, you can install **google-sr** using your preferred package manager:
 
@@ -63,10 +80,6 @@ console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
 
 - Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
-# google-sr API
-
-Please refer to the google-sr API [here](https://typicalninja.github.io/google-sr/)
-
 # Monorepo
 
 Welcome to the 📦 monorepo of GSR Project.
@@ -75,7 +88,7 @@ Welcome to the 📦 monorepo of GSR Project.
 
 > **[google-sr](https://github.com/typicalninja/google-sr/blob/master/packages/google-sr)**
 
-[![npm downloads for google-sr](https://img.shields.io/npm/dw/google-sr)](https://www.npmjs.com/package/google-sr)
+[![npm downloads for google-sr](https://img.shields.io/npm/dw/google-sr)][npm-gsr]
 [![NPM license for google-sr](https://img.shields.io/npm/l/google-sr)](https://www.npmjs.com/package/google-sr)
 [![npm version for google-sr](https://img.shields.io/npm/v/google-sr)](https://www.npmjs.com/package/google-sr)
 
