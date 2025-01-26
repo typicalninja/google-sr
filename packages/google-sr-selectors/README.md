@@ -5,6 +5,7 @@
 [discord]: https://discord.gg/ynwckXS9T2
 [test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
 [api-docs]: https://typicalninja.github.io/google-sr/modules/google-sr-selectors_src.html
+[usage]: https://github.com/typicalninja/google-sr/blob/reformat-docs/packages/google-sr/src/results.ts
 
 <h1 align="center">Google-sr-selectors</h1>
 
@@ -21,8 +22,7 @@
 
 <div align="center">
 
-**[Installation](#install) |
-[Getting started](#usage) |
+**[Usage example][usage] |
 [API Documentation][api-docs] |
 [Disclaimer](#disclaimer)**
 
