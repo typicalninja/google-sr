@@ -22,8 +22,7 @@
     "search",
     "google-search",
     "googlesearch",
-    "scraping",
-    "simple"
+    "scraping"
   ],
   "author": "typicalninja",
   "license": "Apache-2.0",
@@ -33,6 +32,6 @@
     "google-sr-selectors": "workspace:^"
   },
   "devDependencies": {
-    "vitest": "^2.0.3"
+    "vitest": "^3.0.4"
   }
 }
