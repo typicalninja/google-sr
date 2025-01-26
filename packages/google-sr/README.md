@@ -3,6 +3,8 @@
 [discord]: https://discord.gg/ynwckXS9T2
 [test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
 [api-docs]: https://typicalninja.github.io/google-sr/modules/google-sr_src.html
+[github-gt]: https://github.com/typicalninja/google-sr/tree/master/packages/google-that
+[github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
 
 <h1 align="center">Google-sr</h1>
 
@@ -98,15 +100,15 @@ Your discretion in usage is advised.
 
 # Links
 
-- [API Documentation](https://typicalninja.github.io/google-sr)
+- [API Documentation][api-docs]
 - [GitHub Repository](https://github.com/typicalninja/google-sr)
-- [NPM Package](https://www.npmjs.com/package/google-sr) 
-- [Discord](https://discord.gg/ynwckXS9T2)
+- [NPM Package][npm-gsr]
+- [Discord][discord]
 
 # Related projects 🥂
 
-- [google-that](https://g-sr.vercel.app/google/that) - CLI wrapper around google-sr
-- [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for Google search results used by google-sr
+- [google-that][github-gt] - CLI wrapper around google-sr
+- [google-sr-selectors][github-gsrs] - Selectors for Google search results used by google-sr
 
 # Tests
 
