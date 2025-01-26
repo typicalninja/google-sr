@@ -1,5 +1,12 @@
 # google-that
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [f9d57ea]
+  - google-sr@5.0.0
+
 ## 1.1.0
 
 ### Minor Changes
