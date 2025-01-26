@@ -1,16 +1,35 @@
-# google-that
+[npm]: https://www.npmjs.com/package/google-that
+[github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
+[github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
+[stargazers]: https://github.com/typicalninja/google-sr/stargazers
+[discord]: https://discord.gg/ynwckXS9T2
+[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
 
-[![npm downloads](https://img.shields.io/npm/dw/google-that)](https://www.npmjs.com/package/google-that)
-[![GitHub issues](https://img.shields.io/github/issues/typicalninja/google-sr)](https://github.com/typicalninja/google-sr/issues)
-[![NPM](https://img.shields.io/npm/l/google-that)](https://www.npmjs.com/package/google-that)
-[![npm version](https://img.shields.io/npm/v/google-that)](https://www.npmjs.com/package/google-that)
-[![Discord](https://img.shields.io/discord/807868280387665970)](https://discord.gg/ynwckXS9T2)
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)](https://www.codefactor.io/repository/github/typicalninja/google-sr)
+<h1 align="center">Google-that</h1>
 
-CLI tool to scrape google search results without an api key 🚀.
-This is a demo project to showcase the usage and performance of the [google-sr](https://npmjs.com/package/google-sr) package. google-that is able to output parsed results to a file or to stdout, please check the help page for more info.
+<p align="center">CLI tool to scrape google search results without an api key</p>
 
-# Install 📦
+<div align="center">
+
+[![testing workflow](https://img.shields.io/github/actions/workflow/status/typicalninja/google-sr/tests.yml?style=flat)][test-action]
+[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
+[![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
+[![Monthly downloads](https://img.shields.io/npm/dm/google-that?style=flat)][npm]
+
+</div>
+
+<div align="center">
+
+**[Installation](#install) |
+[Getting started](#usage) |
+[Disclaimer](#disclaimer)**
+
+</div>
+
+
+> This is a demo project to showcase the usage and performance of the [google-sr][github-gsr] package.
+
+# Install
 
 To get started, you can install **google-that** using your preferred package manager:
 
@@ -41,7 +60,7 @@ google-that --help
 google-that -q "Nodejs"
 
 # Multiple queries
-# Seperate queries with a space, the option is case insensitive (Q)
+# Separate queries with a space, the option is case insensitive (Q)
 google-that -Q query1 "queries with spaces need to be quoted"
 
 # Writing the results to a file
@@ -53,18 +72,18 @@ google-that -q "Nodejs" -w
 This is not sponsored, supported, or affiliated with Google.
 
 The source code within this repository is intended solely for **educational & research purposes**.
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use, such as IP blocking by Google. Your discretion in usage is advised.
+The author & contributors takes **NO** responsibility for any issues that arise from its use. Your discretion in usage is advised.
 
 # Links
 
 - [GitHub Repository](https://github.com/typicalninja/google-sr)
-- [NPM Package](https://www.npmjs.com/package/google-that)
-- [Discord](https://discord.gg/ynwckXS9T2)
+- [NPM Package][npm]
+- [Discord][discord]
 
 # Related projects 🥂
 
-- [google-sr](https://g-sr.vercel.app/google/sr) - Core project used in google-that
-- [google-sr-selectors](https://g-sr.vercel.app/google/selectors) - Selectors for google search results used by google-sr
+- [google-sr][github-gsr] - Core project used in google-that
+- [google-sr-selectors][github-gsrs] - Selectors for Google search results used by google-sr
 
 # License
 

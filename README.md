@@ -3,6 +3,7 @@
 [discord]: https://discord.gg/ynwckXS9T2
 [test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
 [api-docs]: https://typicalninja.github.io/google-sr/
+[codefactor]: https://www.codefactor.io/repository/github/typicalninja/google-sr
 
 <h1 align="center">Google-sr</h1>
 
@@ -14,6 +15,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
 [![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
 [![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)][codefactor]
 
 </div>
 
