@@ -7,6 +7,9 @@ on:
       - '**'
     tags:
       - '!**'
+    # pkg.pr.new only runs on code changes
+    paths:
+      - 'packages/*/src/**'
 
 jobs:
   build:
@@ -21,7 +24,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-            version: 9.6.0
+            version: 10
             run_install: false
 
       - name: Setup node

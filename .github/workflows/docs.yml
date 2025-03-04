@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+    # rebuild docs only on code changes
     paths:
         - 'packages/*/src/**'
         - '!packages/google-that/**'
@@ -24,7 +25,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-            version: 9.6.0
+            version: 10
             run_install: true
 
       - name: Install Node.js 20.x
