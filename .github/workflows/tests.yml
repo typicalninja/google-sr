@@ -1,4 +1,4 @@
-name: Test
+name: Run tests and collect coverage
 
 on:
   push:
@@ -12,11 +12,11 @@ on:
 
 jobs:
   test:
-    name: Main package
+    name: Run tests and collect coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # setup pnpm to specific version to avoid breaking changes
       - name: Setup pnpm
@@ -39,4 +39,11 @@ jobs:
         run: pnpm run build --filter=google-sr --filter=google-sr-selectors
 
       - name: Run tests
-        run: pnpm run test
+        run: pnpm run test --coverage
+
+      - name: Upload results to Codecov
+        # do not run on weekly schedule (only on pr and push)
+        if: github.event_name != 'schedule'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
