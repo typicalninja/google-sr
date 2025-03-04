@@ -16,6 +16,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
 [![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
 [![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+[![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)](https://codecov.io/gh/typicalninja/google-sr)
 
 </div>
 
