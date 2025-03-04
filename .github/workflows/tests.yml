@@ -11,6 +11,9 @@ on:
       - cron: "0 0 * * SUN"  # Run every 00:00 on Sunday
   workflow_dispatch:
   pull_request:
+    # test only on code changes
+    paths:
+      - 'packages/*/src/**'
 
 
 jobs:
