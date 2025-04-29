@@ -6,9 +6,9 @@
 [codefactor]: https://www.codefactor.io/repository/github/typicalninja/google-sr
 [codeberg]: https://codeberg.org/typicalninja/google-sr
 
-<h1 align="center">Google-sr</h1>
+<h1 align="center">google-sr</h1>
 
-<p align="center">Scrape google search results without an API key with javascript/typescript.</p>
+<p align="center">Scrape Google search results using JavaScript / TypeScript</p>
 
 <div align="center">
 
@@ -26,16 +26,14 @@
 **[Installation](#install) |
 [Getting started](#usage) |
 [API Documentation][api-docs] |
-[Disclaimer](#disclaimer)**
+[Disclaimer](#disclaimer) |
+[Mirror][codeberg]**
 
 </div>
 
 # Install
 
-### Runtime Support
-
-`google-sr` **not support web environments**, but it has been tested and 
-confirmed to work in most common javascript server environments.
+> Not supported in browser environments.
 
 ```bash
 npm install google-sr
@@ -62,9 +60,7 @@ console.log(queryResult[0].type === ResultTypes.OrganicResult);
 // true
 ```
 
-> Note: By default, only results of type [`ResultTypes.OrganicResult`](https://typicalninja.github.io/google-sr/variables/google-sr_src.ResultTypes.html) are returned. Use the [`resultTypes`](https://typicalninja.github.io/google-sr/interfaces/google-sr_src.SearchOptions.html#resulttypes) option to customize the output.
-
-- Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
+> Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # Disclaimer
 
@@ -74,15 +70,10 @@ The source code within this repository is intended solely for **educational & re
 The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use. 
 Your discretion in usage is advised.
 
-# Mirror
-
-The mirror of this repository can be found on [codeberg][codeberg].
-
 # Tests
 
 Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
 
-> Weekly tests are executed using a GitHub action to ensure compatibility and catch breakage due to google changes
 
 ```bash
 pnpm run test
@@ -91,3 +82,7 @@ pnpm run test
 # License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
+
+---
+
+Want to support the project? [Star it on GitHub ★][stargazers] or [join our Discord][discord]!
