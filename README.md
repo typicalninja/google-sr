@@ -38,26 +38,49 @@
 ```bash
 npm install google-sr
 # For pnpm/yarn/bun:
-pnpm/yarn/bun add google-sr
+pnpm add google-sr
+yarn add google-sr
+bun add google-sr
 ```
 
 # Usage
 
 ```ts
 import {
-  search,
-  OrganicResult,
-  ResultTypes,
+	search,
+	OrganicResult,
+	TranslateResult,
+	ResultTypes,
 } from "google-sr";
 
-const queryResult = await search({
-  query: "nodejs",
-  // Explicitly specify the results you want
-  resultTypes: [OrganicResult],
+const results = await search({
+	query: "translate hello to japanese",
+	// Explicitly specify the results you want
+	resultTypes: [TranslateResult, OrganicResult],
 });
 
-console.log(queryResult[0].type === ResultTypes.OrganicResult); 
-// true
+console.log(results[0].type === ResultTypes.TranslateResult);  // true
+console.log(results)
+```
+
+#### Output
+
+```js
+[
+  {
+    type: 'TRANSLATE', // will be present in all results
+    sourceLanguage: 'English (detected)',
+    translationLanguage: 'Japanese',
+    sourceText: 'hello',
+    translatedText: 'こんにちは'
+  },
+  {
+    type: 'ORGANIC',
+    link: '...',
+    description: "Konnichiwa – ...",
+    title: '18 ...'
+  },
+]
 ```
 
 > Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
