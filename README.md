@@ -31,14 +31,6 @@
 
 </div>
 
-# Features
-
-
-- 🔍 Supports multiple result types — including Translate, Organic, and more
-- 🧩 Customizable selectors for advanced parsing
-- 🛡️ Fully typed API (TypeScript ready)
-- ⚙️ Major runtimes supported (Node.js, Bun, Deno)
-- [Well tested](#tests)
 
 # Install
 

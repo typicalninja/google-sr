@@ -31,11 +31,11 @@
 
 # Features
 
-- No API key is needed 🔑
-- First-party TypeScript support
-- [Customizable selectors](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/custom-selector.ts) 🔍
-- [Well tested 🔄](#tests)
-- [Supports multiple runtimes](#runtime-support)
+- 🔑 No API key is needed
+- Full typescript support
+- ⚙️ Major runtimes supported (Node.js, Bun, Deno)
+- [🔍 Customizable selectors](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/custom-selector.ts)
+- [🔄 Well tested](#tests)
 
 # Install
 
@@ -114,8 +114,6 @@ Your discretion in usage is advised.
 # Tests
 
 Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
-
-> Weekly tests are executed using a GitHub action to ensure compatibility and catch breakage due to google changes
 
 ```bash
 pnpm run test
