@@ -61,7 +61,7 @@ const results = await search({
 });
 
 console.log(results[0].type === ResultTypes.TranslateResult);  // true
-console.log(results)
+console.log(results) // see below
 ```
 
 #### Output
@@ -69,7 +69,8 @@ console.log(results)
 ```js
 [
   {
-    type: 'TRANSLATE', // will be present in all results
+    // type property is present in all results
+    type: 'TRANSLATE',
     sourceLanguage: 'English (detected)',
     translationLanguage: 'Japanese',
     sourceText: 'hello',
@@ -81,6 +82,7 @@ console.log(results)
     description: "Konnichiwa – ...",
     title: '18 ...'
   },
+  // ... and more
 ]
 ```
 
@@ -109,4 +111,4 @@ This repository and the code inside it is licensed under the Apache-2.0 License.
 
 ---
 
-Want to support the project? [Star it on GitHub ★][stargazers] or [join our Discord][discord]!
+Want to support the project? [Star it on GitHub ★][stargazers]
