@@ -32,7 +32,7 @@
 # Features
 
 - 🔑 No API key is needed
-- Full typescript support
+- Full Typescript support
 - ⚙️ Major runtimes supported (Node.js, Bun, Deno)
 - [🔍 Customizable selectors](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/custom-selector.ts)
 - [🔄 Well tested](#tests)
