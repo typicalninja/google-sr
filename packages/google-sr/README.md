@@ -39,57 +39,59 @@
 
 # Install
 
-### Runtime Support
-
-`google-sr` does not support web environments, but it has been tested and confirmed to work on the following runtimes:
-
-- [Node.js](https://nodejs.org/en)
-- [Bun](https://bun.sh/)
-- [Deno](https://deno.com/)
-
-To get started, you can install **google-sr** using your preferred package manager:
+> Not supported in browser environments.
 
 ```bash
 npm install google-sr
 # For pnpm/yarn/bun:
-pnpm/yarn/bun add google-sr
-# For Deno, either use the npm: specifier
-# or import from esm.sh
-# https://esm.sh/google-sr
+pnpm add google-sr
+yarn add google-sr
+bun add google-sr
 ```
 
 # Usage
 
-This example demonstrates some of the features of `google-sr`. For a bare minimum setup, refer to the [examples/basic](https://github.com/typicalninja/google-sr/blob/master/apps/examples/src/basic.ts) file.
-
 ```ts
 import {
-  search,
-  OrganicResult, // Import the result types you need
-  DictionaryResult,
-  ResultTypes, // Import to filter results by type
+	search,
+	OrganicResult,
+	TranslateResult,
+	ResultTypes,
 } from "google-sr";
 
-const queryResult = await search({
-  query: "nodejs",
-  // Specify the result types explicitly ([OrganicResult] is the default, but it is recommended to always specify the result type)
-  resultTypes: [OrganicResult, DictionaryResult],
-  // Optional: Customize the request using AxiosRequestConfig (e.g., enabling safe search)
-  requestConfig: {
-    params: {
-      safe: "active",   // Enable "safe mode"
-    },
-  },
+const results = await search({
+	query: "translate hello to japanese",
+	// Explicitly specify the results you want
+	resultTypes: [TranslateResult, OrganicResult],
 });
 
-// will return a SearchResult[]
-console.log(queryResult);
-console.log(queryResult[0].type === ResultTypes.OrganicResult); // true
+console.log(results[0].type === ResultTypes.TranslateResult);  // true
+console.log(results) // see below
 ```
 
-> Note: By default, only results of type [`ResultTypes.OrganicResult`](https://typicalninja.github.io/google-sr/variables/google-sr_src.ResultTypes.html) are returned. Use the [`resultTypes`](https://typicalninja.github.io/google-sr/interfaces/google-sr_src.SearchOptions.html#resulttypes) option to customize the output.
+#### Output
 
-- Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
+```js
+[
+  {
+    // type property is present in all results
+    type: 'TRANSLATE',
+    sourceLanguage: 'English (detected)',
+    translationLanguage: 'Japanese',
+    sourceText: 'hello',
+    translatedText: 'こんにちは'
+  },
+  {
+    type: 'ORGANIC',
+    link: '...',
+    description: "Konnichiwa – ...",
+    title: '18 ...'
+  },
+  // ... and more
+]
+```
+
+> Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
 # Disclaimer
 
@@ -109,7 +111,7 @@ Your discretion in usage is advised.
 # Related projects 🥂
 
 - [google-that][github-gt] - CLI wrapper around google-sr
-- [google-sr-selectors][github-gsrs] - Selectors for Google search results used by google-sr
+- [google-sr-selectors][github-gsrs] - Cheerio selectors for Google search results used by google-sr
 
 # Tests
 
