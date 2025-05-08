@@ -1,5 +1,7 @@
 name: Run tests and collect coverage
-
+permissions:
+  contents: read
+  
 on:
   push:
     branches:
