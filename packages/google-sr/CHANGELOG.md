@@ -1,5 +1,11 @@
 # google-sr
 
+## 5.0.1
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+
 ## 5.0.0
 
 ### Major Changes

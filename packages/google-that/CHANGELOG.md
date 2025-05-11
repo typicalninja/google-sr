@@ -1,5 +1,13 @@
 # google-that
 
+## 1.1.2
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+- Updated dependencies [fe575b5]
+  - google-sr@5.0.1
+
 ## 1.1.1
 
 ### Patch Changes
