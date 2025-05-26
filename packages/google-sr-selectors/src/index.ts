@@ -67,3 +67,11 @@ export const KnowledgePanelSelector = {
 	metadataLabel: "span.FrIlee > span.fYyStc",
 	metadataValue: "span.F9iS2e",
 };
+
+export const NewsSearchSelector = {
+	title: ".CVA68e.qXLe6d.fuLhoc.ZWRArf",
+	link: "a",
+	published_date: ".fYyStc.YVIcad",
+	description: ".qXLe6d.FrIlee .fYyStc:first-of-type",
+	source: ".qXLe6d.dXDvrc .fYyStc",
+}
