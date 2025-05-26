@@ -3,6 +3,7 @@ import {
 	CurrencyResult,
 	DictionaryResult,
 	KnowledgePanelResult,
+	NewsResult,
 	OrganicResult,
 	ResultTypes,
 	TimeResult,
@@ -145,4 +146,38 @@ test("Search for Knowledge panel results", async () => {
 	const meta1 = result.metadata[0];
 	// validate 1st metadata, if 1st is correct, others should be correct too
 	expect(meta1.label).toBe("Release date");
+});
+
+test("Search for news results", async () => {
+	const queryResult = await search({
+		query: "nodejs",
+		resultTypes: [NewsResult],
+		// on some platforms (i.e github actions) it returns some weird results that does not have a link/description/title
+		// so we set strictSelector to true to ignore those results
+		//TODO: recheck in future as the tests pass on local machines (tested on 2 different machines)
+		strictSelector: true,
+		requestConfig: {
+			params: {
+				// Country code
+				gl: "us",
+				// Language code
+				hl: "en",
+				// TBM param (typeof search: news/images/...)
+				tbm: "nws",
+			},
+		},
+	});
+	expect(queryResult).length.greaterThan(0);
+
+	// verify all results are OrganicResults
+	for (const result of queryResult) {
+		expect(result.type).toBe(ResultTypes.NewsResult);
+
+		// verify properties are present and not empty;
+		expect(result.link).to.be.a("string").and.not.empty;
+		expect(result.description).to.be.a("string").and.not.empty;
+		expect(result.title).to.be.a("string").and.not.empty;
+		expect(result.published_date).to.be.a("string").and.not.empty;
+		expect(result.source).to.be.a("string").and.not.empty;
+	}
 });
