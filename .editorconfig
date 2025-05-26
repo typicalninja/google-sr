@@ -1,0 +1,10 @@
+# This file ync setting between different IDE
+# It is used so every dev will use same formatting style
+
+# Your IDE must enable support for `editorconfig`
+# - VS Code: download https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+
+# Make indentation with tab in all files
+[*]
+indent_style = tab
+indent_size = 2
