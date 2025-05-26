@@ -22,6 +22,14 @@ test("Search for organic results (default)", async () => {
 		// so we set strictSelector to true to ignore those results
 		//TODO: recheck in future as the tests pass on local machines (tested on 2 different machines)
 		strictSelector: true,
+		requestConfig: {
+			params: {
+				// Country code
+				gl: "us",
+				// Language code
+				hl: "en",
+			},
+		},
 	});
 	expect(queryResult).length.greaterThan(0);
 
@@ -110,6 +118,14 @@ test("Search for time results", async () => {
 	const queryResult = await search({
 		query: "what time is it in london",
 		resultTypes: [TimeResult],
+		requestConfig: {
+			params: {
+				// Country code
+				gl: "us",
+				// Language code
+				hl: "en",
+			},
+		},
 	});
 	// only one result should be returned for this query
 	expect(queryResult).toHaveLength(1);
@@ -128,6 +144,14 @@ test("Search for Knowledge panel results", async () => {
 		// just a great movie
 		query: "Interstellar",
 		resultTypes: [KnowledgePanelResult],
+		requestConfig: {
+			params: {
+				// Country code
+				gl: "us",
+				// Language code
+				hl: "en",
+			},
+		},
 	});
 	// only one result should be returned for this query
 	expect(queryResult).toHaveLength(1);
