@@ -9,6 +9,7 @@ export const ResultTypes = {
 	TimeResult: "TIME",
 	CurrencyResult: "CURRENCY",
 	KnowledgePanelResult: "KNOWLEDGE_PANEL",
+	NewsResult: "NEWS",
 } as const;
 
 // Specific result types returned by gsr
@@ -59,6 +60,13 @@ export type KnowledgePanelResultNode = ResultNodeTyper<
 	metadata: KnowledgePanelMetadata[];
 };
 
+export type NewsResultNode = ResultNodeTyper<
+	typeof ResultTypes.NewsResult,
+	"title" | "published_date" | "description" | "source"
+> & {
+	link: string;
+};
+
 // All possible result types as a union
 export type SearchResultNode =
 	| OrganicResultNode
@@ -66,7 +74,8 @@ export type SearchResultNode =
 	| DictionaryResultNode
 	| TimeResultNode
 	| CurrencyResultNode
-	| KnowledgePanelResultNode;
+	| KnowledgePanelResultNode
+	| NewsResultNode;
 
 export interface SearchResultNodeLike {
 	type: string;
