@@ -1,5 +1,17 @@
 # google-sr
 
+## 5.1.0
+
+### Minor Changes
+
+- cae9f30: Add `NewsSelector` for Google News
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+- Updated dependencies [cae9f30]
+  - google-sr-selectors@2.1.0
+
 ## 5.0.0
 
 ### Major Changes
