@@ -1,5 +1,8 @@
-import type { CheerioAPI } from "cheerio";
-import { ResultTypes, type SearchResultNodeLike } from "../constants";
+import {
+	type ResultSelector,
+	ResultTypes,
+	type SearchResultNodeLike,
+} from "../constants";
 import {
 	extractUrlFromGoogleLink,
 	isEmpty,
@@ -16,10 +19,10 @@ export interface OrganicResultNode extends SearchResultNodeLike {
 	link: string;
 }
 
-export function OrganicResult(
-	$: CheerioAPI,
-	strictSelector: boolean,
-): OrganicResultNode[] {
+export const OrganicResult: ResultSelector<OrganicResultNode> = (
+	$,
+	strictSelector,
+) => {
 	// Check if the user has called the function directly
 	// Most likely, they have passed the result of calling the function instead of the function itself
 	if (!$) throwNoCheerioError("OrganicResult");
@@ -49,4 +52,4 @@ export function OrganicResult(
 	}
 
 	return parsedResults;
-}
+};
