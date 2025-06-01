@@ -6,6 +6,8 @@
 import {
 	CurrencyResult,
 	DictionaryResult,
+	KnowledgePanelResult,
+	NewsResult,
 	// all available result types
 	OrganicResult,
 	// type string for node
@@ -27,6 +29,8 @@ const results = await search({
 		CurrencyResult,
 		TranslateResult,
 		OrganicResult,
+		KnowledgePanelResult,
+		NewsResult,
 	],
 
 	// strictSelector ensures that all nodes that are returned has all the required properties
