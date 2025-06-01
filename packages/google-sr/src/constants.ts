@@ -1,6 +1,14 @@
 import type { AxiosRequestConfig } from "axios";
 import type { CheerioAPI } from "cheerio";
-import type { ResultNodeTyper } from "./utils";
+import type {
+	CurrencyResultNode,
+	DictionaryResultNode,
+	KnowledgePanelResultNode,
+	NewsResultNode,
+	OrganicResultNode,
+	TimeResultNode,
+	TranslateResultNode,
+} from "./results";
 
 export const ResultTypes = {
 	OrganicResult: "ORGANIC",
@@ -11,61 +19,6 @@ export const ResultTypes = {
 	KnowledgePanelResult: "KNOWLEDGE_PANEL",
 	NewsResult: "NEWS",
 } as const;
-
-// Specific result types returned by gsr
-export type OrganicResultNode = ResultNodeTyper<
-	typeof ResultTypes.OrganicResult,
-	"title" | "description" | "link"
->;
-export type TranslateResultNode = ResultNodeTyper<
-	typeof ResultTypes.TranslateResult,
-	"sourceLanguage" | "translationLanguage" | "sourceText" | "translatedText"
->;
-
-export interface DictionaryDefinition {
-	definition: string; // The definition text
-	example?: string; // An example sentence using the word
-	synonyms?: string[]; // List of synonyms for this definition
-}
-
-export interface DictionaryMeaning {
-	partOfSpeech: string; // The part of speech (e.g., "noun", "verb")
-	definitions: DictionaryDefinition[]; // Array of definitions for this part of speech
-}
-
-// Dictionary result contains a special property called definitions which is an array
-export type DictionaryResultNode = ResultNodeTyper<
-	typeof ResultTypes.DictionaryResult,
-	"phonetic" | "word"
-> & { meanings: DictionaryMeaning[] };
-
-export type TimeResultNode = ResultNodeTyper<
-	typeof ResultTypes.TimeResult,
-	"location" | "time" | "timeInWords"
->;
-export type CurrencyResultNode = ResultNodeTyper<
-	typeof ResultTypes.CurrencyResult,
-	"from" | "to"
->;
-
-export interface KnowledgePanelMetadata {
-	label: string;
-	value: string;
-}
-
-export type KnowledgePanelResultNode = ResultNodeTyper<
-	typeof ResultTypes.KnowledgePanelResult,
-	"label" | "title" | "description" | "sourceLink" | "imageLink"
-> & {
-	metadata: KnowledgePanelMetadata[];
-};
-
-export type NewsResultNode = ResultNodeTyper<
-	typeof ResultTypes.NewsResult,
-	"title" | "published_date" | "description" | "source"
-> & {
-	link: string;
-};
 
 // All possible result types as a union
 export type SearchResultNode =
