@@ -47,11 +47,19 @@ jobs:
         run: pnpm run build --filter=google-sr --filter=google-sr-selectors
 
       - name: Run tests
-        run: pnpm run test --coverage
+        run: pnpm run test --coverage --reporter=junit --outputFile=junit.xml
 
-      - name: Upload results to Codecov
+      - name: Upload coverage results to Codecov
         # do not run on weekly schedule (only on pr and push)
         if: github.event_name != 'schedule'
         uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload test results to Codecov
+        # Run even if tests fail
+        # https://docs.codecov.com/docs/test-analytics
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
