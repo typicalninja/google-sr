@@ -17,6 +17,10 @@ export interface TranslateResultNode extends SearchResultNodeLike {
 	translatedText: string;
 }
 
+/**
+ * Parses translation search results.
+ * @returns Array of TranslateSearchResultNodes
+ */
 export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	$,
 	strictSelector,

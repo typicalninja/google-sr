@@ -19,6 +19,10 @@ export interface OrganicResultNode extends SearchResultNodeLike {
 	link: string;
 }
 
+/**
+ * Parses regular non-ads search results.
+ * @returns Array of OrganicSearchResultNodes
+ */
 export const OrganicResult: ResultSelector<OrganicResultNode> = (
 	$,
 	strictSelector,
