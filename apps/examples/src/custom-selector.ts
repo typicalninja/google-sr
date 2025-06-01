@@ -3,26 +3,13 @@
  * This should only be used for testing purposes
  */
 
-import {
-	// little helper to create a type for the result node (optional)
-	type ResultNodeTyper,
-	type ResultSelector,
-	search,
-} from "google-sr";
-
-type CustomResultNode = ResultNodeTyper<"CUSTOM", "title"> & {
-	examples: string[];
-};
-
-/*
-Or without the type helper:
+import { type ResultSelector, search } from "google-sr";
 
 interface CustomResultNode {
-	type: 'CUSTOM'
-	title: string
-	examples: string[]
+	type: "CUSTOM";
+	title: string;
+	examples: string[];
 }
-*/
 
 const customSelector: ResultSelector<CustomResultNode> = () => {
 	return {
