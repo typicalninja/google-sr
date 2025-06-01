@@ -110,18 +110,6 @@ export function isEmpty(
 }
 
 /**
- * @internal
- * Internal type for creating a node with a `type` field
- * and any additional field as a string or null.
- *
- * @typeParam T - The value for the `type` property.
- * @typeParam K - Key name of the additional string (or null) fields.
- */
-export type ResultNodeTyper<T, K extends string> = {
-	type: T;
-} & Record<K, string | null>;
-
-/**
  * Internal utility type to convert a array type (T[]) to a single type (T)
  * if T is not an array, it will return T
  * @private
