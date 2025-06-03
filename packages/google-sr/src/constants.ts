@@ -91,3 +91,4 @@ export interface SearchOptionsWithPages<
 
 // source text is in the format "hello" in Japanese, we need to select the text between ""
 export const TranslateSourceTextRegex = /"(.+?)"/;
+export const GOOGLE_SEARCH_URL = "https://www.google.com/search";
