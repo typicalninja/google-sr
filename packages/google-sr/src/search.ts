@@ -1,4 +1,3 @@
-import axios from "axios";
 import { load } from "cheerio";
 import type {
 	ResultSelector,
@@ -8,7 +7,9 @@ import type {
 import { OrganicResult } from "./results";
 import {
 	type SearchResultTypeFromSelector,
+	decodeResponse,
 	prepareRequestConfig,
+	safeGetFetch,
 } from "./utils";
 
 /**
@@ -31,9 +32,9 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
 		);
 
 	const requestConfig = prepareRequestConfig(options);
-	const { data } = await axios(requestConfig);
-	// axios should error on non 200 status codes
-	// load the raw text (html) data into cheerio
+	const response = await safeGetFetch(requestConfig);
+	// we use the utility function to decode the data with the correct charset
+	const data = await decodeResponse(response);
 	const cheerioApi = load(data);
 	// use the provided selectors or the default one (OrganicSearchSelector)
 	const selectors = options.resultTypes || [OrganicResult];
@@ -114,8 +115,13 @@ export async function searchWithPages<
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
-		(baseRequestConfig.params as URLSearchParams).set("start", String(page));
-		const { data } = await axios(baseRequestConfig);
+		(baseRequestConfig.queryParams as URLSearchParams).set(
+			"start",
+			String(page),
+		);
+		const response = await safeGetFetch(baseRequestConfig);
+		// we use the utility function to decode the data with the correct charset
+		const data = await decodeResponse(response);
 		const cheerioApi = load(data);
 		let pageResults: SearchResultTypeFromSelector<R>[] = [];
 		for (const selector of selectors) {
