@@ -18,6 +18,29 @@ const baseHeaders = {
 };
 
 /**
+ * @private
+ * Fetches a URL with the provided options, handling errors and returning the response.
+ * @param url The URL to fetch
+ * @param options The request options
+ * @returns The response from the fetch call
+ */
+export async function safeGetFetch(
+	url: string,
+	options: RequestOptions,
+): Promise<Response> {
+	options.method = "GET"; // Ensure the method is GET
+	const response = await fetch(url, options);
+	// we error on non-200 status codes
+	if (!response.ok) {
+		throw new Error(
+			`Failed to fetch ${url}: ${response.status} ${response.statusText}`,
+		);
+	}
+
+	return response;
+}
+
+/**
  * Extract the actual webpage link from a href tag result
  * @param googleLink
  * @returns
