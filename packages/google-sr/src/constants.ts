@@ -30,6 +30,7 @@ export type SearchResultNode =
 	| NewsResultNode;
 
 export interface RequestOptions extends RequestInit {
+	url?: string;
 	queryParams?: Record<string, string> | URLSearchParams;
 }
 export interface SearchResultNodeLike {
