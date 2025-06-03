@@ -1,12 +1,17 @@
-import type { AxiosRequestConfig } from "axios";
-import type { ResultSelector, ResultTypes, SearchOptions } from "./constants";
+import type {
+	RequestOptions,
+	ResultSelector,
+	ResultTypes,
+	SearchOptions,
+} from "./constants";
+import { GOOGLE_SEARCH_URL } from "./constants";
 
 const baseHeaders = {
 	Accept: "text/html",
 	"Accept-Encoding": "gzip, deflate",
 	"Accept-Language": "en-US,en",
 	Referer: "https://www.google.com/",
-	"upgrade-insecure-requests": 1,
+	"upgrade-insecure-requests": "1",
 	// the tested user agent is for Chrome 103 on Windows 10
 	"User-Agent":
 		"Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)",
@@ -45,8 +50,10 @@ export function extractUrlFromGoogleLink(
  * @param opts
  * @returns
  */
-export function prepareRequestConfig(opts: SearchOptions): AxiosRequestConfig {
-	const requestConfig: AxiosRequestConfig = opts.requestConfig ?? {};
+export function prepareRequestConfig(
+	opts: SearchOptions,
+): [string, RequestInit] {
+	const requestConfig: RequestOptions = opts.requestConfig ?? {};
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
@@ -59,22 +66,19 @@ export function prepareRequestConfig(opts: SearchOptions): AxiosRequestConfig {
 	requestConfig.headers = requestConfig.headers
 		? Object.assign({}, baseHeaders, requestConfig.headers)
 		: baseHeaders;
-	requestConfig.url = requestConfig.url ?? "https://www.google.com/search";
 
 	// if params is not a URLSearchParams instance, make it one
-	if (!(requestConfig.params instanceof URLSearchParams)) {
-		requestConfig.params = new URLSearchParams(requestConfig.params);
+	if (!(requestConfig.queryParams instanceof URLSearchParams)) {
+		requestConfig.queryParams = new URLSearchParams(requestConfig.queryParams);
 	}
 	// these params are always set without being overwritten
 	// set the actual query
-	requestConfig.params.set("q", opts.query);
-	// force the search result to be non javascript
-	requestConfig.params.set("gbv", "1");
+	requestConfig.queryParams.set("q", opts.query);
 
-	// force the response to be text
-	requestConfig.responseType = "text";
-
-	return requestConfig;
+	return [
+		`${GOOGLE_SEARCH_URL}?${requestConfig.queryParams.toString()}`,
+		requestConfig,
+	];
 }
 
 /**
