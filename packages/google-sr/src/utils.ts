@@ -24,11 +24,13 @@ const baseHeaders = {
  * @param options The request options
  * @returns The response from the fetch call
  */
-export async function safeGetFetch(
-	url: string,
-	options: RequestOptions,
-): Promise<Response> {
+export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	options.method = "GET"; // Ensure the method is GET
+	if (!options.url) {
+		throw new TypeError("Request options must contain a valid URL.");
+	}
+	// get the full url with query parameters
+	const url = `${options.url}?${options.queryParams?.toString()}`;
 	const response = await fetch(url, options);
 	// we error on non-200 status codes
 	if (!response.ok) {
@@ -99,9 +101,7 @@ export function extractUrlFromGoogleLink(
  * @param opts
  * @returns
  */
-export function prepareRequestConfig(
-	opts: SearchOptions,
-): [string, RequestInit] {
+export function prepareRequestConfig(opts: SearchOptions): RequestOptions {
 	const requestConfig: RequestOptions = opts.requestConfig ?? {};
 	if (typeof opts.query !== "string")
 		throw new TypeError(
@@ -123,11 +123,9 @@ export function prepareRequestConfig(
 	// these params are always set without being overwritten
 	// set the actual query
 	requestConfig.queryParams.set("q", opts.query);
+	requestConfig.url = GOOGLE_SEARCH_URL;
 
-	return [
-		`${GOOGLE_SEARCH_URL}?${requestConfig.queryParams.toString()}`,
-		requestConfig,
-	];
+	return requestConfig;
 }
 
 /**
