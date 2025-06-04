@@ -51,6 +51,7 @@ describe("prepareRequestConfig", () => {
 		expect(config.url).toBe(GOOGLE_SEARCH_URL);
 		expect(config.headers).toBeDefined();
 		expect(config.queryParams).toBeInstanceOf(URLSearchParams);
+		// @ts-expect-error above expects queryParams to be URLSearchParams
 		const query = config.queryParams?.get("q");
 		expect(query).toBe("test query");
 	});
