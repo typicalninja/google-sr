@@ -1,4 +1,3 @@
-import type { AxiosRequestConfig } from "axios";
 import type { CheerioAPI } from "cheerio";
 import type {
 	CurrencyResultNode,
@@ -30,6 +29,10 @@ export type SearchResultNode =
 	| KnowledgePanelResultNode
 	| NewsResultNode;
 
+export interface RequestOptions extends RequestInit {
+	url?: string;
+	queryParams?: Record<string, string> | URLSearchParams;
+}
 export interface SearchResultNodeLike {
 	type: string;
 }
@@ -60,7 +63,7 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
 	/**
 	 * Custom request configuration to be sent with the request
 	 */
-	requestConfig?: AxiosRequestConfig;
+	requestConfig?: RequestOptions;
 }
 
 /**
@@ -89,3 +92,4 @@ export interface SearchOptionsWithPages<
 
 // source text is in the format "hello" in Japanese, we need to select the text between ""
 export const TranslateSourceTextRegex = /"(.+?)"/;
+export const GOOGLE_SEARCH_URL = "https://www.google.com/search";

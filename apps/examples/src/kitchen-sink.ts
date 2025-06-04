@@ -38,7 +38,7 @@ const results = await search({
 
 	// requestConfig is used to send custom request configuration to the request
 	requestConfig: {
-		params: {
+		queryParams: {
 			// enable "safe mode"
 			safe: "active",
 			// set geo location to US
