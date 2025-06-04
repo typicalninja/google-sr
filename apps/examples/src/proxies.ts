@@ -1,27 +1,29 @@
 /**
- * Demonstrates how to modify the axios request config
- * via adding proxying requests
+ * Demonstrates how to use a proxy with fetch-based google-sr
  *
  * NOTE: This is untested and may not work as expected. It is only provided as an example.
  *
- * Main purpose of proxying is to avoid rate limiting issues,
- * If changing location to receive results from a different location using the
- * "gl" parameter is BETTER than using a proxy.
+ * Note that this is for node.js only, and will not work in the browser
+ *
+ * Check here for information on how to do this for nodejs.
+ * https://stackoverflow.com/questions/72306101/make-a-request-in-native-fetch-with-proxy-in-nodejs-18
+ *
+ * Check here for information on how to do this for denojs
+ * https://docs.deno.com/api/deno/~/Deno.HttpClient
+ *
+ * Check here for information on how to do this for bunjs
+ * https://bun.sh/guides/http/proxy
  */
 import { search } from "google-sr";
 
 const results = await search({
 	query: "best coffee shops",
-	// requestConfig is of type AxiosRequestConfig
+	// For Node.js fetch, pass the agent option
 	requestConfig: {
-		// to avoid rate limiting issues, use a proxy
-		proxy: {
-			host: "//PROXYHOST",
-			port: 8080,
-		},
-		// if simply wanting to change the location, use the "gl" parameter (geolocation)
-		// instead of changing location via proxy
-		params: {
+		queryParams: {
+			// If simply wanting to change the language, try using the "hl" parameter
+			hl: "en",
+			// If wanting to change the location, try using the "gl" parameter
 			gl: "us",
 		},
 	},
