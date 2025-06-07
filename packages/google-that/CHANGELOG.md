@@ -1,5 +1,16 @@
 # google-that
 
+## 1.1.2
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+- Updated dependencies [51828ad]
+- Updated dependencies [cae9f30]
+- Updated dependencies [fe575b5]
+- Updated dependencies [f462148]
+  - google-sr@6.0.0
+
 ## 1.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # google-sr-selectors
 
+## 2.1.0
+
+### Minor Changes
+
+- cae9f30: Add `NewsSelector` for Google News
+
 ## 2.0.0
 
 ### Major Changes
