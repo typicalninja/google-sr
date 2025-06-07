@@ -1,5 +1,57 @@
 # google-sr
 
+## 6.0.0
+
+### Major Changes
+
+- 51828ad: Replace Axios with native Fetch API
+
+  Axios HTTP client was replaced with the native fetch API to reduce external dependencies and improve compatibility across different environments.
+
+  The `requestConfig` option now accepts the `RequestOptions` interface (extending [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)). You'll need to update your configuration from the previous `AxiosRequestConfig` format.
+
+  ```diff
+  import { search } from "google-sr";
+
+  search({
+  	 requestConfig: {
+  -   	params: {
+  +		queryParams: {
+  			safe: "active",
+  			gl: "us",
+  		},
+  		headers: {
+  			"Some-Header": "value",
+  		},
+  	},
+  })
+  ```
+
+- f462148: The `ResultNodeTyper` type helper has been removed
+
+  `ResultNodeTyper` was a helper type that was used to define parsers returning a `ResultNode`. This was removed, as it can be replaced with a simple interface definition.
+
+  ```diff
+  - import { ResultNodeTyper } from 'google-sr';
+  - type MyCustomNode = ResultNodeTyper<"CUSTOM", 'link' | 'title'>;
+
+  + interface MyCustomNode {
+  +    type: "CUSTOM";
+  +    link: string;
+  +    title: string;
+  + }
+  ```
+
+### Minor Changes
+
+- cae9f30: Add `NewsSelector` for Google News
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+- Updated dependencies [cae9f30]
+  - google-sr-selectors@2.1.0
+
 ## 5.0.0
 
 ### Major Changes
