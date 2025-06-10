@@ -29,8 +29,10 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	if (!options.url) {
 		throw new TypeError("Request options must contain a valid URL.");
 	}
+	const queryParams = options.queryParams?.toString();
 	// get the full url with query parameters
-	const url = `${options.url}?${options.queryParams?.toString()}`;
+	const url = `${options.url}${queryParams ? `?${queryParams}` : ""}`;
+	options.queryParams = undefined; // remove queryParams from options to avoid sending it again
 	const response = await fetch(url, options);
 	// we error on non-200 status codes
 	if (!response.ok) {
@@ -45,27 +47,16 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 /**
  * @private
  * Try to decode the response body using the `ISO-8859-1` encoding,
- * falling back to charset detection if it fails.
  * @param response The response object from a fetch call
  * @returns The decoded response body as a string
  */
 export async function decodeResponse(response: Response): Promise<string> {
 	const dataBuffer = await response.arrayBuffer();
 
-	try {
-		// During testing using the current user agent, the response was always in ISO-8859-1 encoding
-		// It is safe to assume that the response will always be in ISO-8859-1 encoding
-		// However if this were to change, then the text decoder will error, and will fallback to charset detection
-		return new TextDecoder("iso-8859-1", { fatal: true }).decode(dataBuffer);
-	} catch {
-		// fallback to charset detection via content-type header
-		// this should most likely never happen, but it's a good fallback
-		const contentType = response.headers.get("content-type") || "";
-		const charsetMatch = contentType.match(/charset=([^;]+)/i);
-		const charset = charsetMatch?.[1] ? charsetMatch[1].toLowerCase() : "utf-8";
-		// it will try to use whatever charset is detected, or default to utf-8
-		return new TextDecoder(charset, { fatal: true }).decode(dataBuffer);
-	}
+	// During testing using the current user agent, the response was always in ISO-8859-1 encoding
+	// It is safe to assume that the response will always be in ISO-8859-1 encoding
+	// However if this were to change, then the text decoder will error
+	return new TextDecoder("iso-8859-1", { fatal: true }).decode(dataBuffer);
 }
 
 /**
