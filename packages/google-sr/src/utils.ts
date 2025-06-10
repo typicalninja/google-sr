@@ -93,15 +93,17 @@ export function extractUrlFromGoogleLink(
  * @returns
  */
 export function prepareRequestConfig(opts: SearchOptions): RequestOptions {
-	const requestConfig: RequestOptions = opts.requestConfig ?? {};
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
 		);
-	if (typeof requestConfig !== "object")
+	if (typeof opts.requestConfig !== "object")
 		throw new TypeError(
-			`Request config must be an object if specified, received ${typeof requestConfig}.`,
+			`Request config must be an object if specified, received ${typeof opts.requestConfig}.`,
 		);
+	// copy the request config to avoid mutating the original object
+	const requestConfig: RequestOptions = Object.assign({}, opts.requestConfig);
+
 	// merge the base headers with the provided headers if any
 	requestConfig.headers = requestConfig.headers
 		? Object.assign({}, baseHeaders, requestConfig.headers)
