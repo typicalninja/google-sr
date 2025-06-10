@@ -22,7 +22,26 @@ export interface NewsResultNode extends SearchResultNodeLike {
 }
 
 /**
- * Parses news search results.
+ * Parses results from the Google News tab.
+ *
+ * To use this selector, set the `tbm` query parameter to `'nws'` in the request configuration.
+ * This enables results from the dedicated News tab, which is incompatible with other selectors (e.g., OrganicSearchSelector).
+ *
+ * @example
+ *
+ * ```ts
+ * import { NewsResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'latest news',
+ * 	resultTypes: [NewsResult],
+ * 	requestConfig: {
+ * 		queryParams: {
+ * 			tbm: 'nws', // Set tbm to nws for news results
+ * 		},
+ * 	},
+ * });
+ *
  * @returns Array of NewsResultNode
  */
 export const NewsResult: ResultSelector<NewsResultNode> = (
