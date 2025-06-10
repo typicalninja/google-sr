@@ -1,5 +1,83 @@
 # google-sr
 
+## 6.0.0
+
+### Major Changes
+
+- 51828ad: Replace Axios with native Fetch API
+
+  Axios HTTP client was replaced with the native fetch API to reduce external dependencies and improve compatibility across different environments.
+
+  The `requestConfig` option now accepts the `RequestOptions` interface (extending [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)). You'll need to update your configuration from the previous `AxiosRequestConfig` format.
+
+  ```diff
+  import { search } from "google-sr";
+
+  search({
+  	 requestConfig: {
+  -   	params: {
+  +		queryParams: {
+  			safe: "active",
+  			gl: "us",
+  		},
+  		headers: {
+  			"Some-Header": "value",
+  		},
+  	},
+  })
+  ```
+
+- f462148: The `ResultNodeTyper` type helper has been removed
+
+  `ResultNodeTyper` was a helper type that was used to define parsers returning a `ResultNode`. This was removed, as it can be replaced with a simple interface definition.
+
+  ```diff
+  - import { ResultNodeTyper } from 'google-sr';
+  - type MyCustomNode = ResultNodeTyper<"CUSTOM", 'link' | 'title'>;
+
+  + interface MyCustomNode {
+  +    type: "CUSTOM";
+  +    link: string;
+  +    title: string;
+  + }
+  ```
+
+### Minor Changes
+
+- cae9f30: Add `NewsSelector` and `NewsResult` for parsing results from the Google News tab.
+
+  Note that to use the `NewsSelector`, you need to set the `tbm` parameter to `nws` in your `requestConfig`. To use it, set the `tbm` query parameter to `'nws'`, which tells Google to return results from the News tab. Note that `NewsSelector` is not compatible with other selectors
+
+  ```ts
+  import { NewsResult, search } from "google-sr";
+
+  // Note: This code assumes usage in an async context
+  const results = await search({
+    query: "latest news",
+    resultTypes: [NewsResult],
+    requestConfig: {
+      queryParams: {
+        tbm: "nws", // Set tbm to nws for news results
+      },
+    },
+  });
+
+  // Example usage of NewsResult
+  for (const result of results) {
+    console.log(`Title: ${result.title}`);
+    console.log(`Description: ${result.description}`);
+    console.log(`Link: ${result.link}`);
+    console.log(`Source: ${result.source}`);
+    console.log(`Published Date: ${result.published_date}`);
+  }
+  ```
+
+### Patch Changes
+
+- fe575b5: Update dependencies to latest versions
+- Updated dependencies [cae9f30]
+  - google-sr-selectors@2.1.0
+
 ## 5.0.0
 
 ### Major Changes
