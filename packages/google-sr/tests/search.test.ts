@@ -1,6 +1,6 @@
 import isCi from "is-ci";
 import { afterEach, describe, expect, it } from "vitest";
-import { OrganicResult } from "../src";
+import { OrganicResult, ResultTypes } from "../src";
 import { search, searchWithPages } from "../src/search";
 
 // Live tests require querying google, which can lead to rate limiting or blocking.
@@ -91,7 +91,7 @@ describe("searchWithPages", () => {
 				expect(pageResults).to.be.an("array").and.not.empty;
 				// Verify each result is an OrganicResult
 				for (const result of pageResults) {
-					expect(result.type).toBe("organic");
+					expect(result.type).toBe(ResultTypes.OrganicResult);
 					expect(result.link).to.be.a("string").and.not.empty;
 					expect(result.title).to.be.a("string").and.not.empty;
 				}
@@ -116,7 +116,7 @@ describe("searchWithPages", () => {
 				expect(pageResults).to.be.an("array").and.not.empty;
 				// Verify each result is an OrganicResult
 				for (const result of pageResults) {
-					expect(result.type).toBe("organic");
+					expect(result.type).toBe(ResultTypes.OrganicResult);
 					expect(result.link).to.be.a("string").and.not.empty;
 					expect(result.title).to.be.a("string").and.not.empty;
 				}
