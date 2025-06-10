@@ -32,7 +32,6 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	const queryParams = options.queryParams?.toString();
 	// get the full url with query parameters
 	const url = `${options.url}${queryParams ? `?${queryParams}` : ""}`;
-	options.queryParams = undefined; // remove queryParams from options to avoid sending it again
 	const response = await fetch(url, options);
 	// we error on non-200 status codes
 	if (!response.ok) {
