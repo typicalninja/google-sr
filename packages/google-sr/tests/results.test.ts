@@ -168,10 +168,25 @@ describe(
 		});
 
 		it("Search for news results", async ({ expect }) => {
+			const globalSearchOptionsCopy = {
+				...GLOBAL_SEARCH_OPTIONS,
+			};
+			// switch tab to news
+			Object.defineProperty(
+				globalSearchOptionsCopy.requestConfig.queryParams,
+				"tbm",
+				{
+					value: "nws", // tbm=nws for news search
+					writable: false,
+					configurable: false,
+					enumerable: true,
+				},
+			);
+
 			const results = await search({
 				query: "latest news on AI",
 				resultTypes: [NewsResult],
-				...GLOBAL_SEARCH_OPTIONS,
+				...globalSearchOptionsCopy,
 			});
 			// Expect at least 5 results
 			expect(results).to.be.an("array").and.have.lengthOf.at.least(5);
