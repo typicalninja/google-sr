@@ -65,6 +65,7 @@ describe("safeGetFetch", () => {
 		expect(global.fetch).toHaveBeenCalledWith("https://example.com?q=test", {
 			method: "GET",
 			url: "https://example.com",
+			queryParams: expect.any(URLSearchParams),
 		});
 		expect(response.ok).toBe(true);
 		expect(response.status).toBe(200);
