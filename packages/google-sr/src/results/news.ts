@@ -3,7 +3,11 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isEmpty, throwNoCheerioError } from "../utils";
+import {
+	extractUrlFromGoogleLink,
+	isEmpty,
+	throwNoCheerioError,
+} from "../utils";
 
 // Importing the Selectors from google-sr-selectors
 import { GeneralSelector, NewsSearchSelector } from "google-sr-selectors";
@@ -18,7 +22,26 @@ export interface NewsResultNode extends SearchResultNodeLike {
 }
 
 /**
- * Parses news search results.
+ * Parses results from the Google News tab.
+ *
+ * To use this selector, set the `tbm` query parameter to `'nws'` in the request configuration.
+ * This enables results from the dedicated News tab, which is incompatible with other selectors (e.g., OrganicSearchSelector).
+ *
+ * @example
+ *
+ * ```ts
+ * import { NewsResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'latest news',
+ * 	resultTypes: [NewsResult],
+ * 	requestConfig: {
+ * 		queryParams: {
+ * 			tbm: 'nws', // Set tbm to nws for news results
+ * 		},
+ * 	},
+ * });
+ *
  * @returns Array of NewsResultNode
  */
 export const NewsResult: ResultSelector<NewsResultNode> = (
@@ -29,16 +52,13 @@ export const NewsResult: ResultSelector<NewsResultNode> = (
 	const parsedResults: NewsResultNode[] = [];
 	const newsSearchBlocks = $(GeneralSelector.block).toArray();
 	// parse each block individually for its content
-	// TODO: switched from cheerio.each to for..of loop (check performance in future tests)
 	for (const element of newsSearchBlocks) {
 		const rawLink =
 			$(element).find(NewsSearchSelector.link).attr("href") ?? null;
 		// if not links is found it's not a valid result, we can safely skip it
 		// most likely the first result can be a special block
 		if (typeof rawLink !== "string") continue;
-		// input: /url?q=https://example.com/about/&sa=U&ved=2ahUKEwi3tJu44JKNAxWc3gIHHdgBDogQxfQBegQIBRAC&usg=AOvVaw0yniKHiOvXs1sdLqSWk5zO
-		// output: https://example.com/about/
-		const link = rawLink.slice(7).split("&sa=")[0];
+		const link = extractUrlFromGoogleLink(rawLink) ?? "";
 
 		const title = $(element).find(NewsSearchSelector.title).text();
 

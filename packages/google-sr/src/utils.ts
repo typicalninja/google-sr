@@ -32,7 +32,6 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	const queryParams = options.queryParams?.toString();
 	// get the full url with query parameters
 	const url = `${options.url}${queryParams ? `?${queryParams}` : ""}`;
-	options.queryParams = undefined; // remove queryParams from options to avoid sending it again
 	const response = await fetch(url, options);
 	// we error on non-200 status codes
 	if (!response.ok) {
@@ -93,15 +92,17 @@ export function extractUrlFromGoogleLink(
  * @returns
  */
 export function prepareRequestConfig(opts: SearchOptions): RequestOptions {
-	const requestConfig: RequestOptions = opts.requestConfig ?? {};
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
 		);
-	if (typeof requestConfig !== "object")
+	if (typeof opts.requestConfig !== "object")
 		throw new TypeError(
-			`Request config must be an object if specified, received ${typeof requestConfig}.`,
+			`Request config must be an object if specified, received ${typeof opts.requestConfig}.`,
 		);
+	// copy the request config to avoid mutating the original object
+	const requestConfig: RequestOptions = Object.assign({}, opts.requestConfig);
+
 	// merge the base headers with the provided headers if any
 	requestConfig.headers = requestConfig.headers
 		? Object.assign({}, baseHeaders, requestConfig.headers)
