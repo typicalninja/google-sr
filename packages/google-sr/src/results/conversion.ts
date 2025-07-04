@@ -6,10 +6,10 @@ import {
 import { isEmpty, throwNoCheerioError } from "../utils";
 
 // Importing the Selectors from google-sr-selectors
-import { ConversionSelector, GeneralSelector } from "google-sr-selectors";
+import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 
-export interface ConversionResultNode extends SearchResultNodeLike {
-	type: typeof ResultTypes.CurrencyResult;
+export interface UnitConversionResultNode extends SearchResultNodeLike {
+	type: typeof ResultTypes.UnitConversionResult;
 	from: string; // The currency being converted from
 	to: string; // The currency being converted to
 }
@@ -18,23 +18,23 @@ export interface ConversionResultNode extends SearchResultNodeLike {
  * Parses currency convert search results.
  * @returns Array of CurrencyResultNode
  */
-export const ConversionResult: ResultSelector<ConversionResultNode> = (
+export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
 	$,
 	strictSelector,
 ) => {
-	if (!$) throwNoCheerioError("CurrencyResult");
+	if (!$) throwNoCheerioError("UnitConversionResult");
 	const block = $(GeneralSelector.block).first();
 	const from = block
-		.find(ConversionSelector.from)
+		.find(UnitConversionSelector.from)
 		.text()
 		.replace("=", "")
 		.trim();
-	const to = block.find(ConversionSelector.to).text().trim();
+	const to = block.find(UnitConversionSelector.to).text().trim();
 
 	if (isEmpty(strictSelector, from, to)) return null;
 
 	return {
-		type: ResultTypes.CurrencyResult,
+		type: ResultTypes.UnitConversionResult,
 		from: from,
 		to,
 	};
