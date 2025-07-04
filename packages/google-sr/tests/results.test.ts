@@ -109,7 +109,7 @@ describe(
 			}
 		});
 
-		it("Search for currency results", async ({ expect }) => {
+		it("Search for unit conversion results", async ({ expect }) => {
 			const results = await search({
 				query: "100 USD to EUR",
 				resultTypes: [UnitConversionResult],
