@@ -10,13 +10,13 @@ import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 
 export interface UnitConversionResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.UnitConversionResult;
-	from: string; // The currency being converted from
-	to: string; // The currency being converted to
+	from: string; // The conversion unit being converted from
+	to: string; // The conversion unit being converted to
 }
 
 /**
- * Parses currency convert search results.
- * @returns Array of CurrencyResultNode
+ * Parses unit conversion search results.
+ * @returns Array of UnitConversionResultNode
  */
 export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
 	$,
