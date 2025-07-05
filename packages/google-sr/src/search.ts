@@ -47,7 +47,7 @@ export async function search<
 		options.noPartialResults ?? options.strictSelector ?? false;
 	if (typeof options.strictSelector !== "undefined") {
 		console.warn(
-			`The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
+			`[google-sr]: The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
 		);
 	}
 	for (const selector of selectors) {
@@ -122,7 +122,15 @@ export async function searchWithPages<
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
 	const baseRequestConfig = prepareRequestConfig(options);
 	const selectors = options.resultTypes || [OrganicResult];
-
+	// handle deprecated strictSelector option in the same way as noPartialResults
+	// noPartialResults takes precedence over strictSelector if both are provided
+	const noPartialResults =
+		options.noPartialResults ?? options.strictSelector ?? false;
+	if (typeof options.strictSelector !== "undefined") {
+		console.warn(
+			`[google-sr]: The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
+		);
+	}
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
@@ -138,7 +146,7 @@ export async function searchWithPages<
 		for (const selector of selectors) {
 			const result = selector(
 				cheerioApi,
-				Boolean(options.strictSelector),
+				noPartialResults,
 			) as SearchResultTypeFromSelector<R>;
 			// Result must be flattened to a single array
 			if (result) pageResults = pageResults.concat(result);
