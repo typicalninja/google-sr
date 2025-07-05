@@ -1,13 +1,12 @@
 import type { Cheerio, Element } from "cheerio";
+// Importing the Selectors from google-sr-selectors
+import { DictionarySearchSelector, GeneralSelector } from "google-sr-selectors";
 import {
 	type ResultSelector,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
 import { isEmpty, throwNoCheerioError } from "../utils";
-
-// Importing the Selectors from google-sr-selectors
-import { DictionarySearchSelector, GeneralSelector } from "google-sr-selectors";
 
 export interface DictionaryDefinition {
 	definition: string; // The definition text

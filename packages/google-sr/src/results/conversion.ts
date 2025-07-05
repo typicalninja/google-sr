@@ -1,12 +1,11 @@
+// Importing the Selectors from google-sr-selectors
+import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 import {
 	type ResultSelector,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
 import { isEmpty, throwNoCheerioError } from "../utils";
-
-// Importing the Selectors from google-sr-selectors
-import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 
 export interface UnitConversionResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.UnitConversionResult;
