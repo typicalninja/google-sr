@@ -59,11 +59,6 @@ export interface SearchOptions<
 	resultTypes?: R[];
 
 	/**
-	 * @deprecated Use `noPartialResults` instead. Will be removed in a future version.
-	 */
-	strictSelector?: N;
-
-	/**
 	 * When true, excludes results that have undefined or empty properties.
 	 * @default false - Partial results are included.
 	 */

@@ -70,7 +70,7 @@ export const NewsResult: ResultSelector<NewsResultNode> = (
 		const published_date =
 			$(element).find(NewsSearchSelector.published_date).text() ?? "";
 
-		// both title, description, source and published_date can be empty, we skip the result only if strictSelector is true
+		// both title, description, source and published_date can be empty, we skip the result only if noPartialResults is true
 		if (isEmpty(noPartialResults, title, source, description, published_date))
 			continue;
 

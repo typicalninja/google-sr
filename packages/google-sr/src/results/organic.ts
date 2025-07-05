@@ -44,7 +44,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 		// if not links is found it's not a valid result, we can safely skip it
 		// most likely the first result can be a special block
 		if (typeof link !== "string") continue;
-		// both title and description can be empty, we skip the result only if strictSelector is true
+		// both title and description can be empty, we skip the result only if noPartialResults is true
 		if (isEmpty(noPartialResults, description, title)) continue;
 
 		parsedResults.push({

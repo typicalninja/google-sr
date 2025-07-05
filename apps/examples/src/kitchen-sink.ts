@@ -33,8 +33,8 @@ const results = await search({
 		NewsResult,
 	],
 
-	// strictSelector ensures that all nodes that are returned has all the required properties
-	strictSelector: true,
+	// exclude results that have undefined or empty properties
+	noPartialResults: true,
 
 	// requestConfig is used to send custom request configuration to the request
 	requestConfig: {
