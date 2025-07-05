@@ -41,11 +41,16 @@ export async function search<
 	const selectors = options.resultTypes || [OrganicResult];
 	let searchResults: SearchResultTypeFromSelector<R>[] = [];
 	// Iterate over each selector to call it with the cheerioApi and concatenate the results
+	// handle deprecated strictSelector option in the same way as noPartialResults
+	// noPartialResults takes precedence over strictSelector if both are provided
+	const noPartialResults =
+		options.noPartialResults ?? options.strictSelector ?? false;
+	if (typeof options.strictSelector !== "undefined") {
+		console.warn(
+			`The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
+		);
+	}
 	for (const selector of selectors) {
-		// handle deprecated strictSelector option in the same way as noPartialResults
-		// noPartialResults takes precedence over strictSelector if both are provided
-		const noPartialResults =
-			options.noPartialResults ?? options.strictSelector ?? false;
 		const result = selector(
 			cheerioApi,
 			noPartialResults,
