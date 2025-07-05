@@ -46,9 +46,9 @@ export const TimeSearchSelector = {
 	timeInWords: "div > span.qXLe6d.F9iS2e > span.fYyStc.YVIcad",
 };
 
-export const CurrencyConvertSelector = {
+export const UnitConversionSelector = {
 	from: "div > div.kk667b > span.F9iS2e > span.fYyStc.YVIcad",
-	to: "div > table.Mw6wOc > tbody > tr > td > div.fBgPuf > div > span.qXLe6d.epoveb > span.fYyStc",
+	to: "div > table.Mw6wOc > tbody > tr > td > div > div > span.qXLe6d.epoveb > span.fYyStc",
 };
 
 export const KnowledgePanelSelector = {

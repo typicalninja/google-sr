@@ -4,7 +4,6 @@
  */
 
 import {
-	CurrencyResult,
 	DictionaryResult,
 	KnowledgePanelResult,
 	NewsResult,
@@ -14,6 +13,7 @@ import {
 	ResultTypes,
 	TimeResult,
 	TranslateResult,
+	UnitConversionResult,
 	search,
 } from "google-sr";
 
@@ -26,7 +26,7 @@ const results = await search({
 	resultTypes: [
 		DictionaryResult,
 		TimeResult,
-		CurrencyResult,
+		UnitConversionResult,
 		TranslateResult,
 		OrganicResult,
 		KnowledgePanelResult,

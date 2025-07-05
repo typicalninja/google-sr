@@ -12,7 +12,7 @@ export interface CLIArguments {
 
 export const resultTypeArray: CLIArguments["resultTypes"] = [
 	ResultTypes.OrganicResult,
-	ResultTypes.CurrencyResult,
+	ResultTypes.UnitConversionResult,
 	ResultTypes.DictionaryResult,
 	ResultTypes.TimeResult,
 	ResultTypes.TranslateResult,

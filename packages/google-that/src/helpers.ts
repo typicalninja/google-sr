@@ -1,5 +1,4 @@
 import {
-	CurrencyResult,
 	DictionaryResult,
 	KnowledgePanelResult,
 	OrganicResult,
@@ -7,6 +6,7 @@ import {
 	ResultTypes,
 	TimeResult,
 	TranslateResult,
+	UnitConversionResult,
 } from "google-sr";
 import type { CLIArguments } from "./constants.js";
 
@@ -41,8 +41,8 @@ export function selectorTypeToSelector(selector: string): ResultSelector {
 			return TranslateResult;
 		case ResultTypes.DictionaryResult:
 			return DictionaryResult;
-		case ResultTypes.CurrencyResult:
-			return CurrencyResult;
+		case ResultTypes.UnitConversionResult:
+			return UnitConversionResult;
 		case ResultTypes.KnowledgePanelResult:
 			return KnowledgePanelResult;
 		default:

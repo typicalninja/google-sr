@@ -1,7 +1,6 @@
 import isCi from "is-ci";
 import { afterEach, describe, it } from "vitest";
 import {
-	CurrencyResult,
 	DictionaryResult,
 	KnowledgePanelResult,
 	NewsResult,
@@ -9,6 +8,7 @@ import {
 	ResultTypes,
 	TimeResult,
 	TranslateResult,
+	UnitConversionResult,
 	search,
 } from "../src";
 
@@ -109,17 +109,17 @@ describe(
 			}
 		});
 
-		it("Search for currency results", async ({ expect }) => {
+		it("Search for unit conversion results", async ({ expect }) => {
 			const results = await search({
 				query: "100 USD to EUR",
-				resultTypes: [CurrencyResult],
+				resultTypes: [UnitConversionResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
 			// Expect only one result
 			expect(results).to.be.an("array").and.have.lengthOf(1);
 			const res = results[0];
-			expect(res.type).toBe(ResultTypes.CurrencyResult);
+			expect(res.type).toBe(ResultTypes.UnitConversionResult);
 			expect(res.from).to.be.a("string").and.equal("100 United States Dollar");
 			// unless we have some magic power to predict the future, the value will change
 			// so just check it at least contains "Euro"

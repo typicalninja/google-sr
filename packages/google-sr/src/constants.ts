@@ -1,12 +1,12 @@
 import type { CheerioAPI } from "cheerio";
 import type {
-	CurrencyResultNode,
 	DictionaryResultNode,
 	KnowledgePanelResultNode,
 	NewsResultNode,
 	OrganicResultNode,
 	TimeResultNode,
 	TranslateResultNode,
+	UnitConversionResultNode,
 } from "./results";
 
 export const ResultTypes = {
@@ -14,7 +14,7 @@ export const ResultTypes = {
 	TranslateResult: "TRANSLATE",
 	DictionaryResult: "DICTIONARY",
 	TimeResult: "TIME",
-	CurrencyResult: "CURRENCY",
+	UnitConversionResult: "CONVERSION",
 	KnowledgePanelResult: "KNOWLEDGE_PANEL",
 	NewsResult: "NEWS",
 } as const;
@@ -25,7 +25,7 @@ export type SearchResultNode =
 	| TranslateResultNode
 	| DictionaryResultNode
 	| TimeResultNode
-	| CurrencyResultNode
+	| UnitConversionResultNode
 	| KnowledgePanelResultNode
 	| NewsResultNode;
 
