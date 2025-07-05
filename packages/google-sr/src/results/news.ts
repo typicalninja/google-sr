@@ -46,7 +46,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
  */
 export const NewsResult: ResultSelector<NewsResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("NewsResult");
 	const parsedResults: NewsResultNode[] = [];
@@ -71,7 +71,7 @@ export const NewsResult: ResultSelector<NewsResultNode> = (
 			$(element).find(NewsSearchSelector.published_date).text() ?? "";
 
 		// both title, description, source and published_date can be empty, we skip the result only if strictSelector is true
-		if (isEmpty(strictSelector, title, source, description, published_date))
+		if (isEmpty(noPartialResults, title, source, description, published_date))
 			continue;
 
 		parsedResults.push({

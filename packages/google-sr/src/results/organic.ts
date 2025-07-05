@@ -25,7 +25,7 @@ export interface OrganicResultNode extends SearchResultNodeLike {
  */
 export const OrganicResult: ResultSelector<OrganicResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	// Check if the user has called the function directly
 	// Most likely, they have passed the result of calling the function instead of the function itself
@@ -45,7 +45,7 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 		// most likely the first result can be a special block
 		if (typeof link !== "string") continue;
 		// both title and description can be empty, we skip the result only if strictSelector is true
-		if (isEmpty(strictSelector, description, title)) continue;
+		if (isEmpty(noPartialResults, description, title)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,

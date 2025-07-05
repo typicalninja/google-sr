@@ -30,12 +30,12 @@ export interface KnowledgePanelResultNode extends SearchResultNodeLike {
 /**
  * Parses knowledge panel search results.
  * @param $
- * @param strictSelector
+ * @param noPartialResults
  * @returns KnowledgePanelResultNode
  */
 export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("KnowledgePanelResult");
 	// knowledge panel can be anywhere, at the start, or +x (mostly 2) from the start
@@ -92,7 +92,7 @@ export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
 			});
 		}
 
-		if (!isEmpty(strictSelector, title, description, label))
+		if (!isEmpty(noPartialResults, title, description, label))
 			knowledgePanel = {
 				type: ResultTypes.KnowledgePanelResult,
 				title,

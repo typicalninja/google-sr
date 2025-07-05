@@ -40,12 +40,15 @@ export interface SearchResultNodeLike {
 // the type used to identify a parser/selector function
 export type ResultSelector<
 	R extends SearchResultNodeLike = SearchResultNodeLike,
-> = (cheerio: CheerioAPI, strictSelector: boolean) => R[] | R | null;
+> = (cheerio: CheerioAPI, noPartialResults: boolean) => R[] | R | null;
 
 /**
  * Search options for single page search
  */
-export interface SearchOptions<R extends ResultSelector = ResultSelector> {
+export interface SearchOptions<
+	R extends ResultSelector = ResultSelector,
+	N extends boolean = false,
+> {
 	/**
 	 * Search query
 	 */
@@ -56,9 +59,15 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
 	resultTypes?: R[];
 
 	/**
-	 * when true, will only return resultNodes that do not contain any undefined/empty properties
+	 * @deprecated Use `noPartialResults` instead. Will be removed in a future version.
 	 */
-	strictSelector?: boolean;
+	strictSelector?: N;
+
+	/**
+	 * When true, excludes results that have undefined or empty properties.
+	 * @default false - Partial results are included.
+	 */
+	noPartialResults?: N;
 
 	/**
 	 * Custom request configuration to be sent with the request
@@ -71,7 +80,8 @@ export interface SearchOptions<R extends ResultSelector = ResultSelector> {
  */
 export interface SearchOptionsWithPages<
 	R extends ResultSelector = ResultSelector,
-> extends SearchOptions<R> {
+	N extends boolean = false,
+> extends SearchOptions<R, N> {
 	/**
 	 * Total number of pages to search or an array of specific pages to search
 	 *

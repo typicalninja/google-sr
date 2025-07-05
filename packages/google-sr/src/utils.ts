@@ -91,7 +91,10 @@ export function extractUrlFromGoogleLink(
  * @param opts
  * @returns
  */
-export function prepareRequestConfig(opts: SearchOptions): RequestOptions {
+export function prepareRequestConfig<
+	R extends ResultSelector,
+	N extends boolean,
+>(opts: SearchOptions<R, N>): RequestOptions {
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,

@@ -18,14 +18,15 @@ import {
  * @returns Search results as an array of SearchResultNodes
  */
 export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R> & { strictSelector?: false },
+	options: SearchOptions<R, false>,
 ): Promise<SearchResultTypeFromSelector<R>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R> & { strictSelector: true },
+	options: SearchOptions<R, true>,
 ): Promise<SearchResultTypeFromSelector<R, true>[]>;
-export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R>,
-) {
+export async function search<
+	R extends ResultSelector = typeof OrganicResult,
+	N extends boolean = false,
+>(options: SearchOptions<R, N>) {
 	if (!options)
 		throw new TypeError(
 			`Search options must be provided. Received ${typeof options}`,
@@ -41,9 +42,13 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
 	let searchResults: SearchResultTypeFromSelector<R>[] = [];
 	// Iterate over each selector to call it with the cheerioApi and concatenate the results
 	for (const selector of selectors) {
+		// handle deprecated strictSelector option in the same way as noPartialResults
+		// noPartialResults takes precedence over strictSelector if both are provided
+		const noPartialResults =
+			options.noPartialResults ?? options.strictSelector ?? false;
 		const result = selector(
 			cheerioApi,
-			Boolean(options.strictSelector),
+			noPartialResults,
 		) as SearchResultTypeFromSelector<R>[];
 		// Result must be flattened to a single array
 		if (result) searchResults = searchResults.concat(result);
@@ -84,16 +89,17 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
-	options: SearchOptionsWithPages<R> & { strictSelector?: false },
+	options: SearchOptionsWithPages<R, false>,
 ): Promise<SearchResultTypeFromSelector<R>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
-	options: SearchOptionsWithPages<R> & { strictSelector: true },
+	options: SearchOptionsWithPages<R, true>,
 ): Promise<SearchResultTypeFromSelector<R, true>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
->(options: SearchOptionsWithPages<R>) {
+	N extends boolean = false,
+>(options: SearchOptionsWithPages<R, N>) {
 	if (!options)
 		throw new TypeError(
 			`Search options must be provided. Received ${typeof options}`,
