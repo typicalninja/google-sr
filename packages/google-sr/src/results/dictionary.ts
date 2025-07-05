@@ -60,7 +60,7 @@ const parseDefinitionBlock = (
  */
 export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
 	const dictionaryBlock = $(GeneralSelector.block).first();
@@ -128,7 +128,7 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 		}
 	}
 
-	if (isEmpty(strictSelector, phonetic, word)) return null;
+	if (isEmpty(noPartialResults, phonetic, word)) return null;
 
 	return {
 		type: ResultTypes.DictionaryResult,

@@ -20,7 +20,7 @@ export interface UnitConversionResultNode extends SearchResultNodeLike {
  */
 export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("UnitConversionResult");
 	const block = $(GeneralSelector.block).first();
@@ -31,7 +31,7 @@ export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
 		.trim();
 	const to = block.find(UnitConversionSelector.to).text().trim();
 
-	if (isEmpty(strictSelector, from, to)) return null;
+	if (isEmpty(noPartialResults, from, to)) return null;
 
 	return {
 		type: ResultTypes.UnitConversionResult,

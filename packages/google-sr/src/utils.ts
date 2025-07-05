@@ -91,7 +91,10 @@ export function extractUrlFromGoogleLink(
  * @param opts
  * @returns
  */
-export function prepareRequestConfig(opts: SearchOptions): RequestOptions {
+export function prepareRequestConfig<
+	R extends ResultSelector,
+	N extends boolean,
+>(opts: SearchOptions<R, N>): RequestOptions {
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
@@ -134,16 +137,16 @@ export function throwNoCheerioError(
 
 /**
  * Internal utility function to check if all properties are empty,
- *  with additional logic for strictSelector option to check if any property is empty
+ *  with additional logic for noPartialResults option to check if any property is empty
  * @param result
- * @param strictSelector
+ * @param noPartialResults
  * @private
  */
 export function isEmpty(
-	strictSelector: boolean,
+	noPartialResults: boolean,
 	...values: (string | undefined | null)[]
 ): boolean {
-	if (strictSelector)
+	if (noPartialResults)
 		return values.some(
 			(value) => value === "" || value === undefined || value === null,
 		);

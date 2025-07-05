@@ -21,7 +21,7 @@ export interface TimeResultNode extends SearchResultNodeLike {
  */
 export const TimeResult: ResultSelector<TimeResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("TimeResult");
 	const block = $(TimeSearchSelector.block).first();
@@ -32,7 +32,7 @@ export const TimeResult: ResultSelector<TimeResultNode> = (
 	if (!layoutTable) return null;
 	const time = layoutTable.find(TimeSearchSelector.time).text();
 	const timeInWords = layoutTable.find(TimeSearchSelector.timeInWords).text();
-	if (isEmpty(strictSelector, time, timeInWords)) return null;
+	if (isEmpty(noPartialResults, time, timeInWords)) return null;
 
 	return {
 		type: ResultTypes.TimeResult,

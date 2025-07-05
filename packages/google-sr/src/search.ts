@@ -18,14 +18,15 @@ import {
  * @returns Search results as an array of SearchResultNodes
  */
 export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R> & { strictSelector?: false },
+	options: SearchOptions<R, false>,
 ): Promise<SearchResultTypeFromSelector<R>[]>;
 export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R> & { strictSelector: true },
+	options: SearchOptions<R, true>,
 ): Promise<SearchResultTypeFromSelector<R, true>[]>;
-export async function search<R extends ResultSelector = typeof OrganicResult>(
-	options: SearchOptions<R>,
-) {
+export async function search<
+	R extends ResultSelector = typeof OrganicResult,
+	N extends boolean = false,
+>(options: SearchOptions<R, N>) {
 	if (!options)
 		throw new TypeError(
 			`Search options must be provided. Received ${typeof options}`,
@@ -43,7 +44,7 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
 	for (const selector of selectors) {
 		const result = selector(
 			cheerioApi,
-			Boolean(options.strictSelector),
+			Boolean(options.noPartialResults),
 		) as SearchResultTypeFromSelector<R>[];
 		// Result must be flattened to a single array
 		if (result) searchResults = searchResults.concat(result);
@@ -80,20 +81,21 @@ export async function search<R extends ResultSelector = typeof OrganicResult>(
  * ```
  * @returns Search results as an array of SearchResultNodes or an array of arrays of SearchResultNodes
  */
-// we have to handle overloads for both flattenResults and strictSelector
+// we have to handle overloads for both boolean and non-boolean noPartialResults
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
-	options: SearchOptionsWithPages<R> & { strictSelector?: false },
+	options: SearchOptionsWithPages<R, false>,
 ): Promise<SearchResultTypeFromSelector<R>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
-	options: SearchOptionsWithPages<R> & { strictSelector: true },
+	options: SearchOptionsWithPages<R, true>,
 ): Promise<SearchResultTypeFromSelector<R, true>[][]>;
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
->(options: SearchOptionsWithPages<R>) {
+	N extends boolean = false,
+>(options: SearchOptionsWithPages<R, N>) {
 	if (!options)
 		throw new TypeError(
 			`Search options must be provided. Received ${typeof options}`,
@@ -111,7 +113,6 @@ export async function searchWithPages<
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
 	const baseRequestConfig = prepareRequestConfig(options);
 	const selectors = options.resultTypes || [OrganicResult];
-
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
@@ -127,7 +128,7 @@ export async function searchWithPages<
 		for (const selector of selectors) {
 			const result = selector(
 				cheerioApi,
-				Boolean(options.strictSelector),
+				Boolean(options.noPartialResults),
 			) as SearchResultTypeFromSelector<R>;
 			// Result must be flattened to a single array
 			if (result) pageResults = pageResults.concat(result);

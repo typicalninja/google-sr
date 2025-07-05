@@ -23,7 +23,7 @@ export interface TranslateResultNode extends SearchResultNodeLike {
  */
 export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	$,
-	strictSelector,
+	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("TranslateResult");
 	// only one block is expected, and it should be the first one
@@ -54,7 +54,7 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 
 	if (
 		isEmpty(
-			strictSelector,
+			noPartialResults,
 			sourceLanguage,
 			translationLanguage,
 			sourceText,
