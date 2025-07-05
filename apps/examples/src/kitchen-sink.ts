@@ -11,10 +11,10 @@ import {
 	OrganicResult,
 	// type string for node
 	ResultTypes,
+	search,
 	TimeResult,
 	TranslateResult,
 	UnitConversionResult,
-	search,
 } from "google-sr";
 
 const results = await search({

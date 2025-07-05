@@ -4,7 +4,7 @@
  * Teaches how to filter for certain types of results.
  */
 
-import { ResultTypes, TranslateResult, search } from "google-sr";
+import { ResultTypes, search, TranslateResult } from "google-sr";
 
 const results = await search({
 	query: "translate hello to spanish",

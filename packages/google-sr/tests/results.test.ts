@@ -6,10 +6,10 @@ import {
 	NewsResult,
 	OrganicResult,
 	ResultTypes,
+	search,
 	TimeResult,
 	TranslateResult,
 	UnitConversionResult,
-	search,
 } from "../src";
 
 // Live tests require querying google, which can lead to rate limiting or blocking.

@@ -1,3 +1,5 @@
+// Importing the Selectors from google-sr-selectors
+import { GeneralSelector, TranslateSearchSelector } from "google-sr-selectors";
 import {
 	type ResultSelector,
 	ResultTypes,
@@ -5,9 +7,6 @@ import {
 	TranslateSourceTextRegex,
 } from "../constants";
 import { isEmpty, throwNoCheerioError } from "../utils";
-
-// Importing the Selectors from google-sr-selectors
-import { GeneralSelector, TranslateSearchSelector } from "google-sr-selectors";
 
 export interface TranslateResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TranslateResult;

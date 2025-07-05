@@ -1,3 +1,5 @@
+// Importing the Selectors from google-sr-selectors
+import { GeneralSelector, NewsSearchSelector } from "google-sr-selectors";
 import {
 	type ResultSelector,
 	ResultTypes,
@@ -8,9 +10,6 @@ import {
 	isEmpty,
 	throwNoCheerioError,
 } from "../utils";
-
-// Importing the Selectors from google-sr-selectors
-import { GeneralSelector, NewsSearchSelector } from "google-sr-selectors";
 
 export interface NewsResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.NewsResult;

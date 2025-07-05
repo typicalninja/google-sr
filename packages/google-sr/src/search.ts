@@ -6,9 +6,9 @@ import type {
 } from "./constants";
 import { OrganicResult } from "./results";
 import {
-	type SearchResultTypeFromSelector,
 	decodeResponse,
 	prepareRequestConfig,
+	type SearchResultTypeFromSelector,
 	safeGetFetch,
 } from "./utils";
 
