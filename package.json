@@ -24,6 +24,7 @@
   "packageManager": "pnpm@10.5.2",
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
+    "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.5",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
