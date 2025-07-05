@@ -41,19 +41,10 @@ export async function search<
 	const selectors = options.resultTypes || [OrganicResult];
 	let searchResults: SearchResultTypeFromSelector<R>[] = [];
 	// Iterate over each selector to call it with the cheerioApi and concatenate the results
-	// handle deprecated strictSelector option in the same way as noPartialResults
-	// noPartialResults takes precedence over strictSelector if both are provided
-	const noPartialResults =
-		options.noPartialResults ?? options.strictSelector ?? false;
-	if (typeof options.strictSelector !== "undefined") {
-		console.warn(
-			`[google-sr]: The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
-		);
-	}
 	for (const selector of selectors) {
 		const result = selector(
 			cheerioApi,
-			noPartialResults,
+			Boolean(options.noPartialResults),
 		) as SearchResultTypeFromSelector<R>[];
 		// Result must be flattened to a single array
 		if (result) searchResults = searchResults.concat(result);
@@ -90,7 +81,7 @@ export async function search<
  * ```
  * @returns Search results as an array of SearchResultNodes or an array of arrays of SearchResultNodes
  */
-// we have to handle overloads for both flattenResults and strictSelector
+// we have to handle overloads for both boolean and non-boolean noPartialResults
 export async function searchWithPages<
 	R extends ResultSelector = typeof OrganicResult,
 >(
@@ -122,15 +113,6 @@ export async function searchWithPages<
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
 	const baseRequestConfig = prepareRequestConfig(options);
 	const selectors = options.resultTypes || [OrganicResult];
-	// handle deprecated strictSelector option in the same way as noPartialResults
-	// noPartialResults takes precedence over strictSelector if both are provided
-	const noPartialResults =
-		options.noPartialResults ?? options.strictSelector ?? false;
-	if (typeof options.strictSelector !== "undefined") {
-		console.warn(
-			`[google-sr]: The 'strictSelector' option is deprecated and will be removed in a future version. Use 'noPartialResults' instead.`,
-		);
-	}
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
@@ -146,7 +128,7 @@ export async function searchWithPages<
 		for (const selector of selectors) {
 			const result = selector(
 				cheerioApi,
-				noPartialResults,
+				Boolean(options.noPartialResults),
 			) as SearchResultTypeFromSelector<R>;
 			// Result must be flattened to a single array
 			if (result) pageResults = pageResults.concat(result);
