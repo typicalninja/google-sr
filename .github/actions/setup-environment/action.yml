@@ -1,0 +1,20 @@
+name: Setup Environment
+description: Setup Node, pnpm, install deps and build packages
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'pnpm'
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10.5.2
+        run_install: false
+
+    - name: Install workspace dependencies
+      run: pnpm install --frozen-lockfile
