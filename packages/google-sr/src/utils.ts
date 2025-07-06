@@ -136,23 +136,17 @@ export function throwNoCheerioError(
 }
 
 /**
- * Internal utility function to check if all properties are empty,
- *  with additional logic for noPartialResults option to check if any property is empty
- * @param result
- * @param noPartialResults
+ * Internal utility function to check if a value is empty.
+ * It checks for:
+ * - Empty strings
+ * - Undefined or null values
+ * @param value The value to check for emptiness
  * @private
  */
-export function isEmpty(
-	noPartialResults: boolean,
-	...values: (string | undefined | null)[]
-): boolean {
-	if (noPartialResults)
-		return values.some(
-			(value) => value === "" || value === undefined || value === null,
-		);
-	return values.every(
-		(value) => value === "" || value === undefined || value === null,
-	);
+export function isStringEmpty(value: unknown): boolean {
+	if (typeof value !== "string") return true;
+	if (value === "" || value === undefined || value === null) return true;
+	return false;
 }
 
 /**
