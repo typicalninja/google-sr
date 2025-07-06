@@ -4,7 +4,7 @@ permissions:
 
 on:
   pull_request:
-    # test only on code changes
+    # run only on code changes
     paths:
       - 'packages/*/src/**'
   push:
@@ -19,30 +19,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-            version: 10.5.2
-            run_install: false
-
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
-
-      - name: Install Workspace dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build packages
-        run: pnpm run build:packages
+			- uses: ./.github/actions/setup-environment
 
       - name: Release commit-release
         run: pnpm dlx pkg-pr-new publish --compact --pnpm './packages/*' --no-template

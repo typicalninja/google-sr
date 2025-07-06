@@ -22,17 +22,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-            version: 10.5.2
-            run_install: true
-
-      - name: Install Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+			- uses: ./.github/actions/setup-environment
 
       - name: Build packages
         run: pnpm run build:packages
