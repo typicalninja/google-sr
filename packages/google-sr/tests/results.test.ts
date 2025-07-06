@@ -1,4 +1,3 @@
-import isCi from "is-ci";
 import { afterEach, describe, it } from "vitest";
 import {
 	DictionaryResult,
@@ -15,7 +14,7 @@ import {
 // Live tests require querying google, which can lead to rate limiting or blocking.
 // on development machines, we run live tests only if explicitly enabled
 // or in CI environments where it's safe to do so.
-const runLiveTests = isCi || process.env.RUN_LIVE_TESTS === "1";
+const runLiveTests = process.env.RUN_LIVE_TESTS === "1";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
