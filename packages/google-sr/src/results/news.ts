@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import {
 	extractUrlFromGoogleLink,
-	isEmpty,
+	isStringEmpty,
 	throwNoCheerioError,
 } from "../utils";
 
@@ -55,23 +55,19 @@ export const NewsResult: ResultSelector<NewsResultNode> = (
 		const rawLink =
 			$(element).find(NewsSearchSelector.link).attr("href") ?? null;
 		// if not links is found it's not a valid result, we can safely skip it
-		// most likely the first result can be a special block
 		if (typeof rawLink !== "string") continue;
 		const link = extractUrlFromGoogleLink(rawLink) ?? "";
-
+		if (noPartialResults && isStringEmpty(link)) continue;
 		const title = $(element).find(NewsSearchSelector.title).text();
-
-		const description =
-			$(element).find(NewsSearchSelector.description).text() ?? "";
-
+		if (noPartialResults && isStringEmpty(title)) continue;
+		const description = $(element).find(NewsSearchSelector.description).text();
+		if (noPartialResults && isStringEmpty(description)) continue;
 		const source = $(element).find(NewsSearchSelector.source).text() ?? "";
-
+		if (noPartialResults && isStringEmpty(source)) continue;
 		const published_date =
 			$(element).find(NewsSearchSelector.published_date).text() ?? "";
 
-		// both title, description, source and published_date can be empty, we skip the result only if noPartialResults is true
-		if (isEmpty(noPartialResults, title, source, description, published_date))
-			continue;
+		if (noPartialResults && isStringEmpty(published_date)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.NewsResult,

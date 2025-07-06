@@ -5,7 +5,7 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isEmpty, throwNoCheerioError } from "../utils";
+import { isStringEmpty, throwNoCheerioError } from "../utils";
 
 export interface UnitConversionResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.UnitConversionResult;
@@ -28,9 +28,12 @@ export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
 		.text()
 		.replace("=", "")
 		.trim();
+
+	if (noPartialResults && isStringEmpty(from)) return null;
+
 	const to = block.find(UnitConversionSelector.to).text().trim();
 
-	if (isEmpty(noPartialResults, from, to)) return null;
+	if (noPartialResults && isStringEmpty(to)) return null;
 
 	return {
 		type: ResultTypes.UnitConversionResult,

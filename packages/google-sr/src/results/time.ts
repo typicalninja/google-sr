@@ -5,7 +5,7 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isEmpty, throwNoCheerioError } from "../utils";
+import { isStringEmpty, throwNoCheerioError } from "../utils";
 
 export interface TimeResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TimeResult;
@@ -26,12 +26,15 @@ export const TimeResult: ResultSelector<TimeResultNode> = (
 	const block = $(TimeSearchSelector.block).first();
 	const location = block.find(TimeSearchSelector.location).text();
 	// if we don't find a valid location drop this
-	if (location === "") return null;
+	if (noPartialResults && isStringEmpty(location)) return null;
 	const layoutTable = block.find(TimeSearchSelector.timeLayoutTable).first();
 	if (!layoutTable) return null;
 	const time = layoutTable.find(TimeSearchSelector.time).text();
+	// if we don't find a valid time drop this
+	if (noPartialResults && isStringEmpty(time)) return null;
 	const timeInWords = layoutTable.find(TimeSearchSelector.timeInWords).text();
-	if (isEmpty(noPartialResults, time, timeInWords)) return null;
+	// if we don't find a valid time in words drop this
+	if (noPartialResults && isStringEmpty(timeInWords)) return null;
 
 	return {
 		type: ResultTypes.TimeResult,

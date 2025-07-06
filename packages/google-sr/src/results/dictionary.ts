@@ -6,7 +6,7 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isEmpty, throwNoCheerioError } from "../utils";
+import { isStringEmpty, throwNoCheerioError } from "../utils";
 
 export interface DictionaryDefinition {
 	definition: string; // The definition text
@@ -63,23 +63,28 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("DictionaryResult");
 	const dictionaryBlock = $(GeneralSelector.block).first();
-	if (!dictionaryBlock) return null;
+	if (!dictionaryBlock.length) return null;
 	const phonetic = dictionaryBlock
 		.find(DictionarySearchSelector.phonetic)
 		.first()
 		.text()
 		.trim();
+
+	if (noPartialResults && isStringEmpty(phonetic)) return null;
+
 	const word = dictionaryBlock
 		.find(DictionarySearchSelector.word)
 		.text()
 		.trim();
+
+	if (noPartialResults && isStringEmpty(word)) return null;
 
 	const meanings: DictionaryMeaning[] = [];
 	const definitionContainer = dictionaryBlock
 		.find(DictionarySearchSelector.definitionsContainer)
 		.first();
 	// if no definitions, we return null
-	if (!definitionContainer) return null;
+	if (!definitionContainer.length) return null;
 	const definitionBlocks = definitionContainer
 		.find(DictionarySearchSelector.definitionsBlock)
 		.toArray();
@@ -92,7 +97,7 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 		if (!partOfSpeech) {
 			// if no previous part of speech, then we expect this block to have it
 			// normally the first (and only) element in this block is the part of speech
-			// but just to be sure we use first() to get the first element with a selector
+			// but just to be sure we use first() to get the first element with the selector
 			partOfSpeech = $(definitionBlock)
 				.find(DictionarySearchSelector.definitionPartOfSpeech)
 				.first()
@@ -126,8 +131,6 @@ export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
 			partOfSpeech = null;
 		}
 	}
-
-	if (isEmpty(noPartialResults, phonetic, word)) return null;
 
 	return {
 		type: ResultTypes.DictionaryResult,
