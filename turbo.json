@@ -8,7 +8,8 @@
 		},
 		"test": {
 			"dependsOn": ["build"],
-			"inputs": ["src/**/*.ts", "test/**/*.ts"]
+			"inputs": ["src/**/*.ts", "test/**/*.ts"],
+			"env": ["RUN_LIVE_TESTS"]
 		},
 		"dev": {
 			"cache": false,
