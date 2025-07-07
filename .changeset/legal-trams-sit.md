@@ -13,7 +13,7 @@ import { NewsResult, search } from 'google-sr';
 // Note: This code assumes usage in an async context
 const results = await search({
 	query: 'latest news',
-	resultTypes: [NewsResult],
+	parsers: [NewsResult],
 	requestConfig: {
 		queryParams: {
 			tbm: 'nws', // Set tbm to nws for news results
