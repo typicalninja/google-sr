@@ -40,7 +40,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-				env:
+        env:
           RUN_LIVE_TESTS: 1
 
       - name: Upload test results to Codecov
