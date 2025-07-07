@@ -2,7 +2,7 @@ import {
 	DictionaryResult,
 	KnowledgePanelResult,
 	OrganicResult,
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	TimeResult,
 	TranslateResult,
@@ -31,7 +31,7 @@ export function validateOptions(options: CLIArguments): boolean {
 	return true;
 }
 
-export function selectorTypeToSelector(selector: string): ResultSelector {
+export function selectorTypeToSelector(selector: string): ResultParser {
 	switch (selector) {
 		case ResultTypes.OrganicResult:
 			return OrganicResult;
@@ -52,8 +52,8 @@ export function selectorTypeToSelector(selector: string): ResultSelector {
 
 export function selectorTypeArrayToSelector(
 	selector: string[],
-): ResultSelector[] {
-	const selectors: ResultSelector[] = [];
+): ResultParser[] {
+	const selectors: ResultParser[] = [];
 
 	for (const type of selector) {
 		selectors.push(selectorTypeToSelector(type));
