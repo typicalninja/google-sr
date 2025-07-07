@@ -1,7 +1,7 @@
-// Importing the Selectors from google-sr-selectors
+// Importing the CSS Selectors from google-sr-selectors
 import { GeneralSelector, TranslateSearchSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 	TranslateSourceTextRegex,
@@ -20,7 +20,7 @@ export interface TranslateResultNode extends SearchResultNodeLike {
  * Parses translation search results.
  * @returns Array of TranslateSearchResultNodes
  */
-export const TranslateResult: ResultSelector<TranslateResultNode> = (
+export const TranslateResult: ResultParser<TranslateResultNode> = (
 	$,
 	noPartialResults,
 ) => {

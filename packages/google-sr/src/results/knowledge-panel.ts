@@ -1,7 +1,7 @@
 // Importing the Selectors from google-sr-selectors
 import { GeneralSelector, KnowledgePanelSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -32,7 +32,7 @@ export interface KnowledgePanelResultNode extends SearchResultNodeLike {
  * @param noPartialResults
  * @returns KnowledgePanelResultNode
  */
-export const KnowledgePanelResult: ResultSelector<KnowledgePanelResultNode> = (
+export const KnowledgePanelResult: ResultParser<KnowledgePanelResultNode> = (
 	$,
 	noPartialResults,
 ) => {

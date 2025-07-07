@@ -1,7 +1,7 @@
 // Importing the Selectors from google-sr-selectors
 import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -17,7 +17,7 @@ export interface UnitConversionResultNode extends SearchResultNodeLike {
  * Parses unit conversion search results.
  * @returns Array of UnitConversionResultNode
  */
-export const UnitConversionResult: ResultSelector<UnitConversionResultNode> = (
+export const UnitConversionResult: ResultParser<UnitConversionResultNode> = (
 	$,
 	noPartialResults,
 ) => {

@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 import type {
-	ResultSelector,
+	ResultParser,
 	SearchOptions,
 	SearchOptionsWithPages,
 } from "./constants";
@@ -8,7 +8,7 @@ import { OrganicResult } from "./results";
 import {
 	decodeResponse,
 	prepareRequestConfig,
-	type SearchResultTypeFromSelector,
+	type SearchResultTypeFromParser,
 	safeGetFetch,
 } from "./utils";
 
@@ -17,14 +17,14 @@ import {
  * @param options Search options
  * @returns Search results as an array of SearchResultNodes
  */
-export async function search<R extends ResultSelector = typeof OrganicResult>(
+export async function search<R extends ResultParser = typeof OrganicResult>(
 	options: SearchOptions<R, false>,
-): Promise<SearchResultTypeFromSelector<R>[]>;
-export async function search<R extends ResultSelector = typeof OrganicResult>(
+): Promise<SearchResultTypeFromParser<R>[]>;
+export async function search<R extends ResultParser = typeof OrganicResult>(
 	options: SearchOptions<R, true>,
-): Promise<SearchResultTypeFromSelector<R, true>[]>;
+): Promise<SearchResultTypeFromParser<R, true>[]>;
 export async function search<
-	R extends ResultSelector = typeof OrganicResult,
+	R extends ResultParser = typeof OrganicResult,
 	N extends boolean = false,
 >(options: SearchOptions<R, N>) {
 	if (!options)
@@ -37,15 +37,15 @@ export async function search<
 	// we use the utility function to decode the data with the correct charset
 	const data = await decodeResponse(response);
 	const cheerioApi = load(data);
-	// use the provided selectors or the default one (OrganicSearchSelector)
-	const selectors = options.resultTypes || [OrganicResult];
-	let searchResults: SearchResultTypeFromSelector<R>[] = [];
-	// Iterate over each selector to call it with the cheerioApi and concatenate the results
-	for (const selector of selectors) {
-		const result = selector(
+	// use the provided parsers or the default one (OrganicResult)
+	const parsers = options.parsers || [OrganicResult];
+	let searchResults: SearchResultTypeFromParser<R>[] = [];
+	// Iterate over each parser to call it with the cheerioApi and concatenate the results
+	for (const parser of parsers) {
+		const result = parser(
 			cheerioApi,
 			Boolean(options.noPartialResults),
-		) as SearchResultTypeFromSelector<R>[];
+		) as SearchResultTypeFromParser<R>[];
 		// Result must be flattened to a single array
 		if (result) searchResults = searchResults.concat(result);
 	}
@@ -83,17 +83,17 @@ export async function search<
  */
 // we have to handle overloads for both boolean and non-boolean noPartialResults
 export async function searchWithPages<
-	R extends ResultSelector = typeof OrganicResult,
+	R extends ResultParser = typeof OrganicResult,
 >(
 	options: SearchOptionsWithPages<R, false>,
-): Promise<SearchResultTypeFromSelector<R>[][]>;
+): Promise<SearchResultTypeFromParser<R>[][]>;
 export async function searchWithPages<
-	R extends ResultSelector = typeof OrganicResult,
+	R extends ResultParser = typeof OrganicResult,
 >(
 	options: SearchOptionsWithPages<R, true>,
-): Promise<SearchResultTypeFromSelector<R, true>[][]>;
+): Promise<SearchResultTypeFromParser<R, true>[][]>;
 export async function searchWithPages<
-	R extends ResultSelector = typeof OrganicResult,
+	R extends ResultParser = typeof OrganicResult,
 	N extends boolean = false,
 >(options: SearchOptionsWithPages<R, N>) {
 	if (!options)
@@ -107,12 +107,12 @@ export async function searchWithPages<
 
 	// instead of using the above search() function,
 	// we must reimplement it in order to make it efficient, since it will call same function for each page unnecessarily
-	const searchResults: SearchResultTypeFromSelector<R>[][] = [];
+	const searchResults: SearchResultTypeFromParser<R>[][] = [];
 	const pages = Array.isArray(options.pages)
 		? options.pages
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
 	const baseRequestConfig = prepareRequestConfig(options);
-	const selectors = options.resultTypes || [OrganicResult];
+	const parsers = options.parsers || [OrganicResult];
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
@@ -124,12 +124,12 @@ export async function searchWithPages<
 		// we use the utility function to decode the data with the correct charset
 		const data = await decodeResponse(response);
 		const cheerioApi = load(data);
-		let pageResults: SearchResultTypeFromSelector<R>[] = [];
-		for (const selector of selectors) {
-			const result = selector(
+		let pageResults: SearchResultTypeFromParser<R>[] = [];
+		for (const parser of parsers) {
+			const result = parser(
 				cheerioApi,
 				Boolean(options.noPartialResults),
-			) as SearchResultTypeFromSelector<R>;
+			) as SearchResultTypeFromParser<R>;
 			// Result must be flattened to a single array
 			if (result) pageResults = pageResults.concat(result);
 		}

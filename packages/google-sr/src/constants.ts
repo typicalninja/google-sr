@@ -37,8 +37,8 @@ export interface SearchResultNodeLike {
 	type: string;
 }
 
-// the type used to identify a parser/selector function
-export type ResultSelector<
+// the type used to identify a parser function
+export type ResultParser<
 	R extends SearchResultNodeLike = SearchResultNodeLike,
 > = (cheerio: CheerioAPI, noPartialResults: boolean) => R[] | R | null;
 
@@ -46,7 +46,7 @@ export type ResultSelector<
  * Search options for single page search
  */
 export interface SearchOptions<
-	R extends ResultSelector = ResultSelector,
+	R extends ResultParser = ResultParser,
 	N extends boolean = false,
 > {
 	/**
@@ -56,7 +56,7 @@ export interface SearchOptions<
 	/**
 	 * Control the type of results returned (can have a significant performance impact)
 	 */
-	resultTypes?: R[];
+	parsers?: R[];
 
 	/**
 	 * When true, excludes results that have undefined or empty properties.
@@ -74,7 +74,7 @@ export interface SearchOptions<
  * Search options for multiple pages search
  */
 export interface SearchOptionsWithPages<
-	R extends ResultSelector = ResultSelector,
+	R extends ResultParser = ResultParser,
 	N extends boolean = false,
 > extends SearchOptions<R, N> {
 	/**

@@ -1,7 +1,7 @@
-// Importing the Selectors from google-sr-selectors
+// Importing the CSS Selectors from google-sr-selectors
 import { GeneralSelector, OrganicSearchSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -22,7 +22,7 @@ export interface OrganicResultNode extends SearchResultNodeLike {
  * Parses regular non-ads search results.
  * @returns Array of OrganicSearchResultNodes
  */
-export const OrganicResult: ResultSelector<OrganicResultNode> = (
+export const OrganicResult: ResultParser<OrganicResultNode> = (
 	$,
 	noPartialResults,
 ) => {

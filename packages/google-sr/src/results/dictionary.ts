@@ -2,7 +2,7 @@ import type { Cheerio, Element } from "cheerio";
 // Importing the Selectors from google-sr-selectors
 import { DictionarySearchSelector, GeneralSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -57,7 +57,7 @@ const parseDefinitionBlock = (
  * Parses dictionary search results.
  * @returns Array of DictionaryResultNode
  */
-export const DictionaryResult: ResultSelector<DictionaryResultNode> = (
+export const DictionaryResult: ResultParser<DictionaryResultNode> = (
 	$,
 	noPartialResults,
 ) => {

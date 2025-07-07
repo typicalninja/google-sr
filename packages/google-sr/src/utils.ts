@@ -1,6 +1,6 @@
 import type {
 	RequestOptions,
-	ResultSelector,
+	ResultParser,
 	ResultTypes,
 	SearchOptions,
 } from "./constants";
@@ -91,10 +91,9 @@ export function extractUrlFromGoogleLink(
  * @param opts
  * @returns
  */
-export function prepareRequestConfig<
-	R extends ResultSelector,
-	N extends boolean,
->(opts: SearchOptions<R, N>): RequestOptions {
+export function prepareRequestConfig<R extends ResultParser, N extends boolean>(
+	opts: SearchOptions<R, N>,
+): RequestOptions {
 	if (typeof opts.query !== "string")
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
@@ -131,7 +130,7 @@ export function throwNoCheerioError(
 	resultParserName: keyof typeof ResultTypes,
 ): never {
 	throw new TypeError(
-		`CheerioAPI instance is missing, if using as a selector make sure to pass the raw function and not the result of calling it. (ex: [${resultParserName}] instead of [${resultParserName}()])`,
+		`CheerioAPI instance is missing, if using as a parser make sure to pass the raw function and not the result of calling it. (ex: [${resultParserName}] instead of [${resultParserName}()])`,
 	);
 }
 
@@ -163,10 +162,10 @@ export type AsArrayElement<T> = T extends Array<infer U> ? U : T;
 export type NonNullableRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
 
 /**
- * Generic type for the search results, derives the resultTypes from selector array.
+ * Generic type for the search results, derives the result types from parser array.
  */
-export type SearchResultTypeFromSelector<
-	R extends ResultSelector,
+export type SearchResultTypeFromParser<
+	R extends ResultParser,
 	S extends boolean = false,
 > = S extends true
 	? NonNullableRecord<NonNullable<AsArrayElement<ReturnType<R>>>>
