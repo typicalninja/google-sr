@@ -8,8 +8,8 @@ import {
 
 const queryResult = await search({
 	query: "nodejs",
-	// OrganicResult is the default, however it is recommended to ALWAYS specify the result type
-	resultTypes: [OrganicResult],
+	// OrganicResult is the default, however it is recommended to ALWAYS specify the parser
+	parsers: [OrganicResult],
 });
 
 // will return a SearchResult[]

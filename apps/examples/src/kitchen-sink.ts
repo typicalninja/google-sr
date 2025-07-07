@@ -19,11 +19,11 @@ import {
 
 const results = await search({
 	query: "nodejs",
-	// In production, there is no need to specify all the result types
-	// always try to specify the result types you actually want to use
+	// In production, there is no need to specify all the parsers
+	// always try to specify the parsers you actually want to use
 
 	// UNLESS the query itself is dynamic and you do not know the result types beforehand
-	resultTypes: [
+	parsers: [
 		DictionaryResult,
 		TimeResult,
 		UnitConversionResult,
