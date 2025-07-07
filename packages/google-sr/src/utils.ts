@@ -99,7 +99,7 @@ export function prepareRequestConfig<
 		throw new TypeError(
 			`Search query must be a string, received ${typeof opts.query} instead.`,
 		);
-	if (typeof opts.requestConfig !== "object")
+	if (opts.requestConfig && typeof opts.requestConfig !== "object")
 		throw new TypeError(
 			`Request config must be an object if specified, received ${typeof opts.requestConfig}.`,
 		);
