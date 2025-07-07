@@ -23,7 +23,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-			- uses: ./.github/actions/setup-environment
+      - uses: ./.github/actions/setup-environment
 
       - name: Release commit-release
         run: pnpm dlx pkg-pr-new publish --compact --pnpm './packages/*' --no-template
