@@ -1,5 +1,5 @@
 // Importing the CSS Selectors from google-sr-selectors
-import { GeneralSelector, TimeSearchSelector } from "google-sr-selectors";
+import { TimeSearchSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
 	ResultTypes,
