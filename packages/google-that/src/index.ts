@@ -3,7 +3,7 @@
 import fsPromises from "node:fs/promises";
 import { ResultTypes, search } from "google-sr";
 import yargs from "yargs/yargs";
-import { resultTypeArray } from "./constants.js";
+import { parserTypeArray } from "./constants.js";
 import { selectorTypeArrayToSelector, validateOptions } from "./helpers.js";
 
 const argv = yargs(process.argv.slice(2))
@@ -24,10 +24,10 @@ const argv = yargs(process.argv.slice(2))
 		// the cursor start for pages
 		start: { type: "number", alias: "s" },
 	})
-	.option("resultTypes", {
+	.option("parsers", {
 		type: "array",
 		alias: "r",
-		choices: resultTypeArray,
+		choices: parserTypeArray,
 		default: [ResultTypes.OrganicResult],
 	})
 	.parseSync();
@@ -43,11 +43,11 @@ const queryResult: { query: string; results: unknown }[] = [];
 for (const query of providedQuery) {
 	// sometimes the query is a number (yargs parse it this way), convert it to string
 	const stringQuery = String(query);
-	const selectors = selectorTypeArrayToSelector(argv.resultTypes);
+	const selectors = selectorTypeArrayToSelector(argv.parsers);
 
 	const results = await search({
 		query: stringQuery,
-		resultTypes: selectors,
+		parsers: selectors,
 	});
 
 	if (results.length) {

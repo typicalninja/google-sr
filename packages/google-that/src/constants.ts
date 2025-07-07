@@ -7,10 +7,10 @@ export interface CLIArguments {
 	page: number | undefined;
 	pages: number | undefined;
 	start: number | undefined;
-	resultTypes: (typeof ResultTypes)[keyof typeof ResultTypes][];
+	parsers: (typeof ResultTypes)[keyof typeof ResultTypes][];
 }
 
-export const resultTypeArray: CLIArguments["resultTypes"] = [
+export const parserTypeArray: CLIArguments["parsers"] = [
 	ResultTypes.OrganicResult,
 	ResultTypes.UnitConversionResult,
 	ResultTypes.DictionaryResult,
