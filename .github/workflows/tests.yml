@@ -33,6 +33,8 @@ jobs:
 
       - name: Run tests
         run: pnpm run test --coverage --reporter=junit --outputFile=junit.xml
+        env:
+          RUN_LIVE_TESTS: "1"
 
       - name: Upload coverage results to Codecov
         # do not run on weekly schedule (only on pr and push)
@@ -40,8 +42,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-        env:
-          RUN_LIVE_TESTS: 1
 
       - name: Upload test results to Codecov
         # Run even if tests fail
