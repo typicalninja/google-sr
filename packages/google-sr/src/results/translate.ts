@@ -6,7 +6,7 @@ import {
 	type SearchResultNodeLike,
 	TranslateSourceTextRegex,
 } from "../constants";
-import { isEmpty, throwNoCheerioError } from "../utils";
+import { isStringEmpty, throwNoCheerioError } from "../utils";
 
 export interface TranslateResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TranslateResult;
@@ -27,7 +27,8 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 	if (!$) throwNoCheerioError("TranslateResult");
 	// only one block is expected, and it should be the first one
 	const translateBlock = $(GeneralSelector.block).first();
-	if (!translateBlock) return null;
+	// if we don't find a valid block drop this
+	if (!translateBlock.length) return null;
 	// old version does not have separate source and target language
 	// instead it has ex "English (detected) to Spanish "
 	const translatedFromTo = translateBlock
@@ -39,6 +40,12 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 
 	const sourceLanguage = fromTo[0].trim();
 	const translationLanguage = fromTo[1].trim();
+	if (
+		noPartialResults &&
+		(isStringEmpty(sourceLanguage) || isStringEmpty(translationLanguage))
+	)
+		return null;
+
 	// source text is in the format "hello" in Japanese
 	const sourceTextBlock = translateBlock
 		.find(TranslateSearchSelector.sourceText)
@@ -46,21 +53,14 @@ export const TranslateResult: ResultSelector<TranslateResultNode> = (
 		.trim();
 	const sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1] ?? "";
 
+	if (noPartialResults && isStringEmpty(sourceText)) return null;
+
 	const translatedText = translateBlock
 		.find(TranslateSearchSelector.translatedText)
 		.text()
 		.trim();
 
-	if (
-		isEmpty(
-			noPartialResults,
-			sourceLanguage,
-			translationLanguage,
-			sourceText,
-			translatedText,
-		)
-	)
-		return null;
+	if (noPartialResults && isStringEmpty(sourceLanguage)) return null;
 
 	return {
 		type: ResultTypes.TranslateResult,

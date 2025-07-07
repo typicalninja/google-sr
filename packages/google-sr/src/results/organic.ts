@@ -7,7 +7,7 @@ import {
 } from "../constants";
 import {
 	extractUrlFromGoogleLink,
-	isEmpty,
+	isStringEmpty,
 	throwNoCheerioError,
 } from "../utils";
 
@@ -31,20 +31,22 @@ export const OrganicResult: ResultSelector<OrganicResultNode> = (
 	if (!$) throwNoCheerioError("OrganicResult");
 
 	const parsedResults: OrganicResultNode[] = [];
-	const organicSearchBlocks = $(GeneralSelector.block).toArray();
+	const organicSearchBlocks = $(GeneralSelector.block).get();
 
 	for (const element of organicSearchBlocks) {
-		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
 		const description = $(element)
 			.find(OrganicSearchSelector.description)
-			.text() as string;
-		const title = $(element).find(OrganicSearchSelector.title).text() as string;
+			.text();
+		if (noPartialResults && isStringEmpty(description)) continue;
+		const title = $(element).find(OrganicSearchSelector.title).text();
+		if (noPartialResults && isStringEmpty(title)) continue;
+
+		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
+		if (noPartialResults && isStringEmpty(link)) continue;
 		link = extractUrlFromGoogleLink(link);
 		// if not links is found it's not a valid result, we can safely skip it
 		// most likely the first result can be a special block
 		if (typeof link !== "string") continue;
-		// both title and description can be empty, we skip the result only if noPartialResults is true
-		if (isEmpty(noPartialResults, description, title)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,
