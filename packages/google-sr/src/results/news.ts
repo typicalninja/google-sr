@@ -33,7 +33,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
  *
  * const results = await search({
  * 	query: 'latest news',
- * 	resultTypes: [NewsResult],
+ * 	parsers: [NewsResult],
  * 	requestConfig: {
  * 		queryParams: {
  * 			tbm: 'nws', // Set tbm to nws for news results
