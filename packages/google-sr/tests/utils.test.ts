@@ -4,6 +4,7 @@ import {
 	extractUrlFromGoogleLink,
 	prepareRequestConfig,
 	safeGetFetch,
+	throwNoCheerioError,
 } from "../src/utils";
 
 function createMockResponse(bytes: number[]): Response {
@@ -119,5 +120,33 @@ describe("prepareRequestConfig", () => {
 				query: 123,
 			}),
 		).toThrow(TypeError);
+	});
+});
+
+describe("throwNoCheerioError", () => {
+	test("should throw TypeError with helpful message for missing CheerioAPI", () => {
+		expect(() => {
+			throwNoCheerioError("OrganicResult");
+		}).toThrow(TypeError);
+
+		expect(() => {
+			throwNoCheerioError("OrganicResult");
+		}).toThrow(
+			"CheerioAPI instance is missing, if using as a parser make sure to pass the raw function and not the result of calling it. (ex: [OrganicResult] instead of [OrganicResult()])",
+		);
+	});
+
+	test("should throw TypeError with different result parser names", () => {
+		expect(() => {
+			throwNoCheerioError("TranslateResult");
+		}).toThrow(
+			"CheerioAPI instance is missing, if using as a parser make sure to pass the raw function and not the result of calling it. (ex: [TranslateResult] instead of [TranslateResult()])",
+		);
+
+		expect(() => {
+			throwNoCheerioError("DictionaryResult");
+		}).toThrow(
+			"CheerioAPI instance is missing, if using as a parser make sure to pass the raw function and not the result of calling it. (ex: [DictionaryResult] instead of [DictionaryResult()])",
+		);
 	});
 });
