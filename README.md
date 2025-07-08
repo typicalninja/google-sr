@@ -57,7 +57,7 @@ import {
 const results = await search({
 	query: "translate hello to japanese",
 	// Explicitly specify the results you want
-	resultTypes: [TranslateResult, OrganicResult],
+	parsers: [TranslateResult, OrganicResult],
 });
 
 console.log(results[0].type === ResultTypes.TranslateResult);  // true

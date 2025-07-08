@@ -47,7 +47,7 @@ describe(
 		it("Search for organic results", async ({ expect }) => {
 			const results = await search({
 				query: "nodejs",
-				resultTypes: [OrganicResult],
+				parsers: [OrganicResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -66,7 +66,7 @@ describe(
 		it("Search for translation results", async ({ expect }) => {
 			const results = await search({
 				query: "translate hello to spanish",
-				resultTypes: [TranslateResult],
+				parsers: [TranslateResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -85,7 +85,7 @@ describe(
 		it("Search for knowledge panel results", async ({ expect }) => {
 			const results = await search({
 				query: "Albert Einstein",
-				resultTypes: [KnowledgePanelResult],
+				parsers: [KnowledgePanelResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -111,7 +111,7 @@ describe(
 		it("Search for unit conversion results", async ({ expect }) => {
 			const results = await search({
 				query: "100 USD to EUR",
-				resultTypes: [UnitConversionResult],
+				parsers: [UnitConversionResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -128,7 +128,7 @@ describe(
 		it("Search for dictionary results", async ({ expect }) => {
 			const results = await search({
 				query: "define serendipity",
-				resultTypes: [DictionaryResult],
+				parsers: [DictionaryResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -153,7 +153,7 @@ describe(
 		it("Search for time results", async ({ expect }) => {
 			const results = await search({
 				query: "time in new york",
-				resultTypes: [TimeResult],
+				parsers: [TimeResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -185,7 +185,7 @@ describe(
 
 			const results = await search({
 				query: "latest news on AI",
-				resultTypes: [NewsResult],
+				parsers: [NewsResult],
 				...globalSearchOptionsCopy,
 			});
 			// Expect at least 5 results

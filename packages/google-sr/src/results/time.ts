@@ -1,7 +1,7 @@
-// Importing the Selectors from google-sr-selectors
+// Importing the CSS Selectors from google-sr-selectors
 import { TimeSearchSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -18,7 +18,7 @@ export interface TimeResultNode extends SearchResultNodeLike {
  * Parses time search results.
  * @returns Array of TimeResultNode
  */
-export const TimeResult: ResultSelector<TimeResultNode> = (
+export const TimeResult: ResultParser<TimeResultNode> = (
 	$,
 	noPartialResults,
 ) => {

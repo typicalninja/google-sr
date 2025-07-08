@@ -1,7 +1,7 @@
 // Importing the Selectors from google-sr-selectors
 import { GeneralSelector, NewsSearchSelector } from "google-sr-selectors";
 import {
-	type ResultSelector,
+	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
@@ -33,7 +33,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
  *
  * const results = await search({
  * 	query: 'latest news',
- * 	resultTypes: [NewsResult],
+ * 	parsers: [NewsResult],
  * 	requestConfig: {
  * 		queryParams: {
  * 			tbm: 'nws', // Set tbm to nws for news results
@@ -43,7 +43,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
  *
  * @returns Array of NewsResultNode
  */
-export const NewsResult: ResultSelector<NewsResultNode> = (
+export const NewsResult: ResultParser<NewsResultNode> = (
 	$,
 	noPartialResults,
 ) => {

@@ -9,11 +9,11 @@ import { ResultTypes, search, TranslateResult } from "google-sr";
 const results = await search({
 	query: "translate hello to spanish",
 	// we only want the results for the translation
-	resultTypes: [TranslateResult],
+	parsers: [TranslateResult],
 });
 
 // find the first translated result
-// NOTE: if resultTypes is set to only one type [ex: TranslateResult] then this will always be the only result
+// NOTE: if parsers is set to only one type [ex: TranslateResult] then this will always be the only result
 // this is only for demonstration purposes
 const translated = results.find(
 	(result) => result.type === ResultTypes.TranslateResult,

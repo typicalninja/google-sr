@@ -80,7 +80,7 @@ describe("searchWithPages", () => {
 			const results = await searchWithPages({
 				query: "nodejs",
 				pages: 2,
-				resultTypes: [OrganicResult],
+				parsers: [OrganicResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
@@ -105,7 +105,7 @@ describe("searchWithPages", () => {
 			const results = await searchWithPages({
 				query: "silksong",
 				pages: [0, 20], // First and third page
-				resultTypes: [OrganicResult],
+				parsers: [OrganicResult],
 				...GLOBAL_SEARCH_OPTIONS,
 			});
 
