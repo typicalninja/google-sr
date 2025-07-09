@@ -4,7 +4,7 @@
 
 Remove strictSelector in favor of noPartialResults
 
-The `strictSelector` option has been removed and replaced with `noPartialResults` for improved clarity. The new option name accurately describes its behavior.
+Replace `strictSelector` option with `noPartialResults` for improved clarity and better description of its behavior.
 
 ```diff
 search({

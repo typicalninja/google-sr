@@ -6,20 +6,16 @@
 
 Rename CurrencyResult to UnitConversionResult
 
-## Breaking Changes
+Rename `CurrencyResult` to `UnitConversionResult` to better reflect its ability to handle all conversion queries (currency, units, measurements, etc.), not just currency conversions.
 
-- `CurrencyResult` selector renamed to `UnitConversionResult`
-- `CurrencyResultNode` interface renamed to `UnitConversionResultNode`
-- Result type constant `ResultTypes.CurrencyResult` renamed to `ResultTypes.UnitConversionResult`
-- The selector now handles all conversion queries (currency, units, measurements, etc.)
-
-The original `CurrencyResult` selector was found to work effectively for all types of conversion queries (currency, distance, weight, temperature, etc.), not just currency conversions. The rename better captures its actual functionality and makes the API more intuitive for users performing various conversion searches.
+**Breaking Changes:**
+- `CurrencyResult` → `UnitConversionResult`
+- `CurrencyResultNode` → `UnitConversionResultNode` 
+- `ResultTypes.CurrencyResult` → `ResultTypes.UnitConversionResult`
 
 ```diff
-// Before
 - import { CurrencyResult, CurrencyResultNode } from 'google-sr';
 + import { UnitConversionResult, UnitConversionResultNode } from 'google-sr';
-import { ResultTypes } from 'google-sr';
 
 const results = search({
   query: "100 USD to EUR",

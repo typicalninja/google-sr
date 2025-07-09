@@ -2,9 +2,9 @@
 "google-sr": major
 ---
 
-The `ResultNodeTyper` type helper has been removed
+Remove ResultNodeTyper type helper
 
-`ResultNodeTyper` was a helper type that was used to define parsers returning a `ResultNode`. This was removed, as it can be replaced with a simple interface definition.
+`ResultNodeTyper` was a helper type that was used to define the type returned by a parser. This was removed, as it can be replaced with a simple interface definition.
 
 ```diff
 - import { ResultNodeTyper } from 'google-sr';
