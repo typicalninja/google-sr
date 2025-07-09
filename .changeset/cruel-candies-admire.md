@@ -4,23 +4,23 @@
 
 Replace Axios with native Fetch API
 
-Axios HTTP client was replaced with the native fetch API to reduce external dependencies and improve compatibility across different environments.
+Replace Axios HTTP client with native fetch API to reduce external dependencies and improve compatibility across environments.
 
-The `requestConfig` option now accepts the `RequestOptions` interface (extending [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)). You'll need to update your configuration from the previous `AxiosRequestConfig` format.
+**Breaking Change**: The `requestConfig` option now accepts the `RequestOptions` interface (extending [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)) instead of `AxiosRequestConfig`.
 
 ```diff
 import { search } from "google-sr";
 
 search({
-	 requestConfig: {
--   	params: {
-+		queryParams: {
-			safe: "active",
-			gl: "us",
-		},
-		headers: {
-			"Some-Header": "value",
-		},
-	},
+  requestConfig: {
+-   params: {
++   queryParams: {
+      safe: "active",
+      gl: "us",
+    },
+    headers: {
+      "Some-Header": "value",
+    },
+  },
 })
 ```
