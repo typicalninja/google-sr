@@ -75,6 +75,9 @@ By using this project, you acknowledge that you are solely responsible for compl
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
 
+---
+
+Want to support the project? [Star it on GitHub ★][stargazers]
 
 [npm]: https://www.npmjs.com/package/google-sr-selectors
 [github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
