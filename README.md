@@ -100,7 +100,6 @@ Your discretion in usage is advised.
 
 Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
 
-
 ```bash
 pnpm run test
 ```

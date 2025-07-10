@@ -6,7 +6,7 @@
 [github-gt]: https://github.com/typicalninja/google-sr/tree/master/packages/google-that
 [github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
 
-<h1 align="center">Google-sr</h1>
+<h1 align="center">google-sr</h1>
 
 <p align="center">Scrape google search results without an API key with javascript/typescript.</p>
 
