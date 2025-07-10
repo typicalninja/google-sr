@@ -1,5 +1,42 @@
 # google-sr-selectors
 
+## 3.0.0
+
+### Major Changes
+
+- [`786a8fc`](https://github.com/typicalninja/google-sr/commit/786a8fc47a5d4fc1f32afbf2ad7846d6c614af80) Thanks [@typicalninja](https://github.com/typicalninja)! - Rename CurrencyConvertSelector to UnitConversionSelector
+
+  Rename `CurrencyConvertSelector` to `UnitConversionSelector` to better reflect its ability to handle all conversion queries (currency, units, measurements, etc.), not just currency conversions.
+
+  **Breaking Changes:**
+
+  - `CurrencyConvertSelector` → `UnitConversionSelector`
+
+  ```diff
+  - import { CurrencyConvertSelector } from 'google-sr-selectors';
+  + import { UnitConversionSelector } from 'google-sr-selectors';
+  ```
+
+### Minor Changes
+
+- [#71](https://github.com/typicalninja/google-sr/pull/71) [`cae9f30`](https://github.com/typicalninja/google-sr/commit/cae9f30d98a10b031c8f1833819e30d692f4bfde) Thanks [@tresorama](https://github.com/tresorama)! - Add NewsResult for parsing Google News tab results
+
+  Add `NewsResult` parser for Google News tab search results. Requires setting `tbm: 'nws'` in `requestConfig` and is incompatible with other parsers.
+
+  ```ts
+  import { NewsResult, search } from "google-sr";
+
+  const results = await search({
+    query: "latest news",
+    parsers: [NewsResult],
+    requestConfig: {
+      queryParams: {
+        tbm: "nws", // Required for news results
+      },
+    },
+  });
+  ```
+
 ## 2.0.0
 
 ### Major Changes
