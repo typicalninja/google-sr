@@ -47,12 +47,7 @@ bun add google-sr
 # Usage
 
 ```ts
-import {
-	search,
-	OrganicResult,
-	TranslateResult,
-	ResultTypes,
-} from "google-sr";
+import { search, OrganicResult, TranslateResult, ResultTypes } from "google-sr";
 
 const results = await search({
 	query: "translate hello to japanese",
@@ -60,8 +55,8 @@ const results = await search({
 	parsers: [TranslateResult, OrganicResult],
 });
 
-console.log(results[0].type === ResultTypes.TranslateResult);  // true
-console.log(results) // see below
+console.log(results[0].type === ResultTypes.TranslateResult); // true
+console.log(results); // see below
 ```
 
 #### Output
