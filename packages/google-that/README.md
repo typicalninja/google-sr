@@ -67,13 +67,6 @@ google-that -Q query1 "queries with spaces need to be quoted"
 google-that -q "Nodejs" -w
 ```
 
-# Disclaimer
-
-This is not sponsored, supported, or affiliated with Google.
-
-The source code within this repository is intended solely for **educational & research purposes**.
-The author & contributors takes **NO** responsibility for any issues that arise from its use. Your discretion in usage is advised.
-
 # Links
 
 - [GitHub Repository](https://github.com/typicalninja/google-sr)
@@ -84,6 +77,14 @@ The author & contributors takes **NO** responsibility for any issues that arise 
 
 - [google-sr][github-gsr] - Core project used in google-that
 - [google-sr-selectors][github-gsrs] - Selectors for Google search results used by google-sr
+
+# Disclaimer
+
+This project is **not sponsored, endorsed, or affiliated** with Google in any way.
+
+This repository is provided **"as is" without warranty** of any kind and is intended solely for **educational and research purposes.** The authors and contributors assume no responsibility for any issues, damages, or losses that may arise from its use.
+
+By using this project, you acknowledge that you are solely responsible for complying with applicable laws and platform Terms of Service. Use at your own discretion and risk.
 
 # License
 

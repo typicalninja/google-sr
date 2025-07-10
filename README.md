@@ -83,14 +83,6 @@ console.log(results); // see below
 
 > Additional examples can be found in [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples) directory
 
-# Disclaimer
-
-This is not sponsored, supported, or affiliated with Google.
-
-The source code within this repository is intended solely for **educational & research purposes**.
-The author (typicalninja) & contributors takes **NO** responsibility for any issues that arise from its use. 
-Your discretion in usage is advised.
-
 # Tests
 
 Tests are written using [vitest](https://vitest.dev/) and can be run by using the `test` script.
@@ -98,6 +90,14 @@ Tests are written using [vitest](https://vitest.dev/) and can be run by using th
 ```bash
 pnpm run test
 ```
+
+# Disclaimer
+
+This project is **not sponsored, endorsed, or affiliated** with Google in any way.
+
+This repository is provided **"as is" without warranty** of any kind and is intended solely for **educational and research purposes.** The authors and contributors assume no responsibility for any issues, damages, or losses that may arise from its use.
+
+By using this project, you acknowledge that you are solely responsible for complying with applicable laws and platform Terms of Service. Use at your own discretion and risk.
 
 # License
 
