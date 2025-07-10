@@ -1,13 +1,4 @@
-[npm]: https://www.npmjs.com/package/google-sr-selectors
-[github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
-[github-gt]: https://github.com/typicalninja/google-sr/tree/master/packages/google-that
-[stargazers]: https://github.com/typicalninja/google-sr/stargazers
-[discord]: https://discord.gg/ynwckXS9T2
-[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
-[api-docs]: https://typicalninja.github.io/google-sr/modules/google-sr-selectors_src.html
-[usage]: https://github.com/typicalninja/google-sr/blob/reformat-docs/packages/google-sr/src/results.ts
-
-<h1 align="center">Google-sr-selectors</h1>
+<h1 align="center">google-sr-selectors</h1>
 
 <p align="center">CSS Selectors for Google search page</p>
 
@@ -50,6 +41,23 @@ relying directly on google-sr-selectors.
 - [Discord][discord]
 
 
+# Notice for CommonJS users
+
+This package currently includes both [CommonJS (CJS)][cjs-nodejs-docs] and [ES Modules (ESM)][esm-nodejs-docs] builds.
+
+Starting with **v7.x** (subject to change), we plan to drop CJS support and publish only ESM-only builds.
+
+#### Why ESM-only going forward?
+- **Modern JavaScript**: ESM is now the standard, offering better support for tree-shaking and static analysis.
+- **Reduces package size**: Maintaining a single build reduces package size and build complexity.
+- [Node.js `v20`+ supports require() on ESM modules natively][nodejs-v20-backport-note] (no flags needed)
+
+While Node.js v20 already supports ESM well, we will wait until its End-of-Life before removing CJS to give users and tooling more time to transition.
+
+> Note: This applies only to Node.js users, other runtimes like Bun and Deno already support ESM natively
+
+See this [gist for future migration tips][esm-migration-pure-esm-gist] and our [GitHub discussion][cjs-build-notice-discussion] for more details.
+
 # Related projects 🥂
 
 * [google-sr][github-gsr] - Simple tool to programmatically get google search results
@@ -66,3 +74,19 @@ By using this project, you acknowledge that you are solely responsible for compl
 # License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
+
+
+[npm]: https://www.npmjs.com/package/google-sr-selectors
+[github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
+[github-gt]: https://github.com/typicalninja/google-sr/tree/master/packages/google-that
+[stargazers]: https://github.com/typicalninja/google-sr/stargazers
+[discord]: https://discord.gg/ynwckXS9T2
+[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
+[api-docs]: https://typicalninja.github.io/google-sr/modules/google-sr-selectors_src.html
+[usage]: https://github.com/typicalninja/google-sr/blob/reformat-docs/packages/google-sr/src/results.ts
+
+[nodejs-v20-backport-note]:https://nodejs.org/en/blog/release/v20.19.0/
+[esm-nodejs-docs]: https://nodejs.org/api/esm.html#introduction
+[cjs-nodejs-docs]: https://nodejs.org/api/modules.html#modules-commonjs-modules
+[cjs-build-notice-discussion]: https://github.com/typicalninja/google-sr/discussions/86
+[esm-migration-pure-esm-gist]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
