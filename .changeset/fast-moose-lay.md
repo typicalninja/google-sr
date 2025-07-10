@@ -1,5 +1,4 @@
 ---
-"google-sr-selectors": major
 "google-sr": major
 "google-that": minor
 ---
@@ -12,6 +11,7 @@ Rename `CurrencyResult` to `UnitConversionResult` to better reflect its ability 
 - `CurrencyResult` → `UnitConversionResult`
 - `CurrencyResultNode` → `UnitConversionResultNode` 
 - `ResultTypes.CurrencyResult` → `ResultTypes.UnitConversionResult`
+
 
 ```diff
 - import { CurrencyResult, CurrencyResultNode } from 'google-sr';
