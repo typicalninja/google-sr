@@ -87,7 +87,7 @@ export function extractUrlFromGoogleLink(
 }
 
 /**
- * Accepts searchOptions and creates all the relevant configuration for an axios request
+ * Accepts searchOptions and creates all the relevant configuration for a fetch request
  * @param opts
  * @returns
  */
