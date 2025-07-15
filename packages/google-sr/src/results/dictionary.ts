@@ -1,4 +1,4 @@
-import type { Cheerio, Element } from "cheerio";
+import type { Cheerio } from "cheerio";
 // Importing the Selectors from google-sr-selectors
 import { DictionarySearchSelector, GeneralSelector } from "google-sr-selectors";
 import {
@@ -27,7 +27,8 @@ export interface DictionaryResultNode extends SearchResultNodeLike {
 
 // extract logic for parsing dictionary definitions into a separate function
 const parseDefinitionBlock = (
-	definitionBlock: Cheerio<Element>,
+	// biome-ignore lint/suspicious/noExplicitAny: Element type no longer exported from cheerio v1.1.0, avoiding domhandler dependency for single type usage
+	definitionBlock: Cheerio<any>,
 ): DictionaryDefinition | null => {
 	const definitionTextBlock = definitionBlock.find(
 		DictionarySearchSelector.definitionTextBlock,
