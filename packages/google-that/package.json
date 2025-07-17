@@ -30,7 +30,8 @@
     "yargs": "^18.0.0"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=20.0.0",
+    "pnpm": ">=10.13.1"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.33",

@@ -26,5 +26,9 @@
     "cheerio"
   ],
   "author": "typicalninja",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+	"engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.13.1"
+  }
 }

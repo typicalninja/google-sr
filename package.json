@@ -18,10 +18,10 @@
   "author": "typicalninja",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=15.0.0",
-    "pnpm": ">=10"
+    "node": ">=20.0.0",
+    "pnpm": ">=10.13.1"
   },
-  "packageManager": "pnpm@10.5.2",
+	"packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
     "@changesets/changelog-github": "^0.5.1",
