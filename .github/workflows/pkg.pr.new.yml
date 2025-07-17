@@ -25,5 +25,8 @@ jobs:
 
       - uses: ./.github/actions/setup-environment
 
+      - name: Build packages
+        run: pnpm run build:packages
+
       - name: Release commit-release
         run: pnpm dlx pkg-pr-new publish --compact --pnpm './packages/*' --no-template
