@@ -18,6 +18,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
 	link: string;
 	source: string;
 	published_date: string;
+	thumbnail_image: string;
 }
 
 /**
@@ -66,8 +67,11 @@ export const NewsResult: ResultParser<NewsResultNode> = (
 		if (noPartialResults && isStringEmpty(source)) continue;
 		const published_date =
 			$(element).find(NewsSearchSelector.published_date).text() ?? "";
-
 		if (noPartialResults && isStringEmpty(published_date)) continue;
+		const thumbnail_image =
+			$(element).find(NewsSearchSelector.thumbnail_image).attr("src") ?? "";
+
+		if (noPartialResults && isStringEmpty(thumbnail_image)) continue;
 
 		parsedResults.push({
 			type: ResultTypes.NewsResult,
@@ -76,6 +80,7 @@ export const NewsResult: ResultParser<NewsResultNode> = (
 			description,
 			source,
 			published_date,
+			thumbnail_image,
 		});
 	}
 
