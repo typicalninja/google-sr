@@ -1,5 +1,5 @@
 name: Setup Environment
-description: Setup Node, pnpm, install deps and build packages
+description: Setup Node, pnpm and install deps
 
 runs:
   using: composite
