@@ -197,6 +197,7 @@ describe(
 				expect(res.title).to.be.a("string").and.not.empty;
 				expect(res.link).to.be.a("string").and.not.empty;
 				expect(res.source).to.be.a("string").and.not.empty;
+				expect(res.thumbnail_image).to.be.a("string").and.not.empty;
 			}
 		});
 	},
