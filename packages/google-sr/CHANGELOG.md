@@ -1,5 +1,136 @@
 # google-sr
 
+## 6.0.0
+
+### Major Changes
+
+- [#76](https://github.com/typicalninja/google-sr/pull/76) [`51828ad`](https://github.com/typicalninja/google-sr/commit/51828ad0e2a94646ddba8727aea5f6bfce1274c4) Thanks [@typicalninja](https://github.com/typicalninja)! - Replace Axios with native Fetch API
+
+  Replace Axios HTTP client with native fetch API to reduce external dependencies and improve compatibility across environments.
+
+  **Breaking Change**: The `requestConfig` option now accepts the [`RequestOptions`](https://typicalninja.github.io/google-sr/interfaces/google-sr_src.RequestOptions.html) interface (extending [`RequestInit`](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit)) instead of `AxiosRequestConfig`.
+
+  ```diff
+  import { search } from "google-sr";
+
+  search({
+    requestConfig: {
+  -   params: {
+  +   queryParams: {
+        safe: "active",
+        gl: "us",
+      },
+      headers: {
+        "Some-Header": "value",
+      },
+    },
+  })
+  ```
+
+- [#79](https://github.com/typicalninja/google-sr/pull/79) [`ae54adf`](https://github.com/typicalninja/google-sr/commit/ae54adf075c39771c09a1cfb719d5affe0dfd49d) Thanks [@typicalninja](https://github.com/typicalninja)! - Rename CurrencyResult to UnitConversionResult
+
+  Rename `CurrencyResult` to `UnitConversionResult` to better reflect its ability to handle all conversion queries (currency, units, measurements, etc.), not just currency conversions.
+
+  **Breaking Changes:**
+
+  - `CurrencyResult` → `UnitConversionResult`
+  - `CurrencyResultNode` → `UnitConversionResultNode`
+  - `ResultTypes.CurrencyResult` → `ResultTypes.UnitConversionResult`
+
+  ```diff
+  - import { CurrencyResult, CurrencyResultNode } from 'google-sr';
+  + import { UnitConversionResult, UnitConversionResultNode } from 'google-sr';
+
+  const results = search({
+    query: "100 USD to EUR",
+  -  parsers: [CurrencyResult]
+  +  parsers: [UnitConversionResult]
+  });
+
+  - if (result.type === ResultTypes.CurrencyResult) {
+  + if (result.type === ResultTypes.UnitConversionResult) {
+    // handle unit conversion result
+  }
+  ```
+
+- [#80](https://github.com/typicalninja/google-sr/pull/80) [`592ea47`](https://github.com/typicalninja/google-sr/commit/592ea4764a5947ab8c90aa51b06d50cdcb6ff607) Thanks [@typicalninja](https://github.com/typicalninja)! - Remove strictSelector in favor of noPartialResults
+
+  Replace `strictSelector` option with `noPartialResults` for improved clarity and better description of its behavior.
+
+  ```diff
+  search({
+  - strictSelector: true,
+  + noPartialResults: true,
+  });
+  ```
+
+- [#73](https://github.com/typicalninja/google-sr/pull/73) [`f462148`](https://github.com/typicalninja/google-sr/commit/f462148023b580d10703b5e767dafd7811ff5a58) Thanks [@typicalninja](https://github.com/typicalninja)! - Remove ResultNodeTyper type helper
+
+  `ResultNodeTyper` was a helper type that was used to define the type returned by a parser. This was removed, as it can be replaced with a simple interface definition.
+
+  ```diff
+  - import { ResultNodeTyper } from 'google-sr';
+  - type MyCustomNode = ResultNodeTyper<"CUSTOM", 'link' | 'title'>;
+
+  + interface MyCustomNode {
+  +    type: "CUSTOM";
+  +    link: string;
+  +    title: string;
+  + }
+  ```
+
+- [#85](https://github.com/typicalninja/google-sr/pull/85) [`85bae81`](https://github.com/typicalninja/google-sr/commit/85bae810fdf33643545ae289d578cbc3ffa97f41) Thanks [@typicalninja](https://github.com/typicalninja)! - Rename `ResultSelector` to `ResultParser` and `resultTypes` to `parsers`
+
+  The API has been updated to use more intuitive naming that eliminates confusion between CSS selectors and result parser functions.
+
+  **Breaking Changes:**
+
+  - `ResultSelector` type renamed to `ResultParser`
+  - `resultTypes` option renamed to `parsers` in search functions
+
+  **Migration Guide:**
+
+  ```diff
+  import { search, OrganicResult } from "google-sr";
+
+  const results = await search({
+    query: "hello world",
+  - resultTypes: [OrganicResult],
+  + parsers: [OrganicResult],
+  });
+  ```
+
+### Minor Changes
+
+- [#71](https://github.com/typicalninja/google-sr/pull/71) [`cae9f30`](https://github.com/typicalninja/google-sr/commit/cae9f30d98a10b031c8f1833819e30d692f4bfde) Thanks [@tresorama](https://github.com/tresorama)! - Add NewsResult for parsing Google News tab results
+
+  Add `NewsResult` parser for Google News tab search results. Requires setting `tbm: 'nws'` in `requestConfig` and is incompatible with other parsers.
+
+  ```ts
+  import { NewsResult, search } from "google-sr";
+
+  const results = await search({
+    query: "latest news",
+    parsers: [NewsResult],
+    requestConfig: {
+      queryParams: {
+        tbm: "nws", // Required for news results
+      },
+    },
+  });
+  ```
+
+- [#89](https://github.com/typicalninja/google-sr/pull/89) [`bb1cc1a`](https://github.com/typicalninja/google-sr/commit/bb1cc1afcd931948b1ebe02bd5627fdc6bc3287e) Thanks [@typicalninja](https://github.com/typicalninja)! - Add thumbnail image to news parser & selector
+
+### Patch Changes
+
+- [#83](https://github.com/typicalninja/google-sr/pull/83) [`52d4ed8`](https://github.com/typicalninja/google-sr/commit/52d4ed8229f7c897531904f90bcf0aa5924faa35) Thanks [@typicalninja](https://github.com/typicalninja)! - Optimize parser performance by checking for empty data earlier when noPartialResults is enabled
+
+- [#65](https://github.com/typicalninja/google-sr/pull/65) [`fe575b5`](https://github.com/typicalninja/google-sr/commit/fe575b56fb8080d155a54f3b0310f209a44c247c) Thanks [@typicalninja](https://github.com/typicalninja)! - Update dependencies to latest versions
+
+- Updated dependencies [[`cae9f30`](https://github.com/typicalninja/google-sr/commit/cae9f30d98a10b031c8f1833819e30d692f4bfde), [`bb1cc1a`](https://github.com/typicalninja/google-sr/commit/bb1cc1afcd931948b1ebe02bd5627fdc6bc3287e), [`786a8fc`](https://github.com/typicalninja/google-sr/commit/786a8fc47a5d4fc1f32afbf2ad7846d6c614af80)]:
+  - google-sr-selectors@3.0.0
+
 ## 5.0.0
 
 ### Major Changes
