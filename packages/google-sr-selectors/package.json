@@ -1,6 +1,6 @@
 {
   "name": "google-sr-selectors",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Html selectors for google search result pages.",
   "repository": "https://github.com/typicalninja/google-sr",
   "homepage": "https://typicalninja.github.io/google-sr/",
@@ -27,7 +27,7 @@
   ],
   "author": "typicalninja",
   "license": "Apache-2.0",
-	"engines": {
+  "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=10.13.1"
   }
