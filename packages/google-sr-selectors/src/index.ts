@@ -74,4 +74,5 @@ export const NewsSearchSelector = {
 	published_date: ".fYyStc.YVIcad",
 	description: ".qXLe6d.FrIlee .fYyStc:first-of-type",
 	source: ".qXLe6d.dXDvrc .fYyStc",
+	thumbnail_image: "table.gNEi4d > tbody > tr > td > div > img",
 };
