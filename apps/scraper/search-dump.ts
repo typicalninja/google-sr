@@ -64,14 +64,6 @@ async function main(searchQuery: string) {
 		const $ = cheerio.load(data);
 		const mainContent = $("html");
 
-		// Remove unnecessary elements
-		const removedElements = mainContent
-			.find(
-				"footer, header, script, svg, style, #st-card, link, meta, noscript",
-			)
-			.remove();
-		console.log(`🧹 Cleaned up ${removedElements.length} unnecessary elements`);
-
 		const htmlDumpFile = path.resolve(destinationDir, "./dump.html");
 		const selectorDumpFile = path.resolve(destinationDir, "./selectors.md");
 		const summaryFile = path.resolve(destinationDir, "./summary.md");
