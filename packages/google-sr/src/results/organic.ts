@@ -17,7 +17,7 @@ export interface OrganicResultNode extends SearchResultNodeLike {
 	description: string;
 	link: string;
 	source: string;
-	isAd: boolean; // Optional, true if the result is an ad
+	isAd: boolean;
 }
 
 /**
@@ -54,6 +54,9 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 			.find(OrganicSearchSelector.metaSource)
 			.text();
 		if (noPartialResults && isStringEmpty(metaSource)) continue;
+		// TODO: during testing, i was unable to find a result that has an ad meta
+		// TODO: so this is modeled after what i got from a real browser using the request setup
+		// TODO: more data is required to figure out how this works
 		const metaAd = metaContainer.find(OrganicSearchSelector.metaAd).text();
 
 		parsedResults.push({
