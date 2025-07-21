@@ -16,6 +16,8 @@ export interface OrganicResultNode extends SearchResultNodeLike {
 	title: string;
 	description: string;
 	link: string;
+	source: string;
+	isAd: boolean; // Optional, true if the result is an ad
 }
 
 /**
@@ -44,15 +46,23 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
 		if (noPartialResults && isStringEmpty(link)) continue;
 		link = extractUrlFromGoogleLink(link);
-		// if not links is found it's not a valid result, we can safely skip it
+		// if no link is found it's not a valid result, we can safely skip it
 		// most likely the first result can be a special block
 		if (typeof link !== "string") continue;
+		const metaContainer = $(element).find(OrganicSearchSelector.metaContainer);
+		const metaSource = metaContainer
+			.find(OrganicSearchSelector.metaSource)
+			.text();
+		if (noPartialResults && isStringEmpty(metaSource)) continue;
+		const metaAd = metaContainer.find(OrganicSearchSelector.metaAd).text();
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,
 			link: link,
 			description,
 			title,
+			source: metaSource,
+			isAd: !isStringEmpty(metaAd),
 		});
 	}
 
