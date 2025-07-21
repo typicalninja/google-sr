@@ -8,6 +8,12 @@ export const OrganicSearchSelector = {
 	link: "div > div > a.fuLhoc.ZWRArf",
 	title: "span.CVA68e.qXLe6d.fuLhoc.ZWRArf",
 	description: "span.qXLe6d.FrIlee > span.fYyStc",
+	metaContainer: "span.qXLe6d.dXDvrc",
+	// choose the last span as, if the result is an ad
+	// there can be a middle span that contains the "-"
+	metaSource: "span.fYyStc:last-of-type",
+	// if this element is present and contains non empty text, its an ad
+	metaAd: "span.dloBPe.fYyStc",
 };
 
 export const TranslateSearchSelector = {
