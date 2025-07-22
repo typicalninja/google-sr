@@ -18,7 +18,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
 	link: string;
 	source: string;
 	published_date: string;
-	thumbnail_image: string;
+	thumbnail_image?: string;
 }
 
 /**
