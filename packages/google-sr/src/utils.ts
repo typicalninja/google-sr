@@ -149,6 +149,18 @@ export function isStringEmpty(value: unknown): boolean {
 }
 
 /**
+ * Coerces a value into a string or undefined.
+ * If the value is empty or null, returns undefined.
+ * @private
+ * @param value - The value to coerce.
+ * @returns A string if the value is valid, otherwise undefined.
+ */
+export function coerceToStringOrUndefined(value: unknown): string | undefined {
+	if (typeof value !== "string") return undefined;
+	return value === "" ? undefined : value;
+}
+
+/**
  * Internal utility type to convert a array type (T[]) to a single type (T)
  * if T is not an array, it will return T
  * @private
@@ -168,7 +180,10 @@ export type ParserResultType<R extends ResultParser> = AsArrayElement<
  * It will make all properties optional except the 'type' property
  * @private
  */
-type PartialExceptType<T extends { type: string }> = Omit<Partial<T>, "type"> &
+export type PartialExceptType<T extends { type: string }> = Omit<
+	Partial<T>,
+	"type"
+> &
 	Pick<T, "type">;
 
 /**
@@ -185,5 +200,5 @@ export type SearchResultTypeFromParser<
 		// in practice, this mean just the regular node
 		NonNullable<ParserResultType<R>>
 	: // With partial results, we allow results with empty properties
-		// so any property can be undefined
+		// so any property can be undefined, but the 'type' property must always be present
 		PartialExceptType<NonNullable<ParserResultType<R>>>;
