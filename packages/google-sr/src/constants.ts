@@ -8,6 +8,7 @@ import type {
 	TranslateResultNode,
 	UnitConversionResultNode,
 } from "./results";
+import type { PartialExceptType } from "./utils";
 
 export const ResultTypes = {
 	OrganicResult: "ORGANIC",
@@ -40,7 +41,12 @@ export interface SearchResultNodeLike {
 // the type used to identify a parser function
 export type ResultParser<
 	R extends SearchResultNodeLike = SearchResultNodeLike,
-> = (cheerio: CheerioAPI, noPartialResults: boolean) => R[] | R | null;
+> = <P extends boolean>(
+	cheerio: CheerioAPI,
+	noPartialResults: P,
+) =>
+	| (P extends true ? R[] | R : PartialExceptType<R>[] | PartialExceptType<R>)
+	| null;
 
 /**
  * Search options for single page search
