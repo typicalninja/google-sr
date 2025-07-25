@@ -72,7 +72,7 @@ export const DictionaryResult: ResultParser<DictionaryResultNode> = (
 	if (noPartialResults && !phonetic) return null;
 
 	const word = coerceToStringOrUndefined(
-		dictionaryBlock.find(DictionarySearchSelector.word).first().text(),
+		dictionaryBlock.find(DictionarySearchSelector.word).text(),
 	);
 	if (noPartialResults && !word) return null;
 
