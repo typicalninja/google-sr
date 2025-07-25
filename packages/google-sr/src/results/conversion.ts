@@ -25,7 +25,7 @@ export const UnitConversionResult: ResultParser<UnitConversionResultNode> = (
 	if (!block.length) return null;
 
 	const from = coerceToStringOrUndefined(
-		block.find(UnitConversionSelector.from).text().replace("=", ""),
+		block.find(UnitConversionSelector.from).text().replace("=", "").trim(),
 	);
 
 	if (noPartialResults && !from) return null;
