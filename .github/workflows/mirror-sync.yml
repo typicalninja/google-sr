@@ -22,6 +22,8 @@ jobs:
         with:
           REMOTE: 'ssh://git@codeberg.org/typicalninja/google-sr.git'
           GIT_SSH_PRIVATE_KEY: ${{ secrets.MIRROR_GIT_SSH_PRIVATE_KEY }}
-          GIT_SSH_KNOWN_HOSTS: ${{ secrets.MIRROR_GIT_SSH_KNOWN_HOSTS }}
-          # temp just debugging
-          # GIT_SSH_NO_VERIFY_HOST: "true"
+          #GIT_SSH_KNOWN_HOSTS: ${{ secrets.MIRROR_GIT_SSH_KNOWN_HOSTS }}
+          # Known host seem not work
+          # for now just skip verification
+          # see here? https://github.com/yesolutions/mirror-action/issues/14
+          GIT_SSH_NO_VERIFY_HOST: "true"
