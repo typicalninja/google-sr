@@ -1,11 +1,10 @@
-// Importing the Selectors from google-sr-selectors
 import { GeneralSelector, UnitConversionSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isStringEmpty, throwNoCheerioError } from "../utils";
+import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils";
 
 export interface UnitConversionResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.UnitConversionResult;
@@ -23,21 +22,23 @@ export const UnitConversionResult: ResultParser<UnitConversionResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("UnitConversionResult");
 	const block = $(GeneralSelector.block).first();
-	const from = block
-		.find(UnitConversionSelector.from)
-		.text()
-		.replace("=", "")
-		.trim();
+	if (!block.length) return null;
 
-	if (noPartialResults && isStringEmpty(from)) return null;
+	const from = coerceToStringOrUndefined(
+		block.find(UnitConversionSelector.from).text().replace("=", ""),
+	);
 
-	const to = block.find(UnitConversionSelector.to).text().trim();
+	if (noPartialResults && !from) return null;
 
-	if (noPartialResults && isStringEmpty(to)) return null;
+	const to = coerceToStringOrUndefined(
+		block.find(UnitConversionSelector.to).text().trim(),
+	);
+
+	if (noPartialResults && !to) return null;
 
 	return {
 		type: ResultTypes.UnitConversionResult,
 		from: from,
 		to,
-	};
+	} as UnitConversionResultNode;
 };

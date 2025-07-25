@@ -1,4 +1,3 @@
-// Importing the CSS Selectors from google-sr-selectors
 import { GeneralSelector, TranslateSearchSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
@@ -6,7 +5,7 @@ import {
 	type SearchResultNodeLike,
 	TranslateSourceTextRegex,
 } from "../constants";
-import { isStringEmpty, throwNoCheerioError } from "../utils";
+import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils";
 
 export interface TranslateResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TranslateResult;
@@ -29,38 +28,48 @@ export const TranslateResult: ResultParser<TranslateResultNode> = (
 	const translateBlock = $(GeneralSelector.block).first();
 	// if we don't find a valid block drop this
 	if (!translateBlock.length) return null;
+
 	// old version does not have separate source and target language
 	// instead it has ex "English (detected) to Spanish "
-	const translatedFromTo = translateBlock
-		.find(TranslateSearchSelector.translateFromTo)
-		.text();
-	const fromTo = translatedFromTo.split(" to ");
-	// we expect only 2 languages, source and target
-	if (fromTo.length !== 2) return null;
+	const translatedFromTo = coerceToStringOrUndefined(
+		translateBlock.find(TranslateSearchSelector.translateFromTo).text(),
+	);
+	if (noPartialResults && !translatedFromTo) return null;
 
-	const sourceLanguage = fromTo[0].trim();
-	const translationLanguage = fromTo[1].trim();
-	if (
-		noPartialResults &&
-		(isStringEmpty(sourceLanguage) || isStringEmpty(translationLanguage))
-	)
+	let sourceLanguage: string | undefined;
+	let translationLanguage: string | undefined;
+
+	if (translatedFromTo) {
+		const fromTo = translatedFromTo.split(" to ");
+		// we expect only 2 languages, source and target
+		// so if we don't have exactly 2 parts, we can't parse it correctly
+		if (fromTo.length !== 2) return null;
+		sourceLanguage = coerceToStringOrUndefined(fromTo[0].trimEnd());
+		translationLanguage = coerceToStringOrUndefined(fromTo[1].trim());
+	}
+
+	if (noPartialResults && (!sourceLanguage || !translationLanguage))
 		return null;
 
 	// source text is in the format "hello" in Japanese
-	const sourceTextBlock = translateBlock
-		.find(TranslateSearchSelector.sourceText)
-		.text()
-		.trim();
-	const sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1] ?? "";
+	const sourceTextBlock = coerceToStringOrUndefined(
+		translateBlock.find(TranslateSearchSelector.sourceText).text(),
+	);
 
-	if (noPartialResults && isStringEmpty(sourceText)) return null;
+	if (noPartialResults && !sourceTextBlock) return null;
 
-	const translatedText = translateBlock
-		.find(TranslateSearchSelector.translatedText)
-		.text()
-		.trim();
+	let sourceText: string | undefined;
+	if (sourceTextBlock) {
+		sourceText = sourceTextBlock.match(TranslateSourceTextRegex)?.[1];
+	}
 
-	if (noPartialResults && isStringEmpty(sourceLanguage)) return null;
+	if (noPartialResults && !sourceText) return null;
+
+	const translatedText = coerceToStringOrUndefined(
+		translateBlock.find(TranslateSearchSelector.translatedText).text(),
+	);
+
+	if (noPartialResults && !translatedText) return null;
 
 	return {
 		type: ResultTypes.TranslateResult,
@@ -68,5 +77,5 @@ export const TranslateResult: ResultParser<TranslateResultNode> = (
 		translationLanguage,
 		sourceText,
 		translatedText,
-	};
+	} as TranslateResultNode;
 };

@@ -6,8 +6,9 @@ import {
 	type SearchResultNodeLike,
 } from "../constants";
 import {
+	coerceToStringOrUndefined,
 	extractUrlFromGoogleLink,
-	isStringEmpty,
+	type PartialExceptType,
 	throwNoCheerioError,
 } from "../utils";
 
@@ -21,8 +22,22 @@ export interface OrganicResultNode extends SearchResultNodeLike {
 }
 
 /**
- * Parses regular non-ads search results.
- * @returns Array of OrganicSearchResultNodes
+ * Parses regular search results.
+ * Despite the "organic" in the name, this parser is used for all regular search results **including ads**.
+ * It is the most commonly used parser and should be used for most search queries.
+ *
+ * @example
+ * ```ts
+ * import { OrganicResult, search } from 'google-sr';
+ * const results = await search({
+ * 	query: 'google-sr npm package',
+ * 	parsers: [OrganicResult],
+ * });
+ * ```
+ *
+ * @returns
+ * - Array of {@link OrganicResultNode} objects
+ * - If noPartialResult is true, Array of {@link PartialExceptType}<{@link OrganicResultNode}> objects
  */
 export const OrganicResult: ResultParser<OrganicResultNode> = (
 	$,
@@ -31,33 +46,45 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 	// Check if the user has called the function directly
 	// Most likely, they have passed the result of calling the function instead of the function itself
 	if (!$) throwNoCheerioError("OrganicResult");
-
-	const parsedResults: OrganicResultNode[] = [];
+	//
+	const parsedResults: PartialExceptType<OrganicResultNode>[] = [];
 	const organicSearchBlocks = $(GeneralSelector.block).get();
 
 	for (const element of organicSearchBlocks) {
-		const description = $(element)
-			.find(OrganicSearchSelector.description)
-			.text();
-		if (noPartialResults && isStringEmpty(description)) continue;
-		const title = $(element).find(OrganicSearchSelector.title).text();
-		if (noPartialResults && isStringEmpty(title)) continue;
+		// Get a Cheerio instance for the current element
+		// This allows us to use Cheerio methods on the element
+		const $el = $(element);
 
-		let link = $(element).find(OrganicSearchSelector.link).attr("href") ?? null;
-		if (noPartialResults && isStringEmpty(link)) continue;
-		link = extractUrlFromGoogleLink(link);
+		const result_href_link = $el.find(OrganicSearchSelector.link).attr("href");
 		// if no link is found it's not a valid result, we can safely skip it
 		// most likely the first result can be a special block
-		if (typeof link !== "string") continue;
-		const metaContainer = $(element).find(OrganicSearchSelector.metaContainer);
-		const metaSource = metaContainer
-			.find(OrganicSearchSelector.metaSource)
-			.text();
-		if (noPartialResults && isStringEmpty(metaSource)) continue;
+		if (typeof result_href_link !== "string") continue;
+		const link = coerceToStringOrUndefined(
+			extractUrlFromGoogleLink(result_href_link),
+		);
+		if (noPartialResults && !link) continue;
+
+		const description = coerceToStringOrUndefined(
+			$el.find(OrganicSearchSelector.description).text(),
+		);
+		if (noPartialResults && !description) continue;
+
+		const title = coerceToStringOrUndefined(
+			$el.find(OrganicSearchSelector.title).text(),
+		);
+		if (noPartialResults && !title) continue;
+
+		const metaContainer = $el.find(OrganicSearchSelector.metaContainer);
+		const metaSource = coerceToStringOrUndefined(
+			metaContainer.find(OrganicSearchSelector.metaSource).text(),
+		);
+		if (noPartialResults && !metaSource) continue;
 		// TODO: during testing, i was unable to find a result that has an ad meta
 		// TODO: so this is modeled after what i got from a real browser using the request setup
 		// TODO: more data is required to figure out how this works
-		const metaAd = metaContainer.find(OrganicSearchSelector.metaAd).text();
+		const metaAd = coerceToStringOrUndefined(
+			metaContainer.find(OrganicSearchSelector.metaAd).text(),
+		);
 
 		parsedResults.push({
 			type: ResultTypes.OrganicResult,
@@ -65,9 +92,11 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 			description,
 			title,
 			source: metaSource,
-			isAd: !isStringEmpty(metaAd),
+			// since empty value is coerced to undefined
+			// we can safely check if the value is empty or not
+			isAd: Boolean(metaAd),
 		});
 	}
 
-	return parsedResults;
+	return parsedResults as OrganicResultNode[];
 };

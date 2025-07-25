@@ -5,7 +5,7 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 } from "../constants";
-import { isStringEmpty, throwNoCheerioError } from "../utils";
+import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils";
 
 export interface TimeResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TimeResult;
@@ -24,22 +24,30 @@ export const TimeResult: ResultParser<TimeResultNode> = (
 ) => {
 	if (!$) throwNoCheerioError("TimeResult");
 	const block = $(TimeSearchSelector.block).first();
-	const location = block.find(TimeSearchSelector.location).text();
-	// if we don't find a valid location drop this
-	if (noPartialResults && isStringEmpty(location)) return null;
+
+	const location = coerceToStringOrUndefined(
+		block.find(TimeSearchSelector.location).text(),
+	);
+	if (noPartialResults && !location) return null;
+
 	const layoutTable = block.find(TimeSearchSelector.timeLayoutTable).first();
+	// if no layout table is found, we can't parse the time
 	if (!layoutTable) return null;
-	const time = layoutTable.find(TimeSearchSelector.time).text();
-	// if we don't find a valid time drop this
-	if (noPartialResults && isStringEmpty(time)) return null;
-	const timeInWords = layoutTable.find(TimeSearchSelector.timeInWords).text();
-	// if we don't find a valid time in words drop this
-	if (noPartialResults && isStringEmpty(timeInWords)) return null;
+
+	const time = coerceToStringOrUndefined(
+		layoutTable.find(TimeSearchSelector.time).text(),
+	);
+	if (noPartialResults && !time) return null;
+
+	const timeInWords = coerceToStringOrUndefined(
+		layoutTable.find(TimeSearchSelector.timeInWords).text(),
+	);
+	if (noPartialResults && !timeInWords) return null;
 
 	return {
 		type: ResultTypes.TimeResult,
 		location,
 		time,
 		timeInWords,
-	};
+	} as TimeResultNode;
 };
