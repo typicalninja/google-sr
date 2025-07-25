@@ -22,4 +22,6 @@ jobs:
         with:
           REMOTE: 'ssh://git@codeberg.org/typicalninja/google-sr.git'
           GIT_SSH_PRIVATE_KEY: ${{ secrets.MIRROR_GIT_SSH_PRIVATE_KEY }}
-          GIT_SSH_KNOWN_HOSTS: ${{ secrets.MIRROR_GIT_SSH_KNOWN_HOSTS }}
+          # GIT_SSH_KNOWN_HOSTS: ${{ secrets.MIRROR_GIT_SSH_KNOWN_HOSTS }}
+					# temp just debugging
+          GIT_SSH_NO_VERIFY_HOST: "true"
