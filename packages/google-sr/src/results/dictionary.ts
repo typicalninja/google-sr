@@ -19,6 +19,7 @@ export interface DictionaryMeaning {
 }
 
 export interface DictionaryResultNode extends SearchResultNodeLike {
+	type: typeof ResultTypes.DictionaryResult;
 	meanings: DictionaryMeaning[];
 	phonetic: string; // The phonetic spelling of the word
 	word: string; // The word being defined
