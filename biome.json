@@ -2,8 +2,10 @@
 	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
 	"files": {
 		"includes": [
-			"**",
+			"packages/**/*.ts",
+			"apps/**/*.ts",
 			"!**/dist",
+			"!**/.turbo",
 			"!**/node_modules",
 			"!**/package*.json",
 			"!**/pnpm*.lock",

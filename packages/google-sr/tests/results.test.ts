@@ -102,9 +102,12 @@ describe(
 
 			expect(res.metadata).to.be.an("array").and.not.empty;
 
-			for (const meta of res.metadata) {
-				expect(meta.label).to.be.a("string").and.not.empty;
-				expect(meta.value).to.be.a("string").and.not.empty;
+			// needed to satisfy the type checker
+			if (res.metadata) {
+				for (const meta of res.metadata) {
+					expect(meta.label).to.be.a("string").and.not.empty;
+					expect(meta.value).to.be.a("string").and.not.empty;
+				}
 			}
 		});
 
@@ -139,13 +142,16 @@ describe(
 			// cannot reliably check the word and phonetic, so just check they are strings and not empty
 			expect(res.word).to.be.a("string").and.not.empty;
 			expect(res.phonetic).to.be.a("string").and.not.empty;
-
-			for (const meaning of res.meanings) {
-				expect(meaning.partOfSpeech).to.be.a("string").and.not.empty;
-				expect(meaning.definitions).to.be.an("array").and.not.empty;
-				for (const definition of meaning.definitions) {
-					expect(definition.definition).to.be.a("string").and.not.empty;
-					expect(definition.example).to.be.a("string");
+			expect(res.meanings).to.be.a("array").and.not.empty;
+			// needed to satisfy the type checker
+			if (res.meanings) {
+				for (const meaning of res.meanings) {
+					expect(meaning.partOfSpeech).to.be.a("string").and.not.empty;
+					expect(meaning.definitions).to.be.an("array").and.not.empty;
+					for (const definition of meaning.definitions) {
+						expect(definition.definition).to.be.a("string").and.not.empty;
+						expect(definition.example).to.be.a("string");
+					}
 				}
 			}
 		});

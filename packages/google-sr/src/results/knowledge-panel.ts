@@ -1,4 +1,3 @@
-// Importing the Selectors from google-sr-selectors
 import { GeneralSelector, KnowledgePanelSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
@@ -6,8 +5,8 @@ import {
 	type SearchResultNodeLike,
 } from "../constants";
 import {
+	coerceToStringOrUndefined,
 	extractUrlFromGoogleLink,
-	isStringEmpty,
 	throwNoCheerioError,
 } from "../utils";
 
@@ -39,41 +38,50 @@ export const KnowledgePanelResult: ResultParser<KnowledgePanelResultNode> = (
 	if (!$) throwNoCheerioError("KnowledgePanelResult");
 	// knowledge panel can be anywhere, at the start, or +x (mostly 2) from the start
 	const blocks = $(GeneralSelector.block);
-	// we loop through each block to find the first valid knowledge panel
-	// we use cheerio.each instead of for-of loop because we need to break the loop to avoid
-	// parsing non-knowledge panel blocks
-	let knowledgePanel: KnowledgePanelResultNode | null = null;
+	let blocksSearched = 0;
+	for (const block of blocks) {
+		// according to the tests, knowledge panel is always within the first 5 blocks
+		// so we can break the loop after 5 blocks
+		if (blocksSearched > 5) break;
+		blocksSearched++;
+		const $el = $(block);
+		const headerBlock = $el.find(KnowledgePanelSelector.headerBlock).first();
+		if (!headerBlock.length) continue; // knowledge panel header block is required
 
-	blocks.each((index, element) => {
-		// knowledge panel will always be within +5 blocks from the start
-		if (index > 5) return false;
-		const block = $(element);
-		const headerContainer = block.find(KnowledgePanelSelector.headerBlock);
-		const headerBlock = headerContainer.first();
-		// the second td contains the image data
-		const imageContainer = headerBlock.next();
-		if (!headerBlock.length) return;
-		const title = headerBlock.find(KnowledgePanelSelector.title).text().trim();
-		const label = headerBlock.find(KnowledgePanelSelector.label).text().trim();
-		// image link is optional, we can skip it if it's not present
-		const imageLink = imageContainer
-			.find(KnowledgePanelSelector.imageUrl)
-			.attr("src");
-		// if we don't find a title or label, then this is an invalid knowledge panel
-		if (isStringEmpty(title) || isStringEmpty(label)) return;
-		const descriptionBlock = block.find(
-			KnowledgePanelSelector.descriptionBlock,
+		// USE continue for blocks that make this invalid block
+		// USE break if we found a valid knowledge panel but certain properties are missing
+		// and noPartialResults is true
+
+		const title = coerceToStringOrUndefined(
+			headerBlock.find(KnowledgePanelSelector.title).text(),
 		);
-		const description = descriptionBlock.find("span").first().text().trim();
-		if (noPartialResults && isStringEmpty(description)) return;
+		if (noPartialResults && !title) break;
+
+		const label = coerceToStringOrUndefined(
+			headerBlock.find(KnowledgePanelSelector.label).text().trim(),
+		);
+		if (noPartialResults && !label) break;
+
+		const descriptionBlock = $el.find(KnowledgePanelSelector.descriptionBlock);
+		if (!descriptionBlock.length) continue;
+
+		const description = coerceToStringOrUndefined(
+			descriptionBlock.find("span").first().text(),
+		);
+		if (noPartialResults && !description) break;
+
 		// second span is the source link, we can get the source link from the href attribute
 		// source link is optional, we ignore it for noPartialResults check
 		const sourceLink = descriptionBlock.find("a").attr("href");
-		const cleanSourceLink = extractUrlFromGoogleLink(sourceLink ?? null);
-		const metadataBlocks = block
+		const cleanSourceLink = coerceToStringOrUndefined(
+			extractUrlFromGoogleLink(sourceLink),
+		);
+
+		// metadata blocks are optional, we can skip them if they are not present
+		const metadataBlocks = $el
 			.find(KnowledgePanelSelector.metadataBlock)
 			.toArray();
-		// metadata blocks are optional, we can skip them if they are not present
+
 		const metadata: KnowledgePanelMetadata[] = [];
 
 		for (const metadataContainerElement of metadataBlocks) {
@@ -81,13 +89,11 @@ export const KnowledgePanelResult: ResultParser<KnowledgePanelResultNode> = (
 			const label = metadataContainer
 				.find(KnowledgePanelSelector.metadataLabel)
 				.first()
-				.text()
-				.trim();
+				.text();
 			if (label === "") continue;
 			const value = metadataContainer
 				.find(KnowledgePanelSelector.metadataValue)
-				.text()
-				.trim();
+				.text();
 			if (value === "") continue;
 			metadata.push({
 				label,
@@ -95,17 +101,21 @@ export const KnowledgePanelResult: ResultParser<KnowledgePanelResultNode> = (
 			});
 		}
 
-		knowledgePanel = {
+		// image link is optional, so no need to check for noPartialResults
+		const imageLink = coerceToStringOrUndefined(
+			headerBlock.next().find(KnowledgePanelSelector.imageUrl).attr("src"),
+		);
+
+		return {
 			type: ResultTypes.KnowledgePanelResult,
 			title,
 			label,
 			description,
-			sourceLink: cleanSourceLink ?? undefined,
-			imageLink: imageLink ?? undefined,
+			sourceLink: cleanSourceLink,
+			imageLink: imageLink,
 			metadata,
-		};
-		return false;
-	});
+		} as KnowledgePanelResultNode;
+	}
 
-	return knowledgePanel;
+	return null;
 };

@@ -1,4 +1,3 @@
-// Importing the Selectors from google-sr-selectors
 import { GeneralSelector, NewsSearchSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
@@ -6,8 +5,8 @@ import {
 	type SearchResultNodeLike,
 } from "../constants";
 import {
+	coerceToStringOrUndefined,
 	extractUrlFromGoogleLink,
-	isStringEmpty,
 	throwNoCheerioError,
 } from "../utils";
 
@@ -22,18 +21,18 @@ export interface NewsResultNode extends SearchResultNodeLike {
 }
 
 /**
- * Parses results from the Google News tab.
+ * Parses results from the dedicated News tab in Google Search.
  *
  * To use this selector, set the `tbm` query parameter to `'nws'` in the request configuration.
- * This enables results from the dedicated News tab, which is incompatible with other selectors (e.g., OrganicSearchSelector).
+ *
+ * **NOTE: This parser is not compatible with the other parsers and vice versa.**
  *
  * @example
- *
  * ```ts
  * import { NewsResult, search } from 'google-sr';
  *
  * const results = await search({
- * 	query: 'latest news',
+ * 	query: 'latest news on AI',
  * 	parsers: [NewsResult],
  * 	requestConfig: {
  * 		queryParams: {
@@ -41,37 +40,60 @@ export interface NewsResultNode extends SearchResultNodeLike {
  * 		},
  * 	},
  * });
+ * ```
  *
- * @returns Array of NewsResultNode
+ * @returns Array of {@link NewsResultNode} objects
  */
 export const NewsResult: ResultParser<NewsResultNode> = (
 	$,
 	noPartialResults,
 ) => {
 	if (!$) throwNoCheerioError("NewsResult");
-	const parsedResults: NewsResultNode[] = [];
+	// To satisfy ts this needs to be defined as a Partial
+	// warning, while this will validate the properties, it will not validate the types of the properties
+	// should not be a huge issue, but be aware of it
+	const parsedResults: Partial<NewsResultNode>[] = [];
 	const newsSearchBlocks = $(GeneralSelector.block).toArray();
 	// parse each block individually for its content
 	for (const element of newsSearchBlocks) {
-		const rawLink =
-			$(element).find(NewsSearchSelector.link).attr("href") ?? null;
-		// if not links is found it's not a valid result, we can safely skip it
-		if (typeof rawLink !== "string") continue;
-		const link = extractUrlFromGoogleLink(rawLink) ?? "";
-		if (noPartialResults && isStringEmpty(link)) continue;
-		const title = $(element).find(NewsSearchSelector.title).text();
-		if (noPartialResults && isStringEmpty(title)) continue;
-		const description = $(element).find(NewsSearchSelector.description).text();
-		if (noPartialResults && isStringEmpty(description)) continue;
-		const source = $(element).find(NewsSearchSelector.source).text() ?? "";
-		if (noPartialResults && isStringEmpty(source)) continue;
-		const published_date =
-			$(element).find(NewsSearchSelector.published_date).text() ?? "";
-		if (noPartialResults && isStringEmpty(published_date)) continue;
-		const thumbnail_image =
-			$(element).find(NewsSearchSelector.thumbnail_image).attr("src") ?? "";
+		// Get a Cheerio instance for the current element
+		// This allows us to use Cheerio methods on the element
+		const $el = $(element);
 
-		if (noPartialResults && isStringEmpty(thumbnail_image)) continue;
+		const rawLink = $el.find(NewsSearchSelector.link).attr("href");
+		// if the link is not a string, we can safely skip it
+		// this result is guaranteed to be invalid
+		if (typeof rawLink !== "string") continue;
+		// extract the actual link from the google link
+		// this will return null if the link is not valid
+		const link = coerceToStringOrUndefined(extractUrlFromGoogleLink(rawLink));
+		if (noPartialResults && !link) continue;
+
+		const title = coerceToStringOrUndefined(
+			$el.find(NewsSearchSelector.title).text(),
+		);
+		if (noPartialResults && !title) continue;
+
+		const description = coerceToStringOrUndefined(
+			$el.find(NewsSearchSelector.description).text(),
+		);
+		if (noPartialResults && !description) continue;
+
+		const source = coerceToStringOrUndefined(
+			$el.find(NewsSearchSelector.source).text(),
+		);
+		if (noPartialResults && !source) continue;
+
+		const published_date = coerceToStringOrUndefined(
+			$el.find(NewsSearchSelector.published_date).text(),
+		);
+		if (noPartialResults && !published_date) continue;
+
+		// thumbnail_image is optional, so we can safely coerce it to a string or undefined
+		// and simply add it as is to the result
+		const thumbnail_image = coerceToStringOrUndefined(
+			$el.find(NewsSearchSelector.thumbnail_image).attr("src"),
+		);
 
 		parsedResults.push({
 			type: ResultTypes.NewsResult,
@@ -84,5 +106,6 @@ export const NewsResult: ResultParser<NewsResultNode> = (
 		});
 	}
 
-	return parsedResults;
+	// to satisfy ts we need to cast the results to the correct type
+	return parsedResults as NewsResultNode[];
 };

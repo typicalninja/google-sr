@@ -64,9 +64,7 @@ export async function decodeResponse(response: Response): Promise<string> {
  * @returns
  * @private
  */
-export function extractUrlFromGoogleLink(
-	googleLink: string | null,
-): string | null {
+export function extractUrlFromGoogleLink(googleLink?: string): string | null {
 	if (!googleLink) return null;
 	// Regular expression to extract the `q` or `imgurl` parameter from the link
 	const regex = /[?&](q|imgurl)=([^&]+)/;
@@ -135,17 +133,15 @@ export function throwNoCheerioError(
 }
 
 /**
- * Internal utility function to check if a value is empty.
- * It checks for:
- * - Empty strings
- * - Undefined or null values
- * @param value The value to check for emptiness
+ * Coerces a value into a string or undefined.
+ * If the value is empty or null, returns undefined.
  * @private
+ * @param value - The value to coerce.
+ * @returns A string if the value is valid, otherwise undefined.
  */
-export function isStringEmpty(value: unknown): boolean {
-	if (typeof value !== "string") return true;
-	if (value === "" || value === undefined || value === null) return true;
-	return false;
+export function coerceToStringOrUndefined(value: unknown): string | undefined {
+	if (typeof value !== "string") return undefined;
+	return value === "" ? undefined : value;
 }
 
 /**
@@ -156,17 +152,34 @@ export function isStringEmpty(value: unknown): boolean {
 export type AsArrayElement<T> = T extends Array<infer U> ? U : T;
 
 /**
- * Internal utility type to get a record without null and undefined values
+ * Internal utility type to extract the result type from a ResultParser function
  * @private
  */
-export type NonNullableRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
+export type ParserResultType<R extends ResultParser> = AsArrayElement<
+	ReturnType<R>
+>;
 
 /**
- * Generic type for the search results, derives the result types from parser array.
+ * Internal utility type to create a partial type from a result type
+ * It will make all properties optional except the 'type' property
+ * @private
+ */
+export type PartialExceptType<T extends { type: string }> = Pick<T, "type"> &
+	Omit<Partial<T>, "type">;
+
+/**
+ * Internal utility type to extract the search result type from a ResultParser
+ * It will return the type of the result parser, with the 'type' property always present
+ * @private
  */
 export type SearchResultTypeFromParser<
+	// result parser is a function that returns an array of results or a single result
 	R extends ResultParser,
-	S extends boolean = false,
-> = S extends true
-	? NonNullableRecord<NonNullable<AsArrayElement<ReturnType<R>>>>
-	: NonNullable<AsArrayElement<ReturnType<R>>>;
+	N extends boolean,
+> = N extends true
+	? // With noPartialResult, we exclude results with empty properties
+		// in practice, this mean just the regular node
+		NonNullable<ParserResultType<R>>
+	: // With partial results, we allow results with empty properties
+		// so any property can be undefined, but the 'type' property must always be present
+		PartialExceptType<NonNullable<ParserResultType<R>>>;

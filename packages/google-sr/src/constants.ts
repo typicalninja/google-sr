@@ -37,10 +37,34 @@ export interface SearchResultNodeLike {
 	type: string;
 }
 
-// the type used to identify a parser function
+/**
+ * A ResultParser is a function that takes a CheerioAPI instance and returns an array of search result nodes, a single node, or null if no results are found.
+ *
+ * Note: The return type does not always reflect the actual type that can be returned by the parser.
+ *
+ * Example: The returned node can also be a PartialExceptType<OrganicResultNode> if noPartialResults is false.
+ *
+ * **However, to satisfy the type system, always cast the return type to the expected type.**
+ *
+ * @example
+ * ```ts
+ * const myCustomParser: ResultParser<MyCustomResultNode> = ($, noPartialResults) => {
+ * 	// your parsing logic here
+ * 	// make sure to respect the noPartialResults flag
+ * 	return {
+ * 		// mandatory if returning a result
+ * 		type: "MY_CUSTOM_RESULT",
+ * 		title: "My Custom Result",
+ * 		// usually these are obtained via parsing the html
+ * 		// return undefined if noPartialResults is false and the property is not available
+ * 		description: undefined,
+ * 	} as MyCustomResultNode; // cast to the expected type to satisfy the type system
+ * }
+ * ```
+ */
 export type ResultParser<
 	R extends SearchResultNodeLike = SearchResultNodeLike,
-> = (cheerio: CheerioAPI, noPartialResults: boolean) => R[] | R | null;
+> = (cheerio: CheerioAPI, noPartialResults: boolean) => R | R[] | null;
 
 /**
  * Search options for single page search
