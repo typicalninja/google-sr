@@ -8,6 +8,7 @@ Fixed generic types for partial results. Now `search` and `searchWithPages` retu
 
 **Breaking Changes:**
 - `DictionaryResultNode` interface: `phonetic` and `word` properties are now required when `noPartialResults` is `true`. This makes all result types consistent.
+   - `DictionaryResultNode` now has the proper `type` property.
 - All parsers now convert empty strings to `undefined` (this was in the types but not working). This may break your code if you expected empty strings in the previous versions.
 
 **Other Changes:**
