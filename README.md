@@ -6,12 +6,14 @@
 
 <div align="center">
 
-[![Run tests and collect coverage](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)][test-action]  
+[![testing workflow](https://img.shields.io/github/actions/workflow/status/typicalninja/google-sr/tests.yml?style=flat)][test-action] 
 [![Mirror Repository](https://github.com/typicalninja/google-sr/actions/workflows/mirror-sync.yml/badge.svg)][mirror-codeberg]  
-[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]  
-[![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]  
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)][codefactor]  
-[![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)][codecov]
+[![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
+[![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)][codefactor]
+[![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)](https://codecov.io/gh/typicalninja/google-sr)
+
+
 </div>
 
 <div align="center">
