@@ -64,9 +64,7 @@ export async function decodeResponse(response: Response): Promise<string> {
  * @returns
  * @private
  */
-export function extractUrlFromGoogleLink(
-	googleLink: string | null,
-): string | null {
+export function extractUrlFromGoogleLink(googleLink?: string): string | null {
 	if (!googleLink) return null;
 	// Regular expression to extract the `q` or `imgurl` parameter from the link
 	const regex = /[?&](q|imgurl)=([^&]+)/;
@@ -135,20 +133,6 @@ export function throwNoCheerioError(
 }
 
 /**
- * Internal utility function to check if a value is empty.
- * It checks for:
- * - Empty strings
- * - Undefined or null values
- * @private
- * @param value The value to check for emptiness
- */
-export function isStringEmpty(value: unknown): boolean {
-	if (typeof value !== "string") return true;
-	if (value === "" || value === undefined || value === null) return true;
-	return false;
-}
-
-/**
  * Coerces a value into a string or undefined.
  * If the value is empty or null, returns undefined.
  * @private
@@ -180,11 +164,8 @@ export type ParserResultType<R extends ResultParser> = AsArrayElement<
  * It will make all properties optional except the 'type' property
  * @private
  */
-export type PartialExceptType<T extends { type: string }> = Omit<
-	Partial<T>,
-	"type"
-> &
-	Pick<T, "type">;
+export type PartialExceptType<T extends { type: string }> = Pick<T, "type"> &
+	Omit<Partial<T>, "type">;
 
 /**
  * Internal utility type to extract the search result type from a ResultParser
