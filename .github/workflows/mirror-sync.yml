@@ -1,0 +1,25 @@
+name: Mirror Repository
+
+on:
+  push:
+    branches:
+      - '**'
+
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    # restrict to the main repository
+    if: github.repository == 'typicalninja/google-sr'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Mirror
+        uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: 'ssh://git@codeberg.org/typicalninja/google-sr.git'
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.MIRROR_GIT_SSH_PRIVATE_KEY }}
+          GIT_SSH_KNOWN_HOSTS: ${{ secrets.MIRROR_GIT_SSH_KNOWN_HOSTS }}
