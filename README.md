@@ -9,16 +9,16 @@
 [![Run tests and collect coverage](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)][test-action]   
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
 [![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/typicalninja/google-sr)][github-issues]
 [![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)][codefactor]
-[![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)](https://codecov.io/gh/typicalninja/google-sr)
+[![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)][codecov]
 
 
 </div>
 
 <div align="center">
 
-**[Packages](#packages) |
-[Documentation][api-docs] |
+**[Documentation][api-docs] |
 [Discord][discord] |
 [Disclaimer](#disclaimer) |
 [Mirror][mirror-codeberg]**
@@ -72,7 +72,7 @@ This repository and the code inside it is licensed under the Apache-2.0 License.
 
 ---
 
-###### Like the project? [Star it on GitHub ★][stargazers]
+###### Like the project? [Star it on GitHub ★][github]
 
 
 [subdir-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr  
@@ -81,6 +81,8 @@ This repository and the code inside it is licensed under the Apache-2.0 License.
 
 [npm-gsr]: https://www.npmjs.com/package/google-sr  
 [stargazers]: https://github.com/typicalninja/google-sr/stargazers  
+[github]: https://github.com/typicalninja/google-sr  
+[github-issues]: https://github.com/typicalninja/google-sr/issues
 [discord]: https://discord.gg/ynwckXS9T2  
 [test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml  
 [api-docs]: https://typicalninja.github.io/google-sr/  
