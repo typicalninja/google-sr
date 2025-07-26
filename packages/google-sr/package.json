@@ -4,26 +4,18 @@
   "description": "Fast and efficient Package for scraping Google search results without the need for an API key",
   "repository": "https://github.com/typicalninja/google-sr",
   "homepage": "https://typicalninja.github.io/google-sr/",
+	"type": "module",
   "exports": {
-    "types": "./dist/index.d.mts",
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
   "scripts": {
     "test": "vitest",
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "keywords": [
-    "google-sr",
-    "gsr",
-    "google",
-    "googlesr",
-    "search",
-    "google-search",
-    "googlesearch",
-    "scraping"
-  ],
   "author": "typicalninja",
   "license": "Apache-2.0",
   "dependencies": {
@@ -39,5 +31,15 @@
 	"engines": {
     "node": ">=20.0.0",
     "pnpm": ">=10.13.1"
-  }
+  },
+	"keywords": [
+    "google-sr",
+    "gsr",
+    "google",
+    "googlesr",
+    "search",
+    "google-search",
+    "googlesearch",
+    "scraping"
+  ]
 }
