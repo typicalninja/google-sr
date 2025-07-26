@@ -9,7 +9,7 @@ import {
 	TimeResult,
 	TranslateResult,
 	UnitConversionResult,
-} from "../src";
+} from "../src/index.js";
 
 // Live tests require querying google, which can lead to rate limiting or blocking.
 // on development machines, we run live tests only if explicitly enabled

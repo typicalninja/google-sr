@@ -4,8 +4,8 @@ import {
 	ResultTypes,
 	type SearchResultNodeLike,
 	TranslateSourceTextRegex,
-} from "../constants";
-import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils";
+} from "../constants.js";
+import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils.js";
 
 export interface TranslateResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.TranslateResult;

@@ -3,14 +3,14 @@ import type {
 	ResultParser,
 	SearchOptions,
 	SearchOptionsWithPages,
-} from "./constants";
-import { OrganicResult } from "./results";
+} from "./constants.js";
+import { OrganicResult } from "./results/index.js";
 import {
 	decodeResponse,
 	prepareRequestConfig,
 	type SearchResultTypeFromParser,
 	safeGetFetch,
-} from "./utils";
+} from "./utils.js";
 
 export async function search<R extends ResultParser, N extends boolean = false>(
 	searchOptions: SearchOptions<R, N>,

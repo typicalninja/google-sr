@@ -3,12 +3,12 @@ import {
 	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
-} from "../constants";
+} from "../constants.js";
 import {
 	coerceToStringOrUndefined,
 	extractUrlFromGoogleLink,
 	throwNoCheerioError,
-} from "../utils";
+} from "../utils.js";
 
 export interface NewsResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.NewsResult;

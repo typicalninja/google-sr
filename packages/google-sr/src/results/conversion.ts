@@ -3,8 +3,8 @@ import {
 	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
-} from "../constants";
-import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils";
+} from "../constants.js";
+import { coerceToStringOrUndefined, throwNoCheerioError } from "../utils.js";
 
 export interface UnitConversionResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.UnitConversionResult;
