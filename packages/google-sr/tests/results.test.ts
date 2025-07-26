@@ -58,8 +58,11 @@ describe(
 			for (const res of results) {
 				expect(res.type).toBe(ResultTypes.OrganicResult);
 				expect(res.link).to.be.a("string").and.not.empty;
-				expect(res.description).to.be.a("string").and.not.empty;
+				// description is optional, check if its a string or undefined
+				expect(["string", "undefined"]).toContain(typeof res.description);
+				expect(res.source).to.be.a("string").and.not.empty;
 				expect(res.title).to.be.a("string").and.not.empty;
+				expect(res.isAd).to.be.a("boolean");
 			}
 		});
 

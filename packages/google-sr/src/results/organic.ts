@@ -1,4 +1,3 @@
-// Importing the CSS Selectors from google-sr-selectors
 import { GeneralSelector, OrganicSearchSelector } from "google-sr-selectors";
 import {
 	type ResultParser,
@@ -15,7 +14,7 @@ import {
 export interface OrganicResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.OrganicResult;
 	title: string;
-	description: string;
+	description?: string;
 	link: string;
 	source: string;
 	isAd: boolean;
@@ -46,7 +45,7 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 	// Check if the user has called the function directly
 	// Most likely, they have passed the result of calling the function instead of the function itself
 	if (!$) throwNoCheerioError("OrganicResult");
-	//
+
 	const parsedResults: PartialExceptType<OrganicResultNode>[] = [];
 	const organicSearchBlocks = $(GeneralSelector.block).get();
 
@@ -64,11 +63,6 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 		);
 		if (noPartialResults && !link) continue;
 
-		const description = coerceToStringOrUndefined(
-			$el.find(OrganicSearchSelector.description).text(),
-		);
-		if (noPartialResults && !description) continue;
-
 		const title = coerceToStringOrUndefined(
 			$el.find(OrganicSearchSelector.title).text(),
 		);
@@ -84,6 +78,11 @@ export const OrganicResult: ResultParser<OrganicResultNode> = (
 		// TODO: more data is required to figure out how this works
 		const metaAd = coerceToStringOrUndefined(
 			metaContainer.find(OrganicSearchSelector.metaAd).text(),
+		);
+
+		// Some result do not have the description
+		const description = coerceToStringOrUndefined(
+			$el.find(OrganicSearchSelector.description).text(),
 		);
 
 		parsedResults.push({
