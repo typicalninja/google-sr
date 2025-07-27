@@ -91,9 +91,6 @@ importers:
 
   packages/google-that:
     dependencies:
-      '@types/node':
-        specifier: ^24.0.10
-        version: 24.0.10
       google-sr:
         specifier: workspace:*
         version: link:../google-sr
@@ -101,6 +98,9 @@ importers:
         specifier: ^18.0.0
         version: 18.0.0
     devDependencies:
+      '@types/node':
+        specifier: ^24.0.10
+        version: 24.0.10
       '@types/yargs':
         specifier: ^17.0.33
         version: 17.0.33
