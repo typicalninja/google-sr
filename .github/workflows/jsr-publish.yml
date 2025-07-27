@@ -1,0 +1,29 @@
+name: JSR Publish
+on:
+  push:
+    branches:
+			# until we have a better solution, we will use separate branch for jsr publish
+			# bit more manual, but we at-least get provenance
+      - jsr-release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - packages/google-sr
+          - packages/google-sr-selectors
+          #- packages/google-that for now we will not publish this package to JSR
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-environment
+
+      - name: Publish ${{ matrix.package }} to JSR
+        working-directory: ${{ matrix.package }}
+        run: pnpm dlx jsr publish
