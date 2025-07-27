@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { OrganicResult, ResultTypes } from "../src";
-import { search, searchWithPages } from "../src/search";
+import { OrganicResult, ResultTypes } from "../src/index.js";
+import { search, searchWithPages } from "../src/search.js";
 
 // Live tests require querying google, which can lead to rate limiting or blocking.
 // on development machines, we run live tests only if explicitly enabled

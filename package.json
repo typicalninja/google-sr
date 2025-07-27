@@ -1,44 +1,47 @@
 {
-  "name": "gsr",
-  "private": true,
-  "repository": "https://github.com/typicalninja/google-sr",
-  "scripts": {
-    "build": "turbo run build --no-daemon",
-    "dev": "turbo run dev --parallel --no-daemon",
-    "test": "turbo run test --no-daemon --filter=google-sr -- --watch=false",
-    "build:packages": "turbo run build --no-daemon",
-    "build:docs": "typedoc ",
-    "lint": "biome lint --write",
-    "format": "biome format --write",
-    "check": "biome check --write",
-    "ci:publish": "pnpm publish -r --no-git-checks",
-    "ci:version": "changeset version",
-    "prepare": "is-ci || lefthook install"
-  },
-  "author": "typicalninja",
-  "license": "Apache-2.0",
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=10.13.1"
-  },
+	"name": "gsr",
+	"private": true,
+	"author": "typicalninja",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/typicalninja/google-sr.git"
+	},
+	"scripts": {
+		"build": "turbo run build --no-daemon",
+		"dev": "turbo run dev --parallel --no-daemon",
+		"test": "turbo run test --no-daemon --filter=google-sr -- --watch=false",
+		"build:packages": "turbo run build --no-daemon",
+		"build:docs": "typedoc ",
+		"lint": "biome lint --write",
+		"format": "biome format --write",
+		"check": "biome check --write",
+		"ci:publish": "pnpm publish -r --no-git-checks",
+		"ci:version": "changeset version",
+		"prepare": "is-ci || lefthook install"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.0.6",
+		"@changesets/changelog-github": "^0.5.1",
+		"@changesets/cli": "^2.29.5",
+		"@commitlint/cli": "19.8.1",
+		"@commitlint/config-conventional": "19.8.1",
+		"is-ci": "4.1.0",
+		"lefthook": "^1.11.16",
+		"pkg-pr-new": "^0.0.54",
+		"tsup": "^8.5.0",
+		"turbo": "^2.5.4",
+		"typedoc": "^0.28.7",
+		"typescript": "^5.8.3"
+	},
 	"packageManager": "pnpm@10.13.1",
-  "devDependencies": {
-    "@biomejs/biome": "2.0.6",
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.5",
-    "@commitlint/cli": "19.8.1",
-    "@commitlint/config-conventional": "19.8.1",
-    "is-ci": "4.1.0",
-    "lefthook": "^1.11.16",
-    "pkg-pr-new": "^0.0.54",
-    "tsup": "^8.5.0",
-    "turbo": "^2.5.4",
-    "typedoc": "^0.28.7",
-    "typescript": "^5.8.3"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  }
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=10.13.1"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	}
 }

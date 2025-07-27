@@ -5,7 +5,7 @@ import {
 	prepareRequestConfig,
 	safeGetFetch,
 	throwNoCheerioError,
-} from "../src/utils";
+} from "../src/utils.js";
 
 function createMockResponse(bytes: number[]): Response {
 	const buffer = new Uint8Array(bytes);

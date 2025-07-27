@@ -7,7 +7,7 @@ import type {
 	TimeResultNode,
 	TranslateResultNode,
 	UnitConversionResultNode,
-} from "./results";
+} from "./results/index.js";
 
 export const ResultTypes = {
 	OrganicResult: "ORGANIC",

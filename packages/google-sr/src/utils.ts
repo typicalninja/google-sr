@@ -3,8 +3,8 @@ import type {
 	ResultParser,
 	ResultTypes,
 	SearchOptions,
-} from "./constants";
-import { GOOGLE_SEARCH_URL } from "./constants";
+} from "./constants.js";
+import { GOOGLE_SEARCH_URL } from "./constants.js";
 
 const baseHeaders = {
 	Accept: "text/html",

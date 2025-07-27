@@ -83,9 +83,6 @@ importers:
       '@vitest/ui':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
-      is-ci:
-        specifier: 4.1.0
-        version: 4.1.0
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.0.10)(@vitest/ui@3.2.4)(jiti@2.4.2)(tsx@4.20.3)(yaml@2.8.0)
@@ -94,9 +91,6 @@ importers:
 
   packages/google-that:
     dependencies:
-      '@types/node':
-        specifier: ^24.0.10
-        version: 24.0.10
       google-sr:
         specifier: workspace:*
         version: link:../google-sr
@@ -104,6 +98,9 @@ importers:
         specifier: ^18.0.0
         version: 18.0.0
     devDependencies:
+      '@types/node':
+        specifier: ^24.0.10
+        version: 24.0.10
       '@types/yargs':
         specifier: ^17.0.33
         version: 17.0.33

@@ -3,13 +3,13 @@ import {
 	type ResultParser,
 	ResultTypes,
 	type SearchResultNodeLike,
-} from "../constants";
+} from "../constants.js";
 import {
 	coerceToStringOrUndefined,
 	extractUrlFromGoogleLink,
 	type PartialExceptType,
 	throwNoCheerioError,
-} from "../utils";
+} from "../utils.js";
 
 export interface OrganicResultNode extends SearchResultNodeLike {
 	type: typeof ResultTypes.OrganicResult;
