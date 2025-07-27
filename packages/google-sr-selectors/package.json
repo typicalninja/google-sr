@@ -1,34 +1,36 @@
 {
-  "name": "google-sr-selectors",
-  "version": "2.0.0",
-  "description": "Html selectors for google search result pages.",
-  "repository": "https://github.com/typicalninja/google-sr",
-  "homepage": "https://typicalninja.github.io/google-sr/",
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
-  },
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch"
-  },
-  "keywords": [
-    "google-sr",
-    "gsr",
-    "google",
-    "googlesr",
-    "search",
-    "google-search",
-    "googlesearch",
-    "scraping",
-    "selectors",
-    "cheerio"
-  ],
-  "author": "typicalninja",
-  "license": "Apache-2.0",
+	"name": "google-sr-selectors",
+	"version": "2.0.0",
+	"description": "Html selectors for google search result pages.",
+	"repository": "https://github.com/typicalninja/google-sr",
+	"homepage": "https://typicalninja.github.io/google-sr/",
+	"author": "typicalninja",
+	"license": "Apache-2.0",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch"
+	},
 	"engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=10.13.1"
-  }
+		"node": ">=20.0.0",
+		"pnpm": ">=10.13.1"
+	},
+	"keywords": [
+		"google-sr",
+		"gsr",
+		"google",
+		"googlesr",
+		"search",
+		"google-search",
+		"googlesearch",
+		"scraping",
+		"selectors",
+		"cheerio"
+	]
 }
