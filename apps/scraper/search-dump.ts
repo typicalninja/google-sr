@@ -21,14 +21,13 @@ function formatBytes(bytes: number) {
 }
 
 const requestHeaders = {
-	Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+	Accept: "text/html, application/xhtml+xml, */*",
 	"Accept-Encoding": "gzip, deflate",
 	"Accept-Language": "en-US,en;q=0.5",
-	Connection: "keep-alive",
+	// IE 9 user agent to get no js google search page
+	"User-Agent": "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)",
+	Connection: "Keep-Alive",
 	Referer: "https://www.google.com/",
-	"Upgrade-Insecure-Requests": "1",
-	"User-Agent":
-		"Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)",
 };
 
 // Main function to handle the search dumping process
@@ -38,6 +37,7 @@ async function main(searchQuery: string) {
 	const searchParams = new URLSearchParams({
 		q: searchQuery,
 		hl: "en",
+		ie: "UTF-8",
 	});
 
 	const url = `https://www.google.com/search?${searchParams}`;
@@ -52,14 +52,17 @@ async function main(searchQuery: string) {
 		}
 
 		// Get data buffer and detect charset from headers
-		const dataBuffer = await response.arrayBuffer();
+		//const dataBuffer = await response.arrayBuffer();
 		const contentType = response.headers.get("content-type") || "";
 		const charsetMatch = contentType.match(/charset=([^;]+)/i);
 		const charset = charsetMatch ? charsetMatch[1].toLowerCase() : "iso-8859-1";
 
-		const data = new TextDecoder(charset).decode(dataBuffer);
+		// const data = new TextDecoder(charset).decode(dataBuffer);
+		const data = await response.text();
 		const dataBytes = formatBytes(data.length);
-		console.log(`📥 Received response: ${dataBytes}`);
+		console.log(
+			`📥 Received response: ${dataBytes} of ${charset} content type`,
+		);
 
 		const $ = cheerio.load(data);
 		const mainContent = $("html");
