@@ -3,7 +3,7 @@ name: Mirror Repository
 on:
   push:
     branches:
-      - '**'
+      - 'master'
 
 permissions:
   contents: read
