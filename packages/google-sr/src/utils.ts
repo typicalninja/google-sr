@@ -4,7 +4,10 @@ import type {
 	ResultTypes,
 	SearchOptions,
 } from "./constants.js";
-import { GOOGLE_SEARCH_URL } from "./constants.js";
+import {
+	GOOGLE_REDIRECT_URL_PARAM_REGEX,
+	GOOGLE_SEARCH_URL,
+} from "./constants.js";
 
 const baseHeaders = {
 	Accept: "text/html, application/xhtml+xml, */*",
@@ -50,11 +53,8 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
  */
 export function extractUrlFromGoogleLink(googleLink?: string): string | null {
 	if (!googleLink) return null;
-	// Regular expression to extract the `q` or `imgurl` parameter from the link
-	const regex = /[?&](q|imgurl)=([^&]+)/;
-
 	// Match the link against the regex
-	const match = googleLink.match(regex);
+	const match = googleLink.match(GOOGLE_REDIRECT_URL_PARAM_REGEX);
 	if (match?.[2]) {
 		try {
 			// Decode the extracted URL to handle encoded characters
