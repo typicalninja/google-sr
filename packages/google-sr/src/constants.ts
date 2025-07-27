@@ -121,4 +121,7 @@ export interface SearchOptionsWithPages<
 
 // source text is in the format "hello" in Japanese, we need to select the text between ""
 export const TranslateSourceTextRegex = /"(.+?)"/;
+// google will use their own link redirect path when you click on a result
+// instead of that we can use this to get the direct url
+export const GOOGLE_REDIRECT_URL_PARAM_REGEX = /[?&](q|imgurl|url)=([^&]+)/;
 export const GOOGLE_SEARCH_URL = "https://www.google.com/search";

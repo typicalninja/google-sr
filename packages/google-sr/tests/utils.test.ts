@@ -1,24 +1,12 @@
 import { describe, expect, test, vi } from "vitest";
 import {
-	decodeResponse,
 	extractUrlFromGoogleLink,
 	prepareRequestConfig,
 	safeGetFetch,
 	throwNoCheerioError,
 } from "../src/utils.js";
 
-function createMockResponse(bytes: number[]): Response {
-	const buffer = new Uint8Array(bytes);
-	return new Response(buffer);
-}
-
 const nativeFetch = global.fetch;
-
-test("decodeResponse should decode latin1 encoding", async () => {
-	const mockedResponse = createMockResponse([0xa1, 0xa2]); // ¡, ¢
-	const decodedString = await decodeResponse(mockedResponse);
-	expect(decodedString).toBe("¡¢");
-});
 
 // Tests for extractUrlFromGoogleLink\
 describe("extractUrlFromGoogleLink", () => {
@@ -102,7 +90,7 @@ describe("prepareRequestConfig", () => {
 		});
 
 		expect(config.url).toBe("https://www.google.com/search");
-		expect(config.queryParams?.toString()).toBe("q=test");
+		expect(config.queryParams?.toString()).toBe("q=test&ie=UTF-8");
 		expect(config.headers).not.toBeUndefined();
 	});
 

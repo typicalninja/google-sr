@@ -6,7 +6,6 @@ import type {
 } from "./constants.js";
 import { OrganicResult } from "./results/index.js";
 import {
-	decodeResponse,
 	prepareRequestConfig,
 	type SearchResultTypeFromParser,
 	safeGetFetch,
@@ -24,7 +23,7 @@ export async function search<R extends ResultParser, N extends boolean = false>(
 	const requestConfig = prepareRequestConfig(searchOptions);
 	const response = await safeGetFetch(requestConfig);
 	// we use the utility function to decode the data with the correct charset
-	const data = await decodeResponse(response);
+	const data = await response.text();
 	const cheerioApi = load(data);
 	// use the provided parsers or the default one (OrganicResult)
 	const parsers = searchOptions.parsers || [OrganicResult];
@@ -72,7 +71,7 @@ export async function searchWithPages<
 		);
 		const response = await safeGetFetch(baseRequestConfig);
 		// we use the utility function to decode the data with the correct charset
-		const data = await decodeResponse(response);
+		const data = await response.text();
 		const cheerioApi = load(data);
 		let pageResults: SearchResultTypeFromParser<R, N>[] = [];
 		for (const parser of parsers) {
