@@ -24,12 +24,12 @@
 This package provides a set of CSS selectors for parsing Google search results, using tools such as [cheerio](https://github.com/cheeriojs/cheerio), etc...
 
 These selectors are compatible only with the search results page returned when the following user-agent is used:
-`Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)`.
+`Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)`.
 
 #### Important Note:
-Due to the constantly evolving nature of Google's search page structure, we cannot guarantee consistent 
-usage/validity of these selectors. Unless you are an advanced user with specific requirements, **we highly recommend 
-using the [google-sr][github-gsr] package instead** of 
+Due to the constantly evolving nature of Google's search page structure, we cannot guarantee consistent
+usage/validity of these selectors. Unless you are an advanced user with specific requirements, **we highly recommend
+using the [google-sr][github-gsr] package instead** of
 relying directly on google-sr-selectors.
 
 
