@@ -16,19 +16,23 @@
 		"build": "tsup",
 		"dev": "tsx src/index.ts"
 	},
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=10.13.1"
+	},
 	"dependencies": {
 		"@types/node": "^24.0.10",
 		"google-sr": "workspace:*",
 		"yargs": "^18.0.0"
 	},
-	"engines": {
-		"node": ">=20.0.0",
-		"pnpm": ">=10.13.1"
-	},
 	"devDependencies": {
 		"@types/yargs": "^17.0.33",
 		"tsx": "^4.20.3"
 	},
+	"files": [
+		"dist/",
+		"README.md"
+	],
 	"keywords": [
 		"google-sr",
 		"gsr",

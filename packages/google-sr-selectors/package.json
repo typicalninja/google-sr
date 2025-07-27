@@ -24,6 +24,10 @@
 		"node": ">=20.0.0",
 		"pnpm": ">=10.13.1"
 	},
+	"files": [
+		"dist/",
+		"README.md"
+	],
 	"keywords": [
 		"google-sr",
 		"gsr",
