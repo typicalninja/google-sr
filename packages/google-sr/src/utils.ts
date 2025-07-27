@@ -7,14 +7,13 @@ import type {
 import { GOOGLE_SEARCH_URL } from "./constants.js";
 
 const baseHeaders = {
-	Accept: "text/html",
+	Accept: "text/html, application/xhtml+xml, */*",
 	"Accept-Encoding": "gzip, deflate",
-	"Accept-Language": "en-US,en",
+	"Accept-Language": "en-US,en;q=0.5",
+	// Use a Internet Explorer < v10 user agent to avoid being required javaScript by google
+	"User-Agent": "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)",
+	Connection: "Keep-Alive",
 	Referer: "https://www.google.com/",
-	"upgrade-insecure-requests": "1",
-	// the tested user agent is for Chrome 103 on Windows 10
-	"User-Agent":
-		"Links (2.29; Linux 6.11.0-13-generic x86_64; GNU C 13.2; text)",
 };
 
 /**
@@ -41,21 +40,6 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	}
 
 	return response;
-}
-
-/**
- * @private
- * Try to decode the response body using the `ISO-8859-1` encoding,
- * @param response The response object from a fetch call
- * @returns The decoded response body as a string
- */
-export async function decodeResponse(response: Response): Promise<string> {
-	const dataBuffer = await response.arrayBuffer();
-
-	// During testing using the current user agent, the response was always in ISO-8859-1 encoding
-	// It is safe to assume that the response will always be in ISO-8859-1 encoding
-	// However if this were to change, then the text decoder will error
-	return new TextDecoder("iso-8859-1", { fatal: true }).decode(dataBuffer);
 }
 
 /**
@@ -115,6 +99,8 @@ export function prepareRequestConfig<R extends ResultParser, N extends boolean>(
 	// these params are always set without being overwritten
 	// set the actual query
 	requestConfig.queryParams.set("q", opts.query);
+	// set the input encoding to utf-8
+	requestConfig.queryParams.set("ie", "UTF-8");
 	requestConfig.url = GOOGLE_SEARCH_URL;
 
 	return requestConfig;
