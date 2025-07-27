@@ -2,7 +2,10 @@
 	"name": "google-sr-selectors",
 	"version": "2.0.0",
 	"description": "Html selectors for google search result pages.",
-	"repository": "https://github.com/typicalninja/google-sr",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/typicalninja/google-sr.git"
+	},
 	"homepage": "https://typicalninja.github.io/google-sr/",
 	"author": "typicalninja",
 	"license": "Apache-2.0",

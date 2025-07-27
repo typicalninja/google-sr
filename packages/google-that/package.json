@@ -1,40 +1,43 @@
 {
-  "name": "google-that",
-  "version": "1.1.1",
-  "description": "CLI tool to scrape google search results without a api key",
-  "repository": "https://github.com/typicalninja/google-sr",
-  "homepage": "https://github.com/typicalninja/google-sr",
-  "exports": null,
-  "bin": "./dist/index.js",
-  "type": "module",
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsx src/index.ts"
-  },
-  "keywords": [
-    "google-sr",
-    "gsr",
-    "google",
-    "googlesr",
-    "search",
-    "google-search",
-    "googlesearch",
-    "scraping",
-    "cli"
-  ],
-  "author": "typicalninja",
-  "license": "Apache-2.0",
-  "dependencies": {
-    "@types/node": "^24.0.10",
-    "google-sr": "workspace:*",
-    "yargs": "^18.0.0"
-  },
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=10.13.1"
-  },
-  "devDependencies": {
-    "@types/yargs": "^17.0.33",
-    "tsx": "^4.20.3"
-  }
+	"name": "google-that",
+	"version": "1.1.1",
+	"description": "CLI tool to scrape google search results without a api key",
+	"author": "typicalninja",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/typicalninja/google-sr.git"
+	},
+	"homepage": "https://github.com/typicalninja/google-sr",
+	"exports": null,
+	"bin": "./dist/index.js",
+	"type": "module",
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsx src/index.ts"
+	},
+	"dependencies": {
+		"@types/node": "^24.0.10",
+		"google-sr": "workspace:*",
+		"yargs": "^18.0.0"
+	},
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=10.13.1"
+	},
+	"devDependencies": {
+		"@types/yargs": "^17.0.33",
+		"tsx": "^4.20.3"
+	},
+	"keywords": [
+		"google-sr",
+		"gsr",
+		"google",
+		"googlesr",
+		"search",
+		"google-search",
+		"googlesearch",
+		"scraping",
+		"cli"
+	]
 }
