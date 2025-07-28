@@ -4,6 +4,7 @@ import {
 	KnowledgePanelResult,
 	NewsResult,
 	OrganicResult,
+	RelatedSearchesResult,
 	ResultTypes,
 	search,
 	TimeResult,
@@ -174,6 +175,25 @@ describe(
 			expect(res.time).to.be.a("string").and.not.empty;
 			expect(res.location).to.be.a("string").and.not.empty;
 			expect(res.timeInWords).to.be.a("string").and.not.empty;
+		});
+
+		it("Search for related searches results", async ({ expect }) => {
+			const results = await search({
+				query: "javascript frameworks",
+				parsers: [RelatedSearchesResult],
+				...GLOBAL_SEARCH_OPTIONS,
+			});
+
+			expect(results).to.be.an("array").and.have.lengthOf(1);
+			const res = results[0];
+			expect(res.type).toBe(ResultTypes.RelatedSearchesResult);
+			expect(res.queries).to.be.an("array");
+			// Verify queries are strings and not empty
+			if (res.queries) {
+				for (const query of res.queries) {
+					expect(query).to.be.a("string").and.not.empty;
+				}
+			}
 		});
 
 		it("Search for news results", async ({ expect }) => {
