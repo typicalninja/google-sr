@@ -82,3 +82,8 @@ export const NewsSearchSelector = {
 	source: ".qXLe6d.dXDvrc .fYyStc",
 	thumbnail_image: "table.gNEi4d > tbody > tr > td > div > img",
 };
+
+export const RelatedSearchesSelector = {
+	query_item: "a.ZWRArf", // Each related query link
+	text: "span.fYyStc", // Visible query string inside the <a>
+};

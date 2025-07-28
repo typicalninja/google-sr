@@ -4,6 +4,7 @@ import type {
 	KnowledgePanelResultNode,
 	NewsResultNode,
 	OrganicResultNode,
+	RelatedSearchesResultNode,
 	TimeResultNode,
 	TranslateResultNode,
 	UnitConversionResultNode,
@@ -17,6 +18,7 @@ export const ResultTypes = {
 	UnitConversionResult: "CONVERSION",
 	KnowledgePanelResult: "KNOWLEDGE_PANEL",
 	NewsResult: "NEWS",
+	RelatedSearchesResult: "RELATED_SEARCHES",
 } as const;
 
 // All possible result types as a union
@@ -27,7 +29,8 @@ export type SearchResultNode =
 	| TimeResultNode
 	| UnitConversionResultNode
 	| KnowledgePanelResultNode
-	| NewsResultNode;
+	| NewsResultNode
+	| RelatedSearchesResultNode;
 
 export interface RequestOptions extends RequestInit {
 	url?: string;
