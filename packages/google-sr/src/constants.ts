@@ -4,6 +4,7 @@ import type {
 	KnowledgePanelResultNode,
 	NewsResultNode,
 	OrganicResultNode,
+	RelatedSearchesResultNode,
 	TimeResultNode,
 	TranslateResultNode,
 	UnitConversionResultNode,
@@ -28,7 +29,8 @@ export type SearchResultNode =
 	| TimeResultNode
 	| UnitConversionResultNode
 	| KnowledgePanelResultNode
-	| NewsResultNode;
+	| NewsResultNode
+	| RelatedSearchesResultNode;
 
 export interface RequestOptions extends RequestInit {
 	url?: string;
