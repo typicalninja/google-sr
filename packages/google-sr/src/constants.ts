@@ -17,6 +17,7 @@ export const ResultTypes = {
 	UnitConversionResult: "CONVERSION",
 	KnowledgePanelResult: "KNOWLEDGE_PANEL",
 	NewsResult: "NEWS",
+	RelatedSearchesResult: "RELATED_SEARCHES",
 } as const;
 
 // All possible result types as a union
