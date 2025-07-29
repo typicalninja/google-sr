@@ -28,15 +28,19 @@ export interface OrganicResultNode extends SearchResultNodeLike {
  * @example
  * ```ts
  * import { OrganicResult, search } from 'google-sr';
+ *
  * const results = await search({
  * 	query: 'google-sr npm package',
  * 	parsers: [OrganicResult],
  * });
  * ```
  *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
  * @returns
- * - Array of {@link OrganicResultNode} objects
- * - If noPartialResult is true, Array of {@link PartialExceptType}<{@link OrganicResultNode}> objects
+ * - If noPartialResults is true: Array of {@link OrganicResultNode} objects
+ * - If noPartialResults is false: Array of {@link PartialExceptType}<{@link OrganicResultNode}> objects
+ * - If no results are found: returns an empty array
  */
 export const OrganicResult: ResultParser<OrganicResultNode> = (
 	$,

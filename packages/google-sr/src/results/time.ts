@@ -16,7 +16,22 @@ export interface TimeResultNode extends SearchResultNodeLike {
 
 /**
  * Parses time search results.
- * @returns Array of TimeResultNode
+ *
+ * @example
+ * ```ts
+ * import { TimeResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'time in new york',
+ * 	parsers: [TimeResult],
+ * });
+ * ```
+ *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: {@link TimeResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link TimeResultNode}> object or null
  */
 export const TimeResult: ResultParser<TimeResultNode> = (
 	$,

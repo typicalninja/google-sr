@@ -14,7 +14,22 @@ export interface UnitConversionResultNode extends SearchResultNodeLike {
 
 /**
  * Parses unit conversion search results.
- * @returns Array of UnitConversionResultNode
+ *
+ * @example
+ * ```ts
+ * import { UnitConversionResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: '100 USD to EUR',
+ * 	parsers: [UnitConversionResult],
+ * });
+ * ```
+ *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: {@link UnitConversionResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link UnitConversionResultNode}> object or null
  */
 export const UnitConversionResult: ResultParser<UnitConversionResultNode> = (
 	$,
