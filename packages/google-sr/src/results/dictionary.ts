@@ -56,7 +56,22 @@ const parseDefinitionBlock = (
 
 /**
  * Parses dictionary search results.
- * @returns Array of DictionaryResultNode
+ *
+ * @example
+ * ```ts
+ * import { DictionaryResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'define serendipity',
+ * 	parsers: [DictionaryResult],
+ * });
+ * ```
+ *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: {@link DictionaryResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link DictionaryResultNode}> object or null
  */
 export const DictionaryResult: ResultParser<DictionaryResultNode> = (
 	$,

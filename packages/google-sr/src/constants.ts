@@ -77,47 +77,72 @@ export interface SearchOptions<
 	N extends boolean = false,
 > {
 	/**
-	 * Search query
+	 * The search query string to send to Google.
 	 */
 	query: string;
+
 	/**
-	 * Control the type of results returned (can have a significant performance impact)
+	 * Array of result parsers that determine which types of results to extract.
+	 *
+	 * Each parser processes the HTML response and extracts specific result types.
+	 * Using fewer parsers can improve performance.
+	 *
+	 * @default [OrganicResult] - Only organic results are parsed if not specified
 	 */
 	parsers?: R[];
 
 	/**
-	 * When true, excludes results that have undefined or empty properties.
+	 * Whether to exclude results with missing or undefined properties.
 	 * @default false - Partial results are included.
 	 */
 	noPartialResults?: N;
 
 	/**
-	 * Custom request configuration to be sent with the request
+	 * Custom HTTP request configuration for the search request.
+	 *
+	 * Accepts all standard Fetch API options (headers, method, signal, etc.)
+	 * plus additional google-sr specific properties.
+	 *
+	 * @example
+	 * ```ts
+	 * requestConfig: {
+	 * 	signal: abortController.signal,
+	 * 	queryParams: { tbm: 'nws' }, // this is provided by google-sr
+	 * }
+	 * ```
 	 */
 	requestConfig?: RequestOptions;
 }
 
 /**
- * Search options for multiple pages search
+ * Configuration options for multi-page search.
  */
 export interface SearchOptionsWithPages<
 	R extends ResultParser = ResultParser,
 	N extends boolean = false,
 > extends SearchOptions<R, N> {
 	/**
-	 * Total number of pages to search or an array of specific pages to search
+	 * Specifies which pages to search.
 	 *
-	 * google search uses cursor-based pagination.
+	 * - **Number**: Total pages to search starting from page 1
+	 * - **Array**: Specific page offsets to search (0 = page 1, 10 = page 2, etc.)
 	 *
-	 * Specific page numbers are incremented by 10 starting from 0 (page 1)
+	 * Google uses cursor-based pagination with increments of 10.
 	 *
-	 * If total number of pages is provided, cursor will be created according to: start = page * 10
+	 * @example
+	 * ```ts
+	 * pages: 3        // Searches pages 1, 2, 3 (offsets: 0, 10, 20)
+	 * pages: [0, 20]  // Searches pages 1 and 3 (offsets: 0, 20)
+	 * ```
 	 */
 	pages: number | number[];
 	/**
-	 * Delay between each request in milliseconds. helps to avoid rate limiting issues.
+	 * Delay between requests in milliseconds.
 	 *
-	 * Default is 1000 ms (1 second). set to 0 to disable delay.
+	 * Helps prevent rate limiting by spacing out requests.
+	 * Set to 0 to disable delays (not recommended for production).
+	 *
+	 * @default 1000 - 1 second delay between requests
 	 */
 	delay?: number;
 }

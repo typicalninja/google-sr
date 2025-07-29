@@ -18,11 +18,12 @@ export interface RelatedSearchesResultNode extends SearchResultNodeLike {
 /**
  * Parses related search queries that appear at the bottom of Google search results.
  * This parser extracts the "Related searches" or similar related query suggestions
- * that Google displays to help users refine their search.
+ * that Google displays to help users find similar or relevant topics.
  *
  * @example
  * ```ts
  * import { RelatedSearchesResult, search } from 'google-sr';
+ *
  * const results = await search({
  * 	query: 'nodejs frameworks',
  * 	parsers: [RelatedSearchesResult],
@@ -30,9 +31,11 @@ export interface RelatedSearchesResultNode extends SearchResultNodeLike {
  * // results[0].queries might contain: ["express.js", "react.js", ...]
  * ```
  *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
  * @returns
- * - If noPartialResults is true, {@link RelatedSearchesResultNode} object
- * - If noPartialResults is false, {@link PartialExceptType}<{@link RelatedSearchesResultNode}> object
+ * - If noPartialResults is true: {@link RelatedSearchesResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link RelatedSearchesResultNode}> object or null
  */
 export const RelatedSearchesResult: ResultParser<RelatedSearchesResultNode> = (
 	$,

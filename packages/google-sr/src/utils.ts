@@ -20,11 +20,13 @@ const baseHeaders = {
 };
 
 /**
- * @private
- * Fetches a URL with the provided options, handling errors and returning the response.
- * @param url The URL to fetch
- * @param options The request options
- * @returns The response from the fetch call
+ * Performs a safe HTTP GET request with error handling.
+ *
+ * @internal
+ * @param options - Request configuration options
+ * @returns Promise that resolves to the HTTP response
+ * @throws {TypeError} When URL is missing from options
+ * @throws {Error} When the HTTP response is not successful (non-2xx status)
  */
 export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 	options.method = "GET"; // Ensure the method is GET
@@ -46,10 +48,18 @@ export async function safeGetFetch(options: RequestOptions): Promise<Response> {
 }
 
 /**
- * Extract the actual webpage link from a href tag result
- * @param googleLink
- * @returns
- * @private
+ * Extracts the actual destination URL from a Google search result link.
+ *
+ * @internal
+ * @param googleLink - The Google redirect URL from a search result
+ * @returns The actual destination URL, or null if extraction fails
+ *
+ * @example
+ * ```ts
+ * const googleLink = "/url?q=https%3A//example.com&sa=U&ved=...";
+ * const actualUrl = extractUrlFromGoogleLink(googleLink);
+ * // Returns: "https://example.com"
+ * ```
  */
 export function extractUrlFromGoogleLink(googleLink?: string): string | null {
 	if (!googleLink) return null;
@@ -121,9 +131,9 @@ export function throwNoCheerioError(
 /**
  * Coerces a value into a string or undefined.
  * If the value is empty or null, returns undefined.
- * @private
- * @param value - The value to coerce.
- * @returns A string if the value is valid, otherwise undefined.
+ * @internal
+ * @param value - The value to coerce
+ * @returns String if value is a non-empty string, undefined otherwise
  */
 export function coerceToStringOrUndefined(value: unknown): string | undefined {
 	if (typeof value !== "string") return undefined;
@@ -148,7 +158,7 @@ export type ParserResultType<R extends ResultParser> = AsArrayElement<
 /**
  * Internal utility type to create a partial type from a result type
  * It will make all properties optional except the 'type' property
- * @private
+ * @internal
  */
 export type PartialExceptType<T extends { type: string }> = Pick<T, "type"> &
 	Omit<Partial<T>, "type">;

@@ -17,7 +17,22 @@ export interface TranslateResultNode extends SearchResultNodeLike {
 
 /**
  * Parses translation search results.
- * @returns Array of TranslateSearchResultNodes
+ *
+ * @example
+ * ```ts
+ * import { TranslateResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'translate hello to spanish',
+ * 	parsers: [TranslateResult],
+ * });
+ * ```
+ *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: {@link TranslateResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link TranslateResultNode}> object or null
  */
 export const TranslateResult: ResultParser<TranslateResultNode> = (
 	$,

@@ -27,9 +27,23 @@ export interface KnowledgePanelResultNode extends SearchResultNodeLike {
 
 /**
  * Parses knowledge panel search results.
- * @param $
- * @param noPartialResults
- * @returns KnowledgePanelResultNode
+ * Knowledge panels appear for well-known entities like people, places, and organizations.
+ *
+ * @example
+ * ```ts
+ * import { KnowledgePanelResult, search } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'Albert Einstein',
+ * 	parsers: [KnowledgePanelResult],
+ * });
+ * ```
+ *
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: {@link KnowledgePanelResultNode} object or null
+ * - If noPartialResults is false: {@link PartialExceptType}<{@link KnowledgePanelResultNode}> object or null
  */
 export const KnowledgePanelResult: ResultParser<KnowledgePanelResultNode> = (
 	$,

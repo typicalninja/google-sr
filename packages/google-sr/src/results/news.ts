@@ -23,7 +23,7 @@ export interface NewsResultNode extends SearchResultNodeLike {
 /**
  * Parses results from the dedicated News tab in Google Search.
  *
- * To use this selector, set the `tbm` query parameter to `'nws'` in the request configuration.
+ * To use this parser, set the `tbm` query parameter to `'nws'` in the request configuration.
  *
  * **NOTE: This parser is not compatible with the other parsers and vice versa.**
  *
@@ -42,7 +42,12 @@ export interface NewsResultNode extends SearchResultNodeLike {
  * });
  * ```
  *
- * @returns Array of {@link NewsResultNode} objects
+ * @param $ - The CheerioAPI instance
+ * @param noPartialResults - Whether to exclude results with missing properties
+ * @returns
+ * - If noPartialResults is true: Array of {@link NewsResultNode} objects
+ * - If noPartialResults is false: Array of {@link PartialExceptType}<{@link NewsResultNode}> objects
+ * - If no results are found: returns an empty array
  */
 export const NewsResult: ResultParser<NewsResultNode> = (
 	$,
