@@ -97,7 +97,9 @@ export async function search<R extends ResultParser, N extends boolean = false>(
 export async function searchWithPages<
 	R extends ResultParser = typeof OrganicResult,
 	N extends boolean = false,
->(options: SearchOptionsWithPages<R, N>) {
+>(
+	options: SearchOptionsWithPages<R, N>,
+): Promise<SearchResultTypeFromParser<R, N>[][]> {
 	if (!options)
 		throw new TypeError(
 			`Search options must be provided. Received ${typeof options}`,
