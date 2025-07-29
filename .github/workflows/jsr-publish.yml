@@ -13,7 +13,7 @@ jobs:
       matrix:
         package:
           - packages/google-sr
-          - packages/google-sr-selectors
+          # - packages/google-sr-selectors
           #- packages/google-that for now we will not publish this package to JSR
 
     permissions:
