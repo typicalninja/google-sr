@@ -41,22 +41,19 @@ relying directly on google-sr-selectors.
 - [Discord][discord]
 
 
-# Notice for CommonJS users
+#### CommonJS / ESM Notice
 
-This package currently includes both [CommonJS (CJS)][cjs-nodejs-docs] and [ES Modules (ESM)][esm-nodejs-docs] builds.
+Currently this package provides both [CommonJS (CJS)][cjs-nodejs-docs] and [ES Modules (ESM)][esm-nodejs-docs] builds.
 
-Starting with **v7.x** (subject to change), we plan to drop CJS support and publish only ESM-only builds.
+**Starting in version 7.x (subject to change), we plan to publish ESM-only releases and remove the CJS build.**  
+As a result, you will no longer be able to use `require()` to import this package; you must use `import` instead.  
+(*If you’re on Node.js v20 or later, you can still use `require()` with ESM modules natively.* [See release note][nodejs-v20-backport-note])
 
-#### Why ESM-only going forward?
-- **Modern JavaScript**: ESM is now the standard, offering better support for tree-shaking and static analysis.
-- **Reduces package size**: Maintaining a single build reduces package size and build complexity.
-- [Node.js `v20`+ supports require() on ESM modules natively][nodejs-v20-backport-note] (no flags needed)
+While Node.js v20+ supports ESM well, we’ll wait until its EOL before removing CJS to allow more time for transition.
 
-While Node.js v20 already supports ESM well, we will wait until its End-of-Life before removing CJS to give users and tooling more time to transition.
+> Note: This only affects Node.js users. Runtimes like Bun and Deno already support ESM natively.
 
-> Note: This applies only to Node.js users, other runtimes like Bun and Deno already support ESM natively
-
-See this [gist for future migration tips][esm-migration-pure-esm-gist] and our [GitHub discussion][cjs-build-notice-discussion] for more details.
+See [this gist][esm-migration-pure-esm-gist] and our [GitHub discussion][cjs-build-notice-discussion] for migration help.
 
 # Related projects 🥂
 

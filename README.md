@@ -39,19 +39,15 @@
 
 See Individual [package readme](#packages) for installation instructions.
 
-### Notice for CommonJS Users
+#### CommonJS / ESM Notice
 
-[The packages in](#packages) this repo includes builds for both [CommonJS (CJS)][cjs-nodejs-docs] and [ES Modules (ESM)][esm-nodejs-docs].
+Currently packages in this repo provides both [CommonJS (CJS)][cjs-nodejs-docs] and [ES Modules (ESM)][esm-nodejs-docs] builds.
 
-**Starting from `v7.x` (subject to change), we plan to drop CJS and publish ESM-only builds.**
+**Starting in version 7.x (subject to change), we plan to publish ESM-only releases and remove the CJS build.**  
+As a result, you will no longer be able to use `require()` to import this package; you must use `import` instead.  
+(*If you’re on Node.js v20 or later, you can still use `require()` with ESM modules natively.* [See release note][nodejs-v20-backport-note])
 
-#### Why ESM-only?
-
-- **Modern standard**: Better support for tree-shaking and static analysis.
-- **Simpler builds**: Smaller packages and reduced complexity.
-- [Node.js v20+ supports `require()` on ESM modules natively][nodejs-v20-backport-note].
-
-While Node.js v20 supports ESM well, we’ll wait until its EOL before removing CJS to allow more time for transition.
+While Node.js v20+ supports ESM well, we’ll wait until its EOL before removing CJS to allow more time for transition.
 
 > Note: This only affects Node.js users. Runtimes like Bun and Deno already support ESM natively.
 
