@@ -1,0 +1,15 @@
+{
+  "name": "@typical/google-sr",
+  "version": "6.0.0",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+	"publish": {
+    "include": [
+      "src",
+      "package.json",
+      "jsr.json",
+      "README.md",
+      "LICENSE"
+    ]
+  }
+}
