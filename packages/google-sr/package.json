@@ -4,7 +4,8 @@
 	"description": "Fast and efficient Package for scraping Google search results without the need for an API key",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/typicalninja/google-sr.git"
+		"url": "git+https://github.com/typicalninja/google-sr.git",
+		"directory": "packages/google-sr"
 	},
 	"homepage": "https://typicalninja.github.io/google-sr/",
 	"type": "module",

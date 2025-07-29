@@ -4,7 +4,8 @@
 	"description": "Html selectors for google search result pages.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/typicalninja/google-sr.git"
+		"url": "git+https://github.com/typicalninja/google-sr.git",
+		"directory": "packages/google-sr-selectors"
 	},
 	"homepage": "https://typicalninja.github.io/google-sr/",
 	"author": "typicalninja",
