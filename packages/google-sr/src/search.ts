@@ -23,7 +23,7 @@ import {
  *
  * const results = await search({
  * 	query: 'nodejs tutorial',
- *  // Configure the parsers you want
+ * 	// Configure the parsers you want
  * 	parsers: [OrganicResult],
  * 	noPartialResults: true
  * });
