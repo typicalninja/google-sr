@@ -11,6 +11,28 @@ import {
 	safeGetFetch,
 } from "./utils.js";
 
+/**
+ * Performs a Google search and returns parsed results from a single page.
+ *
+ * This is the main search function for single-page searches. It accepts various parsers
+ * to extract different types of results (organic results, news, translations, etc.).
+ *
+ * @example
+ * ```ts
+ * import { search, OrganicResult } from 'google-sr';
+ *
+ * const results = await search({
+ * 	query: 'nodejs tutorial',
+ *  // Configure the parsers you want
+ * 	parsers: [OrganicResult],
+ * 	noPartialResults: true
+ * });
+ * ```
+ *
+ * @param searchOptions - Configuration options for the search
+ * @returns Promise that resolves to an array of parsed search results
+ * @throws {TypeError} When searchOptions is not provided or is invalid
+ */
 export async function search<R extends ResultParser, N extends boolean = false>(
 	searchOptions: SearchOptions<R, N>,
 ): Promise<SearchResultTypeFromParser<R, N>[]> {
@@ -41,6 +63,37 @@ export async function search<R extends ResultParser, N extends boolean = false>(
 	return searchResults;
 }
 
+/**
+ * Performs a Google search across multiple pages and returns parsed results.
+ *
+ * This function efficiently searches multiple pages by reusing the same parsers
+ * and request configuration. Results are returned as a 2D array where each
+ * sub-array contains results from one page.
+ *
+ * @example
+ * ```ts
+ * import { searchWithPages, OrganicResult } from 'google-sr';
+ *
+ * // Search first 3 pages
+ * const results = await searchWithPages({
+ * 	query: 'machine learning',
+ * 	parsers: [OrganicResult],
+ * 	pages: 3, // Will search pages 0, 10, 20
+ * 	delay: 1000 // 1 second delay between requests
+ * });
+ *
+ * // Search specific pages
+ * const specificResults = await searchWithPages({
+ * 	query: 'react hooks',
+ * 	parsers: [OrganicResult],
+ * 	pages: [0, 20, 40], // Search pages 1, 3, and 5
+ * });
+ * ```
+ *
+ * @param options - Configuration options for the multi-page search
+ * @returns Promise that resolves to a 2D array where each sub-array contains results from one page
+ * @throws {TypeError} When options is not provided or pages parameter is invalid
+ */
 export async function searchWithPages<
 	R extends ResultParser = typeof OrganicResult,
 	N extends boolean = false,
