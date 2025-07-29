@@ -115,6 +115,8 @@ export async function searchWithPages<
 		: Array.from({ length: options.pages }, (_, i) => i * 10);
 	const baseRequestConfig = prepareRequestConfig(options);
 	const parsers = options.parsers || [OrganicResult];
+	const delay = options.delay ?? 1000;
+
 	for (const page of pages) {
 		// params is guaranteed to be a URLSearchParams
 		// setting it here should be fine
@@ -137,6 +139,11 @@ export async function searchWithPages<
 		}
 
 		searchResults.push(pageResults);
+
+		// Add delay after processing each page (except the last one)
+		if (page !== pages[pages.length - 1] && delay > 0) {
+			await new Promise((resolve) => setTimeout(resolve, delay));
+		}
 	}
 
 	return searchResults;
