@@ -1,17 +1,10 @@
-[npm]: https://www.npmjs.com/package/google-that
-[github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
-[github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
-[stargazers]: https://github.com/typicalninja/google-sr/stargazers
-[discord]: https://discord.gg/ynwckXS9T2
-[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml
-
 <h1 align="center">Google-that</h1>
 
 <p align="center">CLI tool to scrape google search results without an api key</p>
 
 <div align="center">
 
-[![testing workflow](https://img.shields.io/github/actions/workflow/status/typicalninja/google-sr/tests.yml?style=flat)][test-action]
+[![Run tests and collect coverage](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)][test-action]   
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
 [![Discord](https://img.shields.io/discord/807868280387665970?style=flat)][discord]
 [![Monthly downloads](https://img.shields.io/npm/dm/google-that?style=flat)][npm]
@@ -20,8 +13,8 @@
 
 <div align="center">
 
-**[Installation](#install) |
-[Getting started](#usage) |
+**[Installation](#install) •
+[Getting started](#usage) •
 [Disclaimer](#disclaimer)**
 
 </div>
@@ -89,3 +82,21 @@ By using this project, you acknowledge that you are solely responsible for compl
 # License
 
 This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
+
+---
+
+###### Like the project? [Star it on GitHub ★][github]
+
+
+[npm]: https://www.npmjs.com/package/google-that
+[github-gsr]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr
+[github-gsrs]: https://github.com/typicalninja/google-sr/tree/master/packages/google-sr-selectors
+[stargazers]: https://github.com/typicalninja/google-sr/stargazers  
+[github]: https://github.com/typicalninja/google-sr  
+[github-issues]: https://github.com/typicalninja/google-sr/issues
+[discord]: https://discord.gg/ynwckXS9T2  
+[test-action]: https://github.com/typicalninja/google-sr/actions/workflows/tests.yml  
+[api-docs]: https://typicalninja.github.io/google-sr/  
+[mirror-codeberg]: https://codeberg.org/typicalninja/google-sr  
+[codefactor]: https://www.codefactor.io/repository/github/typicalninja/google-sr
+[codecov]: https://codecov.io/gh/typicalninja/google-sr

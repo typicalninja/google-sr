@@ -1,7 +1,7 @@
 {
 	"name": "google-sr",
 	"version": "5.0.0",
-	"description": "Fast and efficient Package for scraping Google search results without the need for an API key",
+	"description": "JavaScript / TypeScript tools to fetch Google search results without an API key.",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/typicalninja/google-sr.git",

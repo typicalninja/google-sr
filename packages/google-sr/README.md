@@ -1,7 +1,7 @@
 <h1 align="center">google-sr</h1>
 
 <p align="center">
-	Monorepo for JavaScript / TypeScript tools to fetch Google search results.
+	Modern JavaScript / TypeScript tools for fetching and parsing Google search results
 </p>
 
 <div align="center">
@@ -18,9 +18,9 @@
 
 <div align="center">
 
-**[Documentation][api-docs] |
-[Discord][discord] |
-[Disclaimer](#disclaimer) |
+**[Usage](#usage) •
+[Documentation][api-docs] •
+[Disclaimer](#disclaimer) •
 [Mirror][mirror-codeberg]**
 
 </div>
@@ -30,9 +30,9 @@
 ## Features
 
 - No API key needed
-- TypeScript support
+- First-class TypeScript support
 - Works in Node.js, Bun, and Deno
-- Customizable selectors
+- Modular result parsers
 
 ## Install
 
@@ -56,13 +56,13 @@ Currently this package provides both [CommonJS (CJS)][cjs-nodejs-docs] and [ES M
 As a result, you will no longer be able to use `require()` to import this package; you must use `import` instead.  
 (*If you’re on Node.js v20 or later, you can still use `require()` with ESM modules natively.* [See release note][nodejs-v20-backport-note])
 
-While Node.js v20+ supports ESM well, we’ll wait until its EOL before removing CJS to allow more time for transition.
-
 > Note: This only affects Node.js users. Runtimes like Bun and Deno already support ESM natively.
 
 See [this gist][esm-migration-pure-esm-gist] and our [GitHub discussion][cjs-build-notice-discussion] for migration help.
 
 ## Usage
+
+`google-sr` is modular, use only the parsers relevant to your search. Here’s a simple example:
 
 ```ts
 import { search, OrganicResult, TranslateResult, ResultTypes } from "google-sr";
@@ -76,7 +76,7 @@ console.log(results[0].type === ResultTypes.TranslateResult); // true
 console.log(results);
 ```
 
-## Output Example
+### Output Example
 
 ```js
 [
@@ -96,15 +96,7 @@ console.log(results);
 ]
 ```
 
-More examples: [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples)
-
-## Tests
-
-Tests use [vitest](https://vitest.dev/). Run:
-
-```bash
-pnpm run test
-```
+More examples available at: [apps/examples](https://github.com/typicalninja/google-sr/tree/master/apps/examples)
 
 ## Links
 
@@ -113,6 +105,14 @@ pnpm run test
 - [Codeberg Mirror][mirror-codeberg]
 - [NPM Package][npm-gsr]
 - [Discord][discord]
+
+## Tests
+
+Tests use [vitest](https://vitest.dev/). Run:
+
+```bash
+pnpm run test
+```
 
 
 ## Disclaimer
@@ -125,11 +125,12 @@ By using this project, you acknowledge that you are solely responsible for compl
 
 ## License
 
-Apache-2.0. See [LICENSE](./LICENSE).
+This repository and the code inside it is licensed under the Apache-2.0 License. Read [LICENSE](./LICENSE) for more information.
 
 ---
 
 ###### Like the project? [Star it on GitHub ★][github]
+
 
 [npm-gsr]: https://www.npmjs.com/package/google-sr  
 [stargazers]: https://github.com/typicalninja/google-sr/stargazers  
