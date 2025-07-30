@@ -1,6 +1,6 @@
 {
 	"name": "google-sr",
-	"version": "5.0.0",
+	"version": "6.0.0",
 	"description": "JavaScript / TypeScript tools to fetch Google search results without an API key.",
 	"repository": {
 		"type": "git",
