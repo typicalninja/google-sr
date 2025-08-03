@@ -18,9 +18,9 @@
 
 <div align="center">
 
-**[Documentation][api-docs] |
-[Discord][discord] |
-[Disclaimer](#disclaimer) |
+**[Documentation][api-docs] •
+[Discord][discord] •
+[Disclaimer](#disclaimer) •
 [Mirror][mirror-codeberg]**
 
 </div>

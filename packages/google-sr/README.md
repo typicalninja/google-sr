@@ -9,8 +9,8 @@
 [![Run tests and collect coverage](https://github.com/typicalninja/google-sr/actions/workflows/tests.yml/badge.svg)][test-action]   
 [![GitHub Repo stars](https://img.shields.io/github/stars/typicalninja/google-sr?style=flat)][stargazers]
 [![Monthly downloads](https://img.shields.io/npm/dm/google-sr?style=flat)][npm-gsr]
-[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/typicalninja/google-sr)][github-issues]
-[![CodeFactor](https://www.codefactor.io/repository/github/typicalninja/google-sr/badge)][codefactor]
+[![NPM package](https://img.shields.io/npm/v/google-sr)][npm-gsr]
+[![JSR package](https://jsr.io/badges/@typical/google-sr)][jsr-gsr]
 [![codecov](https://codecov.io/gh/typicalninja/google-sr/graph/badge.svg?token=NKZSQVTAAP)][codecov]
 
 
@@ -133,6 +133,7 @@ This repository and the code inside it is licensed under the Apache-2.0 License.
 
 
 [npm-gsr]: https://www.npmjs.com/package/google-sr  
+[jsr-gsr]: https://jsr.io/@typical/google-sr
 [stargazers]: https://github.com/typicalninja/google-sr/stargazers  
 [github]: https://github.com/typicalninja/google-sr  
 [github-issues]: https://github.com/typicalninja/google-sr/issues
