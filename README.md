@@ -1,3 +1,5 @@
+> **DEPRECATED**: See [this issue](https://github.com/typicalninja/google-sr/issues/103) for more information, thanks for using this package!
+
 <h1 align="center">google-sr</h1>
 
 <p align="center">
